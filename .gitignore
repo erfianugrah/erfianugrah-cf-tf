@@ -1,0 +1,14 @@
+certs
+# Ignore local .terraform directories at any level
+**/.terraform/*
+
+# Do not ignore .terraform.lock.hcl files
+!.terraform.lock.hcl
+
+# Other Terraform-related ignores
+# *.tfstate
+# *.tfstate.*
+# *.tfvars
+# *.tfplan
+*.pem
+*.hcl
