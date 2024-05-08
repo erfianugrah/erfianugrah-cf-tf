@@ -10,6 +10,10 @@ resource "cloudflare_split_tunnel" "default_include" {
     address     = "10.0.0.0/8"
     description = "Local"
   }
+  tunnels {
+    address     = "172.16.0.0/12"
+    description = "docker-podman"
+  }
 }
 
 resource "cloudflare_split_tunnel" "google_include" {
@@ -23,5 +27,9 @@ resource "cloudflare_split_tunnel" "google_include" {
   tunnels {
     address     = "10.0.0.0/8"
     description = "Local"
+  }
+  tunnels {
+    address     = "172.16.0.0/12"
+    description = "docker-podman"
   }
 }
