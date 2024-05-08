@@ -115,3 +115,13 @@ variable "caddy_key_path" {
   description = "caddy_key_path"
   type = string
 }
+
+variable "pages_domain" {
+  description = "pages domain"
+  type = string
+}
+
+variable "deno_domain" {
+  description = "deno domain"
+  type = string
+}

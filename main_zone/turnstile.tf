@@ -3,7 +3,7 @@ resource "cloudflare_turnstile_widget" "authentik" {
   name           = "Authentik"
 #   bot_fight_mode = true
 #   offlabel       = true
-  domains        = ["${var.domain_name}"]
+  domains        = [var.domain_name]
   mode           = "managed"
   region         = "world"
 }
@@ -13,7 +13,7 @@ resource "cloudflare_turnstile_widget" "interstitial" {
   name           = "Interstitial Turnstile"
 #   bot_fight_mode = true
 #   offlabel       = true
-  domains        = ["${var.domain_name}"]
+  domains        = [var.domain_name]
   mode           = "managed"
   region         = "world"
 }

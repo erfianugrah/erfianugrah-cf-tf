@@ -95,9 +95,9 @@ resource "cloudflare_ruleset" "http_request_origin" {
   rules {
     action = "route"
     action_parameters {
-      host_header = "${var.domain_name}"
+      host_header = var.domain_name
       origin {
-        host = "${var.domain_name}"
+        host = var.domain_name
       }
     }
     description = "WWW to @ Host"

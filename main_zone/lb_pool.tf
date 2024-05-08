@@ -6,11 +6,11 @@ resource "cloudflare_load_balancer_pool" "deno" {
   monitor         = cloudflare_load_balancer_monitor.ssgs.id
   name            = "Deno"
   origins {
-    address = "revista-3.deno.dev"
+    address = var.deno_domain 
     enabled = true
     header {
       header = "Host"
-      values = ["revista-3.deno.dev"]
+      values = [var.deno_domain]
     }
     name   = "Deno"
     weight = 1
@@ -25,7 +25,7 @@ resource "cloudflare_load_balancer_pool" "pages" {
   monitor         = cloudflare_load_balancer_monitor.ssgs.id
   name            = "Pages"
   origins {
-    address = "revista-4.pages.dev"
+    address = var.pages_domain     
     enabled = true
     header {
       header = "Host"
@@ -48,7 +48,7 @@ resource "cloudflare_load_balancer_pool" "revista_sg" {
     enabled = true
     header {
       header = "Host"
-      values = ["${var.domain_name}"]
+      values = [var.domain_name]
     }
     name   = "revista_sg"
     weight = 1
@@ -67,7 +67,7 @@ resource "cloudflare_load_balancer_pool" "revista_nl" {
     enabled = true
     header {
       header = "Host"
-      values = ["${var.domain_name}"]
+      values = [var.domain_name]
     }
     name   = "revista_nl"
     weight = 1

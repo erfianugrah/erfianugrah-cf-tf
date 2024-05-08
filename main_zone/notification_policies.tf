@@ -16,7 +16,7 @@ resource "cloudflare_notification_policy" "ddos_l7" {
     target_zone_name = [
       "dev.saas.${var.domain_name}",
       "erfianugrah.best",
-      "${var.domain_name}",
+      var.domain_name,
       "erfianugrah.net",
       "erfianugrah.org",
       "erfi.design",
