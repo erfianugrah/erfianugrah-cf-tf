@@ -44,7 +44,7 @@ resource "cloudflare_load_balancer_pool" "revista_sg" {
   monitor         = cloudflare_load_balancer_monitor.revista.id
   name            = "Revista_SG"
   origins {
-    address = var.sg_ip
+    address = cloudflare_tunnel.servarr.cname
     enabled = true
     header {
       header = "Host"

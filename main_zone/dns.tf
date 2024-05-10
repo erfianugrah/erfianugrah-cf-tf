@@ -114,8 +114,8 @@ resource "cloudflare_record" "file" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -257,8 +257,8 @@ resource "cloudflare_record" "joplin" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -345,8 +345,8 @@ resource "cloudflare_record" "plex" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -356,8 +356,8 @@ resource "cloudflare_record" "portainer" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -455,8 +455,8 @@ resource "cloudflare_record" "servarr" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -521,8 +521,8 @@ resource "cloudflare_record" "vaultwarden" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
