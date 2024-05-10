@@ -206,6 +206,7 @@ resource "cloudflare_access_application" "tunnel_secret_worker" {
 
 resource "cloudflare_access_application" "overseerr" {
   account_id                 = var.cloudflare_account_id
+  # allowed_idps = [cloudflare_access_identity_provider.gmail.id, cloudflare_access_identity_provider.otp.id]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
   domain                     = "overseerr.${var.domain_name}"
