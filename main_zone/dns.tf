@@ -585,6 +585,15 @@ resource "cloudflare_record" "custom-hostname-2" {
   zone_id = var.cloudflare_zone_id
 }
 
+resource "cloudflare_record" "httpbun" {
+  name    = "httpbun"
+  proxied = true
+  ttl     = 1
+  type    = "A"
+  value   = var.sg_ip
+  zone_id = var.cloudflare_zone_id
+}
+
 resource "cloudflare_record" "custom-hostname" {
   name    = "custom-hostname"
   proxied = true
