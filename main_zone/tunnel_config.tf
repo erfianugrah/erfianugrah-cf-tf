@@ -87,35 +87,43 @@ resource "cloudflare_tunnel_config" "servarr" {
       hostname = "port.${var.domain_name}"
       service  = "http://172.17.0.2:9000"
     }
-    ingress_rule {
-      hostname = "plex.${var.domain_name}"
-      service  = "http://172.19.0.8:32400"
-    }
-    ingress_rule {
-      hostname = "vaultwarden.${var.domain_name}"
-      service  = "http://172.20.0.2:80"
-    }
-    ingress_rule {
-      hostname = "vaultwarden.${var.domain_name}"
-      path     = "notifications/hub"
-      service  = "http://172.20.0.2:3012"
-    }
-    ingress_rule {
-      hostname = "joplin.${var.domain_name}"
-      service  = "http://172.41.0.2:22300"
-    }
-    ingress_rule {
-      hostname = "file.${var.domain_name}"
-      service  = "http://172.26.0.2:80"
-    }
+    # ingress_rule {
+    #   hostname = "caddy.${var.domain_name}"
+    #   service  = "http://localhost:2019"
+    #   origin_request {
+    #     # origin_server_name = "caddy.${var.domain_name}"
+    #     http_host_header = "caddy.${var.domain_name}"
+    #   }
+    # }
+    # ingress_rule {
+    #   hostname = "plex.${var.domain_name}"
+    #   service  = "http://172.19.0.8:32400"
+    # }
+    # ingress_rule {
+    #   hostname = "vaultwarden.${var.domain_name}"
+    #   service  = "http://172.19.4.2:80"
+    # }
+    # ingress_rule {
+    #   hostname = "vaultwarden.${var.domain_name}"
+    #   path     = "notifications/hub"
+    #   service  = "http://172.19.0.2:3012"
+    # }
+    # ingress_rule {
+    #   hostname = "joplin.${var.domain_name}"
+    #   service  = "http://172.41.0.2:22300"
+    # }
+    # ingress_rule {
+    #   hostname = "file.${var.domain_name}"
+    #   service  = "http://172.26.0.2:80"
+    # }
     ingress_rule {
       hostname = "servarr.${var.domain_name}"
-      service  = "http://10.68.71.2:90"
+      service  = "http://localhost:90"
     }
-    ingress_rule {
-      hostname = var.domain_name
-      service  = "http://172.66.0.2:4321"
-    }
+    # ingress_rule {
+    #   hostname = var.domain_name
+    #   service  = "http://172.66.0.2:4321"
+    # }
     # ingress_rule {
     #   hostname = "caddy.${var.domain_name}"
     #   service  = "http://localhost:2019"
