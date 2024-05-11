@@ -25,7 +25,7 @@ resource "cloudflare_load_balancer_pool" "pages" {
   monitor         = cloudflare_load_balancer_monitor.ssgs.id
   name            = "Pages"
   origins {
-    address = var.pages_domain     
+    address = var.pages_domain 
     enabled = true
     header {
       header = "Host"
