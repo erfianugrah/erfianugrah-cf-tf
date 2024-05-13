@@ -63,7 +63,7 @@ resource "cloudflare_load_balancer_pool" "revista_nl" {
   monitor         = cloudflare_load_balancer_monitor.revista.id
   name            = "Revista_NL"
   origins {
-    address = "55555abb-c7df-4f26-a44f-f6c116402148.cfargotunnel.com"
+    address = var.k3s_tunnel 
     enabled = true
     header {
       header = "Host"

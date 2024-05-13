@@ -125,3 +125,8 @@ variable "deno_domain" {
   description = "deno domain"
   type = string
 }
+
+variable "k3s_tunnel" {
+  description = "k3s tunnel cname"
+  type = string
+}
