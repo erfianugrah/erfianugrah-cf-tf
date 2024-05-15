@@ -325,3 +325,16 @@ resource "cloudflare_access_policy" "ollama_token" {
     service_token = [cloudflare_access_service_token.ollama_token.id]
   }
 }
+
+resource "cloudflare_access_policy" "changedetection" {
+  application_id   = cloudflare_access_application.changedetection.id
+  account_id       = var.cloudflare_account_id
+  name             = "Allow Erfi"
+  precedence       = "1"
+  decision         = "allow"
+  session_duration = "30m"
+
+  include {
+    group = [cloudflare_access_group.erfi_corp.id]
+  }
+}

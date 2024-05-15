@@ -205,7 +205,7 @@ resource "cloudflare_access_application" "changedetection" {
   auto_redirect_to_identity  = false
   domain                     = "change.${var.domain_name}"
   enable_binding_cookie      = false
-  http_only_cookie_attribute = true
+  http_only_cookie_attribute = false 
   name                       = "ChangeDetection"
   self_hosted_domains        = ["change.${var.domain_name}"]
   session_duration           = "24h"
