@@ -130,3 +130,13 @@ variable "k3s_tunnel" {
   description = "k3s tunnel cname"
   type = string
 }
+
+variable "r2_access_key_id" {
+  description = "r2 access key id"
+  type = string
+}
+
+variable "r2_access_key" {
+  description = "r2 access key"
+  type = string
+}
