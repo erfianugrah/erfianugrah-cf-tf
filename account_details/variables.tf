@@ -51,3 +51,13 @@ variable "domain_name" {
   type        = string
   sensitive   = true
 }
+
+variable "r2_access_key_id" {
+  description = "r2 access key id"
+  type = string
+}
+
+variable "r2_access_key" {
+  description = "r2 access key"
+  type = string
+}
