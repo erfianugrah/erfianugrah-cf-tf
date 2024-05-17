@@ -16,6 +16,12 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
     logging {
       enabled = true
     }
+  } 
+  rules {
+    action      = "managed_challenge"
+    description = "WAF Attack Score < 10"
+    enabled     = true
+    expression  = "(cf.waf.score lt 10)"
   }
   rules {
     action      = "js_challenge"

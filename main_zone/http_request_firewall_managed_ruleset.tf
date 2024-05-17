@@ -286,6 +286,10 @@ resource "cloudflare_ruleset" "http_request_firewall_managed" {
           enabled = true
           id      = "2c5413e155db4365befe0df160ba67d7"
         }
+        rules {
+          enabled = true
+          id      = "888f34e336ec4211b02e49c3484037ce"
+        }
       }
       version = "latest"
     }
