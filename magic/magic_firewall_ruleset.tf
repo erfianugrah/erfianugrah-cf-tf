@@ -9,6 +9,12 @@ resource "cloudflare_magic_firewall_ruleset" "magic_firewall" {
       expression  = "(ip.proto eq \"icmp\")"
       description = "Allow ICMP"
       enabled     = "true"
+    },
+    {
+      action      = "allow"
+      expression  = "(ip.src in {100.64.0.0/10})"
+      description = "Allow WARP Virtual IPs"
+      enabled     = "true"
     }
   ]
 }
