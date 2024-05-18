@@ -30,3 +30,11 @@ resource "cloudflare_static_route" "eth2_vyos_nl_ipsec" {
   nexthop     = "10.68.100.20"
   priority    = 100
 }
+
+resource "cloudflare_static_route" "eth1_200_ipsec" {
+  account_id  = var.cloudflare_account_id
+  description = "VLAN_200"
+  prefix      = "10.68.71.0/24"
+  nexthop     = "10.68.100.20"
+  priority    = 100
+}
