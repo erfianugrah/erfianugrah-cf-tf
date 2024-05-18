@@ -35,7 +35,7 @@ resource "cloudflare_api_token" "caddy_dns" {
   policy {
     permission_groups = [
       data.cloudflare_api_token_permission_groups.all.zone["DNS Write"],
-        # "4755a26eedb94da69e1066d98aa820be", # "DNS Write"
+      # "4755a26eedb94da69e1066d98aa820be", # "DNS Write"
     ]
     resources = {
       "com.cloudflare.api.account.${var.cloudflare_account_id}" = jsonencode({
@@ -96,7 +96,7 @@ resource "cloudflare_api_token" "logpush_r2_token" {
   policy {
     permission_groups = [
       data.cloudflare_api_token_permission_groups.all.account["Workers R2 Storage Write"],
-/*       "bf7481a1826f439697cb59a20b22293e", # "Workers R2 Storage Write" */
+      /*       "bf7481a1826f439697cb59a20b22293e", # "Workers R2 Storage Write" */
     ]
     resources = {
       "com.cloudflare.api.account.*" = "*"
