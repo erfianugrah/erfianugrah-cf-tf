@@ -113,7 +113,16 @@ resource "cloudflare_access_application" "erfipie_ssh" {
 }
 
 resource "cloudflare_access_application" "warp_login" {
-  account_id                = var.cloudflare_account_id
+  account_id = var.cloudflare_account_id
+  allowed_idps = [
+    cloudflare_access_identity_provider.entra_id.id,
+    cloudflare_access_identity_provider.google_workspace.id,
+    cloudflare_access_identity_provider.gmail.id,
+    cloudflare_access_identity_provider.keycloak_oidc.id,
+    cloudflare_access_identity_provider.authentik_oidc.id,
+    cloudflare_access_identity_provider.authentik_saml.id,
+    cloudflare_access_identity_provider.otp.id
+  ]
   auto_redirect_to_identity = false
   domain                    = "erfianugrah.cloudflareaccess.com/warp"
   name                      = "Warp Login App"
