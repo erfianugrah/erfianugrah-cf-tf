@@ -925,3 +925,12 @@ resource "cloudflare_record" "ollama-ui" {
   zone_id = var.cloudflare_zone_id
 }
 
+resource "cloudflare_record" "proxy" {
+  name    = "proxy"
+  proxied = true
+  ttl     = 1
+  type    = "AAAA"
+  value   = "100::"
+  zone_id = var.cloudflare_zone_id
+}
+
