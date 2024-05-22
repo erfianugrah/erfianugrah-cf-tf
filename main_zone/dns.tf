@@ -456,7 +456,7 @@ resource "cloudflare_record" "servarr" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname 
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
