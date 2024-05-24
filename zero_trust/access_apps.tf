@@ -1,5 +1,8 @@
 resource "cloudflare_access_application" "kvm" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -31,6 +34,10 @@ resource "cloudflare_access_application" "kvm" {
 
 resource "cloudflare_access_application" "privatebin" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id,
+    cloudflare_access_policy.allow_cf.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -62,6 +69,9 @@ resource "cloudflare_access_application" "privatebin" {
 
 resource "cloudflare_access_application" "traefik_dash" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -92,6 +102,9 @@ resource "cloudflare_access_application" "traefik_dash" {
 
 resource "cloudflare_access_application" "erfipie_ssh" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -112,8 +125,36 @@ resource "cloudflare_access_application" "erfipie_ssh" {
   type                       = "ssh"
 }
 
+resource "cloudflare_access_application" "vyos_ssh" {
+  account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id
+  ]
+  allowed_idps = [
+    cloudflare_access_identity_provider.entra_id.id,
+    cloudflare_access_identity_provider.google_workspace.id,
+    cloudflare_access_identity_provider.gmail.id,
+    cloudflare_access_identity_provider.keycloak_oidc.id,
+    cloudflare_access_identity_provider.authentik_oidc.id,
+    cloudflare_access_identity_provider.authentik_saml.id,
+    cloudflare_access_identity_provider.otp.id
+  ]
+  app_launcher_visible       = true
+  auto_redirect_to_identity  = false
+  domain                     = "vyos-ssh.${var.domain_name}"
+  enable_binding_cookie      = false
+  http_only_cookie_attribute = false
+  name                       = "VyOS SSH"
+  self_hosted_domains        = ["vyos-ssh.${var.domain_name}"]
+  session_duration           = "24h"
+  type                       = "ssh"
+}
+
 resource "cloudflare_access_application" "warp_login" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -132,6 +173,10 @@ resource "cloudflare_access_application" "warp_login" {
 
 resource "cloudflare_access_application" "prometheus" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id,
+    cloudflare_access_policy.prometheus_auth_token.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -155,6 +200,9 @@ resource "cloudflare_access_application" "prometheus" {
 
 resource "cloudflare_access_application" "turing_pi_bmc" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -183,7 +231,10 @@ resource "cloudflare_access_application" "turing_pi_bmc" {
 }
 
 resource "cloudflare_access_application" "google_saas" {
-  account_id                = var.cloudflare_account_id
+  account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id
+  ]
   allowed_idps              = [cloudflare_access_identity_provider.gmail.id]
   app_launcher_visible      = true
   auto_redirect_to_identity = false
@@ -201,6 +252,9 @@ resource "cloudflare_access_application" "google_saas" {
 
 resource "cloudflare_access_application" "changedetection" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -223,6 +277,10 @@ resource "cloudflare_access_application" "changedetection" {
 
 resource "cloudflare_access_application" "filebrowser" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id,
+    cloudflare_access_policy.allow_lena.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -253,6 +311,9 @@ resource "cloudflare_access_application" "filebrowser" {
 
 resource "cloudflare_access_application" "dillinger" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -283,6 +344,10 @@ resource "cloudflare_access_application" "dillinger" {
 
 resource "cloudflare_access_application" "tunnel_secret_worker" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id,
+    cloudflare_access_policy.tunnel_secret_worker.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -305,6 +370,10 @@ resource "cloudflare_access_application" "tunnel_secret_worker" {
 
 resource "cloudflare_access_application" "overseerr" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id,
+    cloudflare_access_policy.allow_lena.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -335,6 +404,9 @@ resource "cloudflare_access_application" "overseerr" {
 
 resource "cloudflare_access_application" "app_launcher" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -353,6 +425,9 @@ resource "cloudflare_access_application" "app_launcher" {
 
 resource "cloudflare_access_application" "synapse_admin" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -382,6 +457,9 @@ resource "cloudflare_access_application" "synapse_admin" {
 
 resource "cloudflare_access_application" "servarr" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -411,6 +489,10 @@ resource "cloudflare_access_application" "servarr" {
 
 resource "cloudflare_access_application" "caddy_api" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id,
+    cloudflare_access_policy.caddy_api_token.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
@@ -434,6 +516,10 @@ resource "cloudflare_access_application" "caddy_api" {
 
 resource "cloudflare_access_application" "ollama" {
   account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id,
+    cloudflare_access_policy.ollama_token.id
+  ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
     cloudflare_access_identity_provider.google_workspace.id,
