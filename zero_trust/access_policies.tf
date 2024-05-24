@@ -11,6 +11,18 @@ resource "cloudflare_access_policy" "allow_erfi" {
   }
 }
 
+resource "cloudflare_access_policy" "warp_auth_token" {
+  # application_id   = cloudflare_access_application.prometheus.id
+  account_id = var.cloudflare_account_id
+  name       = "warp_auth_token"
+  # precedence       = "2"
+  decision         = "non_identity"
+  session_duration = "30m"
+
+  include {
+    service_token = [cloudflare_access_service_token.warp_auth_token.id]
+  }
+}
 # resource "cloudflare_access_policy" "allow_erfi_privatebin" {
 #   application_id   = cloudflare_access_application.privatebin.id
 #   account_id       = var.cloudflare_account_id
