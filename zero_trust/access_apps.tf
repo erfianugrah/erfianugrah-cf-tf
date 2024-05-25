@@ -125,6 +125,31 @@ resource "cloudflare_access_application" "erfipie_ssh" {
   type                       = "ssh"
 }
 
+resource "cloudflare_access_application" "proxmox" {
+  account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id
+  ]
+  allowed_idps = [
+    cloudflare_access_identity_provider.entra_id.id,
+    cloudflare_access_identity_provider.google_workspace.id,
+    cloudflare_access_identity_provider.gmail.id,
+    cloudflare_access_identity_provider.keycloak_oidc.id,
+    cloudflare_access_identity_provider.authentik_oidc.id,
+    cloudflare_access_identity_provider.authentik_saml.id,
+    cloudflare_access_identity_provider.otp.id
+  ]
+  app_launcher_visible       = true
+  auto_redirect_to_identity  = false
+  domain                     = "proxmox.${var.domain_name}"
+  enable_binding_cookie      = false
+  http_only_cookie_attribute = false
+  name                       = "Proxmox"
+  self_hosted_domains        = ["proxmox.${var.domain_name}"]
+  session_duration           = "24h"
+  type                       = "ssh"
+}
+
 resource "cloudflare_access_application" "vyos_ssh" {
   account_id = var.cloudflare_account_id
   policies = [
