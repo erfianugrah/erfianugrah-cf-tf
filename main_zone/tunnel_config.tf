@@ -194,6 +194,14 @@ resource "cloudflare_tunnel_config" "proxmox" {
       service  = "ssh://localhost:22"
     }
     ingress_rule {
+      hostname = "proxmox.${var.domain_name}"
+      service  = "https://localhost:8006"
+      origin_request {
+        origin_server_name = "proxmox.${var.domain_name}"
+        http2_origin       = true
+      }
+    }
+    ingress_rule {
       service = "http_status:404"
     }
   }

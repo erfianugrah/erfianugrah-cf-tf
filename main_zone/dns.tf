@@ -938,8 +938,8 @@ resource "cloudflare_record" "proxmox" {
   name    = "proxmox"
   proxied = true
   ttl     = 1
-  type    = "A"
-  value   = var.nl_ip 
+  type    = "CNAME"
+  value   = cloudflare_tunnel.proxmox.cname 
   zone_id = var.cloudflare_zone_id
 }
 
