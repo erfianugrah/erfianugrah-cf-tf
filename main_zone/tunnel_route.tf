@@ -39,3 +39,10 @@ resource "cloudflare_tunnel_route" "vyos_sg" {
   network            = "0.0.0.0/0"
   virtual_network_id = cloudflare_tunnel_virtual_network.vyos_sg.id
 }
+
+resource "cloudflare_tunnel_route" "proxmox" {
+  account_id         = var.cloudflare_account_id
+  tunnel_id          = cloudflare_tunnel.proxmox.id
+  network            = "0.0.0.0/0"
+  virtual_network_id = cloudflare_tunnel_virtual_network.proxmox.id
+}

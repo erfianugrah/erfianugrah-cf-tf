@@ -27,3 +27,8 @@ resource "cloudflare_tunnel_virtual_network" "vyos_sg" {
   account_id = var.cloudflare_account_id
   name       = "vyos_sg_vnet"
 }
+
+resource "cloudflare_tunnel_virtual_network" "proxmox" {
+  account_id = var.cloudflare_account_id
+  name       = "proxmox_vnet"
+}

@@ -180,3 +180,21 @@ resource "cloudflare_tunnel_config" "vyos_sg" {
     }
   }
 }
+
+resource "cloudflare_tunnel_config" "proxmox" {
+  account_id = var.cloudflare_account_id
+  tunnel_id  = cloudflare_tunnel.proxmox.id
+
+  config {
+    warp_routing {
+      enabled = true
+    }
+    ingress_rule {
+      hostname = "proxmox-ssh.${var.domain_name}"
+      service  = "ssh://localhost:22"
+    }
+    ingress_rule {
+      service = "http_status:404"
+    }
+  }
+}

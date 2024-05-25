@@ -39,3 +39,10 @@ resource "cloudflare_tunnel" "vyos_sg" {
   secret     = base64encode(random_string.tunnel_secret.result)
   config_src = "cloudflare"
 }
+
+resource "cloudflare_tunnel" "proxmox" {
+  account_id = var.cloudflare_account_id
+  name       = "proxmox"
+  secret     = base64encode(random_string.tunnel_secret.result)
+  config_src = "cloudflare"
+}
