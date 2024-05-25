@@ -933,3 +933,12 @@ resource "cloudflare_record" "vyos-ssh-nl" {
   value   = cloudflare_tunnel.vyos_nl.cname
   zone_id = var.cloudflare_zone_id
 }
+
+resource "cloudflare_record" "proxmox" {
+  name    = "proxmox"
+  proxied = true
+  ttl     = 1
+  type    = "A"
+  value   = var.nl_ip 
+  zone_id = var.cloudflare_zone_id
+}
