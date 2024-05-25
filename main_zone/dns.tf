@@ -189,7 +189,7 @@ resource "cloudflare_record" "httpbun-nl" {
   comment = "httpbun on vyos-nl"
   name    = "httpbun-nl"
   proxied = true
-  tags    = ["vyosn-nl"]
+  tags    = ["vyos-nl"]
   ttl     = 1
   type    = "A"
   value   = var.nl_ip
