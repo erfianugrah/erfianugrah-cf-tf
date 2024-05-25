@@ -10,5 +10,5 @@ resource "cloudflare_access_ca_certificate" "vyos" {
 
 resource "cloudflare_access_ca_certificate" "proxmox" {
   account_id     = var.cloudflare_account_id
-  application_id = cloudflare_access_application.proxmox.id
+  application_id = cloudflare_access_application.proxmox_ssh.id
 }

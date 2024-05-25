@@ -125,7 +125,7 @@ resource "cloudflare_access_application" "erfipie_ssh" {
   type                       = "ssh"
 }
 
-resource "cloudflare_access_application" "proxmox" {
+resource "cloudflare_access_application" "proxmox_ssh" {
   account_id = var.cloudflare_account_id
   policies = [
     cloudflare_access_policy.allow_erfi.id
@@ -141,11 +141,11 @@ resource "cloudflare_access_application" "proxmox" {
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
-  domain                     = "proxmox.${var.domain_name}"
+  domain                     = "proxmox-ssh.${var.domain_name}"
   enable_binding_cookie      = false
   http_only_cookie_attribute = false
-  name                       = "Proxmox"
-  self_hosted_domains        = ["proxmox.${var.domain_name}"]
+  name                       = "Proxmox SSH"
+  self_hosted_domains        = ["proxmox-ssh.${var.domain_name}"]
   session_duration           = "24h"
   type                       = "ssh"
 }
