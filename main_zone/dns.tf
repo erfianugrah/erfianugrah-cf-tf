@@ -4,8 +4,8 @@ resource "cloudflare_record" "bazarr" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -15,8 +15,8 @@ resource "cloudflare_record" "beets" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -114,8 +114,8 @@ resource "cloudflare_record" "file" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -202,8 +202,8 @@ resource "cloudflare_record" "hydra" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -235,8 +235,8 @@ resource "cloudflare_record" "jackett" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -246,8 +246,8 @@ resource "cloudflare_record" "jellyfin" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -290,8 +290,8 @@ resource "cloudflare_record" "navidrome" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -312,8 +312,8 @@ resource "cloudflare_record" "overseerr" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -345,8 +345,8 @@ resource "cloudflare_record" "plex" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -389,8 +389,8 @@ resource "cloudflare_record" "prowlarr" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -422,8 +422,8 @@ resource "cloudflare_record" "radarr" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -444,8 +444,8 @@ resource "cloudflare_record" "sabnzbd" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -466,8 +466,8 @@ resource "cloudflare_record" "sonarr" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -499,8 +499,8 @@ resource "cloudflare_record" "tautulli" {
   proxied = true
   tags    = ["servarr"]
   ttl     = 1
-  type    = "A"
-  value   = var.sg_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -939,7 +939,7 @@ resource "cloudflare_record" "proxmox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.proxmox.cname 
+  value   = cloudflare_tunnel.proxmox.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -948,6 +948,6 @@ resource "cloudflare_record" "proxmox-ssh" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.proxmox.cname 
+  value   = cloudflare_tunnel.proxmox.cname
   zone_id = var.cloudflare_zone_id
 }

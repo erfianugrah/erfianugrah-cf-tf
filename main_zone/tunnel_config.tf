@@ -87,18 +87,46 @@ resource "cloudflare_tunnel_config" "servarr" {
       hostname = "port.${var.domain_name}"
       service  = "http://172.17.0.2:9000"
     }
-    # ingress_rule {
-    #   hostname = "caddy.${var.domain_name}"
-    #   service  = "http://localhost:2019"
-    #   origin_request {
-    #     # origin_server_name = "caddy.${var.domain_name}"
-    #     http_host_header = "caddy.${var.domain_name}"
-    #   }
-    # }
-    # ingress_rule {
-    #   hostname = "plex.${var.domain_name}"
-    #   service  = "http://172.19.0.8:32400"
-    # }
+    ingress_rule {
+      hostname = "plex.${var.domain_name}"
+      service  = "http://172.19.1.8:32400"
+    } 
+    ingress_rule {
+      hostname = "radarr.${var.domain_name}"
+      service  = "http://172.19.1.2:7878"
+    }
+    ingress_rule {
+      hostname = "sonarr.${var.domain_name}"
+      service  = "http://172.19.1.3:8989"
+    }
+    ingress_rule {
+      hostname = "sabnzbd.${var.domain_name}"
+      service  = "http://172.19.1.19:6666"
+    }
+    ingress_rule {
+      hostname = "bazarr.${var.domain_name}"
+      service  = "http://172.19.1.4:6767"
+    }
+    ingress_rule {
+      hostname = "jellyfin.${var.domain_name}"
+      service  = "http://172.19.1.15:8096"
+    }
+    ingress_rule {
+      hostname = "tautulli.${var.domain_name}"
+      service  = "http://172.19.1.14:8181"
+    }
+    ingress_rule {
+      hostname = "prowlarr.${var.domain_name}"
+      service  = "http://172.19.1.10:9696"
+    }
+    ingress_rule {
+      hostname = "overseerr.${var.domain_name}"
+      service  = "http://172.19.1.13:5055"
+    }
+    ingress_rule {
+      hostname = "navidrome.${var.domain_name}"
+      service  = "http://172.19.1.17:4533"
+    }
     # ingress_rule {
     #   hostname = "vaultwarden.${var.domain_name}"
     #   service  = "http://172.19.4.2:80"
@@ -112,10 +140,10 @@ resource "cloudflare_tunnel_config" "servarr" {
     #   hostname = "joplin.${var.domain_name}"
     #   service  = "http://172.41.0.2:22300"
     # }
-    # ingress_rule {
-    #   hostname = "file.${var.domain_name}"
-    #   service  = "http://172.26.0.2:80"
-    # }
+    ingress_rule {
+      hostname = "file.${var.domain_name}"
+      service  = "http://172.19.6.2:80"
+    }
     ingress_rule {
       hostname = "servarr.${var.domain_name}"
       service  = "http://localhost:90"
