@@ -186,6 +186,13 @@ resource "cloudflare_tunnel_config" "vyos_nl" {
       service  = "ssh://localhost:22"
     }
     ingress_rule {
+      hostname = "tpi.${var.domain_name}"
+      service  = "https://10.68.71.8:443"
+      origin_request {
+        no_tls_verify = true
+      }
+    }
+    ingress_rule {
       service = "http_status:404"
     }
   }

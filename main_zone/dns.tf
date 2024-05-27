@@ -510,8 +510,8 @@ resource "cloudflare_record" "tpi" {
   proxied = true
   tags    = ["k3s"]
   ttl     = 1
-  type    = "A"
-  value   = var.nl_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.vyos_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
