@@ -1,7 +1,7 @@
 resource "cloudflare_load_balancer" "pages_deno" {
-  default_pool_ids = [cloudflare_load_balancer_pool.deno.id]
+  default_pool_ids = [cloudflare_load_balancer_pool.pages.id]
   enabled          = true
-  fallback_pool_id = cloudflare_load_balancer_pool.pages.id
+  fallback_pool_id = cloudflare_load_balancer_pool.deno.id
   name             = "www.${var.domain_name}"
   proxied          = true
   session_affinity = "none"
