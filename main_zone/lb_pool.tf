@@ -6,7 +6,7 @@ resource "cloudflare_load_balancer_pool" "deno" {
   monitor         = cloudflare_load_balancer_monitor.ssgs.id
   name            = "Deno"
   origins {
-    address = var.deno_domain 
+    address = var.deno_domain
     enabled = true
     header {
       header = "Host"
@@ -25,7 +25,7 @@ resource "cloudflare_load_balancer_pool" "pages" {
   monitor         = cloudflare_load_balancer_monitor.ssgs.id
   name            = "Pages"
   origins {
-    address = var.pages_domain 
+    address = var.pages_domain
     enabled = true
     header {
       header = "Host"
@@ -44,7 +44,7 @@ resource "cloudflare_load_balancer_pool" "revista_sg" {
   monitor         = cloudflare_load_balancer_monitor.revista.id
   name            = "Revista_SG"
   origins {
-    address = var.sg_ip 
+    address = var.sg_ip
     enabled = true
     header {
       header = "Host"
@@ -63,7 +63,7 @@ resource "cloudflare_load_balancer_pool" "revista_nl" {
   monitor         = cloudflare_load_balancer_monitor.revista.id
   name            = "Revista_NL"
   origins {
-    address = var.k3s_tunnel 
+    address = var.k3s_tunnel
     enabled = true
     header {
       header = "Host"
