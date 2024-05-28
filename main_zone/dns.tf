@@ -247,7 +247,7 @@ resource "cloudflare_record" "jellyfin" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip 
+  value   = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -347,7 +347,7 @@ resource "cloudflare_record" "plex" {
   ttl     = 1
   type    = "CNAME"
   value   = cloudflare_tunnel.servarr.cname
-  zone_id = var.secondary_cloudflare_zone_id
+  zone_id = var.cloudflare_zone_id
 }
 
 resource "cloudflare_record" "portainer" {
