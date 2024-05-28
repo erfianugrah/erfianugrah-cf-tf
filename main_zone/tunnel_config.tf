@@ -88,7 +88,7 @@ resource "cloudflare_tunnel_config" "servarr" {
       service  = "http://172.17.0.2:9000"
     }
     ingress_rule {
-      hostname = "plex.${var.domain_name}"
+      hostname = "plex.${var.secondary_domain_name}"
       service  = "http://172.19.1.8:32400"
     } 
     ingress_rule {
