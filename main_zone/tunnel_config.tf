@@ -90,7 +90,7 @@ resource "cloudflare_tunnel_config" "servarr" {
     ingress_rule {
       hostname = "plex.${var.domain_name}"
       service  = "http://172.19.1.8:32400"
-    } 
+    }
     ingress_rule {
       hostname = "radarr.${var.domain_name}"
       service  = "http://172.19.1.2:7878"
@@ -235,6 +235,55 @@ resource "cloudflare_tunnel_config" "proxmox" {
         origin_server_name = "proxmox.${var.domain_name}"
         http2_origin       = true
       }
+    }
+    ingress_rule {
+      hostname = "plex-mox.${var.secondary_domain_name}"
+      service  = "http://10.68.73.3:32400"
+    }
+    ingress_rule {
+      hostname = "jellyfin-mox.${var.secondary_domain_name}"
+      service  = "http://10.68.73.3:8096"
+    }
+    ingress_rule {
+      hostname = "prowlarr-mox.${var.secondary_domain_name}"
+      service  = "http://10.68.73.3:9696"
+    }
+    ingress_rule {
+      hostname = "radarr-mox.${var.secondary_domain_name}"
+      service  = "http://10.68.73.3:7878"
+    }
+    ingress_rule {
+      hostname = "sonarr-mox.${var.secondary_domain_name}"
+      service  = "http://10.68.73.3:8989"
+    }
+    ingress_rule {
+      hostname = "bazarr-mox.${var.secondary_domain_name}"
+      service  = "http://10.68.73.3:6767"
+    }
+    ingress_rule {
+      hostname = "tautulli-mox.${var.secondary_domain_name}"
+      service  = "http://10.68.73.3:6767"
+    }
+    ingress_rule {
+      hostname = "navidrome-mox.${var.secondary_domain_name}"
+      service  = "http://10.68.73.3:4533"
+    }
+    ingress_rule {
+      hostname = "solvarr-mox.${var.secondary_domain_name}"
+      service  = "http://10.68.73.3:8191"
+    }
+    ingress_rule {
+      hostname = "sabnzbd-mox.${var.secondary_domain_name}"
+      service  = "http://10.68.73.3:8080"
+    }
+    ingress_rule {
+      hostname = "vaultwarden.${var.domain_name}"
+      service  = "http://10.68.73.3:9999"
+    }
+    ingress_rule {
+      hostname = "vaultwarden.${var.domain_name}"
+      path     = "notifications/hub"
+      service  = "http://10.68.73.3:10000"
     }
     ingress_rule {
       service = "http_status:404"

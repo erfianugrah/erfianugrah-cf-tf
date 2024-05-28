@@ -936,6 +936,7 @@ resource "cloudflare_record" "vyos-ssh-nl" {
 
 resource "cloudflare_record" "proxmox" {
   name    = "proxmox"
+  tags    = ["proxmox"]
   proxied = true
   ttl     = 1
   type    = "CNAME"
@@ -945,9 +946,101 @@ resource "cloudflare_record" "proxmox" {
 
 resource "cloudflare_record" "proxmox-ssh" {
   name    = "proxmox-ssh"
+  tags    = ["proxmox"]
   proxied = true
   ttl     = 1
   type    = "CNAME"
   value   = cloudflare_tunnel.proxmox.cname
   zone_id = var.cloudflare_zone_id
+}
+resource "cloudflare_record" "plex-mox" {
+  name    = "plex-mox"
+  tags    = ["proxmox"]
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.proxmox.cname
+  zone_id = var.secondary_cloudflare_zone_id
+}
+resource "cloudflare_record" "jellyfin-mox" {
+  name    = "jellyfin-mox"
+  tags    = ["proxmox"]
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.proxmox.cname
+  zone_id = var.secondary_cloudflare_zone_id
+
+}
+resource "cloudflare_record" "prowlarr-mox" {
+  name    = "prowlarr-mox"
+  tags    = ["proxmox"]
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.proxmox.cname
+  zone_id = var.secondary_cloudflare_zone_id
+}
+resource "cloudflare_record" "radarr-mox" {
+  name    = "radarr-mox"
+  tags    = ["proxmox"]
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.proxmox.cname
+  zone_id = var.secondary_cloudflare_zone_id
+}
+resource "cloudflare_record" "sonarr-mox" {
+  name    = "sonarr-mox"
+  tags    = ["proxmox"]
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.proxmox.cname
+  zone_id = var.secondary_cloudflare_zone_id
+}
+resource "cloudflare_record" "bazarr-mox" {
+  name    = "bazarr-mox"
+  tags    = ["proxmox"]
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.proxmox.cname
+  zone_id = var.secondary_cloudflare_zone_id
+}
+resource "cloudflare_record" "tautulli-mox" {
+  name    = "tautulli-mox"
+  tags    = ["proxmox"]
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.proxmox.cname
+  zone_id = var.secondary_cloudflare_zone_id
+}
+resource "cloudflare_record" "navidrome-mox" {
+  name    = "navidrome-mox"
+  tags    = ["proxmox"]
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.proxmox.cname
+  zone_id = var.secondary_cloudflare_zone_id
+}
+resource "cloudflare_record" "solvarr-mox" {
+  name    = "solvarr-mox"
+  tags    = ["proxmox"]
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.proxmox.cname
+  zone_id = var.secondary_cloudflare_zone_id
+}
+resource "cloudflare_record" "sabnzbd-mox" {
+  name    = "sabnzbd-mox"
+  tags    = ["proxmox"]
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.proxmox.cname
+  zone_id = var.secondary_cloudflare_zone_id
 }
