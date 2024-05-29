@@ -227,6 +227,9 @@ resource "cloudflare_tunnel_config" "proxmox" {
     ingress_rule {
       hostname = "proxmox-ssh.${var.domain_name}"
       service  = "ssh://localhost:22"
+      # origin_request {
+      #   bastion_mode = true
+      # }
     }
     ingress_rule {
       hostname = "proxmox.${var.domain_name}"
