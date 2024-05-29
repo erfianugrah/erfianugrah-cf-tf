@@ -11,7 +11,7 @@ resource "cloudflare_split_tunnel" "default_include" {
     description = "Local"
   }
   tunnels {
-    address     = "172.16.0.0/12"
+    address     = "172.18.0.8/32"
     description = "docker-podman"
   }
 }
@@ -29,7 +29,7 @@ resource "cloudflare_split_tunnel" "google_include" {
     description = "Local"
   }
   tunnels {
-    address     = "172.16.0.0/12"
+    address     = "172.18.0.8/32"
     description = "docker-podman"
   }
 }

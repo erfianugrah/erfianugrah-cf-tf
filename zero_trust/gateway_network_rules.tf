@@ -67,32 +67,32 @@ resource "cloudflare_teams_rule" "block_all_sni" {
   }
 }
 
-resource "cloudflare_teams_rule" "servarr_net" {
-  account_id  = var.cloudflare_account_id
-  name        = "Servarr VNET"
-  description = ""
-  precedence  = 4500
-  action      = "allow"
-  filters     = ["l4"]
-  enabled     = false
-  traffic     = "net.vnet_id == \"72c08af0-de51-4d98-8a00-1b1e0a9756b1\""
-  rule_settings {
-    block_page_enabled                 = false
-    ip_categories                      = false
-    insecure_disable_dnssec_validation = false
-    check_session {
-      enforce  = false
-      duration = 0
-    }
-    biso_admin_controls {
-      disable_copy_paste = false
-      disable_download   = false
-      disable_keyboard   = false
-      disable_printing   = false
-      disable_upload     = false
-    }
-  }
-}
+# resource "cloudflare_teams_rule" "servarr_net" {
+#   account_id  = var.cloudflare_account_id
+#   name        = "Servarr VNET"
+#   description = ""
+#   precedence  = 4500
+#   action      = "allow"
+#   filters     = ["l4"]
+#   enabled     = false
+#   traffic     = "net.vnet_id == \"72c08af0-de51-4d98-8a00-1b1e0a9756b1\""
+#   rule_settings {
+#     block_page_enabled                 = false
+#     ip_categories                      = false
+#     insecure_disable_dnssec_validation = false
+#     check_session {
+#       enforce  = false
+#       duration = 0
+#     }
+#     biso_admin_controls {
+#       disable_copy_paste = false
+#       disable_download   = false
+#       disable_keyboard   = false
+#       disable_printing   = false
+#       disable_upload     = false
+#     }
+#   }
+# }
 
 resource "cloudflare_teams_rule" "ssh_logging" {
   account_id  = var.cloudflare_account_id
@@ -124,7 +124,7 @@ resource "cloudflare_teams_rule" "block_httpbun" {
   account_id  = var.cloudflare_account_id
   name        = "Block HTTPBun"
   description = ""
-  precedence  = 6000 
+  precedence  = 6000
   action      = "block"
   filters     = ["l4"]
   enabled     = false
