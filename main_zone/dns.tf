@@ -934,8 +934,8 @@ resource "cloudflare_record" "vyos-ssh-nl" {
   zone_id = var.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "proxmox" {
-  name    = "*.proxmox"
+resource "cloudflare_record" "proxmox-ui" {
+  name    = "proxmox"
   tags    = ["proxmox"]
   proxied = true
   ttl     = 1
@@ -945,7 +945,7 @@ resource "cloudflare_record" "proxmox" {
 }
 
 resource "cloudflare_record" "proxmox-ssh" {
-  name    = "proxmox-ssh"
+  name    = "*.proxmox"
   tags    = ["proxmox"]
   proxied = true
   ttl     = 1
