@@ -141,11 +141,11 @@ resource "cloudflare_access_application" "proxmox_ssh" {
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
-  domain                     = "proxmox-ssh.${var.domain_name}"
+  domain                     = "*.proxmox.${var.domain_name}"
   enable_binding_cookie      = false
   http_only_cookie_attribute = false
   name                       = "Proxmox SSH"
-  self_hosted_domains        = ["proxmox-ssh.${var.domain_name}"]
+  self_hosted_domains        = ["*.proxmox.${var.domain_name}"]
   session_duration           = "24h"
   type                       = "ssh"
 }
