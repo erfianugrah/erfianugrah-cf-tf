@@ -225,8 +225,43 @@ resource "cloudflare_tunnel_config" "proxmox" {
       enabled = true
     }
     ingress_rule {
-      hostname = "proxmox-ssh.${var.domain_name}"
+      hostname = "pve.proxmox.${var.domain_name}"
       service  = "ssh://localhost:22"
+      # origin_request {
+      #   bastion_mode = true
+      # }
+    }   
+    ingress_rule {
+      hostname = "arch0.proxmox.${var.domain_name}"
+      service  = "ssh://10.68.73.3:22"
+      # origin_request {
+      #   bastion_mode = true
+      # }
+    }
+    ingress_rule {
+      hostname = "arch1.proxmox.${var.domain_name}"
+      service  = "ssh://10.68.73.101:22"
+      # origin_request {
+      #   bastion_mode = true
+      # }
+    }   
+    ingress_rule {
+      hostname = "arch2.proxmox.${var.domain_name}"
+      service  = "ssh://10.68.73.102:22"
+      # origin_request {
+      #   bastion_mode = true
+      # }
+    }    
+    ingress_rule {
+      hostname = "arch3.proxmox.${var.domain_name}"
+      service  = "ssh://10.68.73.103:22"
+      # origin_request {
+      #   bastion_mode = true
+      # }
+    }   
+    ingress_rule {
+      hostname = "arch4.proxmox.${var.domain_name}"
+      service  = "ssh://10.68.73.104:22"
       # origin_request {
       #   bastion_mode = true
       # }

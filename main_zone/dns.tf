@@ -935,7 +935,7 @@ resource "cloudflare_record" "vyos-ssh-nl" {
 }
 
 resource "cloudflare_record" "proxmox" {
-  name    = "proxmox"
+  name    = "*.proxmox"
   tags    = ["proxmox"]
   proxied = true
   ttl     = 1
