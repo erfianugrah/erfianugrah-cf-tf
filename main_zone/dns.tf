@@ -833,9 +833,9 @@ resource "cloudflare_record" "erfipie" {
   zone_id = var.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "pihole-vyos-sg" {
-  comment = "pihole on vyos"
-  name    = "pihole-vyos-sg"
+resource "cloudflare_record" "vyos-sg-ssh" {
+  comment = "VyOS SSH SG"
+  name    = "sg.vyos"
   proxied = true
   tags    = ["vyos-sg"]
   ttl     = 1
@@ -926,7 +926,8 @@ resource "cloudflare_record" "ollama-ui" {
 }
 
 resource "cloudflare_record" "vyos-ssh-nl" {
-  name    = "vyos-ssh"
+  comment = "VyOS SSH NL"
+  name    = "nl.vyos"
   proxied = true
   ttl     = 1
   type    = "CNAME"

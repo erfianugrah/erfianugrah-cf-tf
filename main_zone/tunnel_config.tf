@@ -182,7 +182,7 @@ resource "cloudflare_tunnel_config" "vyos_nl" {
       service  = "http://172.18.0.4:2018"
     }
     ingress_rule {
-      hostname = "vyos-ssh.${var.domain_name}"
+      hostname = "nl.vyos.${var.domain_name}"
       service  = "ssh://localhost:22"
     }
     ingress_rule {
@@ -207,8 +207,8 @@ resource "cloudflare_tunnel_config" "vyos_sg" {
       enabled = true
     }
     ingress_rule {
-      hostname = "pihole-vyos-sg.${var.domain_name}"
-      service  = "http://172.18.0.2:80"
+      hostname = "sg.vyos.${var.domain_name}"
+      service  = "ssh://localhost:22"
     }
     ingress_rule {
       service = "http_status:404"
@@ -230,7 +230,7 @@ resource "cloudflare_tunnel_config" "proxmox" {
       # origin_request {
       #   bastion_mode = true
       # }
-    }   
+    }
     ingress_rule {
       hostname = "arch0.proxmox.${var.domain_name}"
       service  = "ssh://10.68.73.3:22"
@@ -244,21 +244,21 @@ resource "cloudflare_tunnel_config" "proxmox" {
       # origin_request {
       #   bastion_mode = true
       # }
-    }   
+    }
     ingress_rule {
       hostname = "arch2.proxmox.${var.domain_name}"
       service  = "ssh://10.68.73.102:22"
       # origin_request {
       #   bastion_mode = true
       # }
-    }    
+    }
     ingress_rule {
       hostname = "arch3.proxmox.${var.domain_name}"
       service  = "ssh://10.68.73.103:22"
       # origin_request {
       #   bastion_mode = true
       # }
-    }   
+    }
     ingress_rule {
       hostname = "arch4.proxmox.${var.domain_name}"
       service  = "ssh://10.68.73.104:22"
