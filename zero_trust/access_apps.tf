@@ -166,11 +166,11 @@ resource "cloudflare_access_application" "vyos_ssh" {
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
-  domain                     = "vyos-ssh.${var.domain_name}"
+  domain                     = "nl.vyos.${var.domain_name}"
   enable_binding_cookie      = false
   http_only_cookie_attribute = false
   name                       = "VyOS SSH"
-  self_hosted_domains        = ["vyos-ssh.${var.domain_name}"]
+  self_hosted_domains        = ["nl.vyos.${var.domain_name}", "sg.vyos.${var.domain_name}"]
   session_duration           = "24h"
   type                       = "ssh"
 }
