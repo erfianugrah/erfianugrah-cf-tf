@@ -275,6 +275,33 @@ resource "cloudflare_access_application" "google_saas" {
   }
 }
 
+resource "cloudflare_access_application" "authentik_saas" {
+  account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_access_policy.allow_erfi.id
+  ]
+  allowed_idps = [
+    cloudflare_access_identity_provider.entra_id.id,
+    cloudflare_access_identity_provider.google_workspace.id,
+    cloudflare_access_identity_provider.gmail.id,
+    cloudflare_access_identity_provider.keycloak_oidc.id,
+    cloudflare_access_identity_provider.otp.id
+  ]
+  app_launcher_visible      = true
+  auto_redirect_to_identity = false
+  domain                    = var.authentik_saas_domain
+  name                      = "Authentik"
+  session_duration          = "24h"
+  type                      = "saas"
+  saas_app {
+    auth_type = "oidc"
+    # public_key = var.authentik_saas_public_key
+    # client_id     = var.authentik_saas_client_id
+    redirect_uris = var.authentik_saas_redirect_uris
+    grant_types   = ["authorization_code"]
+    scopes        = ["openid", "email", "profile", "groups"]
+  }
+}
 
 resource "cloudflare_access_application" "changedetection" {
   account_id = var.cloudflare_account_id

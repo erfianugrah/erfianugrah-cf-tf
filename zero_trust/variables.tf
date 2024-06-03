@@ -176,3 +176,26 @@ variable "ssh_log_public_key" {
   sensitive   = true
 }
 
+variable "authentik_saas_public_key" {
+  description = "authentik public key"
+  type        = string
+  sensitive   = true
+}
+
+variable "authentik_saas_client_id" {
+  description = "authentik_client_id"
+  type        = string
+  sensitive   = true
+}
+
+variable "authentik_saas_domain" {
+  description = "authentik_domain"
+  type        = string
+  sensitive   = true
+}
+
+variable "authentik_saas_redirect_uris" {
+  description = "array of uris"
+  type        = list(string)
+  sensitive   = true
+}
