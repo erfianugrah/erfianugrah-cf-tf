@@ -802,14 +802,14 @@ resource "cloudflare_record" "tunnel" {
   zone_id = var.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "whatami" {
-  name    = "whatami"
-  proxied = true
-  ttl     = 1
-  type    = "AAAA"
-  value   = "100::"
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "whatami" {
+#   name    = "whatami"
+#   proxied = true
+#   ttl     = 1
+#   type    = "AAAA"
+#   value   = "100::"
+#   zone_id = var.cloudflare_zone_id
+# }
 
 resource "cloudflare_record" "kvm-nl" {
   comment = "pikvm nl"

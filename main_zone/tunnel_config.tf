@@ -9,13 +9,13 @@ resource "cloudflare_tunnel_config" "erfipie" {
     ingress_rule {
       hostname = "pie.${var.domain_name}"
       service  = "ssh://localhost:22"
-      origin_request {
-        access {
-          required  = true
-          team_name = "erfianugrah"
-          aud_tag   = ["280683d90dc02141a886ff96b33db0d103c3f76b0911d07eb9ef56a1bb721c2b"]
-        }
-      }
+      # origin_request {
+      #   access {
+      #     required  = true
+      #     team_name = "erfianugrah"
+      #     aud_tag   = ["280683d90dc02141a886ff96b33db0d103c3f76b0911d07eb9ef56a1bb721c2b"]
+      #   }
+      # }
     }
     ingress_rule {
       hostname = "prom-exporter-pi.${var.domain_name}"
