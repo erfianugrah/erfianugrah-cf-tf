@@ -10,7 +10,7 @@ resource "cloudflare_access_application" "kvm" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -45,7 +45,7 @@ resource "cloudflare_access_application" "privatebin" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -79,7 +79,7 @@ resource "cloudflare_access_application" "traefik_dash" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -112,7 +112,7 @@ resource "cloudflare_access_application" "erfipie_ssh" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -137,7 +137,7 @@ resource "cloudflare_access_application" "proxmox_ssh" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -162,7 +162,7 @@ resource "cloudflare_access_application" "vyos_ssh" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -188,7 +188,7 @@ resource "cloudflare_access_application" "warp_login" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   auto_redirect_to_identity = false
   domain                    = "erfianugrah.cloudflareaccess.com/warp"
@@ -210,7 +210,7 @@ resource "cloudflare_access_application" "prometheus" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -236,7 +236,7 @@ resource "cloudflare_access_application" "turing_pi_bmc" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -285,7 +285,7 @@ resource "cloudflare_access_application" "authentik_saas" {
     cloudflare_access_identity_provider.google_workspace.id,
     cloudflare_access_identity_provider.gmail.id,
     cloudflare_access_identity_provider.keycloak_oidc.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible      = true
   auto_redirect_to_identity = false
@@ -315,7 +315,7 @@ resource "cloudflare_access_application" "changedetection" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -341,7 +341,7 @@ resource "cloudflare_access_application" "filebrowser" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -374,7 +374,7 @@ resource "cloudflare_access_application" "dillinger" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -408,7 +408,7 @@ resource "cloudflare_access_application" "tunnel_secret_worker" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -434,7 +434,7 @@ resource "cloudflare_access_application" "overseerr" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -467,7 +467,7 @@ resource "cloudflare_access_application" "app_launcher" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   auto_redirect_to_identity = false
   domain                    = "erfianugrah.cloudflareaccess.com"
@@ -488,7 +488,7 @@ resource "cloudflare_access_application" "synapse_admin" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -520,7 +520,7 @@ resource "cloudflare_access_application" "servarr" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -553,7 +553,7 @@ resource "cloudflare_access_application" "caddy_api" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
@@ -580,7 +580,7 @@ resource "cloudflare_access_application" "ollama" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.otp.id
+    cloudflare_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false

@@ -53,7 +53,7 @@ resource "cloudflare_access_identity_provider" "authentik_oidc" {
   }
 }
 
-resource "cloudflare_access_identity_provider" "otp" {
+resource "cloudflare_access_identity_provider" "pin" {
   account_id = var.cloudflare_account_id
   name       = "PIN login"
   type       = "onetimepin"
@@ -91,3 +91,4 @@ resource "cloudflare_access_identity_provider" "entra_id" {
     user_deprovision         = true
   }
 }
+
