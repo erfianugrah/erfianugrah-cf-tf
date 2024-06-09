@@ -36,6 +36,25 @@ resource "cloudflare_load_balancer_pool" "pages" {
   }
 }
 
+resource "cloudflare_load_balancer_pool" "revista_sg" {
+  account_id      = var.cloudflare_account_id
+  check_regions   = ["ALL_REGIONS"]
+  enabled         = true
+  minimum_origins = 1
+  monitor         = cloudflare_load_balancer_monitor.revista.id
+  name            = "Revista_SG"
+  origins {
+    address = var.sg_ip
+    enabled = true
+    header {
+      header = "Host"
+      values = [var.domain_name]
+    }
+    name   = "revista_sg"
+    weight = 1
+  }
+}
+
 resource "cloudflare_load_balancer_pool" "revista_k3s_nl" {
   account_id      = var.cloudflare_account_id
   check_regions   = ["ALL_REGIONS"]
