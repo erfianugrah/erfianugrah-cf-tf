@@ -225,6 +225,10 @@ resource "cloudflare_tunnel_config" "proxmox" {
       enabled = true
     }
     ingress_rule {
+      hostname = var.domain_name
+      service  = "http://10.68.73.3:8000"
+    }
+    ingress_rule {
       hostname = "pve.proxmox.${var.domain_name}"
       service  = "ssh://localhost:22"
       # origin_request {

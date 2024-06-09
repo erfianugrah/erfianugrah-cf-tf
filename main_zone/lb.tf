@@ -25,7 +25,7 @@ resource "cloudflare_load_balancer" "pages_deno" {
 }
 
 resource "cloudflare_load_balancer" "revista" {
-  default_pool_ids = [cloudflare_load_balancer_pool.revista_nl.id]
+  default_pool_ids = [cloudflare_load_balancer_pool.revista_k3s_nl.id, cloudflare_load_balancer_pool.revista_proxmox_nl.id]
   enabled          = true
   fallback_pool_id = cloudflare_load_balancer_pool.revista_sg.id
   name             = var.domain_name
@@ -35,7 +35,7 @@ resource "cloudflare_load_balancer" "revista" {
   zone_id          = var.cloudflare_zone_id
   pop_pools {
     pop      = "AMS"
-    pool_ids = [cloudflare_load_balancer_pool.revista_nl.id]
+    pool_ids = [cloudflare_load_balancer_pool.revista_k3s_nl.id, cloudflare_load_balancer_pool.revista_proxmox_nl.id]
   }
   pop_pools {
     pop      = "SIN"
