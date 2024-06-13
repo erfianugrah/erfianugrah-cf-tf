@@ -33,7 +33,9 @@ resource "cloudflare_pages_project" "revista_3" {
       compatibility_flags                  = []
       always_use_latest_compatibility_date = false
       fail_open                            = true
-      environment_variables                = null
+      environment_variables = {
+        BUN_VERSION = "1.1.13"
+      }
     }
     production {
       environment_variables                = null
@@ -63,10 +65,14 @@ resource "cloudflare_pages_project" "revista_4" {
       compatibility_flags                  = []
       always_use_latest_compatibility_date = false
       fail_open                            = true
-      environment_variables                = null
+      environment_variables = {
+        BUN_VERSION = "1.1.13"
+      }
     }
     production {
-      environment_variables                = null
+      environment_variables = {
+        BUN_VERSION = "1.1.13"
+      }
       fail_open                            = true
       always_use_latest_compatibility_date = false
       compatibility_date                   = "2023-11-13"
