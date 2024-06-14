@@ -1,4 +1,3 @@
-
 resource "cloudflare_notification_policy" "ddos_l7" {
   account_id  = var.cloudflare_account_id
   name        = "ddos_l7"
@@ -100,3 +99,19 @@ resource "cloudflare_notification_policy" "adv_waf_alert" {
     ]
   }
 }
+
+# resource "cloudflare_notification_policy" "magic_wan_ipsec_nl_health_check" {
+#   account_id  = var.cloudflare_account_id
+#   name        = "IPsec NL Health Check Alert"
+#   description = "IPsec NL Health Check Alert"
+#   enabled     = true
+#   alert_type  = "magic_tunnel_health_check_event"
+#
+#   email_integration {
+#     id = var.cloudflare_email
+#   }
+#   filters {
+#     tunnel_id = ["429ef5e792034a6c85f7e89c506305aa"]
+#     # slo = ["98.0"]
+#   }
+# }
