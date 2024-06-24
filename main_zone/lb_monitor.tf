@@ -6,7 +6,7 @@ resource "cloudflare_load_balancer_monitor" "ssgs" {
   description      = "SSGs"
   expected_codes   = "200"
   follow_redirects = false
-  interval         = 3600
+  interval         = 300
   method           = "GET"
   path             = "/"
   port             = 443
@@ -23,7 +23,7 @@ resource "cloudflare_load_balancer_monitor" "revista" {
   description      = "revista"
   expected_codes   = "200"
   follow_redirects = false
-  interval         = 3600
+  interval         = 300
   method           = "GET"
   path             = "/"
   port             = 443
