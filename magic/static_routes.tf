@@ -42,7 +42,7 @@ resource "cloudflare_static_route" "eth1_200_ipsec" {
 resource "cloudflare_static_route" "eth3_ipsec" {
   account_id  = var.cloudflare_account_id
   description = "ETH3"
-  prefix      = "10.0.73.0/24"
+  prefix      = "10.68.73.0/24"
   nexthop     = "10.0.100.20"
   priority    = 100
 }
