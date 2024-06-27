@@ -1,6 +1,6 @@
-resource "cloudflare_gre_tunnel" "vyos_sg" {
+resource "cloudflare_gre_tunnel" "vyos_sg_gre" {
   account_id              = var.cloudflare_account_id
-  name                    = "vyos_sg"
+  name                    = "vyos_sg_gre"
   customer_gre_endpoint   = var.sg_ip
   cloudflare_gre_endpoint = var.wan_ip_1
   interface_address       = "10.68.88.21/31"
@@ -12,12 +12,12 @@ resource "cloudflare_gre_tunnel" "vyos_sg" {
   health_check_type       = "request"
 }
 
-resource "cloudflare_gre_tunnel" "vyos_nl" {
+resource "cloudflare_gre_tunnel" "vyos_nl_gre" {
   account_id              = var.cloudflare_account_id
-  name                    = "vyos_nl"
+  name                    = "vyos_nl_gre"
   customer_gre_endpoint   = var.nl_ip
   cloudflare_gre_endpoint = var.wan_ip_1
-  interface_address       = "10.68.99.21/31"
+  interface_address       = "10.0.99.21/31"
   description             = "vyos_nl_gre"
   ttl                     = 64
   mtu                     = 1476

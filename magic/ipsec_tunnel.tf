@@ -20,7 +20,7 @@ resource "cloudflare_ipsec_tunnel" "vyos_nl_ipsec" {
   name                 = "vyos_nl_ipsec"
   customer_endpoint    = var.nl_ip
   cloudflare_endpoint  = var.wan_ip_2
-  interface_address    = "10.68.100.21/31"
+  interface_address    = "10.0.100.21/31"
   description          = "vyos_sg_ipsec_kpn"
   health_check_enabled = true
   health_check_target  = var.nl_ip
