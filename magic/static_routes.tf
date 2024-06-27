@@ -26,7 +26,7 @@ resource "cloudflare_static_route" "podman_vyos_nl_ipsec" {
 resource "cloudflare_static_route" "eth2_vyos_nl_ipsec" {
   account_id  = var.cloudflare_account_id
   description = "ETH2"
-  prefix      = "10.68.72.0/16"
+  prefix      = "10.68.72.0/24"
   nexthop     = "10.68.100.20"
   priority    = 100
 }
