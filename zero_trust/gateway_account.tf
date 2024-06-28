@@ -20,9 +20,10 @@ resource "cloudflare_teams_account" "miau" {
   }
 
   proxy {
-    tcp     = true
-    udp     = true
-    root_ca = true
+    tcp        = true
+    udp        = true
+    root_ca    = true
+    virtual_ip = false
   }
 
   url_browser_isolation_enabled = true
