@@ -23,7 +23,7 @@ resource "cloudflare_teams_account" "miau" {
     tcp        = true
     udp        = true
     root_ca    = true
-    virtual_ip = false
+    virtual_ip = true
   }
 
   url_browser_isolation_enabled = true
