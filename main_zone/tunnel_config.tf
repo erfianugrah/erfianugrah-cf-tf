@@ -187,7 +187,7 @@ resource "cloudflare_tunnel_config" "vyos_nl" {
     }
     ingress_rule {
       hostname = "tpi.${var.domain_name}"
-      service  = "https://10.68.71.8:443"
+      service  = "https://10.0.71.8:443"
       origin_request {
         no_tls_verify = true
       }
