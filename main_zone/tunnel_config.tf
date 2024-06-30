@@ -211,6 +211,10 @@ resource "cloudflare_tunnel_config" "vyos_sg" {
       service  = "ssh://localhost:22"
     }
     ingress_rule {
+      hostname = "pihole-vyos-sg.${var.domain_name}"
+      service  = "http://172.16.0.4:80"
+    }
+    ingress_rule {
       service = "http_status:404"
     }
   }

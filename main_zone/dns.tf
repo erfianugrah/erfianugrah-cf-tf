@@ -318,13 +318,24 @@ resource "cloudflare_record" "overseerr" {
 }
 
 resource "cloudflare_record" "pihole-vyos-nl" {
-  comment = "pihole"
+  comment = "pihole-nl"
   name    = "pihole-vyos-nl"
   proxied = true
   tags    = ["vyos-nl"]
   ttl     = 1
   type    = "A"
   value   = var.nl_ip
+  zone_id = var.cloudflare_zone_id
+}
+
+resource "cloudflare_record" "pihole-vyos-sg" {
+  comment = "pihole-sg"
+  name    = "pihole-vyos-sg"
+  proxied = true
+  tags    = ["vyos-sg"]
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.vyos_sg.cname
   zone_id = var.cloudflare_zone_id
 }
 
