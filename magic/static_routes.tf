@@ -17,9 +17,17 @@ resource "cloudflare_static_route" "eth1_100_vyos_nl_ipsec" {
 
 resource "cloudflare_static_route" "podman_vyos_nl_ipsec" {
   account_id  = var.cloudflare_account_id
-  description = "Podman"
+  description = "Podman-NL"
   prefix      = "172.18.0.0/16"
   nexthop     = "10.0.100.20"
+  priority    = 100
+}
+
+resource "cloudflare_static_route" "podman_vyos_sg_ipsec" {
+  account_id  = var.cloudflare_account_id
+  description = "Podman-SG"
+  prefix      = "172.16.0.0/16"
+  nexthop     = "10.68.77.20"
   priority    = 100
 }
 
