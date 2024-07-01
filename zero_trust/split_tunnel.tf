@@ -6,10 +6,14 @@ resource "cloudflare_split_tunnel" "default_exclude" {
     address     = "10.0.69.3/32"
     description = "Home"
   }
-  # tunnels {
-  #   address     = "172.18.0.2/32"
-  #   description = "pihole"
-  # }
+  tunnels {
+    address     = "172.18.0.2/32"
+    description = "pihole"
+  }
+  tunnels {
+    address     = "10.68.73.2/32"
+    description = "pve"
+  }
 }
 
 resource "cloudflare_split_tunnel" "google_exclude" {
@@ -20,8 +24,12 @@ resource "cloudflare_split_tunnel" "google_exclude" {
     address     = "10.0.69.3/32"
     description = "Home"
   }
-  # tunnels {
-  #   address     = "172.18.0.2/32"
-  #   description = "pihole"
-  # }
+  tunnels {
+    address     = "172.18.0.2/32"
+    description = "pihole"
+  }
+  tunnels {
+    address     = "10.68.73.2/32"
+    description = "pve"
+  }
 }
