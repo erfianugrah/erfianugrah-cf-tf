@@ -3,15 +3,15 @@ resource "cloudflare_tunnel_virtual_network" "erfipie" {
   name       = "erfipie_vnet"
 }
 
-resource "cloudflare_tunnel_virtual_network" "kvm_nl" {
-  account_id = var.cloudflare_account_id
-  name       = "kvm_nl_vnet"
-}
-
-resource "cloudflare_tunnel_virtual_network" "kvm_sg" {
-  account_id = var.cloudflare_account_id
-  name       = "kvm_sg_vnet"
-}
+# resource "cloudflare_tunnel_virtual_network" "kvm_nl" {
+#   account_id = var.cloudflare_account_id
+#   name       = "kvm_nl_vnet"
+# }
+#
+# resource "cloudflare_tunnel_virtual_network" "kvm_sg" {
+#   account_id = var.cloudflare_account_id
+#   name       = "kvm_sg_vnet"
+# }
 
 resource "cloudflare_tunnel_virtual_network" "servarr" {
   account_id = var.cloudflare_account_id
@@ -28,7 +28,7 @@ resource "cloudflare_tunnel_virtual_network" "vyos_sg" {
   name       = "vyos_sg_vnet"
 }
 
-resource "cloudflare_tunnel_virtual_network" "proxmox" {
-  account_id = var.cloudflare_account_id
-  name       = "proxmox_vnet"
-}
+# resource "cloudflare_tunnel_virtual_network" "proxmox" {
+#   account_id = var.cloudflare_account_id
+#   name       = "proxmox_vnet"
+# }
