@@ -362,4 +362,17 @@ resource "cloudflare_access_policy" "ollama_token" {
 #   include {
 #     group = [cloudflare_access_group.erfi_corp.id]
 #   }
-# }
+# 
+
+resource "cloudflare_access_policy" "overseerr_token" {
+  # application_id   = cloudflare_access_application.ollama.id
+  account_id = var.cloudflare_account_id
+  name       = "overseerr_api"
+  # precedence       = "1"
+  decision         = "non_identity"
+  session_duration = "30m"
+
+  include {
+    service_token = [cloudflare_access_service_token.overseerr_token.id]
+  }
+}

@@ -27,3 +27,9 @@ resource "cloudflare_access_service_token" "warp_auth_token" {
   name       = "warp_auth_token"
   duration   = "forever"
 }
+
+resource "cloudflare_access_service_token" "overseerr_token" {
+  account_id = var.cloudflare_account_id
+  name       = "overseerr_token"
+  duration   = "forever"
+}

@@ -425,7 +425,8 @@ resource "cloudflare_access_application" "overseerr" {
   account_id = var.cloudflare_account_id
   policies = [
     cloudflare_access_policy.allow_erfi.id,
-    cloudflare_access_policy.allow_lena.id
+    cloudflare_access_policy.allow_lena.id,
+    cloudflare_access_policy.overseerr_token.id
   ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
@@ -434,7 +435,7 @@ resource "cloudflare_access_application" "overseerr" {
     cloudflare_access_identity_provider.keycloak_oidc.id,
     cloudflare_access_identity_provider.authentik_oidc.id,
     cloudflare_access_identity_provider.authentik_saml.id,
-    cloudflare_access_identity_provider.pin.id
+    cloudflare_access_identity_provider.pin.id,
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
