@@ -22,7 +22,8 @@ resource "cloudflare_ruleset" "http_config_settings" {
     }
     description = "Astro Blog"
     enabled     = true
-    expression  = "(http.host in {\"www.${var.domain_name}\" \"${var.domain_name}\"})"
+    expression  = "(http.host in {\"www.${var.domain_name}\" \"${var.domain_name}\" \"cdn.${var.domain_name}\"} )"
+
   }
   rules {
     action = "set_config"
@@ -106,3 +107,4 @@ resource "cloudflare_ruleset" "http_config_settings" {
     expression  = "(http.host eq \"tpi.${var.domain_name}\")"
   }
 }
+
