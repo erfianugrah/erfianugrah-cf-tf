@@ -86,7 +86,7 @@ resource "cloudflare_ruleset" "http_config_settings" {
     }
     description = "Zaraz Off"
     enabled     = true
-    expression  = "(http.host in {\"privatebin.${var.domain_name}\" \"photoprism.${var.domain_name}\" \"immich.${var.domain_name}\"})"
+    expression  = "(http.host in {\"privatebin.${var.domain_name}\" \"photoprism.${var.domain_name}\" \"immich.${var.domain_name}\"  \"file.${var.domain_name}\" })"
   }
   rules {
     action = "set_config"
