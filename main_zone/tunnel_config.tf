@@ -22,6 +22,10 @@ resource "cloudflare_tunnel_config" "erfipie" {
       service  = "http://localhost:9100"
     }
     ingress_rule {
+      hostname = "atuin.${var.domain_name}"
+      service  = "http://172.20.1.2:8888"
+    }
+    ingress_rule {
       service = "http_status:404"
     }
   }
