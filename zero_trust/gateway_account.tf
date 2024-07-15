@@ -1,9 +1,17 @@
 resource "cloudflare_teams_account" "miau" {
   account_id                             = var.cloudflare_account_id
-  tls_decrypt_enabled                    = false
+  tls_decrypt_enabled                    = true
   protocol_detection_enabled             = true
   activity_log_enabled                   = true
   non_identity_browser_isolation_enabled = false
+
+  block_page {
+    enabled          = true
+    footer_text      = "Erfi Corp"
+    header_text      = "Access is denied."
+    logo_path        = "https://www.${var.domain_name}/_astro/ea_favicon_Z6SwqA.avif"
+    background_color = "#000000"
+  }
 
   body_scanning {
     inspection_mode = "deep"

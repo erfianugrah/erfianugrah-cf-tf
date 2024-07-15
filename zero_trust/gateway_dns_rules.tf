@@ -1,6 +1,6 @@
 resource "cloudflare_teams_rule" "allow_ig_dns" {
   account_id  = var.cloudflare_account_id
-  name        = "Allow IG DNS"
+  name        = "Block IG DNS"
   description = ""
   precedence  = 1500
   action      = "block"
@@ -23,7 +23,7 @@ resource "cloudflare_teams_rule" "allow_ig_dns" {
 
 resource "cloudflare_teams_rule" "block_all_dns" {
   account_id  = var.cloudflare_account_id
-  name        = "Allow All DNS"
+  name        = "Block All DNS"
   description = ""
   precedence  = 2000
   action      = "block"
@@ -47,7 +47,7 @@ resource "cloudflare_teams_rule" "block_all_dns" {
 
 resource "cloudflare_teams_rule" "block_sec_categories_dns" {
   account_id  = var.cloudflare_account_id
-  name        = "Security Categories"
+  name        = "Block Security Categories"
   description = ""
   precedence  = 3000
   action      = "block"

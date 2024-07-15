@@ -30,7 +30,7 @@ resource "cloudflare_teams_rule" "isolate_fb" {
   action      = "isolate"
   filters     = ["http"]
   enabled     = false
-  traffic     = "http.request.host == \"facebook.com\""
+  traffic     = "http.request.host == \"www.facebook.com\""
   rule_settings {
     block_page_enabled                 = false
     ip_categories                      = false
