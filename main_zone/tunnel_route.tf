@@ -29,7 +29,7 @@ resource "cloudflare_tunnel_route" "servarr" {
 resource "cloudflare_tunnel_route" "vyos_nl" {
   account_id         = var.cloudflare_account_id
   tunnel_id          = cloudflare_tunnel.vyos_nl.id
-  network            = "172.18.0.0/16"
+  network            = "172.18.0.3/32"
   virtual_network_id = cloudflare_tunnel_virtual_network.vyos_nl.id
 }
 
