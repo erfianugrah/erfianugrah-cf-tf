@@ -179,4 +179,15 @@ resource "cloudflare_ruleset" "http_request_origin" {
     enabled     = true
     expression  = "(http.host eq \"gcs.${var.domain_name}\")"
   }
+  rules {
+    action = "route"
+    action_parameters {
+      origin {
+        port = 9000
+      }
+    }
+    description = "Httpbun on erfipie"
+    enabled     = true
+    expression  = "(http.host eq \"httpbun-pie.${var.domain_name}\")"
+  }
 }
