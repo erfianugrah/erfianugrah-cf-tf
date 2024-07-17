@@ -63,5 +63,5 @@ resource "cloudflare_load_balancer_monitor" "httpbun" {
   port             = 9000
   retries          = 5
   timeout          = 5
-  type             = "https"
+  type             = "http"
 }
