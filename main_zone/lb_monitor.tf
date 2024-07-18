@@ -49,18 +49,35 @@ resource "cloudflare_load_balancer_monitor" "revista" {
 #   type             = "https"
 # }
 
-resource "cloudflare_load_balancer_monitor" "httpbun" {
+resource "cloudflare_load_balancer_monitor" "httpbun_erfipie" {
   account_id       = var.cloudflare_account_id
   allow_insecure   = false
   consecutive_down = 5
   consecutive_up   = 0
-  description      = "httpbun"
+  description      = "httpbun_erfipie"
   expected_codes   = "200"
   follow_redirects = false
   interval         = 300
   method           = "GET"
   path             = "/"
   port             = 9000
+  retries          = 5
+  timeout          = 5
+  type             = "http"
+}
+
+resource "cloudflare_load_balancer_monitor" "httpbun_arch0" {
+  account_id       = var.cloudflare_account_id
+  allow_insecure   = false
+  consecutive_down = 5
+  consecutive_up   = 0
+  description      = "httpbun_arch0"
+  expected_codes   = "200"
+  follow_redirects = false
+  interval         = 300
+  method           = "GET"
+  path             = "/"
+  port             = 80 
   retries          = 5
   timeout          = 5
   type             = "http"

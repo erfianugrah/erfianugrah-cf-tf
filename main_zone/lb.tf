@@ -117,3 +117,33 @@ resource "cloudflare_load_balancer" "httpbun_ipsec_erfipie" {
     zero_downtime_failover = "temporary"
   }
 }
+
+resource "cloudflare_load_balancer" "httpbun_ipsec_arch0" {
+  default_pool_ids = [cloudflare_load_balancer_pool.httpbun_ipsec_arch0_nl.id]
+  enabled          = true
+  fallback_pool_id = cloudflare_load_balancer_pool.httpbun_ipsec_arch0_nl.id
+  name             = "httpbun-arch0.${var.domain_name}"
+  proxied          = true
+  session_affinity = "none"
+  steering_policy  = "geo"
+  zone_id          = var.cloudflare_zone_id
+  pop_pools {
+    pop      = "AMS"
+    pool_ids = [cloudflare_load_balancer_pool.httpbun_ipsec_arch0_nl.id]
+  }
+  adaptive_routing {
+    failover_across_pools = true
+  }
+  location_strategy {
+    mode       = "pop"
+    prefer_ecs = "proximity"
+  }
+  random_steering {
+    default_weight = 1
+  }
+  session_affinity_attributes {
+    samesite               = "Auto"
+    secure                 = "Auto"
+    zero_downtime_failover = "temporary"
+  }
+}

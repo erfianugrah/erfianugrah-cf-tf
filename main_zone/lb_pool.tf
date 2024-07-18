@@ -118,7 +118,7 @@ resource "cloudflare_load_balancer_pool" "httpbun_ipsec_erfipie_nl" {
   check_regions   = ["ALL_REGIONS"]
   enabled         = true
   minimum_origins = 1
-  monitor         = cloudflare_load_balancer_monitor.httpbun.id
+  monitor         = cloudflare_load_balancer_monitor.httpbun_erfipie.id
   name            = "Httpbun_IPsec_erfipie_NL"
   origins {
     address = "10.0.69.7"
@@ -129,6 +129,26 @@ resource "cloudflare_load_balancer_pool" "httpbun_ipsec_erfipie_nl" {
     }
     virtual_network_id = "be64e69c-e7b6-4e0e-9fd3-130757192c5b"
     name               = "httpbun_ipsec_erfipie_nl"
+    weight             = 1
+  }
+}
+
+resource "cloudflare_load_balancer_pool" "httpbun_ipsec_arch0_nl" {
+  account_id      = var.cloudflare_account_id
+  check_regions   = ["ALL_REGIONS"]
+  enabled         = true
+  minimum_origins = 1
+  monitor         = cloudflare_load_balancer_monitor.httpbun_arch0.id
+  name            = "Httpbun_IPsec_arch0_NL"
+  origins {
+    address = "10.68.73.3"
+    enabled = true
+    header {
+      header = "Host"
+      values = ["httpbun-arch0.${var.domain_name}"]
+    }
+    virtual_network_id = "be64e69c-e7b6-4e0e-9fd3-130757192c5b"
+    name               = "httpbun_ipsec_arch0_nl"
     weight             = 1
   }
 }
