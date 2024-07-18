@@ -119,7 +119,7 @@ resource "cloudflare_load_balancer_pool" "httpbun_ipsec_erfipie_nl" {
   enabled         = true
   minimum_origins = 1
   monitor         = cloudflare_load_balancer_monitor.httpbun_erfipie.id
-  name            = "Httpbun_IPsec_erfipie_NL"
+  name            = "httpbun_ipsec_erfipie_nl"
   origins {
     address = "10.0.69.7"
     enabled = true
@@ -139,7 +139,7 @@ resource "cloudflare_load_balancer_pool" "httpbun_ipsec_arch0_nl" {
   enabled         = true
   minimum_origins = 1
   monitor         = cloudflare_load_balancer_monitor.httpbun_arch0.id
-  name            = "Httpbun_IPsec_arch0_NL"
+  name            = "httpbun_ipsec_arch0_nl"
   origins {
     address = "10.68.73.3"
     enabled = true

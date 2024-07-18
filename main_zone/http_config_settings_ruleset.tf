@@ -111,8 +111,8 @@ resource "cloudflare_ruleset" "http_config_settings" {
     action_parameters {
       ssl = "flexible"
     }
-    description = "Httpbun-pie flexible SSL"
-    enabled     = true 
+    description = "httpbun-pie Flexible SSL"
+    enabled     = true
     expression  = "(http.host eq \"httpbun-pie.${var.domain_name}\")"
   }
   rules {
@@ -120,8 +120,8 @@ resource "cloudflare_ruleset" "http_config_settings" {
     action_parameters {
       ssl = "flexible"
     }
-    description = "Httpbun-arch0 flexible SSL"
-    enabled     = true 
+    description = "httpbun-arch0 Flexible SSL"
+    enabled     = true
     expression  = "(http.host eq \"httpbun-arch0.${var.domain_name}\")"
   }
 }
