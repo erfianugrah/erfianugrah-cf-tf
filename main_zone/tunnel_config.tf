@@ -190,6 +190,10 @@ resource "cloudflare_tunnel_config" "vyos_nl" {
       service  = "ssh://localhost:22"
     }
     ingress_rule {
+      hostname = "pihole-vyos-nl.${var.domain_name}"
+      service  = "http://172.18.0.2"
+    }
+    ingress_rule {
       hostname = "tpi.${var.domain_name}"
       service  = "https://10.0.71.8:443"
       origin_request {

@@ -323,8 +323,8 @@ resource "cloudflare_record" "pihole-vyos-nl" {
   proxied = true
   tags    = ["vyos-nl"]
   ttl     = 1
-  type    = "A"
-  value   = var.nl_ip
+  type    = "CNAME"
+  value   = cloudflare_tunnel.vyos_nl.cname 
   zone_id = var.cloudflare_zone_id
 }
 
