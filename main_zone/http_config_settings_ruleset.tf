@@ -111,18 +111,9 @@ resource "cloudflare_ruleset" "http_config_settings" {
     action_parameters {
       ssl = "flexible"
     }
-    description = "httpbun-pie Flexible SSL"
+    description = "Flexible SSL"
     enabled     = true
-    expression  = "(http.host eq \"httpbun-pie.${var.domain_name}\")"
-  }
-  rules {
-    action = "set_config"
-    action_parameters {
-      ssl = "flexible"
-    }
-    description = "httpbun-arch0 Flexible SSL"
-    enabled     = true
-    expression  = "(http.host eq \"httpbun-arch0.${var.domain_name}\")"
+    expression  = "(http.host in {\"httpbun-pie.${var.domain_name}\" \"httpbun-arch0.${var.domain_name}\" \"dockge.${var.domain_name}\"  })"
   }
 }
 
