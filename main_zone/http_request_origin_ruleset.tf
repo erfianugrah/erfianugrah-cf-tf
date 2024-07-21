@@ -186,8 +186,19 @@ resource "cloudflare_ruleset" "http_request_origin" {
         port = 9000
       }
     }
-    description = "Httpbun on erfipie"
+    description = "httpbun on erfipie"
     enabled     = true
     expression  = "(http.host eq \"httpbun-pie.${var.domain_name}\")"
+  }
+  rules {
+    action = "route"
+    action_parameters {
+      origin {
+        port = 5001
+      }
+    }
+    description = "dockge on arch0"
+    enabled     = true
+    expression  = "(http.host eq \"dockge.${var.domain_name}\")"
   }
 }
