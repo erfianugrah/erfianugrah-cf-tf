@@ -191,7 +191,7 @@ resource "cloudflare_tunnel_config" "vyos_nl" {
     }
     ingress_rule {
       hostname = "pihole-vyos-nl.${var.domain_name}"
-      service  = "http://172.18.0.2"
+      service  = "http://10.10.10.2"
     }
     ingress_rule {
       hostname = "tpi.${var.domain_name}"
