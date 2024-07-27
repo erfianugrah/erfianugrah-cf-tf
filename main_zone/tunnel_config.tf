@@ -152,6 +152,10 @@ resource "cloudflare_tunnel_config" "servarr" {
       hostname = "servarr.${var.domain_name}"
       service  = "http://localhost:90"
     }
+    ingress_rule {
+      hostname = "dockge-sg.${var.domain_name}"
+      service  = "http://172.17.0.3:5001"
+    }
     # ingress_rule {
     #   hostname = var.domain_name
     #   service  = "http://172.66.0.2:4321"

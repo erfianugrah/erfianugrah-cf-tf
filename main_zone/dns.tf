@@ -482,6 +482,16 @@ resource "cloudflare_record" "sonarr" {
   zone_id = var.cloudflare_zone_id
 }
 
+resource "cloudflare_record" "dockge-sg" {
+  comment = "dockge-sg"
+  name    = "dockge-sg"
+  proxied = true
+  tags    = ["servarr"]
+  ttl     = 1
+  type    = "CNAME"
+  value   = cloudflare_tunnel.servarr.cname
+  zone_id = var.cloudflare_zone_id
+}
 resource "cloudflare_record" "synapse-admin" {
   comment = "synapse-admin"
   name    = "synapse-admin"
