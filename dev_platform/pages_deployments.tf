@@ -34,7 +34,7 @@ resource "cloudflare_pages_project" "revista_3" {
       always_use_latest_compatibility_date = false
       fail_open                            = true
       environment_variables = {
-        BUN_VERSION = "1.1.18"
+        BUN_VERSION = "1.1.21"
       }
     }
     production {
@@ -66,12 +66,12 @@ resource "cloudflare_pages_project" "revista_4" {
       always_use_latest_compatibility_date = false
       fail_open                            = true
       environment_variables = {
-        BUN_VERSION = "1.1.18"
+        BUN_VERSION = "1.1.21"
       }
     }
     production {
       environment_variables = {
-        BUN_VERSION = "1.1.18"
+        BUN_VERSION = "1.1.21"
       }
       fail_open                            = true
       always_use_latest_compatibility_date = false
