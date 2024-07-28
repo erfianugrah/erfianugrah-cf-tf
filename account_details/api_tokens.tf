@@ -91,11 +91,12 @@ resource "cloudflare_api_token" "cloudflare_exporter" {
   }
 }
 
-resource "cloudflare_api_token" "logpush_r2_token" {
-  name = "logpush_r2_token"
+resource "cloudflare_api_token" "admin_r2_read_write_token" {
+  name = "admin_r2_read_write_token"
   policy {
     permission_groups = [
       data.cloudflare_api_token_permission_groups.all.account["Workers R2 Storage Write"],
+      data.cloudflare_api_token_permission_groups.all.account["Workers R2 Storage Read"],
       /*       "bf7481a1826f439697cb59a20b22293e", # "Workers R2 Storage Write" */
     ]
     resources = {
