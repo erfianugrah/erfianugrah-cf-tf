@@ -5,15 +5,16 @@ resource "cloudflare_teams_account" "miau" {
   activity_log_enabled                   = true
   non_identity_browser_isolation_enabled = false
 
-  # block_page {
-  #   enabled          = true
-  #   footer_text      = "Erfi Corp"
-  #   header_text      = "Access is denied."
-  #   logo_path        = "https://www.${var.domain_name}/_astro/ea_favicon_Z6SwqA.avif"
-  #   background_color = "#000000"
-  #   mailto_address   = var.cloudflare_email
-  #   mailto_subject   = "Your access was denied."
-  # }
+  block_page {
+    enabled          = true
+    name             = "Erfi Corp Block Page"
+    footer_text      = "Erfi Corp"
+    header_text      = "Access is denied."
+    logo_path        = "https://www.${var.domain_name}/_astro/ea_favicon_Z6SwqA.avif"
+    background_color = "#000000"
+    mailto_address   = var.cloudflare_email
+    mailto_subject   = "Your access was denied."
+  }
 
   body_scanning {
     inspection_mode = "deep"
