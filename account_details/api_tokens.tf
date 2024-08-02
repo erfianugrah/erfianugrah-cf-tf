@@ -130,6 +130,7 @@ resource "cloudflare_api_token" "wrangler" {
       data.cloudflare_api_token_permission_groups.all.account["Workers KV Storage Write"],
       data.cloudflare_api_token_permission_groups.all.account["Workers Scripts Write"],
       data.cloudflare_api_token_permission_groups.all.account["Account Settings Read"],
+      data.cloudflare_api_token_permission_groups.all.account["Pages Write"]
       # "f7f0eda5697f475c90846e879bab8666", # "Workers KV Storage Write"
       # "e086da7e2179491d91ee5f35b3ca210a", #  "Workers Scripts Write"
       # "c1fde68c7bcc44588cbb6ddbc16d6480" # "Account Settings Read"
