@@ -5,7 +5,7 @@ resource "cloudflare_record" "bazarr" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -16,7 +16,7 @@ resource "cloudflare_record" "beets" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -27,7 +27,7 @@ resource "cloudflare_record" "caddy-prometheus" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -38,7 +38,7 @@ resource "cloudflare_record" "caddy-api" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -49,7 +49,7 @@ resource "cloudflare_record" "cadvisor" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -60,7 +60,7 @@ resource "cloudflare_record" "change" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -71,7 +71,7 @@ resource "cloudflare_record" "coredns-prom-exporter-nl" {
   tags    = ["vyos-nl"]
   ttl     = 1
   type    = "A"
-  value   = var.nl_ip
+  content = var.nl_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -82,7 +82,7 @@ resource "cloudflare_record" "coredns-prom-exporter-sg" {
   tags    = ["vyos-sg"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -93,7 +93,7 @@ resource "cloudflare_record" "dillinger" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -104,7 +104,7 @@ resource "cloudflare_record" "element" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -115,7 +115,7 @@ resource "cloudflare_record" "file" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -126,7 +126,7 @@ resource "cloudflare_record" "fileservarr" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -137,7 +137,7 @@ resource "cloudflare_record" "firefly" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -148,7 +148,7 @@ resource "cloudflare_record" "grafana-loki" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -159,7 +159,7 @@ resource "cloudflare_record" "grafana-unraid" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -170,7 +170,7 @@ resource "cloudflare_record" "hedgedoc" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -181,7 +181,7 @@ resource "cloudflare_record" "httpbin" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -192,7 +192,7 @@ resource "cloudflare_record" "httpbun-nl" {
   tags    = ["vyos-nl"]
   ttl     = 1
   type    = "A"
-  value   = var.nl_ip
+  content = var.nl_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -203,7 +203,7 @@ resource "cloudflare_record" "hydra" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -214,7 +214,7 @@ resource "cloudflare_record" "ihatemoney" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -225,7 +225,7 @@ resource "cloudflare_record" "immich" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -236,7 +236,7 @@ resource "cloudflare_record" "jackett" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -247,7 +247,7 @@ resource "cloudflare_record" "jellyfin" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -258,7 +258,7 @@ resource "cloudflare_record" "joplin" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -269,7 +269,7 @@ resource "cloudflare_record" "keycloak" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -280,7 +280,7 @@ resource "cloudflare_record" "kvm" {
   tags    = ["kvm-sg"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -291,7 +291,7 @@ resource "cloudflare_record" "navidrome" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -302,7 +302,7 @@ resource "cloudflare_record" "nodered" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -313,7 +313,7 @@ resource "cloudflare_record" "overseerr" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -324,7 +324,7 @@ resource "cloudflare_record" "pihole-vyos-nl" {
   tags    = ["vyos-nl"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.vyos_nl.cname
+  content = cloudflare_tunnel.vyos_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -335,7 +335,7 @@ resource "cloudflare_record" "pihole-vyos-sg" {
   tags    = ["vyos-sg"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.vyos_sg.cname
+  content = cloudflare_tunnel.vyos_sg.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -346,7 +346,7 @@ resource "cloudflare_record" "ping" {
   tags    = ["vyos-sg"]
   ttl     = 60
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -357,7 +357,7 @@ resource "cloudflare_record" "plex" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -368,7 +368,7 @@ resource "cloudflare_record" "portainer" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -379,7 +379,7 @@ resource "cloudflare_record" "privatebin" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -390,7 +390,7 @@ resource "cloudflare_record" "prom-unraid" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -401,7 +401,7 @@ resource "cloudflare_record" "prowlarr" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -412,7 +412,7 @@ resource "cloudflare_record" "qbit" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -423,7 +423,7 @@ resource "cloudflare_record" "qdirstat" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -434,7 +434,7 @@ resource "cloudflare_record" "radarr" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -445,7 +445,7 @@ resource "cloudflare_record" "rclone" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -456,7 +456,7 @@ resource "cloudflare_record" "sabnzbd" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -467,7 +467,7 @@ resource "cloudflare_record" "servarr" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -478,7 +478,7 @@ resource "cloudflare_record" "sonarr" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -489,7 +489,7 @@ resource "cloudflare_record" "dockge-sg" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 resource "cloudflare_record" "synapse-admin" {
@@ -499,7 +499,7 @@ resource "cloudflare_record" "synapse-admin" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -510,7 +510,7 @@ resource "cloudflare_record" "synapse" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -521,7 +521,7 @@ resource "cloudflare_record" "tautulli" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -532,7 +532,7 @@ resource "cloudflare_record" "tpi" {
   tags    = ["k3s"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.vyos_nl.cname
+  content = cloudflare_tunnel.vyos_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -543,7 +543,7 @@ resource "cloudflare_record" "vaultwarden" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -554,7 +554,7 @@ resource "cloudflare_record" "vyos-fileservarr" {
   tags    = ["vyos-nl"]
   ttl     = 1
   type    = "A"
-  value   = var.nl_ip
+  content = var.nl_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -565,7 +565,7 @@ resource "cloudflare_record" "vyos-node-exporter" {
   tags    = ["vyos-nl"]
   ttl     = 1
   type    = "A"
-  value   = var.nl_ip
+  content = var.nl_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -576,7 +576,7 @@ resource "cloudflare_record" "r2" {
   tags    = ["r2"]
   ttl     = 1
   type    = "AAAA"
-  value   = "100::"
+  content = "100::"
   zone_id = var.cloudflare_zone_id
 }
 resource "cloudflare_record" "acme_challenge_custom_hostname_2" {
@@ -585,7 +585,7 @@ resource "cloudflare_record" "acme_challenge_custom_hostname_2" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = "custom-hostname-2.${var.domain_name}.b63bf2e93a182db4.dcv.cloudflare.com"
+  content = "custom-hostname-2.${var.domain_name}.b63bf2e93a182db4.dcv.cloudflare.com"
   zone_id = var.cloudflare_zone_id
 }
 resource "cloudflare_record" "coffee_test" {
@@ -593,7 +593,7 @@ resource "cloudflare_record" "coffee_test" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = "coffee-time.pages.dev"
+  content = "coffee-time.pages.dev"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -602,7 +602,7 @@ resource "cloudflare_record" "custom-hostname-2" {
   proxied = false
   ttl     = 1
   type    = "CNAME"
-  value   = "fallback.epikbahis175.com"
+  content = "fallback.epikbahis175.com"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -611,7 +611,7 @@ resource "cloudflare_record" "httpbun" {
   proxied = true
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -620,7 +620,7 @@ resource "cloudflare_record" "custom-hostname" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = "httpbun.${var.domain_name}"
+  content = "httpbun.${var.domain_name}"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -629,7 +629,7 @@ resource "cloudflare_record" "docs" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = "erfi-docs.pages.dev"
+  content = "erfi-docs.pages.dev"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -640,7 +640,7 @@ resource "cloudflare_record" "gcs" {
   tags    = ["gcs"]
   ttl     = 1
   type    = "CNAME"
-  value   = "storage.googleapis.com"
+  content = "storage.googleapis.com"
   zone_id = var.cloudflare_zone_id
 }
 resource "cloudflare_record" "area_1_mx_1" {
@@ -651,7 +651,7 @@ resource "cloudflare_record" "area_1_mx_1" {
   tags     = ["area1"]
   ttl      = 300
   type     = "MX"
-  value    = "mailstream-central.mxrecord.mx"
+  content  = "mailstream-central.mxrecord.mx"
   zone_id  = var.cloudflare_zone_id
 }
 
@@ -663,7 +663,7 @@ resource "cloudflare_record" "area_1_mx_2" {
   tags     = ["area1"]
   ttl      = 300
   type     = "MX"
-  value    = "mailstream-west.mxrecord.io"
+  content  = "mailstream-west.mxrecord.io"
   zone_id  = var.cloudflare_zone_id
 }
 
@@ -675,7 +675,7 @@ resource "cloudflare_record" "area_1_mx_3" {
   tags     = ["area1"]
   ttl      = 300
   type     = "MX"
-  value    = "mailstream-east.mxrecord.io"
+  content  = "mailstream-east.mxrecord.io"
   zone_id  = var.cloudflare_zone_id
 }
 
@@ -684,7 +684,7 @@ resource "cloudflare_record" "best_delegation_1" {
   proxied = false
   ttl     = 1
   type    = "NS"
-  value   = "lola.ns.cloudflare.com"
+  content = "lola.ns.cloudflare.com"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -693,7 +693,7 @@ resource "cloudflare_record" "best_delegation_2" {
   proxied = false
   ttl     = 1
   type    = "NS"
-  value   = "jeremy.ns.cloudflare.com"
+  content = "jeremy.ns.cloudflare.com"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -702,7 +702,7 @@ resource "cloudflare_record" "dev_saas_delegation_1" {
   proxied = false
   ttl     = 1
   type    = "NS"
-  value   = "lola.ns.cloudflare.com"
+  content = "lola.ns.cloudflare.com"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -711,7 +711,7 @@ resource "cloudflare_record" "dev_saas_delegation_2" {
   proxied = false
   ttl     = 1
   type    = "NS"
-  value   = "jeremy.ns.cloudflare.com"
+  content = "jeremy.ns.cloudflare.com"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -720,7 +720,7 @@ resource "cloudflare_record" "erfiplan_delegation_1" {
   proxied = false
   ttl     = 1
   type    = "NS"
-  value   = "vicky.ns.cloudflare.com"
+  content = "vicky.ns.cloudflare.com"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -729,7 +729,7 @@ resource "cloudflare_record" "erfiplan_delegation_2" {
   proxied = false
   ttl     = 1
   type    = "NS"
-  value   = "monika.ns.cloudflare.com"
+  content = "monika.ns.cloudflare.com"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -738,7 +738,7 @@ resource "cloudflare_record" "freeplan_delegation_1" {
   proxied = false
   ttl     = 1
   type    = "NS"
-  value   = "lola.ns.cloudflare.com"
+  content = "lola.ns.cloudflare.com"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -747,7 +747,7 @@ resource "cloudflare_record" "freeplan_delegation_2" {
   proxied = false
   ttl     = 1
   type    = "NS"
-  value   = "jeremy.ns.cloudflare.com"
+  content = "jeremy.ns.cloudflare.com"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -756,7 +756,7 @@ resource "cloudflare_record" "prod_saas_delegation_1" {
   proxied = false
   ttl     = 1
   type    = "NS"
-  value   = "lola.ns.cloudflare.com"
+  content = "lola.ns.cloudflare.com"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -765,7 +765,7 @@ resource "cloudflare_record" "prod_saas_delegation_2" {
   proxied = false
   ttl     = 1
   type    = "NS"
-  value   = "jeremy.ns.cloudflare.com"
+  content = "jeremy.ns.cloudflare.com"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -774,7 +774,7 @@ resource "cloudflare_record" "_dmarc" {
   proxied = false
   ttl     = 1
   type    = "TXT"
-  value   = "v=DMARC1; p=quarantine; rua=mailto:e764748fc3894bf4bbae2a91ea79b3d2@dmarc-reports.cloudflare.net,mailto:iam@${var.domain_name}"
+  content = "v=DMARC1; p=quarantine; rua=mailto:e764748fc3894bf4bbae2a91ea79b3d2@dmarc-reports.cloudflare.net,mailto:iam@${var.domain_name}"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -783,7 +783,7 @@ resource "cloudflare_record" "spf" {
   proxied = false
   ttl     = 3600
   type    = "TXT"
-  value   = "v=spf1 include:_spf.google.com -all"
+  content = "v=spf1 include:_spf.google.com -all"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -792,7 +792,7 @@ resource "cloudflare_record" "google_txt" {
   proxied = false
   ttl     = 3600
   type    = "TXT"
-  value   = "google-site-verification=7_N_bCOCpjU9g0Ii93cVDwZLZU1YoFukRgOpHiZSYmo"
+  content = "google-site-verification=7_N_bCOCpjU9g0Ii93cVDwZLZU1YoFukRgOpHiZSYmo"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -801,7 +801,7 @@ resource "cloudflare_record" "challenge" {
   proxied = true
   ttl     = 1
   type    = "AAAA"
-  value   = "100::"
+  content = "100::"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -810,7 +810,7 @@ resource "cloudflare_record" "gcs-fetch-test" {
   proxied = true
   ttl     = 1
   type    = "AAAA"
-  value   = "100::"
+  content = "100::"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -819,7 +819,7 @@ resource "cloudflare_record" "tunnel" {
   proxied = true
   ttl     = 1
   type    = "AAAA"
-  value   = "100::"
+  content = "100::"
   zone_id = var.cloudflare_zone_id
 }
 
@@ -828,7 +828,7 @@ resource "cloudflare_record" "tunnel" {
 #   proxied = true
 #   ttl     = 1
 #   type    = "AAAA"
-#   value   = "100::"
+#   content   = "100::"
 #   zone_id = var.cloudflare_zone_id
 # }
 
@@ -839,7 +839,7 @@ resource "cloudflare_record" "kvm-nl" {
   tags    = ["kvm-nl"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.kvm_nl.cname
+  content = cloudflare_tunnel.kvm_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -850,7 +850,7 @@ resource "cloudflare_record" "erfipie" {
   tags    = ["erfipie"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.erfipie.cname
+  content = cloudflare_tunnel.erfipie.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -861,7 +861,7 @@ resource "cloudflare_record" "vyos-sg-ssh" {
   tags    = ["vyos-sg"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.vyos_sg.cname
+  content = cloudflare_tunnel.vyos_sg.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -873,7 +873,7 @@ resource "cloudflare_record" "prom-caddy-nl" {
   tags    = ["vyos-nl"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.vyos_nl.cname
+  content = cloudflare_tunnel.vyos_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -884,7 +884,7 @@ resource "cloudflare_record" "prom-caddy-sg" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.servarr.cname
+  content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -895,7 +895,7 @@ resource "cloudflare_record" "prom-exporter-pi" {
   tags    = ["erfipie"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.erfipie.cname
+  content = cloudflare_tunnel.erfipie.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -906,7 +906,7 @@ resource "cloudflare_record" "atuin" {
   tags    = ["erfipie"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.erfipie.cname
+  content = cloudflare_tunnel.erfipie.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -917,7 +917,7 @@ resource "cloudflare_record" "prom-tunnel-nl" {
   tags    = ["vyos-nl"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.vyos_nl.cname
+  content = cloudflare_tunnel.vyos_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -928,7 +928,7 @@ resource "cloudflare_record" "prom-vyos-nl" {
   tags    = ["vyos-nl"]
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.vyos_nl.cname
+  content = cloudflare_tunnel.vyos_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -937,7 +937,7 @@ resource "cloudflare_record" "ssh-pikvm-sg" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.kvm_sg.cname
+  content = cloudflare_tunnel.kvm_sg.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -946,7 +946,7 @@ resource "cloudflare_record" "ssh-pikvm-nl" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.kvm_nl.cname
+  content = cloudflare_tunnel.kvm_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -955,7 +955,7 @@ resource "cloudflare_record" "ollama" {
   proxied = true
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -964,7 +964,7 @@ resource "cloudflare_record" "ollama-ui" {
   proxied = true
   ttl     = 1
   type    = "A"
-  value   = var.sg_ip
+  content = var.sg_ip
   zone_id = var.cloudflare_zone_id
 }
 
@@ -974,7 +974,7 @@ resource "cloudflare_record" "vyos-ssh-nl" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.vyos_nl.cname
+  content = cloudflare_tunnel.vyos_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -984,7 +984,7 @@ resource "cloudflare_record" "proxmox-ui" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_tunnel.proxmox.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -994,7 +994,7 @@ resource "cloudflare_record" "proxmox-ssh" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_tunnel.proxmox.cname
   zone_id = var.cloudflare_zone_id
 }
 resource "cloudflare_record" "plex-mox" {
@@ -1003,7 +1003,7 @@ resource "cloudflare_record" "plex-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_tunnel.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "jellyfin-mox" {
@@ -1012,7 +1012,7 @@ resource "cloudflare_record" "jellyfin-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_tunnel.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 
 }
@@ -1022,7 +1022,7 @@ resource "cloudflare_record" "prowlarr-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_tunnel.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "radarr-mox" {
@@ -1031,7 +1031,7 @@ resource "cloudflare_record" "radarr-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_tunnel.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "sonarr-mox" {
@@ -1040,7 +1040,7 @@ resource "cloudflare_record" "sonarr-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_tunnel.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "bazarr-mox" {
@@ -1049,7 +1049,7 @@ resource "cloudflare_record" "bazarr-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_tunnel.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "tautulli-mox" {
@@ -1058,7 +1058,7 @@ resource "cloudflare_record" "tautulli-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_tunnel.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "navidrome-mox" {
@@ -1067,7 +1067,7 @@ resource "cloudflare_record" "navidrome-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_tunnel.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "solvarr-mox" {
@@ -1076,7 +1076,7 @@ resource "cloudflare_record" "solvarr-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_tunnel.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "sabnzbd-mox" {
@@ -1085,6 +1085,6 @@ resource "cloudflare_record" "sabnzbd-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  value   = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_tunnel.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
