@@ -5,7 +5,7 @@ resource "cloudflare_zone_settings_override" "erfi_zone_settings" {
     always_use_https         = "off"
     automatic_https_rewrites = "off"
     brotli                   = "on"
-    browser_cache_ttl        = 30
+    browser_cache_ttl        = 0
     browser_check            = "off"
     cache_level              = "aggressive"
     challenge_ttl            = 300

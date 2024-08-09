@@ -1,4 +1,3 @@
-# Enable security headers using Managed Meaders
 resource "cloudflare_managed_headers" "managed_headers" {
   zone_id = var.cloudflare_zone_id
 
@@ -27,3 +26,4 @@ resource "cloudflare_managed_headers" "managed_headers" {
     enabled = true
   }
 }
+
