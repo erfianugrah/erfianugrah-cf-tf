@@ -140,3 +140,15 @@ resource "cloudflare_api_token" "wrangler" {
     }
   }
 }
+
+resource "cloudflare_api_token" "cache_purge" {
+  name = "cache_purge"
+  policy {
+    permission_groups = [
+      data.cloudflare_api_token_permission_groups.all.zone["Cache Purge"],
+    ]
+    resources = {
+      "com.cloudflare.api.account.*" = "*"
+    }
+  }
+}
