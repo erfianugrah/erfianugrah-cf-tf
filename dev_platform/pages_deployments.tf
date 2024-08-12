@@ -1,14 +1,14 @@
 resource "cloudflare_pages_project" "revista_3" {
   account_id        = var.cloudflare_account_id
   name              = "revista-3"
-  production_branch = "npm"
+  production_branch = "main"
 
   source {
     type = "github"
     config {
       owner                         = "erfianugrah"
       repo_name                     = "revista-3"
-      production_branch             = "npm"
+      production_branch             = "main"
       pr_comments_enabled           = true
       deployments_enabled           = true
       production_deployment_enabled = true
@@ -19,7 +19,7 @@ resource "cloudflare_pages_project" "revista_3" {
   }
 
   build_config {
-    build_command       = "npm run build"
+    build_command       = "bun run build"
     destination_dir     = "dist"
     build_caching       = true
     root_dir            = ""
@@ -34,7 +34,7 @@ resource "cloudflare_pages_project" "revista_3" {
       always_use_latest_compatibility_date = false
       fail_open                            = true
       environment_variables = {
-        BUN_VERSION = "1.1.22"
+        BUN_VERSION = "1.1.23"
       }
     }
     production {
@@ -66,12 +66,12 @@ resource "cloudflare_pages_project" "revista_4" {
       always_use_latest_compatibility_date = false
       fail_open                            = true
       environment_variables = {
-        BUN_VERSION = "1.1.22"
+        BUN_VERSION = "1.1.23"
       }
     }
     production {
       environment_variables = {
-        BUN_VERSION = "1.1.22"
+        BUN_VERSION = "1.1.23"
       }
       fail_open                            = true
       always_use_latest_compatibility_date = false
