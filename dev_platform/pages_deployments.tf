@@ -38,11 +38,13 @@ resource "cloudflare_pages_project" "revista_3" {
       }
     }
     production {
-      environment_variables                = null
       fail_open                            = true
       always_use_latest_compatibility_date = false
       compatibility_date                   = "2023-11-13"
       usage_model                          = "standard"
+      environment_variables = {
+        BUN_VERSION = "1.1.23"
+      }
     }
   }
 }
