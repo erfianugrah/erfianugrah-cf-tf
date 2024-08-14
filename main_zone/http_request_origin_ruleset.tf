@@ -199,6 +199,6 @@ resource "cloudflare_ruleset" "http_request_origin" {
     }
     description = "dockge on arch0"
     enabled     = true
-    expression  = "(http.host eq \"dockge.${var.domain_name}\")"
+    expression  = "(http.host eq \"dockge-nl.${var.domain_name}\")"
   }
 }

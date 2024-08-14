@@ -113,7 +113,7 @@ resource "cloudflare_ruleset" "http_config_settings" {
     }
     description = "Flexible SSL"
     enabled     = true
-    expression  = "(http.host in {\"httpbun-pie.${var.domain_name}\" \"httpbun-arch0.${var.domain_name}\" \"dockge.${var.domain_name}\"  })"
+    expression  = "(http.host in {\"httpbun-pie.${var.domain_name}\" \"httpbun-arch0.${var.domain_name}\" \"dockge-nl.${var.domain_name}\"  })"
   }
 }
 
