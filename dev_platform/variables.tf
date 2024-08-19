@@ -45,3 +45,9 @@ variable "domain_name" {
   type        = string
   sensitive   = true
 }
+
+variable "pages_agerng_hostname" {
+  description = "The hostname to be used"
+  type        = string
+  sensitive   = true
+}

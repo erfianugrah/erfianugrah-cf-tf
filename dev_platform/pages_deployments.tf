@@ -107,8 +107,8 @@ resource "cloudflare_pages_project" "agerng" {
     destination_dir     = "dist"
     build_caching       = true
     root_dir            = ""
-    web_analytics_tag   = "1b41d673bc8340fd8894a32823a18449"
-    web_analytics_token = "8028d33b9cbc440ba5f3710dfbac184d"
+    web_analytics_tag   = cloudflare_web_analytics_site.pages_agerng.site_tag
+    web_analytics_token = cloudflare_web_analytics_site.pages_agerng.site_token
   }
 
   deployment_configs {
