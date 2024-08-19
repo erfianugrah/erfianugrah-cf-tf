@@ -23,8 +23,8 @@ resource "cloudflare_pages_project" "revista_3" {
     destination_dir     = "dist"
     build_caching       = true
     root_dir            = ""
-    web_analytics_tag   = "1b41d673bc8340fd8894a32823a18449"
-    web_analytics_token = "8028d33b9cbc440ba5f3710dfbac184d"
+    web_analytics_tag   = cloudflare_web_analytics_site.pages_revista3.site_tag
+    web_analytics_token = cloudflare_web_analytics_site.pages_revista3.site_token
   }
 
   deployment_configs {
@@ -55,10 +55,12 @@ resource "cloudflare_pages_project" "revista_4" {
   production_branch = "main"
 
   build_config {
-    build_command   = "bun run build"
-    destination_dir = "dist"
-    build_caching   = true
-    root_dir        = ""
+    build_command       = "bun run build"
+    destination_dir     = "dist"
+    build_caching       = true
+    root_dir            = ""
+    web_analytics_tag   = cloudflare_web_analytics_site.pages_revista4.site_tag
+    web_analytics_token = cloudflare_web_analytics_site.pages_revista4.site_token
   }
 
   deployment_configs {

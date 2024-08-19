@@ -51,3 +51,15 @@ variable "pages_agerng_hostname" {
   type        = string
   sensitive   = true
 }
+
+variable "pages_revista3_hostname" {
+  description = "The hostname to be used"
+  type        = string
+  sensitive   = true
+}
+
+variable "pages_revista4_hostname" {
+  description = "The hostname to be used"
+  type        = string
+  sensitive   = true
+}
