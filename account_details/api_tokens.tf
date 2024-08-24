@@ -30,6 +30,21 @@ resource "cloudflare_api_token" "traefik_dns" {
   }
 }
 
+resource "cloudflare_api_token" "proxmox_dns" {
+  name = "proxmox_dns_account"
+  policy {
+    permission_groups = [
+      data.cloudflare_api_token_permission_groups.all.zone["DNS Write"],
+      # "4755a26eedb94da69e1066d98aa820be", # "DNS Write"
+    ]
+    resources = {
+      "com.cloudflare.api.account.${var.cloudflare_account_id}" = jsonencode({
+        "com.cloudflare.api.account.zone.*" = "*"
+      })
+    }
+  }
+}
+
 resource "cloudflare_api_token" "caddy_dns" {
   name = "caddy_dns_account"
   policy {
