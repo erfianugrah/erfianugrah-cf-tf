@@ -32,7 +32,7 @@ resource "cloudflare_access_identity_provider" "google_workspace" {
     apps_domain      = var.domain_name
     client_id        = var.google_workspace_client_id
     client_secret    = var.google_workspace_secret
-    claims           = ["group"]
+    claims           = ["family_name", "given_name", "name"]
     email_claim_name = "email"
   }
 }
@@ -69,7 +69,7 @@ resource "cloudflare_access_identity_provider" "authentik_saml" {
     issuer_url           = "https://erfianugrah.cloudflareaccess.com/cdn-cgi/access/callback"
     sso_target_url       = "https://authentik.${var.domain_name}/application/saml/cloudflare-access-saml/sso/binding/redirect/"
     idp_public_cert      = local.authentik_pem
-    # sign_request         = true
+    sign_request         = true
   }
 }
 
