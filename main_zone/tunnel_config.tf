@@ -202,6 +202,10 @@ resource "cloudflare_tunnel_config" "vyos_nl" {
       service  = "http://localhost:9100"
     }
     ingress_rule {
+      hostname = "httpbun-nl.${var.domain_name}"
+      service  = "http://10.0.10.8:80"
+    }
+    ingress_rule {
       hostname = "tpi.${var.domain_name}"
       service  = "https://10.0.71.8:443"
       origin_request {

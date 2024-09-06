@@ -191,8 +191,8 @@ resource "cloudflare_record" "httpbun-nl" {
   proxied = true
   tags    = ["vyos-nl"]
   ttl     = 1
-  type    = "A"
-  content = var.nl_ip
+  type    = "CNAME"
+  content = cloudflare_tunnel.vyos_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
