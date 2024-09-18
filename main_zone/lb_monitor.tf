@@ -39,7 +39,7 @@ resource "cloudflare_load_balancer_monitor" "authentik" {
   consecutive_up   = 0
   description      = "authentik"
   expected_codes   = "200"
-  follow_redirects = false
+  follow_redirects = true
   interval         = 300
   method           = "GET"
   path             = "/"
