@@ -43,7 +43,29 @@ resource "cloudflare_ruleset" "account_managed_ruleset_deployment" {
     enabled     = false
     action      = "execute"
     expression  = "true"
-    description = "Deploy on All Zones the Default OWASP Managed Ruleset"
+    description = "Deploy on All Zones the Default OWASP Managed Ruleset - Overrides"
+    action_parameters {
+      id = data.cloudflare_rulesets.account_managed_owasp_ruleset.rulesets[0].id
+      matched_data {
+        public_key = var.account_owasp_pub_key
+      }
+      overrides {
+        categories {
+          category = "paranoia-level-3"
+          enabled  = false
+        }
+        categories {
+          category = "paranoia-level-4"
+          enabled  = false
+        }
+      }
+    }
+  }
+  rules {
+    enabled     = false
+    action      = "execute"
+    expression  = "true"
+    description = "Deploy on All Zones the Default OWASP Managed Ruleset - P1 - Logging"
     action_parameters {
       id = data.cloudflare_rulesets.account_managed_owasp_ruleset.rulesets[0].id
       matched_data {
