@@ -1088,3 +1088,12 @@ resource "cloudflare_record" "sabnzbd-mox" {
   content = cloudflare_tunnel.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
+
+resource "cloudflare_record" "discord" {
+  name    = "_discord"
+  tags    = ["discord"]
+  ttl     = 1
+  type    = "TXT"
+  content = "dh=8983e27f5d3ad1b4f3e152a271ab6420d1be92dc"
+  zone_id = var.cloudflare_zone_id
+}
