@@ -31,10 +31,11 @@ resource "cloudflare_teams_account" "miau" {
   }
 
   proxy {
-    tcp        = true
-    udp        = true
-    root_ca    = true
-    virtual_ip = true
+    tcp              = true
+    udp              = true
+    root_ca          = true
+    virtual_ip       = true
+    disable_for_time = 300
   }
 
   url_browser_isolation_enabled = true
