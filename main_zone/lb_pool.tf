@@ -17,24 +17,24 @@ resource "cloudflare_load_balancer_pool" "deno" {
   }
 }
 
-resource "cloudflare_load_balancer_pool" "pages" {
-  account_id      = var.cloudflare_account_id
-  check_regions   = ["ALL_REGIONS"]
-  enabled         = true
-  minimum_origins = 1
-  monitor         = cloudflare_load_balancer_monitor.ssgs.id
-  name            = "Pages"
-  origins {
-    address = var.pages_domain
-    enabled = true
-    header {
-      header = "Host"
-      values = ["www.${var.domain_name}"]
-    }
-    name   = "Pages"
-    weight = 1
-  }
-}
+# resource "cloudflare_load_balancer_pool" "pages" {
+#   account_id      = var.cloudflare_account_id
+#   check_regions   = ["ALL_REGIONS"]
+#   enabled         = true
+#   minimum_origins = 1
+#   monitor         = cloudflare_load_balancer_monitor.ssgs.id
+#   name            = "Pages"
+#   origins {
+#     address = var.pages_domain
+#     enabled = true
+#     header {
+#       header = "Host"
+#       values = ["www.${var.domain_name}"]
+#     }
+#     name   = "Pages"
+#     weight = 1
+#   }
+# }
 
 resource "cloudflare_load_balancer_pool" "revista_sg" {
   account_id      = var.cloudflare_account_id

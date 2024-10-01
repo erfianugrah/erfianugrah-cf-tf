@@ -1097,3 +1097,13 @@ resource "cloudflare_record" "discord" {
   content = "dh=7d34085eab91e78966c915413fb93503577d516e"
   zone_id = var.cloudflare_zone_id
 }
+
+resource "cloudflare_record" "www" {
+  name    = "www"
+  tags    = ["www"]
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  content = var.pages_domain
+  zone_id = var.cloudflare_zone_id
+}
