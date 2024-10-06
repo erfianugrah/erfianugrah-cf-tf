@@ -10,7 +10,7 @@ resource "cloudflare_ruleset" "http_request_cache_settings" {
     }
     description = " Cache Bypass"
     enabled     = true
-    expression  = "(http.host in {\"servarr.${var.domain_name} \" \"pihole.${var.domain_name}\" \"kvm.${var.domain_name}\" \"nzb.${var.domain_name}\" \"qbit.${var.domain_name}\" \"plex.${var.domain_name}\" \"file.${var.domain_name}\" \"home.${var.domain_name}\" \"kvm-nl.${var.domain_name}\" \"sabnzbd.${var.domain_name}\" \"loader.${var.domain_name}\"})"
+    expression  = "(http.host in {\"servarr.${var.domain_name} \" \"pihole.${var.domain_name}\" \"kvm.${var.domain_name}\" \"nzb.${var.domain_name}\" \"qbit.${var.domain_name}\" \"plex.${var.domain_name}\" \"file.${var.domain_name}\" \"home.${var.domain_name}\" \"kvm-nl.${var.domain_name}\" \"sabnzbd.${var.domain_name}\" \"loader.${var.domain_name}\" \"www.${var.domain_name}\"})"
   }
   rules {
     action = "set_cache_settings"
@@ -31,7 +31,7 @@ resource "cloudflare_ruleset" "http_request_cache_settings" {
     }
     description = "Astro"
     enabled     = true
-    expression  = "(http.host in {\"cdn.${var.domain_name}\"  \"www.${var.domain_name}\" \"${var.domain_name}\" })"
+    expression  = "(http.host in {\"cdn.${var.domain_name}\"  \"${var.domain_name}\" })"
   }
   rules {
     action = "set_cache_settings"
