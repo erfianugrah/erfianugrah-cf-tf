@@ -50,7 +50,7 @@ resource "cloudflare_ruleset" "http_ratelimit" {
   rules {
     action      = "challenge"
     description = "Test Challenge Passage"
-    enabled     = true
+    enabled     = false
     expression  = "(http.host eq \"${var.domain_name}\" and http.request.uri.path contains \"muses\")"
     ratelimit {
       characteristics     = ["ip.src", "cf.colo.id"]
@@ -66,9 +66,21 @@ resource "cloudflare_ruleset" "http_ratelimit" {
     expression  = "(cf.bot_management.score lt 5 and not cf.bot_management.verified_bot and not cf.bot_management.static_resource and not ip.src in {118.189.189.102 195.240.81.42})"
     ratelimit {
       characteristics     = ["cf.unique_visitor_id", "ip.geoip.asnum", "cf.colo.id"]
-      mitigation_timeout  = 120
+      mitigation_timeout  = 30
       period              = 10
-      requests_per_period = 100 
+      requests_per_period = 50
+    }
+  }
+  rules {
+    action      = "managed_challenge"
+    description = "WAFAS <= 10"
+    enabled     = true
+    expression  = "(cf.waf.score le 10 and not ip.src in {118.189.189.102 195.240.81.42})"
+    ratelimit {
+      characteristics     = ["cf.unique_visitor_id", "ip.geoip.asnum", "cf.colo.id"]
+      mitigation_timeout  = 30
+      period              = 10
+      requests_per_period = 50
     }
   }
   rules {

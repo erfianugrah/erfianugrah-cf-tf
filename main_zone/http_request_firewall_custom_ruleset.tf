@@ -16,12 +16,12 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
     logging {
       enabled = true
     }
-  } 
+  }
   rules {
     action      = "managed_challenge"
-    description = "WAF Attack Score < 10"
+    description = "WAF Attack Score <= 20"
     enabled     = true
-    expression  = "(cf.waf.score lt 10)"
+    expression  = "(cf.waf.score le 20)"
   }
   rules {
     action      = "js_challenge"
@@ -52,7 +52,7 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
   rules {
     action      = "block"
     description = "Block HTTP"
-    enabled     = true 
+    enabled     = true
     expression  = "(not ssl)"
   }
   rules {
