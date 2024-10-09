@@ -9,49 +9,49 @@ resource "cloudflare_record" "bazarr" {
   zone_id = var.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "beets" {
-  comment = "tagging music"
-  name    = "beets"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "beets" {
+#   comment = "tagging music"
+#   name    = "beets"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "CNAME"
+#   content = cloudflare_tunnel.servarr.cname
+#   zone_id = var.cloudflare_zone_id
+# }
 
-resource "cloudflare_record" "caddy-prometheus" {
-  comment = "caddy-monitoring"
-  name    = "caddy-prometheus"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "caddy-prometheus" {
+#   comment = "caddy-monitoring"
+#   name    = "caddy-prometheus"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
 
-resource "cloudflare_record" "caddy-api" {
-  comment = "caddy-api"
-  name    = "caddy"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
-
-resource "cloudflare_record" "cadvisor" {
-  comment = "docker monitoring"
-  name    = "cadvisor"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "caddy-api" {
+#   comment = "caddy-api"
+#   name    = "caddy"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
+#
+# resource "cloudflare_record" "cadvisor" {
+#   comment = "docker monitoring"
+#   name    = "cadvisor"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
 
 resource "cloudflare_record" "change" {
   comment = "site crawler for changes"
@@ -86,16 +86,16 @@ resource "cloudflare_record" "coredns-prom-exporter-sg" {
   zone_id = var.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "dillinger" {
-  comment = "in-browser markdown note taking app"
-  name    = "dillinger"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "dillinger" {
+#   comment = "in-browser markdown note taking app"
+#   name    = "dillinger"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
 
 resource "cloudflare_record" "element" {
   comment = "web app for matrix"
@@ -119,60 +119,60 @@ resource "cloudflare_record" "file" {
   zone_id = var.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "fileservarr" {
-  comment = "fileservarr"
-  name    = "fileservarr"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "fileservarr" {
+#   comment = "fileservarr"
+#   name    = "fileservarr"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
 
-resource "cloudflare_record" "firefly" {
-  comment = "daily expenses app"
-  name    = "firefly"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "firefly" {
+#   comment = "daily expenses app"
+#   name    = "firefly"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
 
-resource "cloudflare_record" "grafana-loki" {
-  comment = "monitoring"
-  name    = "grafana-loki"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "grafana-loki" {
+#   comment = "monitoring"
+#   name    = "grafana-loki"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
+#
+# resource "cloudflare_record" "grafana-unraid" {
+#   comment = "grafana instance on unraid"
+#   name    = "grafana-unraid"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
 
-resource "cloudflare_record" "grafana-unraid" {
-  comment = "grafana instance on unraid"
-  name    = "grafana-unraid"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
-
-resource "cloudflare_record" "hedgedoc" {
-  comment = "real-time collaboration markdown note app"
-  name    = "hedgedoc"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "hedgedoc" {
+#   comment = "real-time collaboration markdown note app"
+#   name    = "hedgedoc"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
 
 resource "cloudflare_record" "httpbin" {
   comment = "httpbin"
@@ -196,27 +196,27 @@ resource "cloudflare_record" "httpbun-nl" {
   zone_id = var.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "hydra" {
-  comment = "usenet indexer aggregator"
-  name    = "hydra"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
-  zone_id = var.cloudflare_zone_id
-}
-
-resource "cloudflare_record" "ihatemoney" {
-  comment = "collaborative expense app"
-  name    = "ihatemoney"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "hydra" {
+#   comment = "usenet indexer aggregator"
+#   name    = "hydra"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "CNAME"
+#   content = cloudflare_tunnel.servarr.cname
+#   zone_id = var.cloudflare_zone_id
+# }
+#
+# resource "cloudflare_record" "ihatemoney" {
+#   comment = "collaborative expense app"
+#   name    = "ihatemoney"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
 
 resource "cloudflare_record" "immich" {
   comment = "self-hosted google photos"
@@ -229,16 +229,16 @@ resource "cloudflare_record" "immich" {
   zone_id = var.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "jackett" {
-  comment = "indexer"
-  name    = "jackett"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "jackett" {
+#   comment = "indexer"
+#   name    = "jackett"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "CNAME"
+#   content = cloudflare_tunnel.servarr.cname
+#   zone_id = var.cloudflare_zone_id
+# }
 
 resource "cloudflare_record" "jellyfin" {
   comment = "like plex but not"
@@ -295,16 +295,16 @@ resource "cloudflare_record" "navidrome" {
   zone_id = var.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "nodered" {
-  comment = "nodered"
-  name    = "nodered"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "nodered" {
+#   comment = "nodered"
+#   name    = "nodered"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
 
 resource "cloudflare_record" "overseerr" {
   comment = "overseerr"
@@ -361,38 +361,38 @@ resource "cloudflare_record" "plex" {
   zone_id = var.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "portainer" {
-  comment = "portainer sg on unraid"
-  name    = "port"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "portainer" {
+#   comment = "portainer sg on unraid"
+#   name    = "port"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "CNAME"
+#   content = cloudflare_tunnel.servarr.cname
+#   zone_id = var.cloudflare_zone_id
+# }
+#
+# resource "cloudflare_record" "privatebin" {
+#   comment = "privatebin"
+#   name    = "privatebin"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
 
-resource "cloudflare_record" "privatebin" {
-  comment = "privatebin"
-  name    = "privatebin"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
-
-resource "cloudflare_record" "prom-unraid" {
-  comment = "prometheus"
-  name    = "prom-unraid"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "prom-unraid" {
+#   comment = "prometheus"
+#   name    = "prom-unraid"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
 
 resource "cloudflare_record" "prowlarr" {
   comment = "indexer"
@@ -416,16 +416,16 @@ resource "cloudflare_record" "qbit" {
   zone_id = var.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "qdirstat" {
-  comment = "directory file analyser"
-  name    = "qdirstat"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "qdirstat" {
+#   comment = "directory file analyser"
+#   name    = "qdirstat"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
 
 resource "cloudflare_record" "radarr" {
   comment = "radarr"
@@ -438,16 +438,16 @@ resource "cloudflare_record" "radarr" {
   zone_id = var.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "rclone" {
-  comment = "rclone"
-  name    = "rclone"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "rclone" {
+#   comment = "rclone"
+#   name    = "rclone"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
 
 resource "cloudflare_record" "sabnzbd" {
   comment = "usenet"
@@ -492,27 +492,27 @@ resource "cloudflare_record" "dockge-sg" {
   content = cloudflare_tunnel.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
-resource "cloudflare_record" "synapse-admin" {
-  comment = "synapse-admin"
-  name    = "synapse-admin"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
-
-resource "cloudflare_record" "synapse" {
-  comment = "synapse"
-  name    = "synapse"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "A"
-  content = var.sg_ip
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "synapse-admin" {
+#   comment = "synapse-admin"
+#   name    = "synapse-admin"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
+#
+# resource "cloudflare_record" "synapse" {
+#   comment = "synapse"
+#   name    = "synapse"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.sg_ip
+#   zone_id = var.cloudflare_zone_id
+# }
 
 resource "cloudflare_record" "tautulli" {
   comment = "plex usage"
@@ -547,16 +547,16 @@ resource "cloudflare_record" "vaultwarden" {
   zone_id = var.cloudflare_zone_id
 }
 
-resource "cloudflare_record" "vyos-fileservarr" {
-  comment = "vyos-fileservarr"
-  name    = "vyos-fileservarr"
-  proxied = true
-  tags    = ["vyos-nl"]
-  ttl     = 1
-  type    = "A"
-  content = var.nl_ip
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "vyos-fileservarr" {
+#   comment = "vyos-fileservarr"
+#   name    = "vyos-fileservarr"
+#   proxied = true
+#   tags    = ["vyos-nl"]
+#   ttl     = 1
+#   type    = "A"
+#   content = var.nl_ip
+#   zone_id = var.cloudflare_zone_id
+# }
 
 resource "cloudflare_record" "vyos-node-exporter" {
   comment = "vyos-node-exporter"
@@ -866,27 +866,27 @@ resource "cloudflare_record" "vyos-sg-ssh" {
 }
 
 
-resource "cloudflare_record" "prom-caddy-nl" {
-  comment = "caddy on vyos-nl"
-  name    = "prom-caddy-nl"
-  proxied = true
-  tags    = ["vyos-nl"]
-  ttl     = 1
-  type    = "CNAME"
-  content = cloudflare_tunnel.vyos_nl.cname
-  zone_id = var.cloudflare_zone_id
-}
-
-resource "cloudflare_record" "prom-caddy-sg" {
-  comment = "caddy on unraid"
-  name    = "prom-caddy-sg"
-  proxied = true
-  tags    = ["servarr"]
-  ttl     = 1
-  type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
-  zone_id = var.cloudflare_zone_id
-}
+# resource "cloudflare_record" "prom-caddy-nl" {
+#   comment = "caddy on vyos-nl"
+#   name    = "prom-caddy-nl"
+#   proxied = true
+#   tags    = ["vyos-nl"]
+#   ttl     = 1
+#   type    = "CNAME"
+#   content = cloudflare_tunnel.vyos_nl.cname
+#   zone_id = var.cloudflare_zone_id
+# }
+#
+# resource "cloudflare_record" "prom-caddy-sg" {
+#   comment = "caddy on unraid"
+#   name    = "prom-caddy-sg"
+#   proxied = true
+#   tags    = ["servarr"]
+#   ttl     = 1
+#   type    = "CNAME"
+#   content = cloudflare_tunnel.servarr.cname
+#   zone_id = var.cloudflare_zone_id
+# }
 
 resource "cloudflare_record" "prom-exporter-pi" {
   comment = "erfipie node exporter"
