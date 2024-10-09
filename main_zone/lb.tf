@@ -59,18 +59,18 @@ resource "cloudflare_load_balancer" "revista" {
 }
 
 resource "cloudflare_load_balancer" "authentik" {
-  default_pool_ids = [cloudflare_load_balancer_pool.authentik_ipsec_k3s_nl.id]
   enabled          = true
+  proxied          = true
+  zone_id          = var.cloudflare_zone_id
+  default_pool_ids = [cloudflare_load_balancer_pool.authentik_ipsec_k3s_nl.id]
   fallback_pool_id = cloudflare_load_balancer_pool.authentik_ipsec_k3s_nl.id
   name             = "authentik.${var.domain_name}"
-  proxied          = true
   session_affinity = "none"
-  steering_policy  = "geo"
-  zone_id          = var.cloudflare_zone_id
-  pop_pools {
-    pop      = "AMS"
-    pool_ids = [cloudflare_load_balancer_pool.authentik_ipsec_k3s_nl.id]
-  }
+  steering_policy  = "dynamic_latency"
+  # pop_pools {
+  #   pop      = "AMS"
+  #   pool_ids = [cloudflare_load_balancer_pool.authentik_ipsec_k3s_nl.id]
+  # }
   adaptive_routing {
     failover_across_pools = true
   }
