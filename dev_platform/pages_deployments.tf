@@ -34,7 +34,7 @@ resource "cloudflare_pages_project" "revista_3" {
       always_use_latest_compatibility_date = false
       fail_open                            = true
       environment_variables = {
-        BUN_VERSION = "1.1.30"
+        BUN_VERSION = "1.1.32"
       }
     }
     production {
@@ -43,7 +43,7 @@ resource "cloudflare_pages_project" "revista_3" {
       compatibility_date                   = "2023-11-13"
       usage_model                          = "standard"
       environment_variables = {
-        BUN_VERSION = "1.1.30"
+        BUN_VERSION = "1.1.32"
       }
     }
   }
@@ -70,12 +70,12 @@ resource "cloudflare_pages_project" "revista_4" {
       always_use_latest_compatibility_date = false
       fail_open                            = true
       environment_variables = {
-        BUN_VERSION = "1.1.30"
+        BUN_VERSION = "1.1.32"
       }
     }
     production {
       environment_variables = {
-        BUN_VERSION = "1.1.30"
+        BUN_VERSION = "1.1.32"
       }
       fail_open                            = true
       always_use_latest_compatibility_date = false
