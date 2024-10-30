@@ -278,7 +278,8 @@ resource "cloudflare_access_application" "google_saas" {
 resource "cloudflare_access_application" "authentik_saas" {
   account_id = var.cloudflare_account_id
   policies = [
-    cloudflare_access_policy.allow_erfi.id
+    cloudflare_access_policy.allow_erfi.id,
+    cloudflare_access_policy.allow_cf.id
   ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
