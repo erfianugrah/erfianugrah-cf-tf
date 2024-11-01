@@ -16,7 +16,7 @@ resource "cloudflare_ruleset" "http_request_dynamic_redirect" {
     }
     description = "HTTP to HTTPs"
     enabled     = true
-    expression  = "(not ssl)"
+    expression  = "(not ssl) and not starts_with(http.request.uri.path, \"/.well-known/\")"
   }
   rules {
     action = "redirect"
@@ -31,7 +31,7 @@ resource "cloudflare_ruleset" "http_request_dynamic_redirect" {
     }
     description = "HTTP to HTTPs v2"
     enabled     = false
-    expression  = "(http.request.full_uri matches \"^http://\")"
+    expression  = "(http.request.full_uri matches \"^http://\") and not starts_with(http.request.uri.path, \"/.well-known/\")"
   }
   rules {
     action = "redirect"
@@ -94,3 +94,4 @@ resource "cloudflare_ruleset" "http_request_dynamic_redirect" {
     expression  = "(http.host eq \"${var.domain_name}\" and http.request.uri.path contains \"/test2\" and any(http.request.headers[\"accept-language\"][*] contains \"zh-CN\")) "
   }
 }
+
