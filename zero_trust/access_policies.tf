@@ -207,6 +207,18 @@ resource "cloudflare_access_policy" "allow_lena" {
   }
 }
 
+resource "cloudflare_access_policy" "allow_oma" {
+  # application_id   = cloudflare_access_application.filebrowser.id
+  account_id = var.cloudflare_account_id
+  name       = "Allow Oma"
+  # precedence       = "2"
+  decision         = "allow"
+  session_duration = "30m"
+
+  include {
+    email = var.oma_email
+  }
+}
 # resource "cloudflare_access_policy" "dillinger" {
 #   application_id   = cloudflare_access_application.dillinger.id
 #   account_id       = var.cloudflare_account_id

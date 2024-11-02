@@ -164,6 +164,12 @@ variable "lena_email" {
   sensitive   = true
 }
 
+variable "oma_email" {
+  description = "oma_email"
+  type        = list(string)
+  sensitive   = true
+}
+
 variable "authentik_pem_path" {
   description = "authentik_pem_path"
   type        = string

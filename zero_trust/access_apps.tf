@@ -427,6 +427,7 @@ resource "cloudflare_access_application" "overseerr" {
   policies = [
     cloudflare_access_policy.allow_erfi.id,
     cloudflare_access_policy.allow_lena.id,
+    cloudflare_access_policy.allow_oma.id,
     cloudflare_access_policy.overseerr_token.id
   ]
   allowed_idps = [
