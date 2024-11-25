@@ -153,7 +153,7 @@ resource "cloudflare_load_balancer_pool" "httpbun_ipsec_arch0_nl" {
   }
 }
 
-resource "cloudflare_load_balancer_pool" "authentik_ipsec_k3s_nl" {
+resource "cloudflare_load_balancer_pool" "authentik_gre_k3s_nl" {
   account_id      = var.cloudflare_account_id
   check_regions   = ["ALL_REGIONS"]
   enabled         = true
@@ -163,10 +163,10 @@ resource "cloudflare_load_balancer_pool" "authentik_ipsec_k3s_nl" {
   origins {
     address = "10.0.71.100"
     enabled = true
-    # header {
-    #   header = "Host"
-    #   values = ["authentik.${var.domain_name}"]
-    # }
+    header {
+      header = "Host"
+      values = ["authentik.${var.domain_name}"]
+    }
     virtual_network_id = "be64e69c-e7b6-4e0e-9fd3-130757192c5b"
     name               = "authentik_ipsec_k3s_nl"
     weight             = 1
