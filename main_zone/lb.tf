@@ -25,9 +25,9 @@
 # }
 
 resource "cloudflare_load_balancer" "revista" {
-  default_pool_ids = [cloudflare_load_balancer_pool.revista_k3s_nl.id, cloudflare_load_balancer_pool.revista_proxmox_nl.id, cloudflare_load_balancer_pool.revista_ipsec_k3s_nl.id]
+  default_pool_ids = [/* cloudflare_load_balancer_pool.revista_k3s_nl.id, cloudflare_load_balancer_pool.revista_proxmox_nl.id,  */ cloudflare_load_balancer_pool.revista_ipsec_k3s_nl.id]
   enabled          = true
-  fallback_pool_id = cloudflare_load_balancer_pool.revista_sg.id
+  fallback_pool_id = cloudflare_load_balancer_pool.revista_ipsec_k3s_nl.id
   name             = var.domain_name
   proxied          = true
   session_affinity = "none"
