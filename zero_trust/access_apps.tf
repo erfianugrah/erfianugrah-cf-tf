@@ -351,7 +351,7 @@ resource "cloudflare_access_application" "filebrowser" {
   http_only_cookie_attribute = true
   name                       = "File Browser"
   same_site_cookie_attribute = "lax"
-  self_hosted_domains        = ["file.${var.domain_name}/files", "fileservarr.${var.domain_name}"]
+  self_hosted_domains        = ["file.${var.domain_name}/files" /* , "fileservarr.${var.domain_name}" */]
   session_duration           = "15m"
   type                       = "self_hosted"
   cors_headers {
