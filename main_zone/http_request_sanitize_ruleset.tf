@@ -26,9 +26,9 @@ resource "cloudflare_ruleset" "http_request_sanitize" {
           id      = "60444c0705d4438799584a15cca2cb7d"
         }
       }
-      version = "latest"
     }
     enabled    = true
     expression = "true"
   }
 }
+

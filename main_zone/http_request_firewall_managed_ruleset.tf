@@ -291,7 +291,6 @@ resource "cloudflare_ruleset" "http_request_firewall_managed" {
           id      = "888f34e336ec4211b02e49c3484037ce"
         }
       }
-      version = "latest"
     }
     description = "zone"
     enabled     = true
@@ -307,7 +306,6 @@ resource "cloudflare_ruleset" "http_request_firewall_managed" {
       overrides {
         action = "managed_challenge"
       }
-      version = "latest"
     }
     description = "zone"
     enabled     = true
@@ -335,7 +333,6 @@ resource "cloudflare_ruleset" "http_request_firewall_managed" {
           score_threshold = 40
         }
       }
-      version = "latest"
     }
     description = "erfiowasp"
     enabled     = true

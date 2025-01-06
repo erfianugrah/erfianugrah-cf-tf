@@ -129,9 +129,9 @@ resource "cloudflare_ruleset" "http_response_firewall_managed" {
           id      = "27bec7a1c05d413480fbd9a45e36a715"
         }
       }
-      version = "latest"
     }
     enabled    = true
     expression = "true"
   }
 }
+

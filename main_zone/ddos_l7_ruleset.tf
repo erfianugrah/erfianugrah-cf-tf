@@ -11,10 +11,10 @@ resource "cloudflare_ruleset" "ddos_l7" {
         action            = "managed_challenge"
         sensitivity_level = "default"
       }
-      version = "latest"
     }
     description = "Set All to Challenge"
     enabled     = true
     expression  = "true"
   }
 }
+
