@@ -174,4 +174,29 @@ resource "cloudflare_ruleset" "http_request_cache_settings" {
     enabled     = false
     expression  = "(http.host eq \"navidrome.${var.domain_name}\" and http.request.uri.path contains \"/rest/stream\")"
   }
+
+  rules {
+    action = "set_cache_settings"
+    action_parameters {
+      cache = true
+      cache_key {
+        cache_deception_armor = true
+        custom_key {
+          query_string {
+            include = ["*"]
+          }
+        }
+      }
+      edge_ttl {
+        default = 86400 # 1 day
+        mode    = "override_origin"
+      }
+      serve_stale {
+        disable_stale_while_updating = true
+      }
+    }
+    description = "Cache static assets"
+    enabled     = false
+    expression  = "(http.host contains \"${var.domain_name}\") and (http.request.uri.path.extension in {\"aif\" \"aiff\" \"au\" \"avi\" \"bin\" \"bmp\" \"cab\" \"carb\" \"cct\" \"cdf\" \"class\" \"css\" \"doc\" \"dcr\" \"dtd\" \"exe\" \"flv\" \"gcf\" \"gff\" \"gif\" \"grv\" \"hdml\" \"hqx\" \"ico\" \"ini\" \"jpeg\" \"jpg\" \"js\" \"mov\" \"mp3\" \"nc\" \"pct\" \"pdf\" \"png\" \"ppc\" \"pws\" \"swa\" \"swf\" \"txt\" \"vbs\" \"w32\" \"wav\" \"wbmp\" \"wml\" \"wmlc\" \"wmls\" \"wmlsc\" \"xsd\" \"zip\" \"webp\" \"jxr\" \"hdp\" \"wdp\"})"
+  }
 }
