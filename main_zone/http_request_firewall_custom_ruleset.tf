@@ -452,4 +452,18 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
     enabled     = false
     expression  = "cf.tls_client_auth.cert_serial eq \"64fa3632ad0854e6356ab5d8549bc0b6ab9be941\""
   }
+
+  rules {
+    action = "block"
+    action_parameters {
+      response {
+        status_code  = 403
+        content_type = "text/html"
+        content      = "<!DOCTYPE html><script>if(window.location.hostname !== '403.erfianugrah.com'){window.location.href='https://403.erfianugrah.com'}</script><noscript><meta http-equiv='refresh' content='0;url=https://403.erfianugrah.com'></noscript>"
+      }
+    }
+    description = "403 Custom Response"
+    enabled     = false
+    expression  = "(http.host ne \"403.${var.domain_name}\" and ip.src.continent eq \"EU\")"
+  }
 }

@@ -9,8 +9,10 @@ locals {
   immich_key      = replace(file(var.immich_key_path), "\n", "\n")
   file_pem        = replace(file(var.file_pem_path), "\n", "\n")
   file_key        = replace(file(var.file_key_path), "\n", "\n")
-  caddy_pem        = replace(file(var.caddy_pem_path), "\n", "\n")
-  caddy_key        = replace(file(var.caddy_key_path), "\n", "\n")
+  caddy_pem       = replace(file(var.caddy_pem_path), "\n", "\n")
+  caddy_key       = replace(file(var.caddy_key_path), "\n", "\n")
   httpbun_ca_pem  = replace(file(var.httpbun_ca_pem_path), "\n", "\n")
   httpbun_ca_key  = replace(file(var.httpbun_ca_key_path), "\n", "\n")
+  httpbun_nl_pem  = replace(file(var.httpbun_nl_pem_path), "\n", "\n")
+  httpbun_nl_key  = replace(file(var.httpbun_nl_key_path), "\n", "\n")
 }

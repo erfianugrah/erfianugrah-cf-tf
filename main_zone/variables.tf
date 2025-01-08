@@ -140,6 +140,15 @@ variable "caddy_key_path" {
   type        = string
 }
 
+variable "httpbun_nl_pem_path" {
+  description = "httpbun_nl_pem_path"
+  type        = string
+}
+
+variable "httpbun_nl_key_path" {
+  description = "httpbun_nl_key_path"
+  type        = string
+}
 variable "pages_domain" {
   description = "pages domain"
   type        = string
