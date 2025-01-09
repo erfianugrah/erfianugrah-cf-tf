@@ -25,5 +25,15 @@ resource "cloudflare_managed_headers" "managed_headers" {
     id      = "add_security_headers"
     enabled = true
   }
+
+  managed_request_headers {
+    id      = "add_true_client_ip_headers"
+    enabled = true
+  }
+
+  managed_request_headers {
+    id      = "add_waf_credential_check_status_header"
+    enabled = true
+  }
 }
 
