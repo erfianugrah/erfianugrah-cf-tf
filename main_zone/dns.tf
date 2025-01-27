@@ -954,8 +954,8 @@ resource "cloudflare_record" "ollama" {
   name    = "ollama"
   proxied = true
   ttl     = 1
-  type    = "A"
-  content = var.sg_ip
+  type    = "CNAME"
+  content = cloudflare_tunnel.erfi1.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -963,8 +963,8 @@ resource "cloudflare_record" "ollama-ui" {
   name    = "ollama-ui"
   proxied = true
   ttl     = 1
-  type    = "A"
-  content = var.sg_ip
+  type    = "CNAME"
+  content = cloudflare_tunnel.erfi1.cname
   zone_id = var.cloudflare_zone_id
 }
 

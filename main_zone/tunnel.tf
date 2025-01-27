@@ -46,3 +46,10 @@ resource "cloudflare_tunnel" "proxmox" {
   secret     = base64encode(random_string.tunnel_secret.result)
   config_src = "cloudflare"
 }
+
+resource "cloudflare_tunnel" "erfi1" {
+  account_id = var.cloudflare_account_id
+  name       = "erfi1"
+  secret     = base64encode(random_string.tunnel_secret.result)
+  config_src = "cloudflare"
+}

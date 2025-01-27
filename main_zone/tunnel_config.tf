@@ -1,3 +1,25 @@
+resource "cloudflare_tunnel_config" "erf1" {
+  account_id = var.cloudflare_account_id
+  tunnel_id  = cloudflare_tunnel.erfi1.id
+
+  config {
+    warp_routing {
+      enabled = true
+    }
+    ingress_rule {
+      hostname = "ollama-ui.${var.domain_name}"
+      service  = "http://172.19.8.3:8080"
+    }
+    ingress_rule {
+      hostname = "ollama.${var.domain_name}"
+      service  = "http://172.19.8.2:11434"
+    }
+    ingress_rule {
+      service = "http_status:404"
+    }
+  }
+}
+
 resource "cloudflare_tunnel_config" "erfipie" {
   account_id = var.cloudflare_account_id
   tunnel_id  = cloudflare_tunnel.erfipie.id
