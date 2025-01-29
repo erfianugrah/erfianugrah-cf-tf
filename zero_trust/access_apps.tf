@@ -573,8 +573,8 @@ resource "cloudflare_access_application" "caddy_api" {
 resource "cloudflare_access_application" "ollama" {
   account_id = var.cloudflare_account_id
   policies = [
-    cloudflare_access_policy.allow_erfi.id,
-    cloudflare_access_policy.ollama_token.id
+    cloudflare_access_policy.ollama_token.id,
+    cloudflare_access_policy.allow_erfi.id
   ]
   allowed_idps = [
     cloudflare_access_identity_provider.entra_id.id,
