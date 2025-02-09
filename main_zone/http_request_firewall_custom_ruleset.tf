@@ -19,9 +19,15 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
   }
   rules {
     action      = "managed_challenge"
-    description = "WAF Attack Score <= 20"
+    description = "Bot Score <= 5"
     enabled     = true
-    expression  = "(cf.waf.score le 20)"
+    expression  = "(cf.bot_management.score le 5 and not cf.bot_management.verified_bot and not cf.bot_management.static_resource and not ip.src in {118.189.189.102 195.240.81.42})"
+  }
+  rules {
+    action      = "managed_challenge"
+    description = "WAF Attack Score <= 10"
+    enabled     = true
+    expression  = "(cf.waf.score le 10)"
   }
   rules {
     action      = "js_challenge"

@@ -61,9 +61,9 @@ resource "cloudflare_ruleset" "http_ratelimit" {
   }
   rules {
     action      = "managed_challenge"
-    description = "Bot < 5"
+    description = "Bot <= 20"
     enabled     = true
-    expression  = "(cf.bot_management.score lt 5 and not cf.bot_management.verified_bot and not cf.bot_management.static_resource and not ip.src in {118.189.189.102 195.240.81.42})"
+    expression  = "(cf.bot_management.score le 20 and not cf.bot_management.verified_bot and not cf.bot_management.static_resource and not ip.src in {118.189.189.102 195.240.81.42})"
     ratelimit {
       characteristics     = ["cf.unique_visitor_id", "ip.geoip.asnum", "cf.colo.id"]
       mitigation_timeout  = 30
@@ -73,9 +73,9 @@ resource "cloudflare_ruleset" "http_ratelimit" {
   }
   rules {
     action      = "managed_challenge"
-    description = "WAFAS <= 10"
+    description = "WAFAS <= 20"
     enabled     = true
-    expression  = "(cf.waf.score le 10 and not ip.src in {118.189.189.102 195.240.81.42})"
+    expression  = "(cf.waf.score le 20 and not ip.src in {118.189.189.102 195.240.81.42})"
     ratelimit {
       characteristics     = ["cf.unique_visitor_id", "ip.geoip.asnum", "cf.colo.id"]
       mitigation_timeout  = 30
