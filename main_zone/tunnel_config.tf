@@ -48,6 +48,10 @@ resource "cloudflare_tunnel_config" "erfipie" {
       service  = "http://172.20.1.2:8888"
     }
     ingress_rule {
+      hostname = "tldraw.${var.domain_name}"
+      service  = "http://172.19.1.2:80"
+    }
+    ingress_rule {
       service = "http_status:404"
     }
   }

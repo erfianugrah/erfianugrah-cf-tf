@@ -1107,3 +1107,13 @@ resource "cloudflare_record" "www" {
   content = var.pages_domain
   zone_id = var.cloudflare_zone_id
 }
+
+resource "cloudflare_record" "tldraw" {
+  name    = "tldraw"
+  tags    = ["tldraw"]
+  proxied = true
+  ttl     = 1
+  type    = "CNAME"
+  content = cloudflare_tunnel.erfipie.cname
+  zone_id = var.cloudflare_zone_id
+}
