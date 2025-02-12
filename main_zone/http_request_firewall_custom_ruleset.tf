@@ -4,15 +4,21 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
   phase   = "http_request_firewall_custom"
   zone_id = var.cloudflare_zone_id
   rules {
+    action      = "log"
+    description = "Log All"
+    enabled     = true
+    expression  = "(http.host contains \"${var.domain_name}\")"
+  }
+  rules {
     action = "skip"
     action_parameters {
       phases   = ["http_request_firewall_managed", "http_request_sbfm"]
       products = ["zoneLockdown", "uaBlock", "bic", "hot", "rateLimit", "waf"]
       ruleset  = "current"
     }
-    description = "195.240.81.42"
+    description = "KPN IP and Mobile Client"
     enabled     = true
-    expression  = "(ip.src eq 195.240.81.42)"
+    expression  = "(ip.src eq 195.240.81.42 or cf.bot_management.ja4 in {\"t13d171200_5b57614c22b0_f0527480ae2d\" \"t13d171100_5b57614c22b0_3f5d972527c0\"})"
     logging {
       enabled = true
     }
@@ -74,12 +80,7 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
     enabled     = false
     expression  = "(http.host eq \"${var.domain_name}\" and http.request.uri.path contains \"/post\" and any(len(http.request.body.form[\"password\"][*])[*] > 8))"
   }
-  rules {
-    action      = "log"
-    description = "Logging"
-    enabled     = true
-    expression  = "(http.host contains \"${var.domain_name}\")"
-  }
+
   rules {
     action      = "block"
     description = "Block Test ne erfi"
