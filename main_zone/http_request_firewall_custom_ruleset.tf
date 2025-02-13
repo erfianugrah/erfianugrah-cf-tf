@@ -24,6 +24,20 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
     }
   }
   rules {
+    action = "skip"
+    action_parameters {
+      phases   = ["http_request_firewall_managed", "http_request_sbfm"]
+      products = ["zoneLockdown", "uaBlock", "bic", "hot", "rateLimit", "waf"]
+      ruleset  = "current"
+    }
+    description = "Skip Github Actions for Revista Build"
+    enabled     = true
+    expression  = "(http.host contains \"cdn.erfianugrah.com\" and cf.bot_management.ja4 in {\"t13d5911h1_a33745022dd6_1f22a2ca17c4\"})"
+    logging {
+      enabled = true
+    }
+  }
+  rules {
     action      = "managed_challenge"
     description = "Bot Score <= 5"
     enabled     = true
