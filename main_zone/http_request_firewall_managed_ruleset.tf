@@ -264,7 +264,7 @@ resource "cloudflare_ruleset" "http_request_firewall_managed" {
   rules {
     action = "execute"
     action_parameters {
-      id = "efb7b8c949ac4650a09736fc376e9aee"
+      id = local.ruleset_ids["Cloudflare Managed Ruleset"]
       matched_data {
         public_key = "sn7MGkmQDh+wr8Utb7RfxShCkog16VlmeJ//u3kXdUA="
       }
@@ -296,25 +296,25 @@ resource "cloudflare_ruleset" "http_request_firewall_managed" {
     enabled     = true
     expression  = "true"
   }
+  # rules {
+  #   action = "execute"
+  #   action_parameters {
+  #     id = "c2e184081120413c86c3ab7e14069605"
+  #     matched_data {
+  #       public_key = "+LNUtvUJPrdgecMiazP4qNFA7EjOgqzGUhF9yeO7TDo="
+  #     }
+  #     overrides {
+  #       action = "managed_challenge"
+  #     }
+  #   }
+  #   description = "zone"
+  #   enabled     = true
+  #   expression  = "true"
+  # }
   rules {
     action = "execute"
     action_parameters {
-      id = "c2e184081120413c86c3ab7e14069605"
-      matched_data {
-        public_key = "+LNUtvUJPrdgecMiazP4qNFA7EjOgqzGUhF9yeO7TDo="
-      }
-      overrides {
-        action = "managed_challenge"
-      }
-    }
-    description = "zone"
-    enabled     = true
-    expression  = "true"
-  }
-  rules {
-    action = "execute"
-    action_parameters {
-      id = "4814384a9e5d4991b9815dcfc25d2f1f"
+      id = local.ruleset_ids["Cloudflare OWASP Core Ruleset"]
       matched_data {
         public_key = "o1sqQjk9Dr3Qy8S1z/skJfyWumS2HBx8p+hLV2GVVWY="
       }

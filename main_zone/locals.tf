@@ -15,4 +15,24 @@ locals {
   httpbun_ca_key  = replace(file(var.httpbun_ca_key_path), "\n", "\n")
   httpbun_nl_pem  = replace(file(var.httpbun_nl_pem_path), "\n", "\n")
   httpbun_nl_key  = replace(file(var.httpbun_nl_key_path), "\n", "\n")
+
+  # Debug: List all rulesets for inspection
+  all_rulesets = data.cloudflare_rulesets.managed_waf.rulesets
+
+  # Temporary mapping of all rulesets (we'll refine this after seeing the output)
+  ruleset_ids = {
+    for rs in data.cloudflare_rulesets.managed_waf.rulesets :
+    rs.name => rs.id
+  }
 }
+
+# Output all ruleset information for debugging
+# output "available_rulesets" {
+#   value = [
+#     for rs in local.all_rulesets : {
+#       name = rs.name
+#       id   = rs.id
+#       kind = rs.kind
+#     }
+#   ]
+# }
