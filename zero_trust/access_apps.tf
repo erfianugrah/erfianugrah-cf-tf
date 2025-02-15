@@ -19,10 +19,13 @@ resource "cloudflare_zero_trust_access_application" "kvm" {
   http_only_cookie_attribute = true
   name                       = "KVM"
   same_site_cookie_attribute = "lax"
-  self_hosted_domains        = ["kvm.${var.domain_name}"]
   service_auth_401_redirect  = true
   session_duration           = "24h"
   type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "kvm.${var.domain_name}"
+  }
   cors_headers {
     allow_all_headers = true
     allow_all_methods = true
@@ -54,10 +57,13 @@ resource "cloudflare_zero_trust_access_application" "privatebin" {
   http_only_cookie_attribute = true
   name                       = "privatebin"
   same_site_cookie_attribute = "lax"
-  self_hosted_domains        = ["privatebin.${var.domain_name}"]
   service_auth_401_redirect  = true
   session_duration           = "30m"
   type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "privatebin.${var.domain_name}"
+  }
   cors_headers {
     allow_all_headers = true
     allow_all_methods = true
@@ -88,9 +94,12 @@ resource "cloudflare_zero_trust_access_application" "traefik_dash" {
   http_only_cookie_attribute = false
   name                       = "Traefik Dashboard"
   same_site_cookie_attribute = "none"
-  self_hosted_domains        = ["traefik-dashboard.${var.domain_name}"]
   session_duration           = "24h"
   type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "traefik-dashboard.${var.domain_name}"
+  }
   cors_headers {
     allow_all_headers = true
     allow_all_methods = true
@@ -120,9 +129,12 @@ resource "cloudflare_zero_trust_access_application" "erfipie_ssh" {
   enable_binding_cookie      = false
   http_only_cookie_attribute = false
   name                       = "Pi"
-  self_hosted_domains        = ["pie.${var.domain_name}"]
   session_duration           = "24h"
   type                       = "ssh"
+  destinations {
+    type = "public"
+    uri  = "pie.${var.domain_name}"
+  }
 }
 
 resource "cloudflare_zero_trust_access_application" "proxmox_ssh" {
@@ -145,9 +157,12 @@ resource "cloudflare_zero_trust_access_application" "proxmox_ssh" {
   enable_binding_cookie      = false
   http_only_cookie_attribute = false
   name                       = "Proxmox SSH"
-  self_hosted_domains        = ["*.proxmox.${var.domain_name}"]
   session_duration           = "24h"
   type                       = "ssh"
+  destinations {
+    type = "public"
+    uri  = "*.proxmox.${var.domain_name}"
+  }
 }
 
 resource "cloudflare_zero_trust_access_application" "vyos_ssh" {
@@ -166,13 +181,16 @@ resource "cloudflare_zero_trust_access_application" "vyos_ssh" {
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
-  domain                     = "nl.vyos.${var.domain_name}"
+  domain                     = "*.vyos.${var.domain_name}"
   enable_binding_cookie      = false
   http_only_cookie_attribute = false
   name                       = "VyOS SSH"
-  self_hosted_domains        = ["nl.vyos.${var.domain_name}", "sg.vyos.${var.domain_name}"]
   session_duration           = "24h"
   type                       = "ssh"
+  destinations {
+    type = "public"
+    uri  = "*.vyos.${var.domain_name}"
+  }
 }
 
 resource "cloudflare_zero_trust_access_application" "warp_login" {
@@ -218,10 +236,17 @@ resource "cloudflare_zero_trust_access_application" "prometheus" {
   enable_binding_cookie      = false
   http_only_cookie_attribute = false
   name                       = "Prometheus"
-  self_hosted_domains        = ["prom-unraid.${var.domain_name}", "prom-k3s.${var.domain_name}"]
   service_auth_401_redirect  = true
   session_duration           = "24h"
   type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "prom-unraid.${var.domain_name}"
+  }
+  destinations {
+    type = "public"
+    uri  = "prom-k3s.${var.domain_name}"
+  }
 }
 
 resource "cloudflare_zero_trust_access_application" "turing_pi_bmc" {
@@ -245,9 +270,12 @@ resource "cloudflare_zero_trust_access_application" "turing_pi_bmc" {
   http_only_cookie_attribute = false
   name                       = "Turing PI BMC UI"
   same_site_cookie_attribute = "none"
-  self_hosted_domains        = ["tpi.${var.domain_name}"]
   session_duration           = "24h"
   type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "tpi.${var.domain_name}"
+  }
   cors_headers {
     allow_all_headers = true
     allow_all_methods = true
@@ -354,9 +382,12 @@ resource "cloudflare_zero_trust_access_application" "changedetection" {
   enable_binding_cookie      = false
   http_only_cookie_attribute = false
   name                       = "ChangeDetection"
-  self_hosted_domains        = ["change.${var.domain_name}"]
   session_duration           = "24h"
   type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "change.${var.domain_name}"
+  }
 }
 
 resource "cloudflare_zero_trust_access_application" "filebrowser" {
@@ -381,9 +412,12 @@ resource "cloudflare_zero_trust_access_application" "filebrowser" {
   http_only_cookie_attribute = true
   name                       = "File Browser"
   same_site_cookie_attribute = "lax"
-  self_hosted_domains        = ["file.${var.domain_name}/files" /* , "fileservarr.${var.domain_name}" */]
   session_duration           = "15m"
   type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "file.${var.domain_name}/files"
+  }
   cors_headers {
     allow_all_headers = true
     allow_all_methods = true
@@ -414,9 +448,12 @@ resource "cloudflare_zero_trust_access_application" "dillinger" {
   http_only_cookie_attribute = true
   name                       = "Dillinger"
   same_site_cookie_attribute = "lax"
-  self_hosted_domains        = ["dillinger.${var.domain_name}"]
   session_duration           = "24h"
   type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "dillinger.${var.domain_name}"
+  }
   cors_headers {
     allow_all_headers = true
     allow_all_methods = true
@@ -447,9 +484,12 @@ resource "cloudflare_zero_trust_access_application" "tunnel_secret_worker" {
   enable_binding_cookie      = false
   http_only_cookie_attribute = true
   name                       = "Tunnel Secret"
-  self_hosted_domains        = ["tunnel.${var.domain_name}"]
   session_duration           = "24h"
   type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "tunnel.${var.domain_name}"
+  }
 }
 
 resource "cloudflare_zero_trust_access_application" "overseerr" {
@@ -476,9 +516,12 @@ resource "cloudflare_zero_trust_access_application" "overseerr" {
   http_only_cookie_attribute = true
   name                       = "Overseerr"
   same_site_cookie_attribute = "lax"
-  self_hosted_domains        = ["overseerr.${var.domain_name}"]
   session_duration           = "24h"
   type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "overseerr.${var.domain_name}"
+  }
   cors_headers {
     allow_all_headers = true
     allow_all_methods = true
@@ -530,9 +573,12 @@ resource "cloudflare_zero_trust_access_application" "synapse_admin" {
   http_only_cookie_attribute = true
   name                       = "Synapse-Admin"
   same_site_cookie_attribute = "lax"
-  self_hosted_domains        = ["synapse-admin.${var.domain_name}"]
   session_duration           = "24h"
   type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "synapse-admin.${var.domain_name}"
+  }
   cors_headers {
     allow_all_headers = true
     allow_all_methods = true
@@ -562,9 +608,12 @@ resource "cloudflare_zero_trust_access_application" "servarr" {
   http_only_cookie_attribute = true
   name                       = "Servarr"
   same_site_cookie_attribute = "lax"
-  self_hosted_domains        = ["servarr.${var.domain_name}"]
   session_duration           = "15m"
   type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "servarr.${var.domain_name}"
+  }
   cors_headers {
     allow_all_headers = true
     allow_all_methods = true
@@ -594,10 +643,13 @@ resource "cloudflare_zero_trust_access_application" "caddy_api" {
   enable_binding_cookie      = false
   http_only_cookie_attribute = false
   name                       = "Caddy API"
-  self_hosted_domains        = ["caddy.${var.domain_name}"]
   service_auth_401_redirect  = true
   session_duration           = "24h"
   type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "caddy.${var.domain_name}"
+  }
 }
 
 resource "cloudflare_zero_trust_access_application" "ollama" {
@@ -621,10 +673,13 @@ resource "cloudflare_zero_trust_access_application" "ollama" {
   enable_binding_cookie      = false
   http_only_cookie_attribute = false
   name                       = "Ollama API"
-  self_hosted_domains        = ["ollama.${var.domain_name}"]
   service_auth_401_redirect  = true
   session_duration           = "24h"
   type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "ollama.${var.domain_name}"
+  }
 }
 
 # resource "cloudflare_zero_trust_access_application" "kubectl" {
