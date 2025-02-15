@@ -1,4 +1,4 @@
-resource "cloudflare_access_organization" "miau" {
+resource "cloudflare_zero_trust_access_organization" "miau" {
   account_id                         = var.cloudflare_account_id
   name                               = "Miau"
   auth_domain                        = "erfianugrah.cloudflareaccess.com"

@@ -1,4 +1,4 @@
-resource "cloudflare_teams_rule" "self_signed_httpbun" {
+resource "cloudflare_zero_trust_gateway_policy" "self_signed_httpbun" {
   account_id  = var.cloudflare_account_id
   name        = "Self-signed HTTPbun"
   description = ""
@@ -22,7 +22,7 @@ resource "cloudflare_teams_rule" "self_signed_httpbun" {
   }
 }
 
-resource "cloudflare_teams_rule" "isolate_fb" {
+resource "cloudflare_zero_trust_gateway_policy" "isolate_fb" {
   account_id  = var.cloudflare_account_id
   name        = "Isolate FB"
   description = ""
@@ -45,7 +45,7 @@ resource "cloudflare_teams_rule" "isolate_fb" {
   }
 }
 
-resource "cloudflare_teams_rule" "block_fb" {
+resource "cloudflare_zero_trust_gateway_policy" "block_fb" {
   account_id  = var.cloudflare_account_id
   name        = "Block HTTP FB"
   description = ""
@@ -68,7 +68,7 @@ resource "cloudflare_teams_rule" "block_fb" {
   }
 }
 
-resource "cloudflare_teams_rule" "cert_pinning" {
+resource "cloudflare_zero_trust_gateway_policy" "cert_pinning" {
   account_id  = var.cloudflare_account_id
   name        = "Cert Pinning"
   description = ""
@@ -91,7 +91,7 @@ resource "cloudflare_teams_rule" "cert_pinning" {
   }
 }
 
-resource "cloudflare_teams_rule" "office_365_generated" {
+resource "cloudflare_zero_trust_gateway_policy" "office_365_generated" {
   account_id  = var.cloudflare_account_id
   name        = "Office 365 Auto Generated"
   description = "Bypass HTTPS decryption of Office 365 traffic"
@@ -114,7 +114,7 @@ resource "cloudflare_teams_rule" "office_365_generated" {
   }
 }
 
-resource "cloudflare_teams_rule" "isolate_root" {
+resource "cloudflare_zero_trust_gateway_policy" "isolate_root" {
   account_id  = var.cloudflare_account_id
   name        = "Isolate erfianugrah.com"
   description = ""

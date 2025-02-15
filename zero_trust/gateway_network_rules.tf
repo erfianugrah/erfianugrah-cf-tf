@@ -1,4 +1,4 @@
-resource "cloudflare_teams_rule" "block_ig" {
+resource "cloudflare_zero_trust_gateway_policy" "block_ig" {
   account_id  = var.cloudflare_account_id
   name        = "Block Instagram"
   description = ""
@@ -21,7 +21,7 @@ resource "cloudflare_teams_rule" "block_ig" {
   }
 }
 
-resource "cloudflare_teams_rule" "block_ftp" {
+resource "cloudflare_zero_trust_gateway_policy" "block_ftp" {
   account_id  = var.cloudflare_account_id
   name        = "Block FTP"
   description = ""
@@ -44,7 +44,7 @@ resource "cloudflare_teams_rule" "block_ftp" {
   }
 }
 
-resource "cloudflare_teams_rule" "block_all_sni" {
+resource "cloudflare_zero_trust_gateway_policy" "block_all_sni" {
   account_id  = var.cloudflare_account_id
   name        = "Block All SNI"
   description = ""
@@ -67,7 +67,7 @@ resource "cloudflare_teams_rule" "block_all_sni" {
   }
 }
 
-# resource "cloudflare_teams_rule" "servarr_net" {
+# resource "cloudflare_zero_trust_gateway_policy" "servarr_net" {
 #   account_id  = var.cloudflare_account_id
 #   name        = "Servarr VNET"
 #   description = ""
@@ -94,7 +94,7 @@ resource "cloudflare_teams_rule" "block_all_sni" {
 #   }
 # }
 
-resource "cloudflare_teams_rule" "ssh_logging" {
+resource "cloudflare_zero_trust_gateway_policy" "ssh_logging" {
   account_id  = var.cloudflare_account_id
   name        = "SSH Audit"
   description = ""
@@ -120,7 +120,7 @@ resource "cloudflare_teams_rule" "ssh_logging" {
   }
 }
 
-resource "cloudflare_teams_rule" "block_httpbun" {
+resource "cloudflare_zero_trust_gateway_policy" "block_httpbun" {
   account_id  = var.cloudflare_account_id
   name        = "Block HTTPBun"
   description = ""
@@ -144,7 +144,7 @@ resource "cloudflare_teams_rule" "block_httpbun" {
   }
 }
 
-resource "cloudflare_teams_rule" "block_k3s_revista" {
+resource "cloudflare_zero_trust_gateway_policy" "block_k3s_revista" {
   account_id  = var.cloudflare_account_id
   name        = "Block k3s Revista Blog"
   description = ""
@@ -167,7 +167,7 @@ resource "cloudflare_teams_rule" "block_k3s_revista" {
   }
 }
 
-resource "cloudflare_teams_rule" "block_everything" {
+resource "cloudflare_zero_trust_gateway_policy" "block_everything" {
   account_id  = var.cloudflare_account_id
   name        = "Block Everything"
   description = ""

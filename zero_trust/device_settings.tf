@@ -1,7 +1,7 @@
-resource "cloudflare_device_settings_policy" "default" {
-  account_id            = var.cloudflare_account_id
-  name                  = "default"
-  description           = "default_policy"
+resource "cloudflare_zero_trust_device_profiles" "default" {
+  account_id  = var.cloudflare_account_id
+  name        = "default"
+  description = "default_policy"
   # precedence            = 100
   # match                 = "any(identity.groups.name[*] in {\"Erfi Corp\"})"
   default               = true
@@ -18,7 +18,7 @@ resource "cloudflare_device_settings_policy" "default" {
   exclude_office_ips    = true
 }
 
-resource "cloudflare_device_settings_policy" "google" {
+resource "cloudflare_zero_trust_device_profiles" "google" {
   account_id            = var.cloudflare_account_id
   name                  = "Google Workspace"
   description           = "google_workspace_policy"
@@ -37,3 +37,4 @@ resource "cloudflare_device_settings_policy" "google" {
   service_mode_v2_port  = 3000
   exclude_office_ips    = true
 }
+

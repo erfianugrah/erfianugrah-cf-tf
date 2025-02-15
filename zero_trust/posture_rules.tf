@@ -1,4 +1,4 @@
-resource "cloudflare_device_posture_rule" "gateway" {
+resource "cloudflare_zero_trust_device_posture_rule" "gateway" {
   account_id = var.cloudflare_account_id
   name       = "gateway_for_all"
   type       = "gateway"
@@ -6,7 +6,7 @@ resource "cloudflare_device_posture_rule" "gateway" {
   expiration = "24h"
 }
 
-resource "cloudflare_device_posture_rule" "warp" {
+resource "cloudflare_zero_trust_device_posture_rule" "warp" {
   account_id = var.cloudflare_account_id
   name       = "warp_for_all"
   type       = "warp"
@@ -14,7 +14,7 @@ resource "cloudflare_device_posture_rule" "warp" {
   expiration = "24h"
 }
 
-resource "cloudflare_device_posture_rule" "new_windows" {
+resource "cloudflare_zero_trust_device_posture_rule" "new_windows" {
   account_id = var.cloudflare_account_id
   name       = "new_windows_version_check"
   type       = "os_version"
@@ -31,7 +31,7 @@ resource "cloudflare_device_posture_rule" "new_windows" {
   }
 }
 
-resource "cloudflare_device_posture_rule" "old_windows" {
+resource "cloudflare_zero_trust_device_posture_rule" "old_windows" {
   account_id = var.cloudflare_account_id
   name       = "old_windows_version_check"
   type       = "os_version"

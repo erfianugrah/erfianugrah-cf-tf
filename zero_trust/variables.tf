@@ -205,3 +205,9 @@ variable "authentik_saas_redirect_uris" {
   type        = list(string)
   sensitive   = true
 }
+
+variable "immich_saas_redirect_uris" {
+  description = "array of uris"
+  type        = list(string)
+  sensitive   = true
+}

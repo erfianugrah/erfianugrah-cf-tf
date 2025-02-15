@@ -1,4 +1,4 @@
-resource "cloudflare_teams_rule" "allow_ig_dns" {
+resource "cloudflare_zero_trust_gateway_policy" "allow_ig_dns" {
   account_id  = var.cloudflare_account_id
   name        = "Block IG DNS"
   description = ""
@@ -21,7 +21,7 @@ resource "cloudflare_teams_rule" "allow_ig_dns" {
   }
 }
 
-resource "cloudflare_teams_rule" "block_all_dns" {
+resource "cloudflare_zero_trust_gateway_policy" "block_all_dns" {
   account_id  = var.cloudflare_account_id
   name        = "Block All DNS"
   description = ""
@@ -45,7 +45,7 @@ resource "cloudflare_teams_rule" "block_all_dns" {
 }
 
 
-resource "cloudflare_teams_rule" "block_sec_categories_dns" {
+resource "cloudflare_zero_trust_gateway_policy" "block_sec_categories_dns" {
   account_id  = var.cloudflare_account_id
   name        = "Block Security Categories"
   description = ""
@@ -68,7 +68,7 @@ resource "cloudflare_teams_rule" "block_sec_categories_dns" {
   }
 }
 
-resource "cloudflare_teams_rule" "portainer_dns_override" {
+resource "cloudflare_zero_trust_gateway_policy" "portainer_dns_override" {
   account_id  = var.cloudflare_account_id
   name        = "DNS Override Portainer"
   description = ""

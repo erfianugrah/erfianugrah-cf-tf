@@ -1,4 +1,4 @@
-resource "cloudflare_teams_account" "miau" {
+resource "cloudflare_zero_trust_gateway_settings" "miau" {
   account_id                             = var.cloudflare_account_id
   tls_decrypt_enabled                    = true
   protocol_detection_enabled             = true

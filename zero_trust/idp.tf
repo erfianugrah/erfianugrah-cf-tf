@@ -1,4 +1,4 @@
-resource "cloudflare_access_identity_provider" "keycloak_oidc" {
+resource "cloudflare_zero_trust_access_identity_provider" "keycloak_oidc" {
   account_id = var.cloudflare_account_id
   name       = "Keycloak OIDC"
   type       = "oidc"
@@ -13,7 +13,7 @@ resource "cloudflare_access_identity_provider" "keycloak_oidc" {
   }
 }
 
-resource "cloudflare_access_identity_provider" "gmail" {
+resource "cloudflare_zero_trust_access_identity_provider" "gmail" {
   account_id = var.cloudflare_account_id
   name       = "Gmail"
   type       = "google"
@@ -24,7 +24,7 @@ resource "cloudflare_access_identity_provider" "gmail" {
   }
 }
 
-resource "cloudflare_access_identity_provider" "google_workspace" {
+resource "cloudflare_zero_trust_access_identity_provider" "google_workspace" {
   account_id = var.cloudflare_account_id
   name       = "Google Workspace"
   type       = "google-apps"
@@ -37,7 +37,7 @@ resource "cloudflare_access_identity_provider" "google_workspace" {
   }
 }
 
-resource "cloudflare_access_identity_provider" "authentik_oidc" {
+resource "cloudflare_zero_trust_access_identity_provider" "authentik_oidc" {
   account_id = var.cloudflare_account_id
   name       = "Authentik OIDC"
   type       = "oidc"
@@ -53,13 +53,13 @@ resource "cloudflare_access_identity_provider" "authentik_oidc" {
   }
 }
 
-resource "cloudflare_access_identity_provider" "pin" {
+resource "cloudflare_zero_trust_access_identity_provider" "pin" {
   account_id = var.cloudflare_account_id
   name       = "PIN login"
   type       = "onetimepin"
 }
 
-resource "cloudflare_access_identity_provider" "authentik_saml" {
+resource "cloudflare_zero_trust_access_identity_provider" "authentik_saml" {
   account_id = var.cloudflare_account_id
   name       = "Authentik SAML"
   type       = "saml"
@@ -73,7 +73,7 @@ resource "cloudflare_access_identity_provider" "authentik_saml" {
   }
 }
 
-resource "cloudflare_access_identity_provider" "entra_id" {
+resource "cloudflare_zero_trust_access_identity_provider" "entra_id" {
   account_id = var.cloudflare_account_id
   name       = "Entra ID"
   type       = "azureAD"

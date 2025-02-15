@@ -1,6 +1,6 @@
-resource "cloudflare_fallback_domain" "default" {
+resource "cloudflare_zero_trust_local_fallback_domain" "default" {
   account_id = var.cloudflare_account_id
-  policy_id  = cloudflare_device_settings_policy.default.id
+  policy_id  = cloudflare_zero_trust_device_profiles.default.id
   dynamic "domains" {
     for_each = toset(["intranet", "internal", "private", "localdomain", "domain", "lan", "home", "host", "corp", "local", "localhost", "home.arpa", "invalid", "test"])
     content {
@@ -14,9 +14,9 @@ resource "cloudflare_fallback_domain" "default" {
   }
 }
 
-resource "cloudflare_fallback_domain" "google" {
+resource "cloudflare_zero_trust_local_fallback_domain" "google" {
   account_id = var.cloudflare_account_id
-  policy_id  = cloudflare_device_settings_policy.google.id
+  policy_id  = cloudflare_zero_trust_device_profiles.google.id
   dynamic "domains" {
     for_each = toset(["intranet", "internal", "private", "localdomain", "domain", "lan", "home", "host", "corp", "local", "localhost", "home.arpa", "invalid", "test"])
     content {

@@ -1,14 +1,14 @@
-resource "cloudflare_access_ca_certificate" "miau" {
+resource "cloudflare_zero_trust_access_short_lived_certificate" "miau" {
   account_id     = var.cloudflare_account_id
-  application_id = cloudflare_access_application.erfipie_ssh.id
+  application_id = cloudflare_zero_trust_access_application.erfipie_ssh.id
 }
 
-resource "cloudflare_access_ca_certificate" "vyos" {
+resource "cloudflare_zero_trust_access_short_lived_certificate" "vyos" {
   account_id     = var.cloudflare_account_id
-  application_id = cloudflare_access_application.vyos_ssh.id
+  application_id = cloudflare_zero_trust_access_application.vyos_ssh.id
 }
 
-resource "cloudflare_access_ca_certificate" "proxmox" {
+resource "cloudflare_zero_trust_access_short_lived_certificate" "proxmox" {
   account_id     = var.cloudflare_account_id
-  application_id = cloudflare_access_application.proxmox_ssh.id
+  application_id = cloudflare_zero_trust_access_application.proxmox_ssh.id
 }
