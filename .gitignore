@@ -12,3 +12,4 @@ certs
 # *.tfplan
 *.pem
 *.hcl
+venv
