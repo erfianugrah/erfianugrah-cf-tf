@@ -82,7 +82,7 @@ resource "cloudflare_load_balancer_pool" "revista_proxmox_nl" {
   monitor         = cloudflare_load_balancer_monitor.revista.id
   name            = "Revista_Proxmox_NL"
   origins {
-    address = cloudflare_tunnel.proxmox.cname
+    address = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
     enabled = true
     header {
       header = "Host"

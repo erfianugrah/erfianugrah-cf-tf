@@ -5,7 +5,7 @@ resource "cloudflare_record" "bazarr" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -16,7 +16,7 @@ resource "cloudflare_record" "bazarr" {
 #   tags    = ["servarr"]
 #   ttl     = 1
 #   type    = "CNAME"
-#   content = cloudflare_tunnel.servarr.cname
+#   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
 #   zone_id = var.cloudflare_zone_id
 # }
 
@@ -115,7 +115,7 @@ resource "cloudflare_record" "file" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -192,7 +192,7 @@ resource "cloudflare_record" "httpbun-nl" {
   tags    = ["vyos-nl"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.vyos_nl.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -203,7 +203,7 @@ resource "cloudflare_record" "httpbun-nl" {
 #   tags    = ["servarr"]
 #   ttl     = 1
 #   type    = "CNAME"
-#   content = cloudflare_tunnel.servarr.cname
+#   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
 #   zone_id = var.cloudflare_zone_id
 # }
 #
@@ -236,7 +236,7 @@ resource "cloudflare_record" "immich" {
 #   tags    = ["servarr"]
 #   ttl     = 1
 #   type    = "CNAME"
-#   content = cloudflare_tunnel.servarr.cname
+#   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
 #   zone_id = var.cloudflare_zone_id
 # }
 
@@ -291,7 +291,7 @@ resource "cloudflare_record" "navidrome" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -313,7 +313,7 @@ resource "cloudflare_record" "overseerr" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -324,7 +324,7 @@ resource "cloudflare_record" "pihole-vyos-nl" {
   tags    = ["vyos-nl"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.vyos_nl.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -335,7 +335,7 @@ resource "cloudflare_record" "pihole-vyos-sg" {
   tags    = ["vyos-sg"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.vyos_sg.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.vyos_sg.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -368,7 +368,7 @@ resource "cloudflare_record" "plex" {
 #   tags    = ["servarr"]
 #   ttl     = 1
 #   type    = "CNAME"
-#   content = cloudflare_tunnel.servarr.cname
+#   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
 #   zone_id = var.cloudflare_zone_id
 # }
 #
@@ -401,7 +401,7 @@ resource "cloudflare_record" "prowlarr" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -434,7 +434,7 @@ resource "cloudflare_record" "radarr" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -456,7 +456,7 @@ resource "cloudflare_record" "sabnzbd" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -467,7 +467,7 @@ resource "cloudflare_record" "servarr" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -478,7 +478,7 @@ resource "cloudflare_record" "sonarr" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -489,7 +489,7 @@ resource "cloudflare_record" "dockge-sg" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 # resource "cloudflare_record" "synapse-admin" {
@@ -521,7 +521,7 @@ resource "cloudflare_record" "tautulli" {
   tags    = ["servarr"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.servarr.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -532,7 +532,7 @@ resource "cloudflare_record" "tpi" {
   tags    = ["k3s"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.vyos_nl.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -839,7 +839,7 @@ resource "cloudflare_record" "kvm-nl" {
   tags    = ["kvm-nl"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.kvm_nl.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.kvm_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -850,7 +850,7 @@ resource "cloudflare_record" "erfipie" {
   tags    = ["erfipie"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.erfipie.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -861,7 +861,7 @@ resource "cloudflare_record" "vyos-sg-ssh" {
   tags    = ["vyos-sg"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.vyos_sg.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.vyos_sg.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -873,7 +873,7 @@ resource "cloudflare_record" "vyos-sg-ssh" {
 #   tags    = ["vyos-nl"]
 #   ttl     = 1
 #   type    = "CNAME"
-#   content = cloudflare_tunnel.vyos_nl.cname
+#   content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
 #   zone_id = var.cloudflare_zone_id
 # }
 #
@@ -884,7 +884,7 @@ resource "cloudflare_record" "vyos-sg-ssh" {
 #   tags    = ["servarr"]
 #   ttl     = 1
 #   type    = "CNAME"
-#   content = cloudflare_tunnel.servarr.cname
+#   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
 #   zone_id = var.cloudflare_zone_id
 # }
 
@@ -895,7 +895,7 @@ resource "cloudflare_record" "prom-exporter-pi" {
   tags    = ["erfipie"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.erfipie.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -906,7 +906,7 @@ resource "cloudflare_record" "atuin" {
   tags    = ["erfipie"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.erfipie.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -917,7 +917,7 @@ resource "cloudflare_record" "prom-tunnel-nl" {
   tags    = ["vyos-nl"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.vyos_nl.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -928,7 +928,7 @@ resource "cloudflare_record" "prom-vyos-nl" {
   tags    = ["vyos-nl"]
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.vyos_nl.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -937,7 +937,7 @@ resource "cloudflare_record" "ssh-pikvm-sg" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.kvm_sg.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.kvm_sg.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -946,7 +946,7 @@ resource "cloudflare_record" "ssh-pikvm-nl" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.kvm_nl.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.kvm_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -955,7 +955,7 @@ resource "cloudflare_record" "ollama" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.erfi1.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.erfi1.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -964,7 +964,7 @@ resource "cloudflare_record" "ollama-ui" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.erfi1.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.erfi1.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -974,7 +974,7 @@ resource "cloudflare_record" "vyos-ssh-nl" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.vyos_nl.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -984,7 +984,7 @@ resource "cloudflare_record" "proxmox-ui" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
   zone_id = var.cloudflare_zone_id
 }
 
@@ -994,7 +994,7 @@ resource "cloudflare_record" "proxmox-ssh" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
   zone_id = var.cloudflare_zone_id
 }
 resource "cloudflare_record" "plex-mox" {
@@ -1003,7 +1003,7 @@ resource "cloudflare_record" "plex-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "jellyfin-mox" {
@@ -1012,7 +1012,7 @@ resource "cloudflare_record" "jellyfin-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 
 }
@@ -1022,7 +1022,7 @@ resource "cloudflare_record" "prowlarr-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "radarr-mox" {
@@ -1031,7 +1031,7 @@ resource "cloudflare_record" "radarr-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "sonarr-mox" {
@@ -1040,7 +1040,7 @@ resource "cloudflare_record" "sonarr-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "bazarr-mox" {
@@ -1049,7 +1049,7 @@ resource "cloudflare_record" "bazarr-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "tautulli-mox" {
@@ -1058,7 +1058,7 @@ resource "cloudflare_record" "tautulli-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "navidrome-mox" {
@@ -1067,7 +1067,7 @@ resource "cloudflare_record" "navidrome-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "solvarr-mox" {
@@ -1076,7 +1076,7 @@ resource "cloudflare_record" "solvarr-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 resource "cloudflare_record" "sabnzbd-mox" {
@@ -1085,7 +1085,7 @@ resource "cloudflare_record" "sabnzbd-mox" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.proxmox.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
   zone_id = var.secondary_cloudflare_zone_id
 }
 
@@ -1114,6 +1114,6 @@ resource "cloudflare_record" "tldraw" {
   proxied = true
   ttl     = 1
   type    = "CNAME"
-  content = cloudflare_tunnel.erfipie.cname
+  content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
   zone_id = var.cloudflare_zone_id
 }

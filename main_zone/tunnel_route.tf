@@ -1,48 +1,48 @@
-resource "cloudflare_tunnel_route" "erfipie" {
+resource "cloudflare_zero_trust_tunnel_route" "erfipie" {
   account_id         = var.cloudflare_account_id
-  tunnel_id          = cloudflare_tunnel.erfipie.id
+  tunnel_id          = cloudflare_zero_trust_tunnel_cloudflared.erfipie.id
   network            = "172.17.0.0/16"
-  virtual_network_id = cloudflare_tunnel_virtual_network.erfipie.id
+  virtual_network_id = cloudflare_zero_trust_tunnel_virtual_network.erfipie.id
 }
 
-# resource "cloudflare_tunnel_route" "kvm_nl" {
+# resource "cloudflare_zero_trust_tunnel_route" "kvm_nl" {
 #   account_id         = var.cloudflare_account_id
-#   tunnel_id          = cloudflare_tunnel.kvm_nl.id
+#   tunnel_id          = cloudflare_zero_trust_tunnel_cloudflared.kvm_nl.id
 #   network            = "0.0.0.0/0"
-#   virtual_network_id = cloudflare_tunnel_virtual_network.kvm_nl.id
+#   virtual_network_id = cloudflare_zero_trust_tunnel_virtual_network.kvm_nl.id
 # }
 #
-# resource "cloudflare_tunnel_route" "kvm_sg" {
+# resource "cloudflare_zero_trust_tunnel_route" "kvm_sg" {
 #   account_id         = var.cloudflare_account_id
-#   tunnel_id          = cloudflare_tunnel.kvm_sg.id
+#   tunnel_id          = cloudflare_zero_trust_tunnel_cloudflared.kvm_sg.id
 #   network            = "0.0.0.0/0"
-#   virtual_network_id = cloudflare_tunnel_virtual_network.kvm_sg.id
+#   virtual_network_id = cloudflare_zero_trust_tunnel_virtual_network.kvm_sg.id
 # }
 
-resource "cloudflare_tunnel_route" "servarr" {
+resource "cloudflare_zero_trust_tunnel_route" "servarr" {
   account_id         = var.cloudflare_account_id
-  tunnel_id          = cloudflare_tunnel.servarr.id
+  tunnel_id          = cloudflare_zero_trust_tunnel_cloudflared.servarr.id
   network            = "172.19.0.0/16"
-  virtual_network_id = cloudflare_tunnel_virtual_network.servarr.id
+  virtual_network_id = cloudflare_zero_trust_tunnel_virtual_network.servarr.id
 }
 
-resource "cloudflare_tunnel_route" "vyos_nl" {
+resource "cloudflare_zero_trust_tunnel_route" "vyos_nl" {
   account_id         = var.cloudflare_account_id
-  tunnel_id          = cloudflare_tunnel.vyos_nl.id
+  tunnel_id          = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.id
   network            = "172.18.0.3/32"
-  virtual_network_id = cloudflare_tunnel_virtual_network.vyos_nl.id
+  virtual_network_id = cloudflare_zero_trust_tunnel_virtual_network.vyos_nl.id
 }
 
-resource "cloudflare_tunnel_route" "vyos_sg" {
+resource "cloudflare_zero_trust_tunnel_route" "vyos_sg" {
   account_id         = var.cloudflare_account_id
-  tunnel_id          = cloudflare_tunnel.vyos_sg.id
+  tunnel_id          = cloudflare_zero_trust_tunnel_cloudflared.vyos_sg.id
   network            = "172.16.0.0/16"
-  virtual_network_id = cloudflare_tunnel_virtual_network.vyos_sg.id
+  virtual_network_id = cloudflare_zero_trust_tunnel_virtual_network.vyos_sg.id
 }
 
-# resource "cloudflare_tunnel_route" "proxmox" {
+# resource "cloudflare_zero_trust_tunnel_route" "proxmox" {
 #   account_id         = var.cloudflare_account_id
-#   tunnel_id          = cloudflare_tunnel.proxmox.id
+#   tunnel_id          = cloudflare_zero_trust_tunnel_cloudflared.proxmox.id
 #   network            = "0.0.0.0/0"
-#   virtual_network_id = cloudflare_tunnel_virtual_network.proxmox.id
+#   virtual_network_id = cloudflare_zero_trust_tunnel_virtual_network.proxmox.id
 # }

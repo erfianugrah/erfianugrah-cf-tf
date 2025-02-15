@@ -1,6 +1,6 @@
-resource "cloudflare_tunnel_config" "erf1" {
+resource "cloudflare_zero_trust_tunnel_cloudflared_config" "erf1" {
   account_id = var.cloudflare_account_id
-  tunnel_id  = cloudflare_tunnel.erfi1.id
+  tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.erfi1.id
 
   config {
     warp_routing {
@@ -20,9 +20,9 @@ resource "cloudflare_tunnel_config" "erf1" {
   }
 }
 
-resource "cloudflare_tunnel_config" "erfipie" {
+resource "cloudflare_zero_trust_tunnel_cloudflared_config" "erfipie" {
   account_id = var.cloudflare_account_id
-  tunnel_id  = cloudflare_tunnel.erfipie.id
+  tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.erfipie.id
 
   config {
     warp_routing {
@@ -57,9 +57,9 @@ resource "cloudflare_tunnel_config" "erfipie" {
   }
 }
 
-resource "cloudflare_tunnel_config" "kvm_nl" {
+resource "cloudflare_zero_trust_tunnel_cloudflared_config" "kvm_nl" {
   account_id = var.cloudflare_account_id
-  tunnel_id  = cloudflare_tunnel.kvm_nl.id
+  tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.kvm_nl.id
 
   config {
     warp_routing {
@@ -83,9 +83,9 @@ resource "cloudflare_tunnel_config" "kvm_nl" {
   }
 }
 
-resource "cloudflare_tunnel_config" "kvm_sg" {
+resource "cloudflare_zero_trust_tunnel_cloudflared_config" "kvm_sg" {
   account_id = var.cloudflare_account_id
-  tunnel_id  = cloudflare_tunnel.kvm_sg.id
+  tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.kvm_sg.id
 
   config {
     warp_routing {
@@ -101,9 +101,9 @@ resource "cloudflare_tunnel_config" "kvm_sg" {
   }
 }
 
-resource "cloudflare_tunnel_config" "servarr" {
+resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
   account_id = var.cloudflare_account_id
-  tunnel_id  = cloudflare_tunnel.servarr.id
+  tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.servarr.id
 
   config {
     warp_routing {
@@ -199,9 +199,9 @@ resource "cloudflare_tunnel_config" "servarr" {
   }
 }
 
-resource "cloudflare_tunnel_config" "vyos_nl" {
+resource "cloudflare_zero_trust_tunnel_cloudflared_config" "vyos_nl" {
   account_id = var.cloudflare_account_id
-  tunnel_id  = cloudflare_tunnel.vyos_nl.id
+  tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.id
 
   config {
     warp_routing {
@@ -244,9 +244,9 @@ resource "cloudflare_tunnel_config" "vyos_nl" {
   }
 }
 
-resource "cloudflare_tunnel_config" "vyos_sg" {
+resource "cloudflare_zero_trust_tunnel_cloudflared_config" "vyos_sg" {
   account_id = var.cloudflare_account_id
-  tunnel_id  = cloudflare_tunnel.vyos_sg.id
+  tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.vyos_sg.id
 
   config {
     warp_routing {
@@ -266,9 +266,9 @@ resource "cloudflare_tunnel_config" "vyos_sg" {
   }
 }
 
-resource "cloudflare_tunnel_config" "proxmox" {
+resource "cloudflare_zero_trust_tunnel_cloudflared_config" "proxmox" {
   account_id = var.cloudflare_account_id
-  tunnel_id  = cloudflare_tunnel.proxmox.id
+  tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.proxmox.id
 
   config {
     warp_routing {
