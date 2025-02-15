@@ -18,7 +18,7 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
     }
     description = "KPN IP and Mobile Client"
     enabled     = true
-    expression  = "(ip.src eq 195.240.81.42 or cf.bot_management.ja4 in {\"t13d171200_5b57614c22b0_f0527480ae2d\" \"t13d171100_5b57614c22b0_3f5d972527c0\"})"
+    expression  = "(ip.src in { 195.240.81.42 2a06:98c0:3600::103 } or cf.bot_management.ja4 in {\"t13d171200_5b57614c22b0_f0527480ae2d\" \"t13d171100_5b57614c22b0_3f5d972527c0\"})"
     logging {
       enabled = true
     }
