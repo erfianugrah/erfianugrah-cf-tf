@@ -38,8 +38,8 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
     }
   }
   rules {
-    action      = "managed_challenge"
-    description = "Bot Score <= 5"
+    action      = "log"
+    description = "Log Bot Score <= 5"
     enabled     = true
     expression  = "(cf.bot_management.score le 5 and not cf.bot_management.verified_bot and not cf.bot_management.static_resource and not ip.src in {118.189.189.102 195.240.81.42})"
   }

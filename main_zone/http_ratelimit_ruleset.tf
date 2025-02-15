@@ -68,7 +68,7 @@ resource "cloudflare_ruleset" "http_ratelimit" {
       characteristics     = ["cf.unique_visitor_id", "ip.geoip.asnum", "cf.colo.id"]
       mitigation_timeout  = 30
       period              = 10
-      requests_per_period = 100
+      requests_per_period = 50
     }
   }
   rules {
@@ -80,7 +80,7 @@ resource "cloudflare_ruleset" "http_ratelimit" {
       characteristics     = ["cf.unique_visitor_id", "ip.geoip.asnum", "cf.colo.id"]
       mitigation_timeout  = 30
       period              = 10
-      requests_per_period = 100
+      requests_per_period = 50
     }
   }
   rules {
