@@ -49,7 +49,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "erfipie" {
     }
     ingress_rule {
       hostname = "tldraw.${var.domain_name}"
-      service  = "http://172.19.1.2:80"
+      service  = "http://172.40.1.2:80"
     }
     ingress_rule {
       service = "http_status:404"
