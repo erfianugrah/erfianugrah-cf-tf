@@ -1,6 +1,6 @@
 resource "cloudflare_zero_trust_gateway_settings" "miau" {
   account_id                             = var.cloudflare_account_id
-  tls_decrypt_enabled                    = true
+  tls_decrypt_enabled                    = false
   protocol_detection_enabled             = true
   activity_log_enabled                   = true
   non_identity_browser_isolation_enabled = false
