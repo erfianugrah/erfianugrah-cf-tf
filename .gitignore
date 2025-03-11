@@ -12,3 +12,6 @@ certs
 venv
 # Do not ignore .terraform.lock.hcl files
 !.terraform.lock.hcl
+
+CLAUDE.md
+
