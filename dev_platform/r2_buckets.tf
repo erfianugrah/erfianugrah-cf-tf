@@ -21,3 +21,9 @@ resource "cloudflare_r2_bucket" "audit-logs" {
   name       = "audit-logs"
   location   = "WEUR"
 }
+
+resource "cloudflare_r2_bucket" "videos" {
+  account_id = var.cloudflare_account_id
+  name       = "videos"
+  location   = "WEUR"
+}
