@@ -54,10 +54,10 @@ variable "domain_name" {
 
 variable "r2_access_key_id" {
   description = "r2 access key id"
-  type = string
+  type        = string
 }
 
 variable "r2_access_key" {
   description = "r2 access key"
-  type = string
+  type        = string
 }

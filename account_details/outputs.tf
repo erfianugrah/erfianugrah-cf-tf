@@ -1,8 +1,13 @@
+# Removed 'sensitive = true' from all token outputs so they show directly in console after apply 
+# If you want to hide these values from console output, add 'sensitive = true' back to each token output
+
 output "account_roles" {
-  value = data.cloudflare_account_roles.account_roles.roles
+  value     = data.cloudflare_account_roles.account_roles
+  sensitive = true
 }
 output "token_scopes" {
-  value = data.cloudflare_api_token_permission_groups.all
+  value     = data.cloudflare_api_token_permission_groups.all
+  sensitive = true
 }
 output "cloudflare_api_token_root_token" {
   value     = cloudflare_api_token.root_token.value

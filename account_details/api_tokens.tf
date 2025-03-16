@@ -2,9 +2,9 @@ resource "cloudflare_api_token" "root_token" {
   name = "root_token"
 
   policy {
+    effect = "allow"
     permission_groups = [
-      data.cloudflare_api_token_permission_groups.all.user["API Tokens Write"],
-      # "686d18d5ac6c441c867cbf6771e58a0a", # "API Tokens Write"
+      data.cloudflare_api_token_permission_groups.all.user["API Tokens Write"]
     ]
     resources = {
       "com.cloudflare.api.user.${var.cloudflare_user_id}" = "*"
@@ -18,9 +18,9 @@ resource "cloudflare_api_token" "root_token" {
 resource "cloudflare_api_token" "traefik_dns" {
   name = "traefik_dns_account"
   policy {
+    effect = "allow"
     permission_groups = [
-      data.cloudflare_api_token_permission_groups.all.zone["DNS Write"],
-      # "4755a26eedb94da69e1066d98aa820be", # "DNS Write"
+      data.cloudflare_api_token_permission_groups.all.zone["DNS Write"]
     ]
     resources = {
       "com.cloudflare.api.account.${var.cloudflare_account_id}" = jsonencode({
@@ -33,9 +33,9 @@ resource "cloudflare_api_token" "traefik_dns" {
 resource "cloudflare_api_token" "proxmox_dns" {
   name = "proxmox_dns_account"
   policy {
+    effect = "allow"
     permission_groups = [
-      data.cloudflare_api_token_permission_groups.all.zone["DNS Write"],
-      # "4755a26eedb94da69e1066d98aa820be", # "DNS Write"
+      data.cloudflare_api_token_permission_groups.all.zone["DNS Write"]
     ]
     resources = {
       "com.cloudflare.api.account.${var.cloudflare_account_id}" = jsonencode({
@@ -48,9 +48,9 @@ resource "cloudflare_api_token" "proxmox_dns" {
 resource "cloudflare_api_token" "caddy_dns" {
   name = "caddy_dns_account"
   policy {
+    effect = "allow"
     permission_groups = [
-      data.cloudflare_api_token_permission_groups.all.zone["DNS Write"],
-      # "4755a26eedb94da69e1066d98aa820be", # "DNS Write"
+      data.cloudflare_api_token_permission_groups.all.zone["DNS Write"]
     ]
     resources = {
       "com.cloudflare.api.account.${var.cloudflare_account_id}" = jsonencode({
@@ -63,11 +63,10 @@ resource "cloudflare_api_token" "caddy_dns" {
 resource "cloudflare_api_token" "insomnia" {
   name = "insomnia"
   policy {
+    effect = "allow"
     permission_groups = [
       data.cloudflare_api_token_permission_groups.all.zone["Logs Read"],
-      data.cloudflare_api_token_permission_groups.all.zone["Analytics Read"],
-      # "c4a30cd58c5d42619c86a3c36c441e2d", # "Logs Read"
-      # "9c88f9c5bce24ce7af9a958ba9c504db" # "Analytics Read"
+      data.cloudflare_api_token_permission_groups.all.zone["Analytics Read"]
     ]
     resources = {
       "com.cloudflare.api.account.${var.cloudflare_account_id}" = jsonencode({
@@ -77,11 +76,10 @@ resource "cloudflare_api_token" "insomnia" {
   }
 
   policy {
+    effect = "allow"
     permission_groups = [
       data.cloudflare_api_token_permission_groups.all.account["Logs Read"],
-      data.cloudflare_api_token_permission_groups.all.account["Account Analytics Read"],
-      # "b89a480218d04ceb98b4fe57ca29dc1f", # "Account Analytics Read"
-      # "6a315a56f18441e59ed03352369ae956" # "Logs Read"
+      data.cloudflare_api_token_permission_groups.all.account["Account Analytics Read"]
     ]
     resources = {
       "com.cloudflare.api.account.${var.cloudflare_account_id}" = "*"
@@ -92,11 +90,10 @@ resource "cloudflare_api_token" "insomnia" {
 resource "cloudflare_api_token" "cloudflare_exporter" {
   name = "cloudflare_exporter"
   policy {
+    effect = "allow"
     permission_groups = [
       data.cloudflare_api_token_permission_groups.all.zone["Logs Read"],
-      data.cloudflare_api_token_permission_groups.all.zone["Analytics Read"],
-      # "c4a30cd58c5d42619c86a3c36c441e2d", # "Logs Read"
-      # "9c88f9c5bce24ce7af9a958ba9c504db" # "Analytics Read"
+      data.cloudflare_api_token_permission_groups.all.zone["Analytics Read"]
     ]
     resources = {
       "com.cloudflare.api.account.${var.cloudflare_account_id}" = jsonencode({
@@ -109,10 +106,10 @@ resource "cloudflare_api_token" "cloudflare_exporter" {
 resource "cloudflare_api_token" "admin_r2_read_write_token" {
   name = "admin_r2_read_write_token"
   policy {
+    effect = "allow"
     permission_groups = [
       data.cloudflare_api_token_permission_groups.all.account["Workers R2 Storage Write"],
-      data.cloudflare_api_token_permission_groups.all.account["Workers R2 Storage Read"],
-      /*       "bf7481a1826f439697cb59a20b22293e", # "Workers R2 Storage Write" */
+      data.cloudflare_api_token_permission_groups.all.account["Workers R2 Storage Read"]
     ]
     resources = {
       "com.cloudflare.api.account.*" = "*"
@@ -123,32 +120,30 @@ resource "cloudflare_api_token" "admin_r2_read_write_token" {
 resource "cloudflare_api_token" "wrangler" {
   name = "wrangler"
   policy {
+    effect = "allow"
     permission_groups = [
-      data.cloudflare_api_token_permission_groups.all.zone["Workers Routes Write"],
-      /* "28f4b596e7d643029c524985477ae49a", # "Workers Routes Write" */
+      data.cloudflare_api_token_permission_groups.all.zone["Workers Routes Write"]
     ]
     resources = {
       "com.cloudflare.api.account.zone.*" = "*"
     }
   }
   policy {
+    effect = "allow"
     permission_groups = [
-      data.cloudflare_api_token_permission_groups.all.user["User Details Read"],
-      /* "8acbe5bb0d54464ab867149d7f7cf8ac", # "User Details Read" */
+      data.cloudflare_api_token_permission_groups.all.user["User Details Read"]
     ]
     resources = {
       "com.cloudflare.api.user.${var.cloudflare_user_id}" = "*"
     }
   }
   policy {
+    effect = "allow"
     permission_groups = [
       data.cloudflare_api_token_permission_groups.all.account["Workers KV Storage Write"],
       data.cloudflare_api_token_permission_groups.all.account["Workers Scripts Write"],
       data.cloudflare_api_token_permission_groups.all.account["Account Settings Read"],
       data.cloudflare_api_token_permission_groups.all.account["Pages Write"]
-      # "f7f0eda5697f475c90846e879bab8666", # "Workers KV Storage Write"
-      # "e086da7e2179491d91ee5f35b3ca210a", #  "Workers Scripts Write"
-      # "c1fde68c7bcc44588cbb6ddbc16d6480" # "Account Settings Read"
     ]
     resources = {
       "com.cloudflare.api.account.*" = "*"
@@ -159,11 +154,85 @@ resource "cloudflare_api_token" "wrangler" {
 resource "cloudflare_api_token" "cache_purge" {
   name = "cache_purge"
   policy {
+    effect = "allow"
     permission_groups = [
-      data.cloudflare_api_token_permission_groups.all.zone["Cache Purge"],
+      data.cloudflare_api_token_permission_groups.all.zone["Cache Purge"]
     ]
     resources = {
       "com.cloudflare.api.account.*" = "*"
     }
   }
 }
+
+# Example templates for different token types (commented out)
+
+/*
+# R2 Bucket-specific token template
+resource "cloudflare_api_token" "r2_specific_bucket_token" {
+  name = "r2_specific_bucket_token"
+  policy {
+    effect = "allow"
+    permission_groups = [
+      data.cloudflare_api_token_permission_groups.all.account["Workers R2 Storage Read"],
+      # Optionally add write permissions if needed
+      # data.cloudflare_api_token_permission_groups.all.account["Workers R2 Storage Write"]
+    ]
+    resources = {
+      # Format for R2 bucket-specific access:
+      "com.cloudflare.api.account.${var.cloudflare_account_id}:r2:bucket_name_here" = "*"
+      # Add more buckets as needed:
+      # "com.cloudflare.api.account.${var.cloudflare_account_id}:r2:another_bucket" = "*"
+    }
+  }
+}
+
+# Token with IP restrictions template
+resource "cloudflare_api_token" "ip_restricted_token" {
+  name = "ip_restricted_token"
+  
+  # Define the policy as needed
+  policy {
+    effect = "allow"
+    permission_groups = [
+      # Replace with your required permissions
+      data.cloudflare_api_token_permission_groups.all.zone["DNS Write"]
+    ]
+    resources = {
+      "com.cloudflare.api.account.${var.cloudflare_account_id}" = "*"
+    }
+  }
+  
+  # IP restrictions
+  condition {
+    request_ip {
+      # IPs/CIDR ranges that are allowed to use this token
+      in = ["192.168.1.0/24", "10.0.0.1/32"]
+      
+      # Optionally, specify IPs to explicitly deny
+      # not_in = ["192.168.1.100/32"]
+    }
+  }
+}
+
+# Time-limited token template
+resource "cloudflare_api_token" "temporary_token" {
+  name = "temporary_token"
+  
+  policy {
+    effect = "allow"
+    permission_groups = [
+      # Replace with required permissions
+      data.cloudflare_api_token_permission_groups.all.zone["DNS Write"]
+    ]
+    resources = {
+      "com.cloudflare.api.account.${var.cloudflare_account_id}" = "*"
+    }
+  }
+  
+  # Token only valid starting from this time
+  not_before = "2023-01-01T00:00:00Z"
+  
+  # Token expires at this time
+  expires_on = "2023-12-31T23:59:59Z"
+}
+*/
