@@ -1,0 +1,40 @@
+provider "cloudflare" {
+  api_token = var.cloudflare_api_token
+}
+
+# Required variables for authentication
+variable "cloudflare_api_token" {
+  description = "Cloudflare API token with account rulesets permissions"
+  type        = string
+  sensitive   = true
+}
+
+variable "cloudflare_account_id" {
+  description = "Cloudflare account ID"
+  type        = string
+  sensitive   = true
+}
+
+# Required for managed rulesets
+variable "cloudflare_owasp_pub_key" {
+  description = "Cloudflare OWASP managed ruleset public key"
+  type        = string
+  sensitive   = true
+}
+
+variable "cloudflare_managed_pub_key" {
+  description = "Cloudflare managed ruleset public key"
+  type        = string
+  sensitive   = true
+}
+
+# Configure Terraform/OpenTofu providers
+terraform {
+  required_providers {
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 4.0"
+    }
+  }
+  required_version = ">= 1.0.0"
+}
