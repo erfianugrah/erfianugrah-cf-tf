@@ -38,6 +38,12 @@ variable "validity_days" {
   default     = 90
 }
 
+variable "wait_for_active_status" {
+  description = "Whether to wait for a certificate pack to reach status 'active' during creation"
+  type        = bool
+  default     = false
+}
+
 variable "cert_types" {
   description = "List of record types to create certificates for"
   type        = list(string)

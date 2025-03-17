@@ -7,22 +7,54 @@ locals {
     }
   } : {}
   
-  # Extract A records that should have certificates
+  # DCV (Domain Control Validation) patterns to exclude from certification
+  dcv_patterns = [
+    "dcv.cloudflare.com",  # Standard Cloudflare DCV
+    ".dcv.",               # Other DCV patterns
+    "_acme-challenge",     # ACME challenge records
+    ".acme.",              # Other ACME-related records
+    "validation"           # Generic validation patterns
+  ]
+  
+  # Function to check if a record is a DCV record
+  is_dcv_record = function(record) {
+    # For CNAME records, check if the content contains DCV patterns
+    if record.type == "CNAME" && record.content != null {
+      return anytrue([
+        for pattern in local.dcv_patterns : 
+        strcontains(record.content, pattern)
+      ])
+    }
+    
+    # For any record, check if the name contains DCV patterns
+    return anytrue([
+      for pattern in local.dcv_patterns : 
+      strcontains(record.name, pattern)
+    ])
+  }
+  
+  # Extract A records that should have certificates (excluding DCV records)
   a_records = {
     for k, v in var.dns_records : k => v
-    if contains(var.cert_types, v.type) && v.type == "A"
+    if contains(var.cert_types, v.type) && 
+       v.type == "A" && 
+       !local.is_dcv_record(v)
   }
   
-  # Extract AAAA records that should have certificates
+  # Extract AAAA records that should have certificates (excluding DCV records)
   aaaa_records = {
     for k, v in var.dns_records : k => v
-    if contains(var.cert_types, v.type) && v.type == "AAAA"
+    if contains(var.cert_types, v.type) && 
+       v.type == "AAAA" && 
+       !local.is_dcv_record(v)
   }
   
-  # Extract CNAME records that should have certificates
+  # Extract CNAME records that should have certificates (excluding DCV records)
   cname_records = {
     for k, v in var.dns_records : k => v
-    if contains(var.cert_types, v.type) && v.type == "CNAME"
+    if contains(var.cert_types, v.type) && 
+       v.type == "CNAME" && 
+       !local.is_dcv_record(v)
   }
   
   # Combine all records that need certificates
@@ -50,4 +82,7 @@ resource "cloudflare_certificate_pack" "certs" {
   validation_method     = var.validation_method
   validity_days         = var.validity_days
   zone_id               = each.value.zone_id
+  
+  # Optional parameter for waiting for active status
+  wait_for_active_status = var.wait_for_active_status
 }
