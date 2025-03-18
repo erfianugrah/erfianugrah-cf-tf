@@ -1,28 +1,28 @@
 locals {
   # Combine all records for easier output handling
   all_records = merge(cloudflare_record.simple, cloudflare_record.complex)
-  
+
   # Define all DNS record types for better organization
   record_types = [
     "A", "AAAA", "CNAME", "TXT", "MX", "SRV", "SPF", "NS", "PTR",
-    "CAA", "CERT", "DNSKEY", "DS", "NAPTR", "SMIMEA", "SSHFP", 
+    "CAA", "CERT", "DNSKEY", "DS", "NAPTR", "SMIMEA", "SSHFP",
     "TLSA", "URI", "LOC", "HTTPS", "SVCB"
   ]
 }
 
 output "all_records" {
   description = "Map of all created DNS records"
-  value = local.all_records
+  value       = local.all_records
 }
 
 output "simple_records" {
   description = "Map of simple DNS records (using content field)"
-  value = cloudflare_record.simple
+  value       = cloudflare_record.simple
 }
 
 output "complex_records" {
   description = "Map of complex DNS records (using data block)"
-  value = cloudflare_record.complex
+  value       = cloudflare_record.complex
 }
 
 output "fqdns" {

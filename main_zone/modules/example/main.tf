@@ -3,10 +3,10 @@
 # Media services DNS records (simple records using content field)
 module "media_dns" {
   source = "../dns_records"
-  
+
   zone_id     = var.cloudflare_zone_id
   domain_name = var.domain_name
-  
+
   # Simple records using content field
   records = {
     plex = {
@@ -42,10 +42,10 @@ module "media_dns" {
 # Infrastructure and complex records
 module "infra_dns" {
   source = "../dns_records"
-  
+
   zone_id     = var.cloudflare_zone_id
   domain_name = var.domain_name
-  
+
   # Simple A and CNAME records
   records = {
     proxmox = {
@@ -59,7 +59,7 @@ module "infra_dns" {
     },
     monitoring = {
       name    = "monitoring"
-      type    = "CNAME" 
+      type    = "CNAME"
       content = "cloudflare-tunnel.example.com"
       proxied = true
       ttl     = 1
@@ -67,7 +67,7 @@ module "infra_dns" {
       tags    = ["infrastructure", "monitoring"]
     }
   }
-  
+
   # Complex records using data block
   complex_records = {
     # SRV record example
@@ -87,10 +87,10 @@ module "infra_dns" {
         target   = "sip.${var.domain_name}"
       }
     },
-    
+
     # MX record example
     mx_record = {
-      name    = "@"  # Root domain
+      name    = "@" # Root domain
       type    = "MX"
       ttl     = 3600
       proxied = false
@@ -100,7 +100,7 @@ module "infra_dns" {
         value      = "mx1.${var.domain_name}"
       }
     },
-    
+
     # LOC record example
     location = {
       name    = "office"
@@ -109,21 +109,21 @@ module "infra_dns" {
       proxied = false
       tags    = ["geo"]
       data = {
-        lat_degrees   = 37
-        lat_minutes   = 46
-        lat_seconds   = 30
-        lat_direction = "N"
-        long_degrees  = 122
-        long_minutes  = 25
-        long_seconds  = 10
+        lat_degrees    = 37
+        lat_minutes    = 46
+        lat_seconds    = 30
+        lat_direction  = "N"
+        long_degrees   = 122
+        long_minutes   = 25
+        long_seconds   = 10
         long_direction = "W"
-        altitude      = 10
-        size          = 10
+        altitude       = 10
+        size           = 10
         precision_horz = 1000
         precision_vert = 10
       }
     },
-    
+
     # CAA record example
     caa_record = {
       name    = "@"
@@ -137,7 +137,7 @@ module "infra_dns" {
         value = "letsencrypt.org"
       }
     },
-    
+
     # SSHFP record example
     ssh_fingerprint = {
       name    = "ssh"
@@ -146,8 +146,8 @@ module "infra_dns" {
       proxied = false
       tags    = ["security"]
       data = {
-        algorithm   = 2  # RSA
-        type        = 1  # SHA-1
+        algorithm   = 2 # RSA
+        type        = 1 # SHA-1
         fingerprint = "123456789abcdef67890123456789abcdef67890"
       }
     }
@@ -157,12 +157,12 @@ module "infra_dns" {
 # Create certificates for Media services
 module "media_certs" {
   source = "../certificate_packs"
-  
-  zone_id             = var.cloudflare_zone_id
-  domain_name         = var.domain_name
+
+  zone_id              = var.cloudflare_zone_id
+  domain_name          = var.domain_name
   create_wildcard_cert = false
-  dns_records         = module.media_dns.records_for_certificates
-  
+  dns_records          = module.media_dns.records_for_certificates
+
   # Optional customizations
   certificate_authority = "lets_encrypt"
   validation_method     = "txt"
@@ -172,12 +172,12 @@ module "media_certs" {
 # Create certificates for Infrastructure services
 module "infra_certs" {
   source = "../certificate_packs"
-  
-  zone_id             = var.cloudflare_zone_id
-  domain_name         = var.domain_name
+
+  zone_id              = var.cloudflare_zone_id
+  domain_name          = var.domain_name
   create_wildcard_cert = false
-  dns_records         = module.infra_dns.records_for_certificates
-  
+  dns_records          = module.infra_dns.records_for_certificates
+
   # Optional customizations
   certificate_authority = "lets_encrypt"
   validation_method     = "txt"

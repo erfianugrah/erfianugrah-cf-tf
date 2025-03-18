@@ -19,13 +19,76 @@ module "media_dns" {
       comment = "subs"
       tags    = ["servarr"]
     },
-    jellyfin = {
-      name    = "jellyfin"
+    change = {
+      name    = "change"
+      type    = "A"
+      content = var.sg_ip
+      proxied = true
+      ttl     = 1
+      comment = "site crawler for changes"
+      tags    = ["servarr"]
+    },
+    element = {
+      name    = "element"
+      type    = "A"
+      content = var.sg_ip
+      proxied = true
+      ttl     = 1
+      comment = "web app for matrix"
+      tags    = ["servarr"]
+    },
+    file = {
+      name    = "file"
       type    = "CNAME"
       content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
-      comment = "media server"
+      comment = "file browser"
+      tags    = ["servarr"]
+    },
+    httpbin = {
+      name    = "httpbin"
+      type    = "A"
+      content = var.sg_ip
+      proxied = true
+      ttl     = 1
+      comment = "httpbin"
+      tags    = ["servarr"]
+    },
+    immich = {
+      name    = "immich"
+      type    = "A"
+      content = var.sg_ip
+      proxied = true
+      ttl     = 1
+      comment = "self-hosted google photos"
+      tags    = ["servarr"]
+    },
+    jellyfin = {
+      name    = "jellyfin"
+      type    = "A"
+      content = var.sg_ip
+      proxied = true
+      ttl     = 1
+      comment = "like plex but not"
+      tags    = ["servarr"]
+    },
+    joplin = {
+      name    = "joplin"
+      type    = "A"
+      content = var.sg_ip
+      proxied = true
+      ttl     = 1
+      comment = "notes"
+      tags    = ["servarr"]
+    },
+    keycloak = {
+      name    = "keycloak"
+      type    = "A"
+      content = var.sg_ip
+      proxied = true
+      ttl     = 1
+      comment = "keycloak IDP"
       tags    = ["servarr"]
     },
     navidrome = {
@@ -34,7 +97,7 @@ module "media_dns" {
       content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
-      comment = "music server"
+      comment = "music"
       tags    = ["servarr"]
     },
     overseerr = {
@@ -43,16 +106,16 @@ module "media_dns" {
       content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
-      comment = "media requests"
+      comment = "overseerr"
       tags    = ["servarr"]
     },
     plex = {
       name    = "plex"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      type    = "A"
+      content = var.sg_ip
       proxied = true
       ttl     = 1
-      comment = "media server"
+      comment = "plex"
       tags    = ["servarr"]
     },
     prowlarr = {
@@ -61,16 +124,16 @@ module "media_dns" {
       content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
-      comment = "indexer aggregation"
+      comment = "indexer"
       tags    = ["servarr"]
     },
     qbit = {
       name    = "qbit"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      type    = "A"
+      content = var.sg_ip
       proxied = true
       ttl     = 1
-      comment = "torrent client"
+      comment = "qbit"
       tags    = ["servarr"]
     },
     radarr = {
@@ -79,7 +142,7 @@ module "media_dns" {
       content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
-      comment = "movies"
+      comment = "radarr"
       tags    = ["servarr"]
     },
     sabnzbd = {
@@ -88,7 +151,7 @@ module "media_dns" {
       content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
-      comment = "nzb client"
+      comment = "usenet"
       tags    = ["servarr"]
     },
     sonarr = {
@@ -97,7 +160,7 @@ module "media_dns" {
       content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
-      comment = "tv shows"
+      comment = "sonarr"
       tags    = ["servarr"]
     },
     tautulli = {
@@ -106,7 +169,7 @@ module "media_dns" {
       content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
-      comment = "plex monitoring"
+      comment = "plex usage"
       tags    = ["servarr"]
     },
     servarr = {
@@ -115,7 +178,16 @@ module "media_dns" {
       content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
-      comment = "catch all"
+      comment = "unraid admin"
+      tags    = ["servarr"]
+    },
+    vaultwarden = {
+      name    = "vaultwarden"
+      type    = "A"
+      content = var.sg_ip
+      proxied = true
+      ttl     = 1
+      comment = "bitwarden"
       tags    = ["servarr"]
     },
     # Commented-out records
@@ -128,6 +200,24 @@ module "media_dns" {
       comment = "tagging music"
       tags    = ["servarr"]
     },
+    # caddy_api = {
+    #   name    = "caddy"
+    #   type    = "A"
+    #   content = var.sg_ip
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "caddy-api"
+    #   tags    = ["servarr"]
+    # },
+    # caddy_prometheus = {
+    #   name    = "caddy-prometheus"
+    #   type    = "A"
+    #   content = var.sg_ip
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "caddy-monitoring"
+    #   tags    = ["servarr"]
+    # },
     cadvisor = {
       name    = "cadvisor"
       type    = "CNAME"
@@ -173,6 +263,15 @@ module "media_dns" {
       comment = "collaborative expense app"
       tags    = ["servarr"]
     },
+    # jackett = {
+    #   name    = "jackett"
+    #   type    = "CNAME"
+    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "indexer"
+    #   tags    = ["servarr"]
+    # },
     mealie = {
       name    = "mealie"
       type    = "CNAME"
@@ -191,6 +290,96 @@ module "media_dns" {
       comment = "s3 storage"
       tags    = ["servarr"]
     },
+    # nodered = {
+    #   name    = "nodered"
+    #   type    = "A"
+    #   content = var.sg_ip
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "nodered"
+    #   tags    = ["servarr"]
+    # },
+    # port = {
+    #   name    = "port"
+    #   type    = "CNAME"
+    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "portainer sg on unraid"
+    #   tags    = ["servarr"]
+    # },
+    # privatebin = {
+    #   name    = "privatebin"
+    #   type    = "A"
+    #   content = var.sg_ip
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "privatebin"
+    #   tags    = ["servarr"]
+    # },
+    # qdirstat = {
+    #   name    = "qdirstat"
+    #   type    = "A"
+    #   content = var.sg_ip
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "directory file analyser"
+    #   tags    = ["servarr"]
+    # },
+    # rclone = {
+    #   name    = "rclone"
+    #   type    = "A"
+    #   content = var.sg_ip
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "rclone"
+    #   tags    = ["servarr"]
+    # },
+    # synapse = {
+    #   name    = "synapse"
+    #   type    = "A"
+    #   content = var.sg_ip
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "synapse"
+    #   tags    = ["servarr"]
+    # },
+    # synapse_admin = {
+    #   name    = "synapse-admin"
+    #   type    = "A"
+    #   content = var.sg_ip
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "synapse-admin"
+    #   tags    = ["servarr"]
+    # },
+    file = {
+      name    = "file"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      proxied = true
+      ttl     = 1
+      comment = "file browser"
+      tags    = ["servarr"]
+    },
+    dockge = {
+      name    = "dockge"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      proxied = true
+      ttl     = 1
+      comment = "docker UI"
+      tags    = ["servarr"]
+    },
+    dockge_sg = {
+      name    = "dockge-sg"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      proxied = true
+      ttl     = 1
+      comment = "dockge-sg"
+      tags    = ["servarr"]
+    }
     # Additional commented media services can be added here
   }
 }
@@ -205,19 +394,19 @@ module "proxmox_dns" {
   records = {
     # Active records
     proxmox_ui = {
-      name    = "proxmox-ui"
-      type    = "A"
-      content = var.sg_ip
+      name    = "proxmox"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
       proxied = true
       ttl     = 1
       comment = "proxmox web ui"
       tags    = ["proxmox"]
     },
     proxmox_ssh = {
-      name    = "proxmox-ssh"
-      type    = "A"
-      content = var.sg_ip
-      proxied = false
+      name    = "*.proxmox"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
+      proxied = true
       ttl     = 1
       comment = "proxmox ssh"
       tags    = ["proxmox"]
@@ -233,11 +422,29 @@ module "proxmox_dns" {
     },
     kvm_nl = {
       name    = "kvm-nl"
-      type    = "A"
-      content = var.nl_ip
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.kvm_nl.cname
       proxied = true
       ttl     = 1
-      comment = "pikvm-nl"
+      comment = "pikvm nl"
+      tags    = ["kvm-nl"]
+    },
+    ssh_pikvm_sg = {
+      name    = "ssh-pikvm-sg"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.kvm_sg.cname
+      proxied = true
+      ttl     = 1
+      comment = "SSH access to pikvm sg"
+      tags    = ["kvm-sg"]
+    },
+    ssh_pikvm_nl = {
+      name    = "ssh-pikvm-nl"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.kvm_nl.cname
+      proxied = true
+      ttl     = 1
+      comment = "SSH access to pikvm nl"
       tags    = ["kvm-nl"]
     },
     # Add all other proxmox records
@@ -264,12 +471,12 @@ module "vyos_nl_dns" {
       tags    = ["vyos-nl"]
     },
     vyos_ssh_nl = {
-      name    = "vyos-ssh-nl"
-      type    = "A"
-      content = var.nl_ip
-      proxied = false
+      name    = "nl.vyos"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
+      proxied = true
       ttl     = 1
-      comment = "vyos-ssh"
+      comment = "VyOS SSH NL"
       tags    = ["vyos-nl"]
     },
     coredns_prom_exporter_nl = {
@@ -278,7 +485,70 @@ module "vyos_nl_dns" {
       content = var.nl_ip
       proxied = true
       ttl     = 1
-      comment = "coredns-prometheus-exporter-nl"
+      comment = "monitoring for coredns"
+      tags    = ["vyos-nl"]
+    },
+    httpbun_nl = {
+      name    = "httpbun-nl"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
+      proxied = true
+      ttl     = 1
+      comment = "httpbun on vyos-nl"
+      tags    = ["vyos-nl"]
+    },
+    pihole_vyos_nl = {
+      name    = "pihole-vyos-nl"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
+      proxied = true
+      ttl     = 1
+      comment = "pihole-nl"
+      tags    = ["vyos-nl"]
+    },
+    tpi = {
+      name    = "tpi"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
+      proxied = true
+      ttl     = 1
+      comment = "turing pi BMC"
+      tags    = ["k3s"]
+    },
+    # vyos_fileservarr = {
+    #   name    = "vyos-fileservarr"
+    #   type    = "A"
+    #   content = var.nl_ip
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "vyos-fileservarr"
+    #   tags    = ["vyos-nl"]
+    # },
+    # prom_caddy_nl = {
+    #   name    = "prom-caddy-nl"
+    #   type    = "CNAME"
+    #   content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "caddy on vyos-nl"
+    #   tags    = ["vyos-nl"]
+    # },
+    prom_tunnel_nl = {
+      name    = "prom-tunnel-nl"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
+      proxied = true
+      ttl     = 1
+      comment = "cfd node exporter"
+      tags    = ["vyos-nl"]
+    },
+    prom_vyos_nl = {
+      name    = "prom-vyos-nl"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
+      proxied = true
+      ttl     = 1
+      comment = "cfd node exporter"
       tags    = ["vyos-nl"]
     },
     # Add all other vyos-nl records
@@ -296,12 +566,12 @@ module "vyos_sg_dns" {
   records = {
     # Active records
     vyos_sg_ssh = {
-      name    = "vyos-sg-ssh"
-      type    = "A"
-      content = var.sg_ip
-      proxied = false
+      name    = "sg.vyos"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_sg.cname
+      proxied = true
       ttl     = 1
-      comment = "vyos-sg-ssh"
+      comment = "VyOS SSH SG"
       tags    = ["vyos-sg"]
     },
     coredns_prom_exporter_sg = {
@@ -310,9 +580,45 @@ module "vyos_sg_dns" {
       content = var.sg_ip
       proxied = true
       ttl     = 1
-      comment = "coredns-prometheus-exporter-sg"
+      comment = "monitoring for coredns"
       tags    = ["vyos-sg"]
     },
+    pihole_vyos_sg = {
+      name    = "pihole-vyos-sg"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_sg.cname
+      proxied = true
+      ttl     = 1
+      comment = "pihole-sg"
+      tags    = ["vyos-sg"]
+    },
+    ping = {
+      name    = "ping"
+      type    = "A"
+      content = var.sg_ip
+      proxied = false
+      ttl     = 60
+      comment = "check IP"
+      tags    = ["vyos-sg"]
+    },
+    # prom_caddy_sg = {
+    #   name    = "prom-caddy-sg"
+    #   type    = "CNAME"
+    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "caddy on unraid"
+    #   tags    = ["servarr"]
+    # },
+    # prom_unraid = {
+    #   name    = "prom-unraid"
+    #   type    = "A"
+    #   content = var.sg_ip
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "prometheus"
+    #   tags    = ["servarr"]
+    # },
     # Add all other vyos-sg records
     # Commented out records can be added here
   }
@@ -329,8 +635,8 @@ module "auth_dns" {
     # Active records
     keycloak = {
       name    = "keycloak"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      type    = "A"
+      content = var.sg_ip
       proxied = true
       ttl     = 1
       comment = "auth server"
@@ -338,8 +644,8 @@ module "auth_dns" {
     },
     vaultwarden = {
       name    = "vaultwarden"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      type    = "A"
+      content = var.sg_ip
       proxied = true
       ttl     = 1
       comment = "password manager"
@@ -359,49 +665,57 @@ module "email_dns" {
   records = {
     # Mail records
     area_1_mx_1 = {
-      name     = "area1"
+      name     = var.domain_name
       type     = "MX"
-      content  = "asmtp.area1security.com"
-      priority = 10
-      ttl      = 1
-      comment  = "area1 mx record"
+      content  = "mailstream-central.mxrecord.mx"
+      priority = 50
+      ttl      = 300
+      comment  = "area 1"
       tags     = ["area1"]
       proxied  = false
     },
     area_1_mx_2 = {
-      name     = "area1"
+      name     = var.domain_name
       type     = "MX"
-      content  = "asmtp2.area1security.com"
+      content  = "mailstream-west.mxrecord.io"
       priority = 10
-      ttl      = 1
-      comment  = "area1 mx record"
+      ttl      = 300
+      comment  = "area 1"
       tags     = ["area1"]
       proxied  = false
     },
     area_1_mx_3 = {
-      name     = "area1"
+      name     = var.domain_name
       type     = "MX"
-      content  = "asmtp3.area1security.com"
+      content  = "mailstream-east.mxrecord.io"
       priority = 10
-      ttl      = 1
-      comment  = "area1 mx record"
+      ttl      = 300
+      comment  = "area 1"
       tags     = ["area1"]
       proxied  = false
     },
     spf = {
-      name    = "spf"
+      name    = var.domain_name
       type    = "TXT"
-      content = "v=spf1 -all"
-      ttl     = 1
+      content = "v=spf1 include:_spf.google.com -all"
+      ttl     = 3600
       comment = "spf"
       proxied = false
     },
     _dmarc = {
       name    = "_dmarc"
       type    = "TXT"
-      content = "v=DMARC1; p=reject;"
+      content = "v=DMARC1; p=quarantine; rua=mailto:e764748fc3894bf4bbae2a91ea79b3d2@dmarc-reports.cloudflare.net,mailto:iam@${var.domain_name}"
       ttl     = 1
       comment = "dmarc policy"
+      proxied = false
+    },
+    google_txt = {
+      name    = var.domain_name
+      type    = "TXT"
+      content = "google-site-verification=7_N_bCOCpjU9g0Ii93cVDwZLZU1YoFukRgOpHiZSYmo"
+      ttl     = 3600
+      comment = "google verification"
       proxied = false
     },
   }
@@ -436,8 +750,8 @@ module "storage_dns" {
     },
     gcs_fetch_test = {
       name    = "gcs-fetch-test"
-      type    = "CNAME"
-      content = "storage.googleapis.com"
+      type    = "AAAA"
+      content = "100::"
       proxied = true
       ttl     = 1
       comment = "gcp storage bucket"
@@ -454,31 +768,31 @@ module "special_dns" {
 
   records = {
     # Special records
-    discord = {
-      name    = "discord"
+    atuin = {
+      name    = "atuin"
       type    = "CNAME"
-      content = "discord.com"
+      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
       proxied = true
+      ttl     = 1
+      comment = "atuin"
+      tags    = ["erfipie"]
+    },
+    discord = {
+      name    = "_discord.www"
+      type    = "TXT"
+      content = "dh=7d34085eab91e78966c915413fb93503577d516e"
       ttl     = 1
       comment = "discord"
       tags    = ["discord"]
     },
-    tldraw = {
-      name    = "tldraw"
+    erfipie = {
+      name    = "pie"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
       proxied = true
       ttl     = 1
-      comment = "drawing"
-      tags    = ["tldraw"]
-    },
-    tunnel = {
-      name    = "tunnel"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
-      proxied = true
-      ttl     = 1
-      comment = "zero trust tunnel"
+      comment = "erfipie short-lived-cert ssh"
+      tags    = ["erfipie"]
     },
     k3s_tunnel = {
       name    = "k3stun"
@@ -489,16 +803,65 @@ module "special_dns" {
       comment = "k3s zero trust tunnel"
       tags    = ["k3s"]
     },
+    ollama = {
+      name    = "ollama"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.erfi1.cname
+      proxied = true
+      ttl     = 1
+      comment = "ollama AI service"
+    },
+    ollama_ui = {
+      name    = "ollama-ui"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.erfi1.cname
+      proxied = true
+      ttl     = 1
+      comment = "ollama UI"
+    },
+    prom_exporter_pi = {
+      name    = "prom-exporter-pi"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+      proxied = true
+      ttl     = 1
+      comment = "erfipie node exporter"
+      tags    = ["erfipie"]
+    },
+    tldraw = {
+      name    = "tldraw"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+      proxied = true
+      ttl     = 1
+      comment = "drawing"
+      tags    = ["tldraw"]
+    },
+    tunnel = {
+      name    = "tunnel"
+      type    = "AAAA"
+      content = "100::"
+      proxied = true
+      ttl     = 1
+      comment = "zero trust tunnel"
+    },
+    whatami = {
+      name    = "whatami"
+      type    = "AAAA"
+      content = "100::"
+      proxied = true
+      ttl     = 1
+      comment = "whatami test site"
+    },
     www = {
       name    = "www"
       type    = "CNAME"
-      content = var.domain_name
+      content = var.pages_domain
       proxied = true
       ttl     = 1
       comment = "www"
       tags    = ["www"]
     },
-    # Add validation records, special-purpose records, etc.
     # acme_challenge_custom_hostname_2 = {
     #   name    = "_acme-challenge.custom-hostname-2"
     #   type    = "CNAME"
@@ -514,11 +877,218 @@ module "special_dns" {
       proxied = true
       ttl     = 1
     },
+    challenge = {
+      name    = "challenge"
+      type    = "AAAA"
+      content = "100::"
+      proxied = true
+      ttl     = 1
+      comment = "challenge record"
+    },
+    custom_hostname = {
+      name    = "custom-hostname"
+      type    = "CNAME"
+      content = "httpbun.${var.domain_name}"
+      proxied = true
+      ttl     = 1
+      comment = "custom hostname"
+    },
+    custom_hostname_2 = {
+      name    = "custom-hostname-2"
+      type    = "CNAME"
+      content = "fallback.epikbahis175.com"
+      proxied = false
+      ttl     = 1
+      comment = "custom hostname 2"
+    },
+    httpbun = {
+      name    = "httpbun"
+      type    = "A"
+      content = var.sg_ip
+      proxied = true
+      ttl     = 1
+      comment = "httpbun"
+    },
+    docs = {
+      name    = "docs"
+      type    = "CNAME"
+      content = "erfi-docs.pages.dev"
+      proxied = true
+      ttl     = 1
+      comment = "documentation"
+    },
+    # DNS delegation records
+    best_delegation_1 = {
+      name    = "best"
+      type    = "NS"
+      content = "lola.ns.cloudflare.com"
+      proxied = false
+      ttl     = 1
+    },
+    best_delegation_2 = {
+      name    = "best"
+      type    = "NS"
+      content = "jeremy.ns.cloudflare.com"
+      proxied = false
+      ttl     = 1
+    },
+    dev_saas_delegation_1 = {
+      name    = "dev.saas"
+      type    = "NS"
+      content = "lola.ns.cloudflare.com"
+      proxied = false
+      ttl     = 1
+    },
+    dev_saas_delegation_2 = {
+      name    = "dev.saas"
+      type    = "NS"
+      content = "jeremy.ns.cloudflare.com"
+      proxied = false
+      ttl     = 1
+    },
+    erfiplan_delegation_1 = {
+      name    = "erfiplan"
+      type    = "NS"
+      content = "vicky.ns.cloudflare.com"
+      proxied = false
+      ttl     = 1
+    },
+    erfiplan_delegation_2 = {
+      name    = "erfiplan"
+      type    = "NS"
+      content = "monika.ns.cloudflare.com"
+      proxied = false
+      ttl     = 1
+    },
+    freeplan_delegation_1 = {
+      name    = "freeplan"
+      type    = "NS"
+      content = "lola.ns.cloudflare.com"
+      proxied = false
+      ttl     = 1
+    },
+    freeplan_delegation_2 = {
+      name    = "freeplan"
+      type    = "NS"
+      content = "jeremy.ns.cloudflare.com"
+      proxied = false
+      ttl     = 1
+    },
+    prod_saas_delegation_1 = {
+      name    = "prod.saas"
+      type    = "NS"
+      content = "lola.ns.cloudflare.com"
+      proxied = false
+      ttl     = 1
+    },
+    prod_saas_delegation_2 = {
+      name    = "prod.saas"
+      type    = "NS"
+      content = "jeremy.ns.cloudflare.com"
+      proxied = false
+      ttl     = 1
+    }
   }
+}
 
-  # Add any complex records
-  complex_records = {
-    # DNS delegation records can go here if needed
+# Proxmox Secondary Zone Module
+module "proxmox_secondary_dns" {
+  source = "./modules/dns_records"
+
+  zone_id     = var.secondary_cloudflare_zone_id
+  domain_name = var.secondary_domain_name
+
+  records = {
+    plex_mox = {
+      name    = "plex-mox"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
+      proxied = true
+      ttl     = 1
+      comment = "Plex on Proxmox"
+      tags    = ["proxmox"]
+    },
+    jellyfin_mox = {
+      name    = "jellyfin-mox"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
+      proxied = true
+      ttl     = 1
+      comment = "Jellyfin on Proxmox"
+      tags    = ["proxmox"]
+    },
+    prowlarr_mox = {
+      name    = "prowlarr-mox"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
+      proxied = true
+      ttl     = 1
+      comment = "Prowlarr on Proxmox"
+      tags    = ["proxmox"]
+    },
+    radarr_mox = {
+      name    = "radarr-mox"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
+      proxied = true
+      ttl     = 1
+      comment = "Radarr on Proxmox"
+      tags    = ["proxmox"]
+    },
+    sonarr_mox = {
+      name    = "sonarr-mox"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
+      proxied = true
+      ttl     = 1
+      comment = "Sonarr on Proxmox"
+      tags    = ["proxmox"]
+    },
+    bazarr_mox = {
+      name    = "bazarr-mox"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
+      proxied = true
+      ttl     = 1
+      comment = "Bazarr on Proxmox"
+      tags    = ["proxmox"]
+    },
+    tautulli_mox = {
+      name    = "tautulli-mox"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
+      proxied = true
+      ttl     = 1
+      comment = "Tautulli on Proxmox"
+      tags    = ["proxmox"]
+    },
+    navidrome_mox = {
+      name    = "navidrome-mox"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
+      proxied = true
+      ttl     = 1
+      comment = "Navidrome on Proxmox"
+      tags    = ["proxmox"]
+    },
+    solvarr_mox = {
+      name    = "solvarr-mox"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
+      proxied = true
+      ttl     = 1
+      comment = "Solvarr on Proxmox"
+      tags    = ["proxmox"]
+    },
+    sabnzbd_mox = {
+      name    = "sabnzbd-mox"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
+      proxied = true
+      ttl     = 1
+      comment = "SABnzbd on Proxmox"
+      tags    = ["proxmox"]
+    }
   }
 }
 
