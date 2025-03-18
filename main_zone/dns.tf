@@ -82,15 +82,6 @@ module "media_dns" {
       comment = "notes"
       tags    = ["servarr"]
     },
-    keycloak = {
-      name    = "keycloak"
-      type    = "A"
-      content = var.sg_ip
-      proxied = true
-      ttl     = 1
-      comment = "keycloak IDP"
-      tags    = ["servarr"]
-    },
     navidrome = {
       name    = "navidrome"
       type    = "CNAME"
@@ -181,16 +172,6 @@ module "media_dns" {
       comment = "unraid admin"
       tags    = ["servarr"]
     },
-    vaultwarden = {
-      name    = "vaultwarden"
-      type    = "A"
-      content = var.sg_ip
-      proxied = true
-      ttl     = 1
-      comment = "bitwarden"
-      tags    = ["servarr"]
-    },
-    # Commented-out records
     beets = {
       name    = "beets"
       type    = "CNAME"
@@ -885,22 +866,22 @@ module "special_dns" {
       ttl     = 1
       comment = "challenge record"
     },
-    custom_hostname = {
-      name    = "custom-hostname"
-      type    = "CNAME"
-      content = "httpbun.${var.domain_name}"
-      proxied = true
-      ttl     = 1
-      comment = "custom hostname"
-    },
-    custom_hostname_2 = {
-      name    = "custom-hostname-2"
-      type    = "CNAME"
-      content = "fallback.epikbahis175.com"
-      proxied = false
-      ttl     = 1
-      comment = "custom hostname 2"
-    },
+    # custom_hostname = {
+    #   name    = "custom-hostname"
+    #   type    = "CNAME"
+    #   content = "httpbun.${var.domain_name}"
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "custom hostname"
+    # },
+    # custom_hostname_2 = {
+    #   name    = "custom-hostname-2"
+    #   type    = "CNAME"
+    #   content = "fallback.epikbahis175.com"
+    #   proxied = false
+    #   ttl     = 1
+    #   comment = "custom hostname 2"
+    # },
     httpbun = {
       name    = "httpbun"
       type    = "A"
