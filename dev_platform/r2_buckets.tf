@@ -10,6 +10,24 @@ resource "cloudflare_r2_bucket" "images" {
   location   = "APAC"
 }
 
+resource "cloudflare_r2_bucket" "images-wnam" {
+  account_id = var.cloudflare_account_id
+  name       = "images-wnam"
+  location   = "WNAM"
+}
+
+resource "cloudflare_r2_bucket" "images-enam" {
+  account_id = var.cloudflare_account_id
+  name       = "images-enam"
+  location   = "ENAM"
+}
+
+resource "cloudflare_r2_bucket" "images-eeur" {
+  account_id = var.cloudflare_account_id
+  name       = "images-eeur"
+  location   = "EEUR"
+}
+
 resource "cloudflare_r2_bucket" "images-weur" {
   account_id = var.cloudflare_account_id
   name       = "images-weur"
