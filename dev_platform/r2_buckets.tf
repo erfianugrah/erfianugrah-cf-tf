@@ -10,6 +10,12 @@ resource "cloudflare_r2_bucket" "images" {
   location   = "APAC"
 }
 
+resource "cloudflare_r2_bucket" "images-weur" {
+  account_id = var.cloudflare_account_id
+  name       = "images-weur"
+  location   = "WEUR"
+}
+
 resource "cloudflare_r2_bucket" "portainer-backup" {
   account_id = var.cloudflare_account_id
   name       = "portainer-backup"
