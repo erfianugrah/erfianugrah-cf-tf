@@ -360,6 +360,15 @@ module "media_dns" {
       ttl     = 1
       comment = "dockge-sg"
       tags    = ["servarr"]
+    },
+    midarr = {
+      name    = "midarr"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      proxied = true
+      ttl     = 1
+      comment = "midarr"
+      tags    = ["servarr"]
     }
     # Additional commented media services can be added here
   }

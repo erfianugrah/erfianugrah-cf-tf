@@ -157,6 +157,10 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
       hostname = "navidrome.${var.domain_name}"
       service  = "http://172.19.1.17:4533"
     }
+    ingress_rule {
+      hostname = "midarr.${var.domain_name}"
+      service  = "http://172.19.1.20:4000"
+    }
     # ingress_rule {
     #   hostname = "vaultwarden.${var.domain_name}"
     #   service  = "http://172.19.4.2:80"
