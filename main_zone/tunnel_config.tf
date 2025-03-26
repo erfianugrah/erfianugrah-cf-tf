@@ -159,7 +159,11 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
     }
     ingress_rule {
       hostname = "midarr.${var.domain_name}"
-      service  = "http://172.19.1.20:4000"
+      origin_request {
+        http_host_header   = "midarr.${var.domain_name}"
+        origin_server_name = "midarr.${var.domain_name}"
+      }
+      service = "http://172.19.1.20:4000"
     }
     # ingress_rule {
     #   hostname = "vaultwarden.${var.domain_name}"
