@@ -45,7 +45,7 @@ resource "cloudflare_ruleset" "http_config_settings" {
     }
     description = "Rocketloader Off"
     enabled     = true
-    expression  = "(http.host in {\"git.${var.domain_name}\" \"pihole.${var.domain_name}\" \"kvm.${var.domain_name}\" \"plex.${var.domain_name}\" \"dillinger.${var.domain_name}\" \"hedgedoc.${var.domain_name}\" \"servarr.${var.domain_name}\" \"httpbun.${var.domain_name}\" \"pastebin.${var.domain_name}\" \"home.${var.domain_name}\" \"privatebin.${var.domain_name}\" \"immich.${var.domain_name}\" \"cdn.${var.domain_name}\" \"radarr.${var.domain_name}\" \"ihatemoney.${var.domain_name}\" \"authentik.${var.domain_name}\" \"qbit.${var.domain_name}\" })"
+    expression  = "(http.host in {\"git.${var.domain_name}\" \"pihole.${var.domain_name}\" \"kvm.${var.domain_name}\" \"plex.${var.domain_name}\" \"dillinger.${var.domain_name}\" \"hedgedoc.${var.domain_name}\" \"servarr.${var.domain_name}\" \"httpbun.${var.domain_name}\" \"pastebin.${var.domain_name}\" \"home.${var.domain_name}\" \"privatebin.${var.domain_name}\" \"immich.${var.domain_name}\" \"cdn.${var.domain_name}\" \"radarr.${var.domain_name}\" \"ihatemoney.${var.domain_name}\" \"authentik.${var.domain_name}\" \"qbit.${var.domain_name}\" \"midarr.${var.domain_name}\"})"
   }
   rules {
     action = "set_config"
