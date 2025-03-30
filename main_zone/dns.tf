@@ -253,15 +253,6 @@ module "media_dns" {
     #   comment = "indexer"
     #   tags    = ["servarr"]
     # },
-    mealie = {
-      name    = "mealie"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
-      proxied = true
-      ttl     = 1
-      comment = "recipes"
-      tags    = ["servarr"]
-    },
     minio = {
       name    = "minio"
       type    = "CNAME"
@@ -362,12 +353,12 @@ module "media_dns" {
       tags    = ["servarr"]
     },
     midarr = {
-      name    = "midarr"
+      name    = "jellyseerr"
       type    = "CNAME"
       content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
-      comment = "midarr"
+      comment = "jellyseerr"
       tags    = ["servarr"]
     }
     # Additional commented media services can be added here
