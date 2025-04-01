@@ -39,6 +39,14 @@ output "cloudflare_api_token_admin_r2_read_write_token" {
   sensitive = true
 }
 
+output "cloudflare_api_token_admin_r2_s3_credentials" {
+  value = {
+    access_key_id     = cloudflare_api_token.admin_r2_read_write_token.id
+    secret_access_key = sha256(cloudflare_api_token.admin_r2_read_write_token.value)
+  }
+  sensitive = true
+}
+
 output "cloudflare_api_token_wrangler" {
   value     = cloudflare_api_token.wrangler.value
   sensitive = true
