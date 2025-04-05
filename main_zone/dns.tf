@@ -57,8 +57,8 @@ module "media_dns" {
     },
     immich = {
       name    = "immich"
-      type    = "A"
-      content = var.sg_ip
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
       comment = "self-hosted google photos"

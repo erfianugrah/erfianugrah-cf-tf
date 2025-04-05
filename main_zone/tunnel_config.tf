@@ -186,6 +186,10 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
       hostname = "dockge-sg.${var.domain_name}"
       service  = "http://172.17.0.2:5001"
     }
+    ingress_rule {
+      hostname = "immich.${var.domain_name}"
+      service  = "http://172.19.22.2:2283"
+    }
     # ingress_rule {
     #   hostname = var.domain_name
     #   service  = "http://172.66.0.2:4321"
