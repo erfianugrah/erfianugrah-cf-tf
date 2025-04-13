@@ -253,13 +253,13 @@ module "media_dns" {
     #   comment = "indexer"
     #   tags    = ["servarr"]
     # },
-    minio = {
-      name    = "minio"
+    qbit = {
+      name    = "qbit"
       type    = "CNAME"
       content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
-      comment = "s3 storage"
+      comment = "qbittorrent"
       tags    = ["servarr"]
     },
     # nodered = {

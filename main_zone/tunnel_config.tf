@@ -1,4 +1,4 @@
-resource "cloudflare_zero_trust_tunnel_cloudflared_config" "erf1" {
+resource "cloudflare_zero_trust_tunnel_cloudflared_config" "erfi1" {
   account_id = var.cloudflare_account_id
   tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.erfi1.id
 
@@ -189,6 +189,10 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
     ingress_rule {
       hostname = "immich.${var.domain_name}"
       service  = "http://172.19.22.2:2283"
+    }
+    ingress_rule {
+      hostname = "qbit.${var.domain_name}"
+      service  = "http://172.19.10.2:8080"
     }
     # ingress_rule {
     #   hostname = var.domain_name
