@@ -645,35 +645,44 @@ module "email_dns" {
 
   records = {
     # Mail records
-    area_1_mx_1 = {
+    # area_1_mx_1 = {
+    #   name     = var.domain_name
+    #   type     = "MX"
+    #   content  = "mailstream-central.mxrecord.mx"
+    #   priority = 50
+    #   ttl      = 300
+    #   comment  = "area 1"
+    #   tags     = ["area1"]
+    #   proxied  = false
+    # },
+    # area_1_mx_2 = {
+    #   name     = var.domain_name
+    #   type     = "MX"
+    #   content  = "mailstream-west.mxrecord.io"
+    #   priority = 10
+    #   ttl      = 300
+    #   comment  = "area 1"
+    #   tags     = ["area1"]
+    #   proxied  = false
+    # },
+    # area_1_mx_3 = {
+    #   name     = var.domain_name
+    #   type     = "MX"
+    #   content  = "mailstream-east.mxrecord.io"
+    #   priority = 10
+    #   ttl      = 300
+    #   comment  = "area 1"
+    #   tags     = ["area1"]
+    #   proxied  = false
+    # },
+    google_workspace = {
       name     = var.domain_name
       type     = "MX"
-      content  = "mailstream-central.mxrecord.mx"
-      priority = 50
-      ttl      = 300
-      comment  = "area 1"
-      tags     = ["area1"]
+      content  = "smtp.google.com"
+      ttl      = 3600
+      comment  = "MX"
       proxied  = false
-    },
-    area_1_mx_2 = {
-      name     = var.domain_name
-      type     = "MX"
-      content  = "mailstream-west.mxrecord.io"
-      priority = 10
-      ttl      = 300
-      comment  = "area 1"
-      tags     = ["area1"]
-      proxied  = false
-    },
-    area_1_mx_3 = {
-      name     = var.domain_name
-      type     = "MX"
-      content  = "mailstream-east.mxrecord.io"
-      priority = 10
-      ttl      = 300
-      comment  = "area 1"
-      tags     = ["area1"]
-      proxied  = false
+      priority = 1
     },
     spf = {
       name    = var.domain_name
