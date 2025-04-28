@@ -352,13 +352,22 @@ module "media_dns" {
       comment = "dockge-sg"
       tags    = ["servarr"]
     },
-    midarr = {
+    jellyseerr = {
       name    = "jellyseerr"
       type    = "CNAME"
       content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
       comment = "jellyseerr"
+      tags    = ["servarr"]
+    },
+    quantum = {
+      name    = "quantum"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      proxied = true
+      ttl     = 1
+      comment = "quantum"
       tags    = ["servarr"]
     }
     # Additional commented media services can be added here
