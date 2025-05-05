@@ -69,3 +69,9 @@ variable "pages_revista4_hostname" {
   type        = string
   sensitive   = true
 }
+
+variable "pages_dev_docs_hostname" {
+  description = "The hostname to be used"
+  type        = string
+  sensitive   = true
+}
