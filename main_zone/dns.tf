@@ -370,14 +370,13 @@ module "media_dns" {
       comment = "quantum"
       tags    = ["servarr"]
     },
-    erfi = {
-      name    = "erfianugrah.com"
+    root_revista = {
+      name    = "@"
       type    = "CNAME"
-      content = "www.erfianugrah.com"
-      proxied = true
-      ttl     = 1
+      content = var.pages_domain
+      proxied = false
       comment = "revista"
-      tags    = ["Pages"]
+      tags    = ["revista"]
     }
     # Additional commented media services can be added here
   }
@@ -861,14 +860,14 @@ module "special_dns" {
       ttl     = 1
       comment = "whatami test site"
     },
-    www = {
+    www_revista = {
       name    = "www"
       type    = "CNAME"
       content = var.pages_domain
       proxied = true
       ttl     = 1
       comment = "www"
-      tags    = ["www"]
+      tags    = ["revista"]
     },
     # acme_challenge_custom_hostname_2 = {
     #   name    = "_acme-challenge.custom-hostname-2"
