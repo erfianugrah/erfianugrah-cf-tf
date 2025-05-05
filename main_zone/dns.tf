@@ -374,7 +374,8 @@ module "media_dns" {
       name    = "@"
       type    = "CNAME"
       content = var.pages_domain
-      proxied = false
+      proxied = true
+      ttl     = 1
       comment = "revista"
       tags    = ["revista"]
     }
