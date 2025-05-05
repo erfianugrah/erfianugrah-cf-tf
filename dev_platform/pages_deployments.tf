@@ -3,21 +3,6 @@ resource "cloudflare_pages_project" "erfi-dev-docs" {
   name              = "erfi-dev-docs"
   production_branch = "main"
 
-  source {
-    type = "github"
-    config {
-      owner                         = "erfianugrah"
-      repo_name                     = "erfi-dev-docs"
-      production_branch             = "main"
-      pr_comments_enabled           = true
-      deployments_enabled           = true
-      production_deployment_enabled = true
-      preview_deployment_setting    = "all"
-      preview_branch_includes       = ["*"]
-      preview_branch_excludes       = []
-    }
-  }
-
   build_config {
     build_command   = "bun install && bun run build"
     destination_dir = "dist"
@@ -49,6 +34,7 @@ resource "cloudflare_pages_project" "erfi-dev-docs" {
     }
   }
 }
+
 resource "cloudflare_pages_project" "revista_3" {
   account_id        = var.cloudflare_account_id
   name              = "revista-3"
