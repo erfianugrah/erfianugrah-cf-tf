@@ -369,6 +369,15 @@ module "media_dns" {
       ttl     = 1
       comment = "quantum"
       tags    = ["servarr"]
+    },
+    erfi = {
+      name    = "erfianugrah.com"
+      type    = "CNAME"
+      content = "www.erfianugrah.com"
+      proxied = true
+      ttl     = 1
+      comment = "revista"
+      tags    = ["Pages"]
     }
     # Additional commented media services can be added here
   }
