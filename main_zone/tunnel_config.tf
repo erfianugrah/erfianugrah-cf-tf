@@ -48,7 +48,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "erfipie" {
       service  = "http://172.20.1.2:8888"
     }
     ingress_rule {
-      hostname = "tldraw.${var.domain_name}"
+      hostname = "draw.${var.secondary_domain_name}"
       service  = "http://172.40.1.2:5858"
     }
     ingress_rule {

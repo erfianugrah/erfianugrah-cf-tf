@@ -836,15 +836,15 @@ module "special_dns" {
       comment = "erfipie node exporter"
       tags    = ["erfipie"]
     },
-    tldraw = {
-      name    = "tldraw"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
-      proxied = true
-      ttl     = 1
-      comment = "drawing"
-      tags    = ["tldraw"]
-    },
+    # tldraw = {
+    #   name    = "draw"
+    #   type    = "CNAME"
+    #   content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "drawing"
+    #   tags    = ["tldraw"]
+    # },
     tunnel = {
       name    = "tunnel"
       type    = "AAAA"
