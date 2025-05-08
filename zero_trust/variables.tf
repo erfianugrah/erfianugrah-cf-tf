@@ -46,6 +46,12 @@ variable "domain_name" {
   sensitive   = true
 }
 
+variable "secondary_domain_name" {
+  description = "The domain name to be used"
+  type        = string
+  sensitive   = true
+}
+
 variable "keycloak_saml_cert_1" {
   description = "keycloak_saml_cert_1"
   type        = string

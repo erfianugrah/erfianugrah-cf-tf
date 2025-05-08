@@ -390,42 +390,42 @@ resource "cloudflare_zero_trust_access_application" "changedetection" {
   }
 }
 
-resource "cloudflare_zero_trust_access_application" "filebrowser" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-    cloudflare_zero_trust_access_policy.allow_lena.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "file.${var.domain_name}/files"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = true
-  name                       = "File Browser"
-  same_site_cookie_attribute = "lax"
-  session_duration           = "15m"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "file.${var.domain_name}/files"
-  }
-  cors_headers {
-    allow_all_headers = true
-    allow_all_methods = true
-    allow_credentials = true
-    allowed_origins   = [var.domain_name, "file.${var.domain_name}"]
-    max_age           = 3600
-  }
-}
+# resource "cloudflare_zero_trust_access_application" "filebrowser" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#     cloudflare_zero_trust_access_policy.allow_lena.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "file.${var.domain_name}/files"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = true
+#   name                       = "File Browser"
+#   same_site_cookie_attribute = "lax"
+#   session_duration           = "15m"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "file.${var.domain_name}/files"
+#   }
+#   cors_headers {
+#     allow_all_headers = true
+#     allow_all_methods = true
+#     allow_credentials = true
+#     allowed_origins   = [var.domain_name, "file.${var.domain_name}"]
+#     max_age           = 3600
+#   }
+# }
 
 resource "cloudflare_zero_trust_access_application" "dillinger" {
   account_id = var.cloudflare_account_id
@@ -492,44 +492,44 @@ resource "cloudflare_zero_trust_access_application" "tunnel_secret_worker" {
   }
 }
 
-resource "cloudflare_zero_trust_access_application" "overseerr" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-    cloudflare_zero_trust_access_policy.allow_lena.id,
-    cloudflare_zero_trust_access_policy.allow_oma.id,
-    cloudflare_zero_trust_access_policy.overseerr_token.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
-    cloudflare_zero_trust_access_identity_provider.pin.id,
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "overseerr.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = true
-  name                       = "Overseerr"
-  same_site_cookie_attribute = "lax"
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "overseerr.${var.domain_name}"
-  }
-  cors_headers {
-    allow_all_headers = true
-    allow_all_methods = true
-    allow_credentials = true
-    allowed_origins   = ["overseerr.${var.domain_name}"]
-    max_age           = 3600
-  }
-}
+# resource "cloudflare_zero_trust_access_application" "overseerr" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#     cloudflare_zero_trust_access_policy.allow_lena.id,
+#     cloudflare_zero_trust_access_policy.allow_oma.id,
+#     cloudflare_zero_trust_access_policy.overseerr_token.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+#     cloudflare_zero_trust_access_identity_provider.pin.id,
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "overseerr.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = true
+#   name                       = "Overseerr"
+#   same_site_cookie_attribute = "lax"
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "overseerr.${var.domain_name}"
+#   }
+#   cors_headers {
+#     allow_all_headers = true
+#     allow_all_methods = true
+#     allow_credentials = true
+#     allowed_origins   = ["overseerr.${var.domain_name}"]
+#     max_age           = 3600
+#   }
+# }
 
 resource "cloudflare_zero_trust_access_application" "app_launcher" {
   account_id = var.cloudflare_account_id
@@ -552,40 +552,40 @@ resource "cloudflare_zero_trust_access_application" "app_launcher" {
   type                      = "app_launcher"
 }
 
-resource "cloudflare_zero_trust_access_application" "synapse_admin" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "synapse-admin.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = true
-  name                       = "Synapse-Admin"
-  same_site_cookie_attribute = "lax"
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "synapse-admin.${var.domain_name}"
-  }
-  cors_headers {
-    allow_all_headers = true
-    allow_all_methods = true
-    allowed_origins   = ["synapse-admin.${var.domain_name}"]
-    max_age           = 3600
-  }
-}
+# resource "cloudflare_zero_trust_access_application" "synapse_admin" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "synapse-admin.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = true
+#   name                       = "Synapse-Admin"
+#   same_site_cookie_attribute = "lax"
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "synapse-admin.${var.domain_name}"
+#   }
+#   cors_headers {
+#     allow_all_headers = true
+#     allow_all_methods = true
+#     allowed_origins   = ["synapse-admin.${var.domain_name}"]
+#     max_age           = 3600
+#   }
+# }
 
 resource "cloudflare_zero_trust_access_application" "servarr" {
   account_id = var.cloudflare_account_id
@@ -699,7 +699,7 @@ resource "cloudflare_zero_trust_access_application" "tldraw" {
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
-  domain                     = "tldraw.${var.domain_name}"
+  domain                     = "draw.${var.secondary_domain_name}"
   enable_binding_cookie      = false
   http_only_cookie_attribute = false
   name                       = "TLDraw"
@@ -708,7 +708,7 @@ resource "cloudflare_zero_trust_access_application" "tldraw" {
   type                       = "self_hosted"
   destinations {
     type = "public"
-    uri  = "tldraw.${var.domain_name}"
+    uri  = "draw.${var.secondary_domain_name}"
   }
 }
 # resource "cloudflare_zero_trust_access_application" "kubectl" {
