@@ -759,6 +759,7 @@ resource "cloudflare_zero_trust_access_application" "interview" {
   service_auth_401_redirect  = true
   session_duration           = "24h"
   type                       = "self_hosted"
+  logo_url                   = "https://cdn.erfianugrah.com/ea_favicon.png"
   destinations {
     type = "public"
     uri  = "hadrian-interview.pages.dev"
