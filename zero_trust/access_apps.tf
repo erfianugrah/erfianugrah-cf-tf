@@ -736,3 +736,35 @@ resource "cloudflare_zero_trust_access_application" "tldraw" {
 #   session_duration           = "24h"
 #   type                       = "self_hosted"
 # }
+
+resource "cloudflare_zero_trust_access_application" "interview" {
+  account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_zero_trust_access_policy.allow_erfi.id,
+    cloudflare_zero_trust_access_policy.allow_interview.id,
+    cloudflare_zero_trust_access_policy.allow_lena.id,
+    cloudflare_zero_trust_access_policy.allow_unker.id,
+    cloudflare_zero_trust_access_policy.allow_oma.id
+  ]
+  allowed_idps = [
+    cloudflare_zero_trust_access_identity_provider.gmail.id,
+    cloudflare_zero_trust_access_identity_provider.pin.id
+  ]
+  app_launcher_visible       = true
+  auto_redirect_to_identity  = false
+  domain                     = "hadrian-interview.pages.dev"
+  enable_binding_cookie      = false
+  http_only_cookie_attribute = false
+  name                       = "Interview"
+  service_auth_401_redirect  = true
+  session_duration           = "24h"
+  type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "hadrian-interview.pages.dev"
+  }
+  destinations {
+    type = "public"
+    uri  = "*.hadrian-interview.pages.dev"
+  }
+}

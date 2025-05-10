@@ -68,7 +68,7 @@ resource "cloudflare_zero_trust_access_policy" "allow_cf" {
   session_duration = "30m"
 
   include {
-    email_domain = ["cloudflare.com"]
+    group = [cloudflare_zero_trust_access_group.cf_corp.id]
   }
 
   # approval_group {
@@ -387,4 +387,21 @@ resource "cloudflare_zero_trust_access_policy" "overseerr_token" {
   include {
     service_token = [cloudflare_zero_trust_access_service_token.overseerr_token.id]
   }
+}
+
+resource "cloudflare_zero_trust_access_policy" "allow_interview" {
+  # application_id   = cloudflare_zero_trust_access_application.privatebin.id
+  account_id = var.cloudflare_account_id
+  name       = "Allow Interview"
+  # precedence       = "3"
+  decision         = "allow"
+  session_duration = "30m"
+
+  include {
+    group = [cloudflare_zero_trust_access_group.hadrian_corp.id]
+  }
+
+  # approval_group {
+  #   approvals_needed = 1
+  #   email_addresses  = [var.cloudflare_email]
 }

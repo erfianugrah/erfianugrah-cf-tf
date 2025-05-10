@@ -158,6 +158,18 @@ variable "erfi_corp" {
   sensitive   = true
 }
 
+variable "cf_corp" {
+  description = "cf_corp"
+  type        = list(string)
+  sensitive   = true
+}
+
+variable "hadrian_corp" {
+  description = "hadrian_corp"
+  type        = list(string)
+  sensitive   = true
+}
+
 variable "unker" {
   description = "unker"
   type        = list(string)
