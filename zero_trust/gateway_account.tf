@@ -12,7 +12,7 @@ resource "cloudflare_zero_trust_gateway_settings" "miau" {
     name             = "Erfi Corp Block Page"
     footer_text      = "Erfi Corp"
     header_text      = "Access is denied."
-    logo_path        = "https://www.${var.domain_name}/_astro/ea_favicon_Z6SwqA.avif"
+    logo_path        = "https://cdn.${var.domain_name}/ea_favicon.png"
     background_color = "#000000"
     mailto_address   = var.cloudflare_email
     mailto_subject   = "Your access was denied."

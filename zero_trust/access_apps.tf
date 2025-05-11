@@ -753,13 +753,21 @@ resource "cloudflare_zero_trust_access_application" "interview" {
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
   domain                     = "interview-0.pages.dev"
-  enable_binding_cookie      = false
+  enable_binding_cookie      = true
   http_only_cookie_attribute = false
+  same_site_cookie_attribute = "lax"
   name                       = "Interview"
   service_auth_401_redirect  = true
   session_duration           = "24h"
   type                       = "self_hosted"
   logo_url                   = "https://cdn.erfianugrah.com/ea_favicon.png"
+  cors_headers {
+    allow_all_headers = true
+    allow_all_methods = true
+    allow_credentials = true
+    allowed_origins   = [var.domain_name, "interview-0.pages.dev"]
+    max_age           = 3600
+  }
   destinations {
     type = "public"
     uri  = "interview-0.pages.dev"
