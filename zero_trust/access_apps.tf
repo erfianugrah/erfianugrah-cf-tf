@@ -752,7 +752,7 @@ resource "cloudflare_zero_trust_access_application" "interview" {
   ]
   app_launcher_visible       = true
   auto_redirect_to_identity  = false
-  domain                     = "hadrian-interview.pages.dev"
+  domain                     = "interview-0.pages.dev"
   enable_binding_cookie      = false
   http_only_cookie_attribute = false
   name                       = "Interview"
@@ -762,10 +762,10 @@ resource "cloudflare_zero_trust_access_application" "interview" {
   logo_url                   = "https://cdn.erfianugrah.com/ea_favicon.png"
   destinations {
     type = "public"
-    uri  = "hadrian-interview.pages.dev"
+    uri  = "interview-0.pages.dev"
   }
   destinations {
     type = "public"
-    uri  = "*.hadrian-interview.pages.dev"
+    uri  = "*.interview-0.pages.dev"
   }
 }

@@ -4,7 +4,9 @@ resource "cloudflare_zero_trust_gateway_settings" "miau" {
   protocol_detection_enabled             = true
   activity_log_enabled                   = true
   non_identity_browser_isolation_enabled = false
-
+  certificate {
+    id = "944e578d-2038-4d31-b459-c1b85335c4d1"
+  }
   block_page {
     enabled          = true
     name             = "Erfi Corp Block Page"
