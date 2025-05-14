@@ -159,7 +159,7 @@ resource "cloudflare_load_balancer_pool" "authentik_gre_k3s_nl" {
   enabled         = true
   minimum_origins = 1
   monitor         = cloudflare_load_balancer_monitor.authentik.id
-  name            = "Authentik_IPsec_k3s_NL"
+  name            = "Authentik_GRE_k3s_NL"
   origins {
     address = "10.0.71.100"
     enabled = true
@@ -168,7 +168,8 @@ resource "cloudflare_load_balancer_pool" "authentik_gre_k3s_nl" {
       values = ["authentik.${var.domain_name}"]
     }
     virtual_network_id = "be64e69c-e7b6-4e0e-9fd3-130757192c5b"
-    name               = "authentik_ipsec_k3s_nl"
+    name               = "authentik_gre_k3s_nl"
     weight             = 1
+    port               = 443
   }
 }
