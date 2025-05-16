@@ -1,13 +1,3 @@
-/**
- * ESM Cloudflare Worker for cdn.erfi.dev
- *
- * Features:
- * - Configurable path transformations using command pattern
- * - Adds imwidth=1920 if not present
- * - Adjusts max-age by deducting Age from the response
- * - CORS support
- */
-
 // --------------------------------
 // CONFIGURATION
 // --------------------------------
