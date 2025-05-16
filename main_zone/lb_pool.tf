@@ -170,6 +170,5 @@ resource "cloudflare_load_balancer_pool" "authentik_gre_k3s_nl" {
     virtual_network_id = "be64e69c-e7b6-4e0e-9fd3-130757192c5b"
     name               = "authentik_gre_k3s_nl"
     weight             = 1
-    port               = 443
   }
 }
