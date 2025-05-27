@@ -82,5 +82,4 @@ tofu import -var-file=secrets.tfvars cloudflare_record.example abcdef123456
 
 - Keep sensitive values in `secrets.tfvars` (excluded from version control)
 - Use variable defaults wisely and document all inputs
-- Follow project code style guidelines in CLAUDE.md
 - Test changes with `tofu plan` before applying
