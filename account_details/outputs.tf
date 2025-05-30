@@ -5,10 +5,12 @@ output "account_roles" {
   value     = data.cloudflare_account_roles.account_roles
   sensitive = true
 }
+
 output "token_scopes" {
   value     = data.cloudflare_api_token_permission_groups.all
   sensitive = true
 }
+
 output "cloudflare_api_token_root_token" {
   value     = cloudflare_api_token.root_token.value
   sensitive = true
