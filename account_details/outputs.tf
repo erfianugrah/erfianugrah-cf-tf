@@ -53,3 +53,13 @@ output "cloudflare_api_token_wrangler" {
   value     = cloudflare_api_token.wrangler.value
   sensitive = true
 }
+
+output "cloudflare_api_token_cache_purge" {
+  value     = cloudflare_api_token.cache_purge.value
+  sensitive = true
+}
+
+output "cloudflare_api_token_kv_admin" {
+  value     = cloudflare_api_token.kv_admin.value
+  sensitive = true
+}

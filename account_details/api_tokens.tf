@@ -164,6 +164,19 @@ resource "cloudflare_api_token" "cache_purge" {
   }
 }
 
+resource "cloudflare_api_token" "kv_admin" {
+  name = "kv_admin"
+  policy {
+    effect = "allow"
+    permission_groups = [
+      data.cloudflare_api_token_permission_groups.all.account["Workers KV Storage Read"],
+      data.cloudflare_api_token_permission_groups.all.account["Workers KV Storage Write"]
+    ]
+    resources = {
+      "com.cloudflare.api.account.*" = "*"
+    }
+  }
+}
 # Example templates for different token types (commented out)
 
 /*
