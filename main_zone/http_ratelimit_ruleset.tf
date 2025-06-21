@@ -68,7 +68,7 @@ resource "cloudflare_ruleset" "http_ratelimit" {
       characteristics     = ["cf.unique_visitor_id", "ip.geoip.asnum", "cf.colo.id"]
       mitigation_timeout  = 30
       period              = 10
-      requests_per_period = 50
+      requests_per_period = 100
     }
   }
   rules {
@@ -80,20 +80,20 @@ resource "cloudflare_ruleset" "http_ratelimit" {
       characteristics     = ["cf.unique_visitor_id", "ip.geoip.asnum", "cf.colo.id"]
       mitigation_timeout  = 30
       period              = 10
-      requests_per_period = 50
+      requests_per_period = 100
     }
   }
-  rules {
-    action      = "block"
-    description = "Block request when response 425"
-    enabled     = false
-    expression  = "(http.host eq \"httpbun.erfianugrah.com\")"
-    ratelimit {
-      characteristics     = ["ip.src", "ip.geoip.asnum", "cf.colo.id"]
-      mitigation_timeout  = 120
-      period              = 60
-      requests_per_period = 10
-      counting_expression = "http.response.code eq 425"
-    }
-  }
+  # rules {
+  #   action      = "block"
+  #   description = "Block request when response 425"
+  #   enabled     = false
+  #   expression  = "(http.host eq \"httpbun.erfianugrah.com\")"
+  #   ratelimit {
+  #     characteristics     = ["ip.src", "ip.geoip.asnum", "cf.colo.id"]
+  #     mitigation_timeout  = 120
+  #     period              = 60
+  #     requests_per_period = 10
+  #     counting_expression = "http.response.code eq 425"
+  #   }
+  # }
 }
