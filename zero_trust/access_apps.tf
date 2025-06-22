@@ -362,6 +362,35 @@ resource "cloudflare_zero_trust_access_application" "immich_saas" {
   }
 }
 
+resource "cloudflare_zero_trust_access_application" "kubectl_saas" {
+  account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_zero_trust_access_policy.allow_erfi.id,
+    cloudflare_zero_trust_access_policy.allow_cf.id
+  ]
+  allowed_idps = [
+    cloudflare_zero_trust_access_identity_provider.entra_id.id,
+    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+    cloudflare_zero_trust_access_identity_provider.gmail.id,
+    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+    cloudflare_zero_trust_access_identity_provider.pin.id
+  ]
+  app_launcher_visible      = true
+  auto_redirect_to_identity = false
+  domain                    = "kubectl.${var.domain_name}"
+  name                      = "kubectl"
+  session_duration          = "24h"
+  type                      = "saas"
+  saas_app {
+    auth_type = "oidc"
+    # public_key = var.authentik_saas_public_key
+    # client_id     = var.authentik_saas_client_id
+    redirect_uris = ["http://localhost:8000", "http://127.0.0.1:8000", "http://localhost:18000", "http://127.0.0.1:18000", "urn:ietf:wg:oauth:2.0:oob"]
+    # grant_types   = ["authorization_code_with_pkce"]
+    scopes = ["openid", "email", "profile", "groups"]
+  }
+}
+
 resource "cloudflare_zero_trust_access_application" "changedetection" {
   account_id = var.cloudflare_account_id
   policies = [

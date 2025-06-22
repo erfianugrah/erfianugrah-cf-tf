@@ -41,3 +41,19 @@ output "immich_saas" {
   sensitive = true
 }
 
+output "kubectl_saas" {
+  value = {
+    client_id     = cloudflare_zero_trust_access_application.kubectl_saas.saas_app[0].client_id
+    client_secret = cloudflare_zero_trust_access_application.kubectl_saas.saas_app[0].client_secret
+    public_key    = cloudflare_zero_trust_access_application.kubectl_saas.saas_app[0].public_key
+    auth_type     = cloudflare_zero_trust_access_application.kubectl_saas.saas_app[0].auth_type
+    redirect_uris = cloudflare_zero_trust_access_application.kubectl_saas.saas_app[0].redirect_uris
+    grant_types   = cloudflare_zero_trust_access_application.kubectl_saas.saas_app[0].grant_types
+    scopes        = cloudflare_zero_trust_access_application.kubectl_saas.saas_app[0].scopes
+    name          = cloudflare_zero_trust_access_application.kubectl_saas.name
+    domain        = cloudflare_zero_trust_access_application.kubectl_saas.domain
+    type          = cloudflare_zero_trust_access_application.kubectl_saas.type
+  }
+  sensitive = true
+}
+
