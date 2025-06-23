@@ -38,4 +38,44 @@ output "turnstile_interstitial_secret_key" {
   sensitive = true
 }
 
+output "managed_waf_rulesets" {
+  description = "List of all managed WAF rulesets"
+  value = {
+    for ruleset in data.cloudflare_rulesets.managed_waf.rulesets : ruleset.name => {
+      id          = ruleset.id
+      description = ruleset.description
+      version     = ruleset.version
+      rules_count = length(ruleset.rules)
+      rules = [
+        for rule in ruleset.rules : {
+          id          = rule.id
+          description = rule.description
+          enabled     = rule.enabled
+          action      = rule.action
+        }
+      ]
+    }
+  }
+}
+
+output "owasp_rulesets" {
+  description = "List of OWASP-specific rulesets"
+  value = {
+    for ruleset in data.cloudflare_rulesets.owasp.rulesets : ruleset.name => {
+      id          = ruleset.id
+      description = ruleset.description
+      version     = ruleset.version
+      rules_count = length(ruleset.rules)
+      rules = [
+        for rule in ruleset.rules : {
+          id          = rule.id
+          description = rule.description
+          enabled     = rule.enabled
+          action      = rule.action
+        }
+      ]
+    }
+  }
+}
+
 
