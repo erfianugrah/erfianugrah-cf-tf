@@ -63,3 +63,19 @@ output "cloudflare_api_token_kv_admin" {
   value     = cloudflare_api_token.kv_admin.value
   sensitive = true
 }
+
+output "success" {
+  value = local.success
+}
+
+output "error" {
+  value = local.success ? null : try(local.first_response.errors[0].message, "Unknown error")
+}
+
+output "accounts" {
+  value = local.accounts
+}
+
+output "total_accounts" {
+  value = length(local.accounts)
+}
