@@ -178,13 +178,13 @@ resource "cloudflare_ruleset" "http_request_firewall_managed" {
     action = "skip"
     action_parameters {
       rules = {
-        "4814384a9e5d4991b9815dcfc25d2f1f" = "3500d96add324dcbbc0a93b2bd22c723,a882bfdf91b3440b83020de61d8cf992,8798ef68f5144daa86219e082563548f,0eb6bfdb8e914a07a95aa4e847bc28eb,d57dfc4bce7349179de0c65e354c65f9,9ceb9ca06e344c4e9a2c0e9158cc3667,f05675accef84600bfcc33631c1b4904,c4926d96b87647329947ec2ccbc01671,1fd9e041e6944a5c9c080d19346650ed,a2e88d6e0e604f05b9e660567fbedd30,fa54f3d75ed446e78c22b4ea57b90acf,be337f9e5266487a8e67c008d732161b,cda7fcb45e304a589567d2021821e480,293e73c033b34a2290481c4718a93bb2,f394c2277cba4406b408c9d1feb8fadb,d12ad6d1bc0c42b3affe0cee682bb405"
+        "4814384a9e5d4991b9815dcfc25d2f1f" = "3500d96add324dcbbc0a93b2bd22c723,a882bfdf91b3440b83020de61d8cf992,8798ef68f5144daa86219e082563548f,0eb6bfdb8e914a07a95aa4e847bc28eb,d57dfc4bce7349179de0c65e354c65f9,9ceb9ca06e344c4e9a2c0e9158cc3667,f05675accef84600bfcc33631c1b4904,c4926d96b87647329947ec2ccbc01671,1fd9e041e6944a5c9c080d19346650ed,a2e88d6e0e604f05b9e660567fbedd30,fa54f3d75ed446e78c22b4ea57b90acf,be337f9e5266487a8e67c008d732161b,cda7fcb45e304a589567d2021821e480,293e73c033b34a2290481c4718a93bb2,f394c2277cba4406b408c9d1feb8fadb,d12ad6d1bc0c42b3affe0cee682bb405,71abdd796e944038ae34f8b885a1fee1,61fe42e94df24ce3b22bed0539838bb3,d35ea11d661544ed8e89306d9e061819,2ebcf6102fe745eeb8317e2f4d2804f5"
         efb7b8c949ac4650a09736fc376e9aee   = "81718f38edde45a58298189e113e4f59,0f2da91cec674eb58006929e824b817c"
       }
     }
     description = "Immich image upload"
     enabled     = true
-    expression  = "(http.host eq \"immich.${var.domain_name}\" and http.request.uri.path contains \"/api/asset/upload\")"
+    expression  = "(http.host eq \"immich.${var.domain_name}\" and (http.request.uri.path contains \"/api/asset/upload\" or http.request.uri.path eq \"/api/assets\"))"
     logging {
       enabled = true
     }
