@@ -90,16 +90,16 @@ module "media_dns" {
       ttl     = 1
       comment = "music"
       tags    = ["servarr"]
-    },
-    overseerr = {
-      name    = "overseerr"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
-      proxied = true
-      ttl     = 1
-      comment = "overseerr"
-      tags    = ["servarr"]
-    },
+      },
+    # overseerr = {
+    #   name    = "overseerr"
+    #   type    = "CNAME"
+    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "overseerr"
+    #   tags    = ["servarr"]
+    # },
     plex = {
       name    = "plex"
       type    = "A"
@@ -217,24 +217,24 @@ module "media_dns" {
       comment = "books"
       tags    = ["servarr"]
     },
-    homer = {
-      name    = "homer"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
-      proxied = true
-      ttl     = 1
-      comment = "dashboard"
-      tags    = ["servarr"]
-    },
-    hydra = {
-      name    = "hydra"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
-      proxied = true
-      ttl     = 1
-      comment = "usenet indexer aggregator"
-      tags    = ["servarr"]
-    },
+    # homer = {
+    #   name    = "homer"
+    #   type    = "CNAME"
+    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "dashboard"
+    #   tags    = ["servarr"]
+    # },
+    # hydra = {
+    #   name    = "hydra"
+    #   type    = "CNAME"
+    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "usenet indexer aggregator"
+    #   tags    = ["servarr"]
+    # },
     ihatemoney = {
       name    = "ihatemoney"
       type    = "A"
@@ -325,24 +325,24 @@ module "media_dns" {
     #   comment = "synapse-admin"
     #   tags    = ["servarr"]
     # },
-    file = {
-      name    = "file"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
-      proxied = true
-      ttl     = 1
-      comment = "file browser"
-      tags    = ["servarr"]
-    },
-    dockge = {
-      name    = "dockge"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
-      proxied = true
-      ttl     = 1
-      comment = "docker UI"
-      tags    = ["servarr"]
-    },
+    # file = {
+    #   name    = "file"
+    #   type    = "CNAME"
+    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "file browser"
+    #   tags    = ["servarr"]
+    # },
+    # dockge = {
+    #   name    = "dockge"
+    #   type    = "CNAME"
+    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "docker UI"
+    #   tags    = ["servarr"]
+    # },
     dockge_sg = {
       name    = "dockge-sg"
       type    = "CNAME"
