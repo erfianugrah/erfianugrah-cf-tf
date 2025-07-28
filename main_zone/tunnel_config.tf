@@ -165,6 +165,10 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
       hostname = "quantum.${var.domain_name}"
       service  = "http://172.19.30.2:80"
     }
+    ingress_rule {
+      hostname = "copyparty.${var.domain_name}"
+      service  = "http://172.19.66.2:3923"
+    }
     # ingress_rule {
     #   hostname = "vaultwarden.${var.domain_name}"
     #   service  = "http://172.19.4.2:80"

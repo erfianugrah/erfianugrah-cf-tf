@@ -90,7 +90,7 @@ module "media_dns" {
       ttl     = 1
       comment = "music"
       tags    = ["servarr"]
-      },
+    },
     # overseerr = {
     #   name    = "overseerr"
     #   type    = "CNAME"
@@ -368,6 +368,15 @@ module "media_dns" {
       proxied = true
       ttl     = 1
       comment = "quantum"
+      tags    = ["servarr"]
+    },
+    copyparty = {
+      name    = "copyparty"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      proxied = true
+      ttl     = 1
+      comment = "file server"
       tags    = ["servarr"]
     },
     root_revista = {
