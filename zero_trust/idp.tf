@@ -59,19 +59,19 @@ resource "cloudflare_zero_trust_access_identity_provider" "pin" {
   type       = "onetimepin"
 }
 
-resource "cloudflare_zero_trust_access_identity_provider" "authentik_saml" {
-  account_id = var.cloudflare_account_id
-  name       = "Authentik SAML"
-  type       = "saml"
-  config {
-    email_attribute_name = "email"
-    attributes           = ["email", "surname", "givenName"]
-    issuer_url           = "https://erfianugrah.cloudflareaccess.com/cdn-cgi/access/callback"
-    sso_target_url       = "https://authentik.${var.domain_name}/application/saml/cloudflare-access-saml/sso/binding/redirect/"
-    idp_public_cert      = local.authentik_pem
-    sign_request         = true
-  }
-}
+# resource "cloudflare_zero_trust_access_identity_provider" "authentik_saml" {
+#   account_id = var.cloudflare_account_id
+#   name       = "Authentik SAML"
+#   type       = "saml"
+#   config {
+#     email_attribute_name = "email"
+#     attributes           = ["email", "surname", "givenName"]
+#     issuer_url           = "https://erfianugrah.cloudflareaccess.com/cdn-cgi/access/callback"
+#     sso_target_url       = "https://authentik.${var.domain_name}/application/saml/cloudflare-access-saml/sso/binding/redirect/"
+#     idp_public_cert      = local.authentik_pem
+#     sign_request         = true
+#   }
+# }
 
 resource "cloudflare_zero_trust_access_identity_provider" "entra_id" {
   account_id = var.cloudflare_account_id

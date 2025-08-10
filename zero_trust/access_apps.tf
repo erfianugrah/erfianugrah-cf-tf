@@ -9,7 +9,7 @@ resource "cloudflare_zero_trust_access_application" "kvm" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -47,7 +47,7 @@ resource "cloudflare_zero_trust_access_application" "privatebin" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -84,7 +84,7 @@ resource "cloudflare_zero_trust_access_application" "traefik_dash" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -120,7 +120,7 @@ resource "cloudflare_zero_trust_access_application" "erfipie_ssh" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -148,7 +148,7 @@ resource "cloudflare_zero_trust_access_application" "proxmox_ssh" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -176,7 +176,7 @@ resource "cloudflare_zero_trust_access_application" "vyos_ssh" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -205,7 +205,7 @@ resource "cloudflare_zero_trust_access_application" "warp_login" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   auto_redirect_to_identity = false
@@ -227,7 +227,7 @@ resource "cloudflare_zero_trust_access_application" "prometheus" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -260,7 +260,7 @@ resource "cloudflare_zero_trust_access_application" "turing_pi_bmc" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -343,7 +343,7 @@ resource "cloudflare_zero_trust_access_application" "immich_saas" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible      = true
@@ -402,7 +402,7 @@ resource "cloudflare_zero_trust_access_application" "changedetection" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -419,42 +419,41 @@ resource "cloudflare_zero_trust_access_application" "changedetection" {
   }
 }
 
-# resource "cloudflare_zero_trust_access_application" "filebrowser" {
-#   account_id = var.cloudflare_account_id
-#   policies = [
-#     cloudflare_zero_trust_access_policy.allow_erfi.id,
-#     cloudflare_zero_trust_access_policy.allow_lena.id
-#   ]
-#   allowed_idps = [
-#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
-#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-#     cloudflare_zero_trust_access_identity_provider.gmail.id,
-#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-#     cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
-#     cloudflare_zero_trust_access_identity_provider.pin.id
-#   ]
-#   app_launcher_visible       = true
-#   auto_redirect_to_identity  = false
-#   domain                     = "file.${var.domain_name}/files"
-#   enable_binding_cookie      = false
-#   http_only_cookie_attribute = true
-#   name                       = "File Browser"
-#   same_site_cookie_attribute = "lax"
-#   session_duration           = "15m"
-#   type                       = "self_hosted"
-#   destinations {
-#     type = "public"
-#     uri  = "file.${var.domain_name}/files"
-#   }
-#   cors_headers {
-#     allow_all_headers = true
-#     allow_all_methods = true
-#     allow_credentials = true
-#     allowed_origins   = [var.domain_name, "file.${var.domain_name}"]
-#     max_age           = 3600
-#   }
-# }
+resource "cloudflare_zero_trust_access_application" "copyparty" {
+  account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_zero_trust_access_policy.allow_erfi.id,
+  ]
+  allowed_idps = [
+    cloudflare_zero_trust_access_identity_provider.entra_id.id,
+    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+    cloudflare_zero_trust_access_identity_provider.gmail.id,
+    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+
+    cloudflare_zero_trust_access_identity_provider.pin.id
+  ]
+  app_launcher_visible       = true
+  auto_redirect_to_identity  = false
+  domain                     = "copyparty.${var.domain_name}"
+  enable_binding_cookie      = false
+  http_only_cookie_attribute = true
+  name                       = "Copyparty"
+  same_site_cookie_attribute = "lax"
+  session_duration           = "15m"
+  type                       = "self_hosted"
+  destinations {
+    type = "public"
+    uri  = "copyparty.${var.domain_name}"
+  }
+  cors_headers {
+    allow_all_headers = true
+    allow_all_methods = true
+    allow_credentials = true
+    allowed_origins   = [var.domain_name, "copyparty.${var.domain_name}"]
+    max_age           = 3600
+  }
+}
 
 resource "cloudflare_zero_trust_access_application" "dillinger" {
   account_id = var.cloudflare_account_id
@@ -467,7 +466,7 @@ resource "cloudflare_zero_trust_access_application" "dillinger" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -504,7 +503,7 @@ resource "cloudflare_zero_trust_access_application" "tunnel_secret_worker" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -535,7 +534,7 @@ resource "cloudflare_zero_trust_access_application" "tunnel_secret_worker" {
 #     cloudflare_zero_trust_access_identity_provider.gmail.id,
 #     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
 #     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-#     cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+#     
 #     cloudflare_zero_trust_access_identity_provider.pin.id,
 #   ]
 #   app_launcher_visible       = true
@@ -571,7 +570,7 @@ resource "cloudflare_zero_trust_access_application" "app_launcher" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   auto_redirect_to_identity = false
@@ -592,7 +591,7 @@ resource "cloudflare_zero_trust_access_application" "app_launcher" {
 #     cloudflare_zero_trust_access_identity_provider.gmail.id,
 #     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
 #     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-#     cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+#     
 #     cloudflare_zero_trust_access_identity_provider.pin.id
 #   ]
 #   app_launcher_visible       = true
@@ -627,7 +626,7 @@ resource "cloudflare_zero_trust_access_application" "servarr" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -663,7 +662,6 @@ resource "cloudflare_zero_trust_access_application" "caddy_api" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -693,7 +691,7 @@ resource "cloudflare_zero_trust_access_application" "ollama" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -723,7 +721,7 @@ resource "cloudflare_zero_trust_access_application" "tldraw" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -751,7 +749,7 @@ resource "cloudflare_zero_trust_access_application" "tldraw" {
 #     cloudflare_zero_trust_access_identity_provider.gmail.id,
 #     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
 #     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-#     cloudflare_zero_trust_access_identity_provider.authentik_saml.id,
+#     
 #     cloudflare_zero_trust_access_identity_provider.pin.id
 #   ]
 #   app_launcher_visible       = true
