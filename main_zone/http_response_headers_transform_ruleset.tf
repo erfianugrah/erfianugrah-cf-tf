@@ -78,4 +78,18 @@ resource "cloudflare_ruleset" "http_response_headers_transform" {
     enabled     = false
     expression  = "(http.host contains \"privatebin.${var.domain_name}\")"
   }
+  # rules {
+  #   action = "rewrite"
+  #   action_parameters {
+  #     headers {
+  #       name      = "Content-Security-Policy"
+  #       operation = "set"
+  #       value     = "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://challenges.cloudflare.com https://authentik.${var.domain_name}; default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' wss://authentik.${var.domain_name} https://authentik.${var.domain_name};"
+  #     }
+  #   }
+  #   description = "Add CSP header for Authentik"
+  #   enabled     = true
+  #   expression  = "(http.host eq \"authentik.${var.domain_name}\")"
+  # }
 }
+

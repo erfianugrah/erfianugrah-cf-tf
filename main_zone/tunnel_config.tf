@@ -169,19 +169,19 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
       hostname = "copyparty.${var.domain_name}"
       service  = "http://172.19.66.2:3923"
     }
-    # ingress_rule {
-    #   hostname = "vaultwarden.${var.domain_name}"
-    #   service  = "http://172.19.4.2:80"
-    # }
-    # ingress_rule {
-    #   hostname = "vaultwarden.${var.domain_name}"
-    #   path     = "notifications/hub"
-    #   service  = "http://172.19.0.2:3012"
-    # }
-    # ingress_rule {
-    #   hostname = "joplin.${var.domain_name}"
-    #   service  = "http://172.41.0.2:22300"
-    # }
+    ingress_rule {
+      hostname = "vaultwarden.${var.domain_name}"
+      service  = "http://172.19.4.2:80"
+    }
+    ingress_rule {
+      hostname = "vaultwarden.${var.domain_name}"
+      path     = "notifications/hub"
+      service  = "http://172.19.0.2:3012"
+    }
+    ingress_rule {
+      hostname = "joplin.${var.domain_name}"
+      service  = "http://172.19.13.2:22300"
+    }
     ingress_rule {
       hostname = "file.${var.domain_name}"
       service  = "http://172.19.6.2:80"
@@ -201,6 +201,10 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
     ingress_rule {
       hostname = "qbit.${var.domain_name}"
       service  = "http://172.19.10.2:8080"
+    }
+    ingress_rule {
+      hostname = "keycloak.${var.domain_name}"
+      service  = "http://172.19.12.2:8080"
     }
     # ingress_rule {
     #   hostname = var.domain_name
@@ -388,15 +392,15 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "proxmox" {
       hostname = "sabnzbd-mox.${var.secondary_domain_name}"
       service  = "http://10.68.73.3:8080"
     }
-    ingress_rule {
-      hostname = "vaultwarden.${var.domain_name}"
-      service  = "http://10.68.73.3:9999"
-    }
-    ingress_rule {
-      hostname = "vaultwarden.${var.domain_name}"
-      path     = "notifications/hub"
-      service  = "http://10.68.73.3:10000"
-    }
+    # ingress_rule {
+    #   hostname = "vaultwarden.${var.domain_name}"
+    #   service  = "http://10.68.73.3:9999"
+    # }
+    # ingress_rule {
+    #   hostname = "vaultwarden.${var.domain_name}"
+    #   path     = "notifications/hub"
+    #   service  = "http://10.68.73.3:10000"
+    # }
     ingress_rule {
       service = "http_status:404"
     }

@@ -75,8 +75,8 @@ module "media_dns" {
     },
     joplin = {
       name    = "joplin"
-      type    = "A"
-      content = var.sg_ip
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
       comment = "notes"
@@ -643,8 +643,8 @@ module "auth_dns" {
     # Active records
     keycloak = {
       name    = "keycloak"
-      type    = "A"
-      content = var.sg_ip
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
       comment = "auth server"
@@ -652,8 +652,8 @@ module "auth_dns" {
     },
     vaultwarden = {
       name    = "vaultwarden"
-      type    = "A"
-      content = var.sg_ip
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true
       ttl     = 1
       comment = "password manager"
