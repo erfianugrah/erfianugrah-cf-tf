@@ -4,7 +4,7 @@ resource "cloudflare_zero_trust_access_policy" "allow_erfi" {
   name       = "Allow Erfi"
   # precedence       = "1"
   decision         = "allow"
-  session_duration = "30m"
+  session_duration = "24h"
 
   include {
     group = [cloudflare_zero_trust_access_group.erfi_corp.id]
@@ -65,7 +65,7 @@ resource "cloudflare_zero_trust_access_policy" "allow_cf" {
   name       = "Allow Cloudflare"
   # precedence       = "3"
   decision         = "allow"
-  session_duration = "30m"
+  session_duration = "24h"
 
   include {
     group = [cloudflare_zero_trust_access_group.cf_corp.id]
