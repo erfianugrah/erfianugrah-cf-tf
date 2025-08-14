@@ -389,9 +389,9 @@ resource "cloudflare_zero_trust_access_application" "kubectl_saas" {
     grant_types                      = ["authorization_code_with_pkce", "refresh_tokens"]
     scopes                           = ["openid", "email", "profile", "groups"]
     allow_pkce_without_client_secret = true
-    access_token_lifetime            = "24h"
+    access_token_lifetime            = "5m"
     refresh_token_options {
-      lifetime = "7d"
+      lifetime = "24h"
     }
     # hybrid_and_implicit_options {
     #   return_id_token_from_authorization_endpoint     = true
