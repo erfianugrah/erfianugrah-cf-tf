@@ -386,17 +386,17 @@ resource "cloudflare_zero_trust_access_application" "kubectl_saas" {
     # public_key = var.authentik_saas_public_key
     # client_id     = var.authentik_saas_client_id
     redirect_uris                    = ["http://localhost:8000", "http://127.0.0.1:8000", "http://localhost:18000", "http://127.0.0.1:18000", "urn:ietf:wg:oauth:2.0:oob"]
-    grant_types                      = ["authorization_code_with_pkce" /* "refresh_tokens"] */]
+    grant_types                      = ["authorization_code_with_pkce", "refresh_tokens"]
     scopes                           = ["openid", "email", "profile", "groups"]
     allow_pkce_without_client_secret = true
     access_token_lifetime            = "24h"
-    # refresh_token_options {
-    #   lifetime = "7d"
-    # }
-    hybrid_and_implicit_options {
-      return_id_token_from_authorization_endpoint     = true
-      return_access_token_from_authorization_endpoint = true
+    refresh_token_options {
+      lifetime = "7d"
     }
+    # hybrid_and_implicit_options {
+    #   return_id_token_from_authorization_endpoint     = true
+    #   return_access_token_from_authorization_endpoint = true
+    # }
   }
 }
 
