@@ -50,6 +50,14 @@ resource "cloudflare_zero_trust_access_identity_provider" "authentik_oidc" {
     email_claim_name = "email"
     scopes           = ["openid", "email", "profile"]
     token_url        = "https://authentik.${var.domain_name}/application/o/token/"
+    pkce_enabled     = true
+  }
+  scim_config {
+    secret                   = var.authentik_scim_secret
+    enabled                  = true
+    user_deprovision         = true
+    seat_deprovision         = true
+    identity_update_behavior = "automatic"
   }
 }
 

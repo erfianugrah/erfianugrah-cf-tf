@@ -128,6 +128,12 @@ variable "authentik_oidc_client_id" {
   sensitive   = true
 }
 
+variable "authentik_scim_secret" {
+  description = "authentik_scim_secret"
+  type        = string
+  sensitive   = true
+}
+
 variable "entra_id_client_id" {
   description = "entra_id_client_id"
   type        = string
