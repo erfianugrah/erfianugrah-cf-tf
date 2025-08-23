@@ -61,3 +61,73 @@ output "kubectl_saas" {
   sensitive = true
 }
 
+output "prometheus_token" {
+  value = {
+    id            = cloudflare_zero_trust_access_service_token.prometheus_token.id
+    client_id     = cloudflare_zero_trust_access_service_token.prometheus_token.client_id
+    client_secret = cloudflare_zero_trust_access_service_token.prometheus_token.client_secret
+    name          = cloudflare_zero_trust_access_service_token.prometheus_token.name
+  }
+  sensitive = true
+}
+
+output "tunnel_secret_worker_token" {
+  value = {
+    id            = cloudflare_zero_trust_access_service_token.tunnel_secret_worker_token.id
+    client_id     = cloudflare_zero_trust_access_service_token.tunnel_secret_worker_token.client_id
+    client_secret = cloudflare_zero_trust_access_service_token.tunnel_secret_worker_token.client_secret
+    name          = cloudflare_zero_trust_access_service_token.tunnel_secret_worker_token.name
+  }
+  sensitive = true
+}
+
+output "caddy_api_token" {
+  value = {
+    id            = cloudflare_zero_trust_access_service_token.caddy_api_token.id
+    client_id     = cloudflare_zero_trust_access_service_token.caddy_api_token.client_id
+    client_secret = cloudflare_zero_trust_access_service_token.caddy_api_token.client_secret
+    name          = cloudflare_zero_trust_access_service_token.caddy_api_token.name
+  }
+  sensitive = true
+}
+
+output "ollama_token" {
+  value = {
+    id            = cloudflare_zero_trust_access_service_token.ollama_token.id
+    client_id     = cloudflare_zero_trust_access_service_token.ollama_token.client_id
+    client_secret = cloudflare_zero_trust_access_service_token.ollama_token.client_secret
+    name          = cloudflare_zero_trust_access_service_token.ollama_token.name
+  }
+  sensitive = true
+}
+
+output "warp_auth_token" {
+  value = {
+    id            = cloudflare_zero_trust_access_service_token.warp_auth_token.id
+    client_id     = cloudflare_zero_trust_access_service_token.warp_auth_token.client_id
+    client_secret = cloudflare_zero_trust_access_service_token.warp_auth_token.client_secret
+    name          = cloudflare_zero_trust_access_service_token.warp_auth_token.name
+  }
+  sensitive = true
+}
+
+output "overseerr_token" {
+  value = {
+    id            = cloudflare_zero_trust_access_service_token.overseerr_token.id
+    client_id     = cloudflare_zero_trust_access_service_token.overseerr_token.client_id
+    client_secret = cloudflare_zero_trust_access_service_token.overseerr_token.client_secret
+    name          = cloudflare_zero_trust_access_service_token.overseerr_token.name
+  }
+  sensitive = true
+}
+
+output "servarr_token" {
+  value = {
+    id            = cloudflare_zero_trust_access_service_token.servarr_token.id
+    client_id     = cloudflare_zero_trust_access_service_token.servarr_token.client_id
+    client_secret = cloudflare_zero_trust_access_service_token.servarr_token.client_secret
+    name          = cloudflare_zero_trust_access_service_token.servarr_token.name
+  }
+  sensitive = true
+}
+

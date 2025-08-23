@@ -627,7 +627,8 @@ resource "cloudflare_zero_trust_access_application" "app_launcher" {
 resource "cloudflare_zero_trust_access_application" "servarr" {
   account_id = var.cloudflare_account_id
   policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id
+    cloudflare_zero_trust_access_policy.allow_erfi.id,
+    cloudflare_zero_trust_access_policy.servarr_token.id
   ]
   allowed_idps = [
     cloudflare_zero_trust_access_identity_provider.entra_id.id,
@@ -635,7 +636,6 @@ resource "cloudflare_zero_trust_access_application" "servarr" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true

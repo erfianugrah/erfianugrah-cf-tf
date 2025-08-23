@@ -33,3 +33,9 @@ resource "cloudflare_zero_trust_access_service_token" "overseerr_token" {
   name       = "overseerr_token"
   duration   = "forever"
 }
+
+resource "cloudflare_zero_trust_access_service_token" "servarr_token" {
+  account_id = var.cloudflare_account_id
+  name       = "servarr_token"
+  duration   = "forever"
+}

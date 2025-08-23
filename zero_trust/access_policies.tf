@@ -389,6 +389,19 @@ resource "cloudflare_zero_trust_access_policy" "overseerr_token" {
   }
 }
 
+resource "cloudflare_zero_trust_access_policy" "servarr_token" {
+  # application_id   = cloudflare_zero_trust_access_application.ollama.id
+  account_id = var.cloudflare_account_id
+  name       = "unraid_api"
+  # precedence       = "1"
+  decision         = "non_identity"
+  session_duration = "30m"
+
+  include {
+    service_token = [cloudflare_zero_trust_access_service_token.servarr_token.id]
+  }
+}
+
 resource "cloudflare_zero_trust_access_policy" "allow_interview" {
   # application_id   = cloudflare_zero_trust_access_application.privatebin.id
   account_id = var.cloudflare_account_id
