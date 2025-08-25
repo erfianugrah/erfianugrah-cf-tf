@@ -48,7 +48,7 @@ resource "cloudflare_zero_trust_access_identity_provider" "authentik_oidc" {
     client_id        = var.authentik_oidc_client_id
     client_secret    = var.authentik_oidc_secret
     email_claim_name = "email"
-    scopes           = ["openid", "email", "profile"]
+    scopes           = ["openid", "email", "profile", "offline_access"]
     token_url        = "https://authentik.${var.domain_name}/application/o/token/"
     pkce_enabled     = true
   }
