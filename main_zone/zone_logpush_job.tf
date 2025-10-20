@@ -38,7 +38,7 @@ resource "cloudflare_logpush_job" "http_r2" {
       "ClientRequestQuery", "Datetime", "Description", "Kind", "MatchIndex", "Metadata",
       "OriginatorRayID", "Ref", "RuleID", "Source", "LeakedCredentialCheckResult",
       "BotDetectionTags", "ClientCity", "ClientLatitude", "ClientLongitude",
-      "ContentScanObjSizes", "JA4", "JA4Signals", "ParentRayID", "RayID",
+      "ContentScanObjSizes", "JA4", "JA4Signals", "JSDetectionPassed", "ParentRayID", "RayID", "VerifiedBotCategory",
       "WorkerScriptName"
     ]
     timestamp_format = "rfc3339"

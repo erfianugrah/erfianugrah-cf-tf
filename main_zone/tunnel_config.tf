@@ -200,7 +200,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
     }
     ingress_rule {
       hostname = "qbit.${var.domain_name}"
-      service  = "http://172.19.10.2:8080"
+      service  = "http://172.19.1.22:8080"
     }
     ingress_rule {
       hostname = "keycloak.${var.domain_name}"
