@@ -52,6 +52,10 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "erfipie" {
       service  = "http://172.40.1.2:5858"
     }
     ingress_rule {
+      hostname = "uptime.${var.secondary_domain_name}"
+      service  = "http://172.25.1.2:3001"
+    }
+    ingress_rule {
       service = "http_status:404"
     }
   }
