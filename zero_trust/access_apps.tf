@@ -385,7 +385,7 @@ resource "cloudflare_zero_trust_access_application" "kubectl_saas" {
     auth_type = "oidc"
     # public_key = var.authentik_saas_public_key
     # client_id     = var.authentik_saas_client_id
-    redirect_uris                    = ["http://localhost:8000", "http://127.0.0.1:8000", "http://localhost:18000", "http://127.0.0.1:18000", "urn:ietf:wg:oauth:2.0:oob"]
+    redirect_uris                    = ["http://localhost:8000", "http://127.0.0.1:8000", "http://localhost:18000", "http://127.0.0.1:18000", /* "urn:ietf:wg:oauth:2.0:oob" */]
     grant_types                      = ["authorization_code_with_pkce", "refresh_tokens"]
     scopes                           = ["openid", "email", "profile", "groups"]
     allow_pkce_without_client_secret = true
