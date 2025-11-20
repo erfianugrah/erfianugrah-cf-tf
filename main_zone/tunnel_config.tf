@@ -56,6 +56,15 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "erfipie" {
       service  = "http://172.25.1.2:3001"
     }
     ingress_rule {
+      hostname = "vault.${var.secondary_domain_name}"
+      service  = "http://172.50.1.2:80"
+    }
+    ingress_rule {
+      hostname = "vault.${var.secondary_domain_name}"
+      path     = "notifications/hub"
+      service  = "http://172.50.1.2:3012"
+    }
+    ingress_rule {
       service = "http_status:404"
     }
   }
@@ -180,7 +189,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
     ingress_rule {
       hostname = "vaultwarden.${var.domain_name}"
       path     = "notifications/hub"
-      service  = "http://172.19.0.2:3012"
+      service  = "http://172.19.4.2:3012"
     }
     ingress_rule {
       hostname = "joplin.${var.domain_name}"
