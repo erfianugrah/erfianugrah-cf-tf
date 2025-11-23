@@ -269,6 +269,15 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "vyos_nl" {
       service  = "http://10.0.10.8:80"
     }
     ingress_rule {
+      hostname = "gloryhole.${var.secondary_domain_name}"
+      path     = "/metrics"
+      service  = "http://10.0.10.10:9090"
+    }
+    ingress_rule {
+      hostname = "gloryhole.${var.secondary_domain_name}"
+      service  = "http://10.0.10.10:8080"
+    }
+    ingress_rule {
       hostname = "tpi.${var.domain_name}"
       service  = "https://10.0.71.8:443"
       origin_request {
