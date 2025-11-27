@@ -115,21 +115,21 @@ resource "cloudflare_notification_policy" "adv_waf_alert" {
 #     # slo = ["98.0"]
 #   }
 # }
-resource "cloudflare_notification_policy" "http_error_alert" {
-  account_id  = var.cloudflare_account_id
-  name        = "HTTP Error Alert"
-  description = "HTTP Error Alert"
-  enabled     = true
-  alert_type  = "advanced_http_alert_error"
-
-  email_integration {
-    id = var.cloudflare_email
-  }
-
-  filters {
-    slo      = ["99.9"]
-    zones    = ["3f2c4daa43d5920f313654a873b31d06"]
-    where    = ["(edge_status_code ge 500)"]
-    group_by = ["zone"]
-  }
-}
+# resource "cloudflare_notification_policy" "http_error_alert" {
+#   account_id  = var.cloudflare_account_id
+#   name        = "HTTP Error Alert"
+#   description = "HTTP Error Alert"
+#   enabled     = true
+#   alert_type  = "advanced_http_alert_error"
+#
+#   email_integration {
+#     id = var.cloudflare_email
+#   }
+#
+#   filters {
+#     slo      = ["99.9"]
+#     zones    = ["3f2c4daa43d5920f313654a873b31d06"]
+#     where    = ["(edge_status_code ge 500)"]
+#     group_by = ["zone"]
+#   }
+# }
