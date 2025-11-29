@@ -730,7 +730,6 @@ resource "cloudflare_zero_trust_access_application" "tldraw" {
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
   app_launcher_visible       = true
@@ -777,10 +776,6 @@ resource "cloudflare_zero_trust_access_application" "interview" {
   account_id = var.cloudflare_account_id
   policies = [
     cloudflare_zero_trust_access_policy.allow_erfi.id,
-    cloudflare_zero_trust_access_policy.allow_interview.id,
-    cloudflare_zero_trust_access_policy.allow_lena.id,
-    cloudflare_zero_trust_access_policy.allow_unker.id,
-    cloudflare_zero_trust_access_policy.allow_oma.id
   ]
   allowed_idps = [
     cloudflare_zero_trust_access_identity_provider.gmail.id,
@@ -811,5 +806,42 @@ resource "cloudflare_zero_trust_access_application" "interview" {
   destinations {
     type = "public"
     uri  = "*.interview-0.pages.dev"
+  }
+}
+
+resource "cloudflare_zero_trust_access_application" "gloryhole" {
+  account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_zero_trust_access_policy.allow_erfi.id,
+  ]
+  allowed_idps = [
+    cloudflare_zero_trust_access_identity_provider.entra_id.id,
+    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+    cloudflare_zero_trust_access_identity_provider.gmail.id,
+    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+    cloudflare_zero_trust_access_identity_provider.pin.id
+  ]
+  app_launcher_visible       = true
+  auto_redirect_to_identity  = false
+  domain                     = "gloryhole.${var.secondary_domain_name}"
+  enable_binding_cookie      = true
+  http_only_cookie_attribute = false
+  same_site_cookie_attribute = "lax"
+  name                       = "Gloryhole"
+  service_auth_401_redirect  = true
+  session_duration           = "24h"
+  type                       = "self_hosted"
+  logo_url                   = "https://cdn.erfianugrah.com/ea_favicon.png"
+  cors_headers {
+    allow_all_headers = true
+    allow_all_methods = true
+    allow_credentials = true
+    allowed_origins   = [var.secondary_domain_name]
+    max_age           = 3600
+  }
+  destinations {
+    type = "public"
+    uri  = "gloryhole.${var.secondary_domain_name}"
   }
 }
