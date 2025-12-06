@@ -378,16 +378,16 @@ module "media_dns" {
       ttl     = 1
       comment = "file server"
       tags    = ["servarr"]
-    },
-    root_revista = {
-      name    = "@"
-      type    = "CNAME"
-      content = var.pages_domain
-      proxied = true
-      ttl     = 1
-      comment = "revista"
-      tags    = ["revista"]
     }
+    # root_revista = {
+    #   name    = "@"
+    #   type    = "CNAME"
+    #   content = var.pages_domain
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "revista"
+    #   tags    = ["revista"]
+    # }
     # Additional commented media services can be added here
   }
 }
@@ -870,15 +870,15 @@ module "special_dns" {
       ttl     = 1
       comment = "whatami test site"
     },
-    www_revista = {
-      name    = "www"
-      type    = "CNAME"
-      content = var.pages_domain
-      proxied = true
-      ttl     = 1
-      comment = "www"
-      tags    = ["revista"]
-    },
+    # www_revista = {
+    #   name    = "www"
+    #   type    = "CNAME"
+    #   content = var.pages_domain
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "www"
+    #   tags    = ["revista"]
+    # },
     # acme_challenge_custom_hostname_2 = {
     #   name    = "_acme-challenge.custom-hostname-2"
     #   type    = "CNAME"
