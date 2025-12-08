@@ -60,6 +60,21 @@ resource "cloudflare_api_token" "caddy_dns" {
   }
 }
 
+resource "cloudflare_api_token" "gloryhole_dns" {
+  name = "gloryhole_dns_account"
+  policy {
+    effect = "allow"
+    permission_groups = [
+      data.cloudflare_api_token_permission_groups.all.zone["DNS Write"]
+    ]
+    resources = {
+      "com.cloudflare.api.account.${var.cloudflare_account_id}" = jsonencode({
+        "com.cloudflare.api.account.zone.*" = "*"
+      })
+    }
+  }
+}
+
 resource "cloudflare_api_token" "insomnia" {
   name = "insomnia"
   policy {
