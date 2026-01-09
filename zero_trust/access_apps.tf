@@ -654,7 +654,7 @@ resource "cloudflare_zero_trust_access_application" "servarr" {
   cors_headers {
     allow_all_headers = true
     allow_all_methods = true
-    allowed_origins   = [var.domain_name, "servarr.${var.domain_name}"]
+    allowed_origins   = [var.thirdary_domain_name, "servarr.${var.thirdary_domain_name}"]
     max_age           = 3600
   }
 }
