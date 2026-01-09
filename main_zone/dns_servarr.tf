@@ -340,7 +340,7 @@ module "media_dns" {
       tags    = ["servarr"]
     },
     jellyseerr = {
-      name    = "jellyseerr"
+      name    = "seerr"
       type    = "CNAME"
       content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
       proxied = true

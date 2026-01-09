@@ -171,7 +171,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
       service  = "http://172.19.1.17:4533"
     }
     ingress_rule {
-      hostname = "jellyseerr.${var.thirdary_domain_name}"
+      hostname = "seerr.${var.thirdary_domain_name}"
       service  = "http://172.19.1.21:5055"
     }
     ingress_rule {
