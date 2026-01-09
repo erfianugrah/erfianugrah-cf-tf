@@ -21,8 +21,8 @@ module "base_certificates" {
 module "media_certificates" {
   source = "./modules/certificate_packs"
 
-  zone_id              = var.cloudflare_zone_id
-  domain_name          = var.domain_name
+  zone_id              = var.thirdary_cloudflare_zone_id
+  domain_name          = var.thirdary_domain_name
   create_wildcard_cert = false
 
   # Use the records_for_certificates output from the media DNS module
@@ -118,3 +118,4 @@ output "certificate_summary" {
     )
   }
 }
+

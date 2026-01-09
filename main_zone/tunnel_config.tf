@@ -123,100 +123,100 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
       enabled = true
     }
     ingress_rule {
-      hostname = "prom-caddy-sg.${var.domain_name}"
+      hostname = "prom-caddy-sg.${var.thirdary_domain_name}"
       service  = "http://localhost:2018"
     }
     ingress_rule {
-      hostname = "port.${var.domain_name}"
+      hostname = "port.${var.thirdary_domain_name}"
       service  = "http://172.17.0.2:9000"
     }
     ingress_rule {
-      hostname = "plex.${var.domain_name}"
+      hostname = "plex.${var.thirdary_domain_name}"
       service  = "http://172.19.1.8:32400"
     }
     ingress_rule {
-      hostname = "radarr.${var.domain_name}"
+      hostname = "radarr.${var.thirdary_domain_name}"
       service  = "http://172.19.1.2:7878"
     }
     ingress_rule {
-      hostname = "sonarr.${var.domain_name}"
+      hostname = "sonarr.${var.thirdary_domain_name}"
       service  = "http://172.19.1.3:8989"
     }
     ingress_rule {
-      hostname = "sabnzbd.${var.domain_name}"
+      hostname = "sabnzbd.${var.thirdary_domain_name}"
       service  = "http://172.19.1.19:6666"
     }
     ingress_rule {
-      hostname = "bazarr.${var.domain_name}"
+      hostname = "bazarr.${var.thirdary_domain_name}"
       service  = "http://172.19.1.4:6767"
     }
     ingress_rule {
-      hostname = "jellyfin.${var.domain_name}"
+      hostname = "jellyfin.${var.thirdary_domain_name}"
       service  = "http://172.19.1.15:8096"
     }
     ingress_rule {
-      hostname = "tautulli.${var.domain_name}"
+      hostname = "tautulli.${var.thirdary_domain_name}"
       service  = "http://172.19.1.14:8181"
     }
     ingress_rule {
-      hostname = "prowlarr.${var.domain_name}"
+      hostname = "prowlarr.${var.thirdary_domain_name}"
       service  = "http://172.19.1.10:9696"
     }
     ingress_rule {
-      hostname = "overseerr.${var.domain_name}"
+      hostname = "overseerr.${var.thirdary_domain_name}"
       service  = "http://172.19.1.13:5055"
     }
     ingress_rule {
-      hostname = "navidrome.${var.domain_name}"
+      hostname = "navidrome.${var.thirdary_domain_name}"
       service  = "http://172.19.1.17:4533"
     }
     ingress_rule {
-      hostname = "jellyseerr.${var.domain_name}"
+      hostname = "jellyseerr.${var.thirdary_domain_name}"
       service  = "http://172.19.1.21:5055"
     }
     ingress_rule {
-      hostname = "quantum.${var.domain_name}"
+      hostname = "quantum.${var.thirdary_domain_name}"
       service  = "http://172.19.30.2:80"
     }
     ingress_rule {
-      hostname = "copyparty.${var.domain_name}"
+      hostname = "copyparty.${var.thirdary_domain_name}"
       service  = "http://172.19.66.2:3923"
     }
     ingress_rule {
-      hostname = "vaultwarden.${var.domain_name}"
+      hostname = "vaultwarden.${var.thirdary_domain_name}"
       service  = "http://172.19.4.2:80"
     }
     ingress_rule {
-      hostname = "vaultwarden.${var.domain_name}"
+      hostname = "vaultwarden.${var.thirdary_domain_name}"
       path     = "notifications/hub"
       service  = "http://172.19.4.2:3012"
     }
     ingress_rule {
-      hostname = "joplin.${var.domain_name}"
+      hostname = "joplin.${var.thirdary_domain_name}"
       service  = "http://172.19.13.2:22300"
     }
     ingress_rule {
-      hostname = "file.${var.domain_name}"
+      hostname = "file.${var.thirdary_domain_name}"
       service  = "http://172.19.6.2:80"
     }
     ingress_rule {
-      hostname = "servarr.${var.domain_name}"
+      hostname = "servarr.${var.thirdary_domain_name}"
       service  = "http://localhost:90"
     }
     ingress_rule {
-      hostname = "dockge-sg.${var.domain_name}"
+      hostname = "dockge-sg.${var.thirdary_domain_name}"
       service  = "http://172.17.0.2:5001"
     }
     ingress_rule {
-      hostname = "immich.${var.domain_name}"
+      hostname = "immich.${var.thirdary_domain_name}"
       service  = "http://172.19.22.2:2283"
     }
     ingress_rule {
-      hostname = "qbit.${var.domain_name}"
+      hostname = "qbit.${var.thirdary_domain_name}"
       service  = "http://172.19.1.22:8080"
     }
     ingress_rule {
-      hostname = "keycloak.${var.domain_name}"
+      hostname = "keycloak.${var.thirdary_domain_name}"
       service  = "http://172.19.12.2:8080"
     }
     # ingress_rule {

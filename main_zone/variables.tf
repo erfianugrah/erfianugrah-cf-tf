@@ -28,6 +28,12 @@ variable "secondary_cloudflare_zone_id" {
   sensitive   = true
 }
 
+variable "thirdary_cloudflare_zone_id" {
+  description = "The zone ID for the thirdary Cloudflare domain"
+  type        = string
+  sensitive   = true
+}
+
 variable "cloudflare_account_id" {
   description = "The zone ID for the Cloudflare domain"
   type        = string
@@ -65,11 +71,17 @@ variable "domain_name" {
 }
 
 variable "secondary_domain_name" {
-  description = "The secondry domain name to be used"
+  description = "The secondary domain name to be used"
   type        = string
   sensitive   = true
-
 }
+
+variable "thirdary_domain_name" {
+  description = "The thirdary domain name to be used"
+  type        = string
+  sensitive   = true
+}
+
 variable "joplin_pem_path" {
   description = "joplin_pem_path"
   type        = string
