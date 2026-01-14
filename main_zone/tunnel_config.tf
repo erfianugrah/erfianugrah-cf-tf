@@ -49,7 +49,10 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "erfipie" {
     }
     ingress_rule {
       hostname = "draw.${var.secondary_domain_name}"
-      service  = "http://172.40.1.2:5858"
+      service  = "https://172.41.1.2:443"
+      origin_request {
+        origin_server_name = "draw.erfi.dev"
+      }
     }
     ingress_rule {
       hostname = "uptime.${var.secondary_domain_name}"

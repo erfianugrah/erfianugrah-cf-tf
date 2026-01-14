@@ -718,34 +718,34 @@ resource "cloudflare_zero_trust_access_application" "ollama" {
   }
 }
 
-resource "cloudflare_zero_trust_access_application" "tldraw" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-    cloudflare_zero_trust_access_policy.allow_cf.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "draw.${var.secondary_domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = false
-  name                       = "TLDraw"
-  service_auth_401_redirect  = true
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "draw.${var.secondary_domain_name}"
-  }
-}
+# resource "cloudflare_zero_trust_access_application" "tldraw" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#     cloudflare_zero_trust_access_policy.allow_cf.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "draw.${var.secondary_domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = false
+#   name                       = "TLDraw"
+#   service_auth_401_redirect  = true
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "draw.${var.secondary_domain_name}"
+#   }
+# }
 # resource "cloudflare_zero_trust_access_application" "kubectl" {
 #   account_id = var.cloudflare_account_id
 #   policies = [
