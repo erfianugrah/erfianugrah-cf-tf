@@ -722,7 +722,6 @@ resource "cloudflare_zero_trust_access_application" "draw" {
   account_id = var.cloudflare_account_id
   policies = [
     cloudflare_zero_trust_access_policy.allow_erfi.id,
-    cloudflare_zero_trust_access_policy.allow_cf.id
   ]
   allowed_idps = [
     cloudflare_zero_trust_access_identity_provider.entra_id.id,
