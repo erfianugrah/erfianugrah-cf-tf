@@ -735,7 +735,8 @@ resource "cloudflare_zero_trust_access_application" "draw" {
   auto_redirect_to_identity  = false
   domain                     = "draw.${var.secondary_domain_name}"
   enable_binding_cookie      = false
-  http_only_cookie_attribute = false
+  http_only_cookie_attribute = true
+  same_site_cookie_attribute = "lax"
   name                       = "Excalidraw"
   service_auth_401_redirect  = true
   session_duration           = "24h"
@@ -743,6 +744,13 @@ resource "cloudflare_zero_trust_access_application" "draw" {
   destinations {
     type = "public"
     uri  = "draw.${var.secondary_domain_name}"
+  }
+  cors_headers {
+    allow_all_headers = true
+    allow_all_methods = true
+    allow_credentials = true
+    allowed_origins   = ["draw.${var.secondary_domain_name}"]
+    max_age           = 3600
   }
 }
 # resource "cloudflare_zero_trust_access_application" "kubectl" {
