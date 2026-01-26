@@ -192,6 +192,19 @@ resource "cloudflare_api_token" "kv_admin" {
     }
   }
 }
+
+resource "cloudflare_api_token" "radar" {
+  name = "radar"
+  policy {
+    effect = "allow"
+    permission_groups = [
+      data.cloudflare_api_token_permission_groups.all.account["Radar Read"]
+    ]
+    resources = {
+      "com.cloudflare.api.account.*" = "*"
+    }
+  }
+}
 # Example templates for different token types (commented out)
 
 /*

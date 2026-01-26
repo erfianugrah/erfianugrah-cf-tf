@@ -69,6 +69,11 @@ output "cloudflare_api_token_kv_admin" {
   sensitive = true
 }
 
+output "radar_read_token" {
+  value     = cloudflare_api_token.radar.value
+  sensitive = true
+}
+
 output "success" {
   value = local.success
 }
