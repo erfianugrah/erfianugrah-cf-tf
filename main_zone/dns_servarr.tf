@@ -96,15 +96,15 @@ module "media_dns" {
     #   comment = "overseerr"
     #   tags    = ["servarr"]
     # },
-    plex = {
-      name    = "plex"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
-      proxied = true
-      ttl     = 1
-      comment = "plex"
-      tags    = ["servarr"]
-    },
+    # plex = {
+    #   name    = "plex"
+    #   type    = "CNAME"
+    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   proxied = true
+    #   ttl     = 1
+    #   comment = "plex"
+    #   tags    = ["servarr"]
+    # },
     prowlarr = {
       name    = "prowlarr"
       type    = "CNAME"

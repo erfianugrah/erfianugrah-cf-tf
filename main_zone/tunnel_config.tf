@@ -133,10 +133,10 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
       hostname = "port.${var.thirdary_domain_name}"
       service  = "http://172.17.0.2:9000"
     }
-    ingress_rule {
-      hostname = "plex.${var.thirdary_domain_name}"
-      service  = "http://172.19.1.8:32400"
-    }
+    # ingress_rule {
+    #   hostname = "plex.${var.thirdary_domain_name}"
+    #   service  = "http://172.19.1.8:32400"
+    # }
     ingress_rule {
       hostname = "radarr.${var.thirdary_domain_name}"
       service  = "http://172.19.1.2:7878"
