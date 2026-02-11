@@ -17,7 +17,7 @@ module "base_certificates" {
   validity_days         = 90
 }
 
-# Media service certificates
+# Media service certificates (includes matrix)
 module "media_certificates" {
   source = "./modules/certificate_packs"
 
@@ -25,8 +25,11 @@ module "media_certificates" {
   domain_name          = var.thirdary_domain_name
   create_wildcard_cert = false
 
-  # Use the records_for_certificates output from the media DNS module
-  dns_records = module.media_dns.records_for_certificates
+  # Use the records_for_certificates output from media and matrix DNS modules
+  dns_records = merge(
+    module.media_dns.records_for_certificates,
+    module.matrix_dns.records_for_certificates
+  )
 
   certificate_authority = "lets_encrypt"
   validation_method     = "txt"

@@ -67,6 +67,21 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "erfipie" {
       path     = "notifications/hub"
       service  = "http://172.50.1.2:3012"
     }
+    # Matrix Synapse homeserver
+    ingress_rule {
+      hostname = "matrix.${var.thirdary_domain_name}"
+      service  = "http://172.21.1.3:8008"
+    }
+    # Element Web chat client
+    ingress_rule {
+      hostname = "chat.${var.thirdary_domain_name}"
+      service  = "http://172.21.1.4:80"
+    }
+    # Synapse Admin
+    ingress_rule {
+      hostname = "admin.matrix.${var.thirdary_domain_name}"
+      service  = "http://172.21.1.5:8080"
+    }
     ingress_rule {
       service = "http_status:404"
     }

@@ -53,3 +53,5 @@ resource "cloudflare_zero_trust_tunnel_cloudflared" "erfi1" {
   secret     = base64encode(random_string.tunnel_secret.result)
   config_src = "cloudflare"
 }
+
+

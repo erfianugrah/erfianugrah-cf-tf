@@ -366,15 +366,42 @@ module "media_dns" {
       comment = "file server"
       tags    = ["servarr"]
     }
-    # root_revista = {
-    #   name    = "@"
-    #   type    = "CNAME"
-    #   content = var.pages_domain
-    #   proxied = true
-    #   ttl     = 1
-    #   comment = "revista"
-    #   tags    = ["revista"]
-    # }
-    # Additional commented media services can be added here
+  }
+}
+
+module "matrix_dns" {
+  source = "./modules/dns_records"
+
+  zone_id     = var.thirdary_cloudflare_zone_id
+  domain_name = var.thirdary_domain_name
+
+  records = {
+    matrix = {
+      name    = "matrix"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+      proxied = true
+      ttl     = 1
+      comment = "Matrix Synapse homeserver"
+      tags    = ["matrix"]
+    },
+    chat = {
+      name    = "chat"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+      proxied = true
+      ttl     = 1
+      comment = "Element Web client"
+      tags    = ["matrix"]
+    },
+    matrix_admin = {
+      name    = "admin.matrix"
+      type    = "CNAME"
+      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+      proxied = true
+      ttl     = 1
+      comment = "Synapse Admin"
+      tags    = ["matrix"]
+    }
   }
 }
