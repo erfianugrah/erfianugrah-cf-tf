@@ -124,3 +124,23 @@ resource "cloudflare_spectrum_application" "static_ip_test_2" {
     ]
   }
 }
+
+resource "cloudflare_spectrum_application" "jitsi_jvb_udp" {
+  origin_dns {
+    name = "jitsi-lb.${var.thirdary_domain_name}"
+  }
+  origin_port    = 10000
+  protocol       = "udp/10000"
+  proxy_protocol = "off"
+  tls            = "off"
+  traffic_type   = "direct"
+  zone_id        = var.thirdary_cloudflare_zone_id
+  dns {
+    name = "jitsi-udp.${var.thirdary_domain_name}"
+    type = "CNAME"
+  }
+  edge_ips {
+    connectivity = "ipv4"
+    type         = "dynamic"
+  }
+}

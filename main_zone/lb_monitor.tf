@@ -82,3 +82,14 @@ resource "cloudflare_load_balancer_monitor" "httpbun_arch0" {
   timeout          = 5
   type             = "http"
 }
+
+resource "cloudflare_load_balancer_monitor" "jitsi" {
+  account_id       = var.cloudflare_account_id
+  consecutive_down = 5
+  consecutive_up   = 0
+  description      = "jitsi_jvb_udp"
+  interval         = 60
+  retries          = 2
+  timeout          = 3
+  type             = "icmp_ping"
+}
