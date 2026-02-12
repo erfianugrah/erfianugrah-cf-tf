@@ -144,3 +144,23 @@ resource "cloudflare_spectrum_application" "jitsi_jvb_udp" {
     type         = "dynamic"
   }
 }
+
+resource "cloudflare_spectrum_application" "livekit_udp" {
+  origin_dns {
+    name = "livekit-lb.${var.thirdary_domain_name}"
+  }
+  origin_port    = 50000
+  protocol       = "udp/50000"
+  proxy_protocol = "off"
+  tls            = "off"
+  traffic_type   = "direct"
+  zone_id        = var.thirdary_cloudflare_zone_id
+  dns {
+    name = "livekit-udp.${var.thirdary_domain_name}"
+    type = "CNAME"
+  }
+  edge_ips {
+    connectivity = "ipv4"
+    type         = "dynamic"
+  }
+}

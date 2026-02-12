@@ -369,39 +369,40 @@ module "media_dns" {
   }
 }
 
-module "matrix_dns" {
-  source = "./modules/dns_records"
-
-  zone_id     = var.thirdary_cloudflare_zone_id
-  domain_name = var.thirdary_domain_name
-
-  records = {
-    matrix = {
-      name    = "matrix"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
-      proxied = true
-      ttl     = 1
-      comment = "Matrix Synapse homeserver"
-      tags    = ["matrix"]
-    },
-    chat = {
-      name    = "chat"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
-      proxied = true
-      ttl     = 1
-      comment = "Element Web client"
-      tags    = ["matrix"]
-    },
-    matrix_admin = {
-      name    = "admin.matrix"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
-      proxied = true
-      ttl     = 1
-      comment = "Synapse Admin"
-      tags    = ["matrix"]
-    }
-  }
-}
+# Matrix moved to k3s cluster - DNS managed in k3s/cloudflare-tunnel-tf
+# module "matrix_dns" {
+#   source = "./modules/dns_records"
+#
+#   zone_id     = var.thirdary_cloudflare_zone_id
+#   domain_name = var.thirdary_domain_name
+#
+#   records = {
+#     matrix = {
+#       name    = "matrix"
+#       type    = "CNAME"
+#       content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "Matrix Synapse homeserver"
+#       tags    = ["matrix"]
+#     },
+#     chat = {
+#       name    = "chat"
+#       type    = "CNAME"
+#       content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "Element Web client"
+#       tags    = ["matrix"]
+#     },
+#     matrix_admin = {
+#       name    = "admin.matrix"
+#       type    = "CNAME"
+#       content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "Synapse Admin"
+#       tags    = ["matrix"]
+#     }
+#   }
+# }
