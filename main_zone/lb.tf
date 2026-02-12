@@ -144,32 +144,6 @@ resource "cloudflare_load_balancer" "jitsi" {
   }
 }
 
-resource "cloudflare_load_balancer" "livekit" {
-  enabled          = true
-  proxied          = true
-  zone_id          = var.thirdary_cloudflare_zone_id
-  default_pool_ids = [cloudflare_load_balancer_pool.livekit_ipsec_k3s_nl.id]
-  fallback_pool_id = cloudflare_load_balancer_pool.livekit_ipsec_k3s_nl.id
-  name             = "livekit-lb.${var.thirdary_domain_name}"
-  session_affinity = "none"
-  steering_policy  = "dynamic_latency"
-  adaptive_routing {
-    failover_across_pools = true
-  }
-  location_strategy {
-    mode       = "pop"
-    prefer_ecs = "proximity"
-  }
-  random_steering {
-    default_weight = 1
-  }
-  session_affinity_attributes {
-    samesite               = "Auto"
-    secure                 = "Auto"
-    zero_downtime_failover = "temporary"
-  }
-}
-
 # resource "cloudflare_load_balancer" "httpbun_ipsec_arch0" {
 #   default_pool_ids = [cloudflare_load_balancer_pool.httpbun_ipsec_arch0_nl.id]
 #   enabled          = true
