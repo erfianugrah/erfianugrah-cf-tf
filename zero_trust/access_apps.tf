@@ -377,7 +377,7 @@ resource "cloudflare_zero_trust_access_application" "kubectl_saas" {
   ]
   app_launcher_visible      = true
   auto_redirect_to_identity = false
-  domain                    = "kubectl.${var.domain_name}"
+  domain                    = "kubectl.${var.thirdary_domain_name}"
   name                      = "kubectl"
   session_duration          = "24h"
   type                      = "saas"
