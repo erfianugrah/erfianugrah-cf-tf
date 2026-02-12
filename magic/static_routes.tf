@@ -47,11 +47,11 @@ resource "cloudflare_static_route" "eth2_vyos_nl_ipsec" {
 #   priority    = 100
 # }
 
-resource "cloudflare_static_route" "eth1_200_gre" {
+resource "cloudflare_static_route" "eth1_200_ipsec" {
   account_id  = var.cloudflare_account_id
   description = "VLAN_200"
   prefix      = "10.0.71.0/24"
-  nexthop     = "10.0.99.20"
+  nexthop     = "10.0.100.20"
   priority    = 100
 }
 
