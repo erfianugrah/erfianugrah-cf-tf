@@ -153,25 +153,25 @@ resource "cloudflare_load_balancer_pool" "httpbun_ipsec_erfipie_nl" {
 #   }
 # }
 
-resource "cloudflare_load_balancer_pool" "authentik_ipsec_k3s_nl" {
-  account_id      = var.cloudflare_account_id
-  check_regions   = ["ALL_REGIONS"]
-  enabled         = true
-  minimum_origins = 1
-  monitor         = cloudflare_load_balancer_monitor.authentik.id
-  name            = "authentik_ipsec_k3s_NL"
-  origins {
-    address = "10.0.71.100"
-    enabled = true
-    header {
-      header = "Host"
-      values = ["authentik.${var.thirdary_domain_name}"]
-    }
-    virtual_network_id = "be64e69c-e7b6-4e0e-9fd3-130757192c5b"
-    name               = "authentik_ipsec_k3s_nl"
-    weight             = 1
-  }
-}
+# resource "cloudflare_load_balancer_pool" "authentik_ipsec_k3s_nl" {
+#   account_id      = var.cloudflare_account_id
+#   check_regions   = ["ALL_REGIONS"]
+#   enabled         = true
+#   minimum_origins = 1
+#   monitor         = cloudflare_load_balancer_monitor.authentik.id
+#   name            = "authentik_ipsec_k3s_NL"
+#   origins {
+#     address = "10.0.71.100"
+#     enabled = true
+#     header {
+#       header = "Host"
+#       values = ["authentik.${var.thirdary_domain_name}"]
+#     }
+#     virtual_network_id = "be64e69c-e7b6-4e0e-9fd3-130757192c5b"
+#     name               = "authentik_ipsec_k3s_nl"
+#     weight             = 1
+#   }
+# }
 
 resource "cloudflare_load_balancer_pool" "jitsi_ipsec_k3s_nl" {
   account_id      = var.cloudflare_account_id
