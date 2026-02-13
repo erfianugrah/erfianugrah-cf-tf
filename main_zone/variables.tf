@@ -186,6 +186,12 @@ variable "r2_access_key" {
   type        = string
 }
 
+variable "logpush_secret" {
+  description = "Shared secret for authenticating Logpush to the Loki endpoint"
+  type        = string
+  sensitive   = true
+}
+
 variable "cf_ips" {
   default = [
     "103.21.244.0/22",
