@@ -1,5 +1,2 @@
-resource "cloudflare_total_tls" "total_tls" {
-  zone_id               = var.cloudflare_zone_id
-  enabled               = true
-  certificate_authority = "lets_encrypt"
-}
+# Removed: Total TLS disabled and removed from state.
+# Wildcard cert packs in certificates.tf provide equivalent coverage.

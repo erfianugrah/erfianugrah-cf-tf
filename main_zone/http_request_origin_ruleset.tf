@@ -50,18 +50,7 @@ resource "cloudflare_ruleset" "http_request_origin" {
     enabled     = false
     expression  = "(http.host eq \"${var.domain_name}\" and http.request.uri.path contains \"/metrics\")"
   }
-  rules {
-    action = "route"
-    action_parameters {
-      host_header = "coffee-time.pages.dev"
-      sni {
-        value = "coffee-time.pages.dev"
-      }
-    }
-    description = "Pages.dev"
-    enabled     = false
-    expression  = "(http.host eq \"${var.domain_name}\" and http.request.uri.path contains \"coffee\")"
-  }
+  # Removed: Pages.dev (coffee-time.pages.dev) — hostname not in account
   rules {
     action = "route"
     action_parameters {
@@ -74,15 +63,7 @@ resource "cloudflare_ruleset" "http_request_origin" {
     enabled     = false
     expression  = "(http.host eq \"${var.domain_name}\" and starts_with(http.request.uri.path, \"/pages\"))"
   }
-  rules {
-    action = "route"
-    action_parameters {
-      host_header = "react-erfi-3.herokuapp.com"
-    }
-    description = "React Host Override"
-    enabled     = true
-    expression  = "(http.host eq \"react.${var.domain_name}\")"
-  }
+  # Removed: React Host Override — no active DNS
   rules {
     action = "route"
     action_parameters {
@@ -126,17 +107,7 @@ resource "cloudflare_ruleset" "http_request_origin" {
     enabled     = false
     expression  = "(http.host eq \"kvm-nl.${var.domain_name}\")"
   }
-  rules {
-    action = "route"
-    action_parameters {
-      origin {
-        port = 8443
-      }
-    }
-    description = "Router"
-    enabled     = true
-    expression  = "(http.host eq \"home.${var.domain_name}\")"
-  }
+  # Removed: Router (home) — no active DNS
   rules {
     action = "route"
     action_parameters {

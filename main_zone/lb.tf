@@ -61,10 +61,10 @@
 # resource "cloudflare_load_balancer" "authentik" {
 #   enabled          = true
 #   proxied          = true
-#   zone_id          = var.thirdary_cloudflare_zone_id
+#   zone_id          = var.tertiary_cloudflare_zone_id
 #   default_pool_ids = [cloudflare_load_balancer_pool.authentik_ipsec_k3s_nl.id]
 #   fallback_pool_id = cloudflare_load_balancer_pool.authentik_ipsec_k3s_nl.id
-#   name             = "authentik.${var.thirdary_domain_name}"
+#   name             = "authentik.${var.tertiary_domain_name}"
 #   session_affinity = "none"
 #   steering_policy  = "dynamic_latency"
 #   # pop_pools {
@@ -92,11 +92,11 @@ resource "cloudflare_load_balancer" "httpbun_ipsec_erfipie" {
   default_pool_ids = [cloudflare_load_balancer_pool.httpbun_ipsec_erfipie_nl.id]
   enabled          = true
   fallback_pool_id = cloudflare_load_balancer_pool.httpbun_ipsec_erfipie_nl.id
-  name             = "httpbun-pie.${var.thirdary_domain_name}"
+  name             = "httpbun-pie.${var.tertiary_domain_name}"
   proxied          = true
   session_affinity = "none"
   steering_policy  = "geo"
-  zone_id          = var.thirdary_cloudflare_zone_id
+  zone_id          = var.tertiary_cloudflare_zone_id
   pop_pools {
     pop      = "AMS"
     pool_ids = [cloudflare_load_balancer_pool.httpbun_ipsec_erfipie_nl.id]
@@ -121,10 +121,10 @@ resource "cloudflare_load_balancer" "httpbun_ipsec_erfipie" {
 resource "cloudflare_load_balancer" "jitsi" {
   enabled          = true
   proxied          = true
-  zone_id          = var.thirdary_cloudflare_zone_id
+  zone_id          = var.tertiary_cloudflare_zone_id
   default_pool_ids = [cloudflare_load_balancer_pool.jitsi_ipsec_k3s_nl.id]
   fallback_pool_id = cloudflare_load_balancer_pool.jitsi_ipsec_k3s_nl.id
-  name             = "jitsi-lb.${var.thirdary_domain_name}"
+  name             = "jitsi-lb.${var.tertiary_domain_name}"
   session_affinity = "none"
   steering_policy  = "dynamic_latency"
   adaptive_routing {

@@ -18,7 +18,7 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
     }
     description = "KPN IP and Mobile Client"
     enabled     = true
-    expression  = "(ip.src in { 195.240.81.42 2a06:98c0:3600::103 } or cf.bot_management.ja4 in {\"t13d171200_5b57614c22b0_f0527480ae2d\" \"t13d171100_5b57614c22b0_3f5d972527c0\"})"
+    expression  = "(ip.src in { ${var.nl_ip} ${var.nl_ipv6} } or cf.bot_management.ja4 in {\"t13d171200_5b57614c22b0_f0527480ae2d\" \"t13d171100_5b57614c22b0_3f5d972527c0\"})"
     logging {
       enabled = true
     }
@@ -32,7 +32,7 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
     }
     description = "Skip Github Actions for Revista Build"
     enabled     = true
-    expression  = "(http.host contains \"cdn.erfianugrah.com\" and cf.bot_management.ja4 in {\"t13d5911h1_a33745022dd6_1f22a2ca17c4\" \"t13d5912h1_a33745022dd6_dbd39dd1d406\"})"
+    expression  = "(http.host contains \"cdn.${var.domain_name}\" and cf.bot_management.ja4 in {\"t13d5911h1_a33745022dd6_1f22a2ca17c4\" \"t13d5912h1_a33745022dd6_dbd39dd1d406\"})"
     logging {
       enabled = true
     }
@@ -41,7 +41,7 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
     action      = "log"
     description = "Log Bot Score <= 5"
     enabled     = true
-    expression  = "(cf.bot_management.score le 5 and not cf.bot_management.verified_bot and not cf.bot_management.static_resource and not ip.src in {118.189.189.102 195.240.81.42})"
+    expression  = "(cf.bot_management.score le 5 and not cf.bot_management.verified_bot and not cf.bot_management.static_resource and not ip.src in {${var.sg_ip} ${var.nl_ip}})"
   }
   rules {
     action      = "managed_challenge"
@@ -69,12 +69,6 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
       enabled = true
     }
   }
-  # rules {
-  #   action      = "block"
-  #   description = "mTLS privatebin"
-  #   enabled     = false
-  #   expression  = "(http.host eq \"privatebin.${var.domain_name}\" and not cf.tls_client_auth.cert_verified)"
-  # }
   rules {
     action      = "block"
     description = "Block HTTP"
@@ -185,7 +179,7 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
     }
     description = "Allow HASS"
     enabled     = true
-    expression  = "(ip.src eq 118.189.189.102 and cf.bot_management.ja3_hash eq \"d75e7289c86c15b305ac36097bfa0487\")"
+    expression  = "(ip.src eq ${var.sg_ip} and cf.bot_management.ja3_hash eq \"d75e7289c86c15b305ac36097bfa0487\")"
     logging {
       enabled = true
     }
@@ -197,31 +191,7 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
     }
     description = "Allow ASUS Router"
     enabled     = true
-    expression  = "(ip.src eq 118.189.189.102 and cf.bot_management.ja3_hash eq \"2a18e6bf307f97c5e27f0ab407dc65db\")"
-    logging {
-      enabled = true
-    }
-  }
-  rules {
-    action = "skip"
-    action_parameters {
-      ruleset = "current"
-    }
-    description = "Allow Portainer Edge Agent API"
-    enabled     = true
-    expression  = "(cf.bot_management.ja3_hash eq \"6cea5fe04d7df57d267a389bafc5f00e\") or (cf.bot_management.ja3_hash eq \"3d7bf89cc161a903b3410961d44c1b8c\")"
-    logging {
-      enabled = true
-    }
-  }
-  rules {
-    action = "skip"
-    action_parameters {
-      ruleset = "current"
-    }
-    description = "Allow Gitea JA3"
-    enabled     = true
-    expression  = "(cf.bot_management.ja3_hash eq \"8662467bc96db2d387755570446a7946\") or (cf.bot_management.ja3_hash eq \"398430069e0a8ecfbc8db0778d658d77\") or (cf.bot_management.ja3_hash eq \"5106c6656cd3f4481b691eb4158652e9\")"
+    expression  = "(ip.src eq ${var.sg_ip} and cf.bot_management.ja3_hash eq \"2a18e6bf307f97c5e27f0ab407dc65db\")"
     logging {
       enabled = true
     }
@@ -269,31 +239,7 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
     }
     description = "Allow Servarr JA3"
     enabled     = true
-    expression  = "(cf.bot_management.ja3_hash eq \"579ccef312d18482fc42e2b822ca2430\") or (cf.bot_management.ja3_hash eq \"2de42bb701d689176cd3487a44aaccab\") or (cf.bot_management.ja3_hash eq \"1d55c8e5c3de404f53b22d49c96a475a\") or (cf.bot_management.ja3_hash eq \"b719940c5ab9a3373cb4475d8143ff88\") or (cf.bot_management.ja3_hash eq \"579ccef312d18482fc42e2b822ca2430\") or (cf.bot_management.ja3_hash eq \"44d502d471cfdb99c59bdfb0f220e5a8\") or (cf.bot_management.ja3_hash eq \"579ccef312d18482fc42e2b822ca2430\") or (cf.bot_management.ja3_hash eq \"8436bef32bfb40c2379ecbbbbd07ee7b\") or (cf.bot_management.ja3_hash eq \"b719940c5ab9a3373cb4475d8143ff88\") or (cf.bot_management.ja3_hash eq \"8436bef32bfb40c2379ecbbbbd07ee7b\") or (cf.bot_management.ja3_hash eq \"02aa4679df284f240695da144b70c288\") or (cf.bot_management.ja3_hash eq \"57fbe0aefee44901190849b0e877a5e1\") or (cf.bot_management.ja3_hash eq \"41cb1a264f27be250a6575f4c9aba2f1\") or (cf.bot_management.ja3_hash eq \"9c815150ea821166faecf80757d8826a\") or (cf.bot_management.ja3_hash eq \"40adfd923eb82b89d8836ba37a19bca1\") or (cf.bot_management.ja3_hash eq \"c199b43d41b470f8f68c5561f8f1ce3e\") or (cf.bot_management.ja3_hash eq \"86cb13d6bbb3ac96b78b408bcfc18794\") or (cf.bot_management.ja3_hash eq \"3fed133de60c35724739b913924b6c24\") or (cf.bot_management.ja3_hash eq \"473cd7cb9faa642487833865d516e578\") or (cf.bot_management.ja3_hash eq \"485ec531c406824f09c63ecd72885340\") or (cf.bot_management.ja3_hash eq \"f436b9416f37d134cadd04886327d3e8\") or (cf.bot_management.ja3_hash eq \"931fd3557888d45b4d1574380e2b1ed8\") or (cf.bot_management.ja3_hash eq \"e4d448cdfe06dc1243c1eb026c74ac9a\") or (cf.bot_management.ja3_hash eq \"8d9f7747675e24454cd9b7ed35c58707\") or (cf.bot_management.ja3_hash eq \"473cd7cb9faa642487833865d516e578\") or (cf.bot_management.ja3_hash eq \"f79b6bad2ad0641e1921aef10262856b\") or (cf.bot_management.ja3_hash eq \"53d3d68430f4567b72d3e91fa8ce82f3\") or (cf.bot_management.ja3_hash eq \"15edee9ddf63a0941a98c4bc50eb02be\") or (cf.bot_management.ja3_hash eq \"1e2dd7855fb304ab4085b91d57b19c5d\") or (cf.bot_management.ja3_hash eq \"3a3a7739b7ee9b4dc9078b116b72ab96\") or (cf.bot_management.ja3_hash eq \"53e24c8e301bf0333436e88263c8f077\") or (cf.bot_management.ja3_hash eq \"1aec235ec8dd0322c68d253a863b5eed\") or (cf.bot_management.ja3_hash eq \"c9e756f0d1d7f395f835b0b3d734b98c\")"
-    logging {
-      enabled = true
-    }
-  }
-  rules {
-    action = "skip"
-    action_parameters {
-      ruleset = "current"
-    }
-    description = "Allow Synapse Delegation/Federation"
-    enabled     = true
-    expression  = "(http.host eq \"synapse.${var.domain_name}\" and http.request.uri.path contains \"/.well-known\") or (http.host eq \"synapse.${var.domain_name}\" and http.request.uri.path contains \"/_matrix/federation\") or (http.host eq \"synapse.${var.domain_name}\" and http.request.uri.path contains \"/_matrix/key\") or (http.host eq \"${var.domain_name}\" and http.request.uri.path contains \"/_matrix/key\") or (http.host eq \"${var.domain_name}\" and http.request.uri.path contains \"/_matrix/federation\") or (http.host eq \"${var.domain_name}\" and http.request.uri.path contains \"/.well-known\")"
-    logging {
-      enabled = true
-    }
-  }
-  rules {
-    action = "skip"
-    action_parameters {
-      ruleset = "current"
-    }
-    description = "Allow Plex"
-    enabled     = true
-    expression  = "(http.host eq \"plex.${var.domain_name}\") or (http.host eq \"plex.${var.domain_name}:443\")"
+    expression  = "(cf.bot_management.ja3_hash eq \"02aa4679df284f240695da144b70c288\") or (cf.bot_management.ja3_hash eq \"15edee9ddf63a0941a98c4bc50eb02be\") or (cf.bot_management.ja3_hash eq \"1aec235ec8dd0322c68d253a863b5eed\") or (cf.bot_management.ja3_hash eq \"1d55c8e5c3de404f53b22d49c96a475a\") or (cf.bot_management.ja3_hash eq \"1e2dd7855fb304ab4085b91d57b19c5d\") or (cf.bot_management.ja3_hash eq \"2de42bb701d689176cd3487a44aaccab\") or (cf.bot_management.ja3_hash eq \"3a3a7739b7ee9b4dc9078b116b72ab96\") or (cf.bot_management.ja3_hash eq \"3fed133de60c35724739b913924b6c24\") or (cf.bot_management.ja3_hash eq \"40adfd923eb82b89d8836ba37a19bca1\") or (cf.bot_management.ja3_hash eq \"41cb1a264f27be250a6575f4c9aba2f1\") or (cf.bot_management.ja3_hash eq \"44d502d471cfdb99c59bdfb0f220e5a8\") or (cf.bot_management.ja3_hash eq \"473cd7cb9faa642487833865d516e578\") or (cf.bot_management.ja3_hash eq \"485ec531c406824f09c63ecd72885340\") or (cf.bot_management.ja3_hash eq \"53d3d68430f4567b72d3e91fa8ce82f3\") or (cf.bot_management.ja3_hash eq \"53e24c8e301bf0333436e88263c8f077\") or (cf.bot_management.ja3_hash eq \"579ccef312d18482fc42e2b822ca2430\") or (cf.bot_management.ja3_hash eq \"57fbe0aefee44901190849b0e877a5e1\") or (cf.bot_management.ja3_hash eq \"8436bef32bfb40c2379ecbbbbd07ee7b\") or (cf.bot_management.ja3_hash eq \"86cb13d6bbb3ac96b78b408bcfc18794\") or (cf.bot_management.ja3_hash eq \"8d9f7747675e24454cd9b7ed35c58707\") or (cf.bot_management.ja3_hash eq \"931fd3557888d45b4d1574380e2b1ed8\") or (cf.bot_management.ja3_hash eq \"9c815150ea821166faecf80757d8826a\") or (cf.bot_management.ja3_hash eq \"b719940c5ab9a3373cb4475d8143ff88\") or (cf.bot_management.ja3_hash eq \"c199b43d41b470f8f68c5561f8f1ce3e\") or (cf.bot_management.ja3_hash eq \"c9e756f0d1d7f395f835b0b3d734b98c\") or (cf.bot_management.ja3_hash eq \"e4d448cdfe06dc1243c1eb026c74ac9a\") or (cf.bot_management.ja3_hash eq \"f436b9416f37d134cadd04886327d3e8\") or (cf.bot_management.ja3_hash eq \"f79b6bad2ad0641e1921aef10262856b\")"
     logging {
       enabled = true
     }
@@ -412,12 +358,6 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
     enabled     = false
     expression  = "any(http.request.cookies[\"app\"][*] == \"test\")"
   }
-  # rules {
-  #   action      = "block"
-  #   description = "MTLS Test"
-  #   enabled     = false
-  #   expression  = "(http.host in {\"prometheus-pie.${var.domain_name}\"} and not cf.tls_client_auth.cert_verified)"
-  # }
   rules {
     action      = "block"
     description = "header block test"
@@ -453,7 +393,7 @@ resource "cloudflare_ruleset" "http_request_firewall_custom" {
     }
     description = "test"
     enabled     = false
-    expression  = "(http.host eq \"tiago.${var.domain_name}\" and ip.src in {2001:818:e754:5000:d4a8:174d:55f9:9477 94.60.171.76  195.240.81.42})"
+    expression  = "(http.host eq \"tiago.${var.domain_name}\" and ip.src in {2001:818:e754:5000:d4a8:174d:55f9:9477 94.60.171.76 ${var.nl_ip}})"
   }
   rules {
     action      = "log"

@@ -12,7 +12,6 @@ resource "cloudflare_ruleset" "http_config_settings" {
         js   = false
       }
       bic                = false
-      disable_apps       = true
       disable_zaraz      = true
       email_obfuscation  = false
       hotlink_protection = false
@@ -22,7 +21,7 @@ resource "cloudflare_ruleset" "http_config_settings" {
     }
     description = "Astro Blog"
     enabled     = true
-    expression  = "(http.host in {\"www.${var.domain_name}\" \"${var.domain_name}\" \"cdn.${var.domain_name}\"} )"
+    expression  = "(http.host in {\"www.${var.domain_name}\" \"${var.domain_name}\"})"
 
   }
   rules {
@@ -36,7 +35,7 @@ resource "cloudflare_ruleset" "http_config_settings" {
     }
     description = "Minify Off"
     enabled     = true
-    expression  = "(http.host in {\"hedgedoc.${var.domain_name}\" \"httpbun.${var.domain_name}\" \"pastebin.${var.domain_name}\" \"home.${var.domain_name}\" \"httpbin.${var.domain_name}\" \"grafana-unraid.${var.domain_name}\" \"privatebin.${var.domain_name}\" \"immich.${var.domain_name}\" \"cdn.${var.domain_name}\"})"
+    expression  = "(http.host in {\"httpbun.${var.domain_name}\" \"pastebin.${var.domain_name}\" \"httpbin.${var.domain_name}\" \"immich.${var.domain_name}\"})"
   }
   rules {
     action = "set_config"
@@ -45,7 +44,7 @@ resource "cloudflare_ruleset" "http_config_settings" {
     }
     description = "Rocketloader Off"
     enabled     = true
-    expression  = "(http.host in {\"git.${var.domain_name}\" \"pihole.${var.domain_name}\" \"kvm.${var.domain_name}\" \"plex.${var.domain_name}\" \"dillinger.${var.domain_name}\" \"hedgedoc.${var.domain_name}\" \"servarr.${var.domain_name}\" \"httpbun.${var.domain_name}\" \"pastebin.${var.domain_name}\" \"home.${var.domain_name}\" \"privatebin.${var.domain_name}\" \"immich.${var.domain_name}\" \"cdn.${var.domain_name}\" \"radarr.${var.domain_name}\" \"ihatemoney.${var.domain_name}\" \"authentik.${var.domain_name}\" \"qbit.${var.domain_name}\" \"quantum.${var.domain_name}\"})"
+    expression  = "(http.host in {\"pihole.${var.domain_name}\" \"kvm.${var.domain_name}\" \"servarr.${var.domain_name}\" \"httpbun.${var.domain_name}\" \"pastebin.${var.domain_name}\" \"immich.${var.domain_name}\" \"radarr.${var.domain_name}\" \"ihatemoney.${var.domain_name}\" \"authentik.${var.domain_name}\" \"qbit.${var.domain_name}\" \"quantum.${var.domain_name}\"})"
   }
   rules {
     action = "set_config"
@@ -56,29 +55,7 @@ resource "cloudflare_ruleset" "http_config_settings" {
     enabled     = false
     expression  = "(http.host eq \"${var.domain_name}\" and http.request.uri.path contains \"/content/images\")"
   }
-  rules {
-    action = "set_config"
-    action_parameters {
-      autominify {
-        css  = false
-        html = false
-        js   = false
-      }
-      bic                = false
-      disable_apps       = true
-      disable_railgun    = true
-      disable_zaraz      = true
-      email_obfuscation  = false
-      hotlink_protection = false
-      mirage             = false
-      polish             = "off"
-      rocket_loader      = false
-      ssl                = "full"
-    }
-    description = "Router"
-    enabled     = true
-    expression  = "(http.host contains \"home.${var.domain_name}\")"
-  }
+  # Removed: Router (home) — no active DNS
   rules {
     action = "set_config"
     action_parameters {
@@ -86,7 +63,7 @@ resource "cloudflare_ruleset" "http_config_settings" {
     }
     description = "Zaraz Off"
     enabled     = true
-    expression  = "(http.host in {\"privatebin.${var.domain_name}\" \"photoprism.${var.domain_name}\" \"immich.${var.domain_name}\"  \"file.${var.domain_name}\" })"
+    expression  = "(http.host in {\"immich.${var.domain_name}\" \"file.${var.domain_name}\"})"
   }
   rules {
     action = "set_config"

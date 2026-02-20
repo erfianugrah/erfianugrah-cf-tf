@@ -1,15 +1,15 @@
 module "media_dns" {
   source = "./modules/dns_records"
 
-  zone_id     = var.thirdary_cloudflare_zone_id
-  domain_name = var.thirdary_domain_name
+  zone_id     = var.tertiary_cloudflare_zone_id
+  domain_name = var.tertiary_domain_name
 
   records = {
     # Active records
     bazarr = {
       name    = "bazarr"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "subs"
@@ -18,7 +18,7 @@ module "media_dns" {
     change = {
       name    = "change"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "site crawler for changes"
@@ -36,7 +36,7 @@ module "media_dns" {
     file = {
       name    = "file"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "file browser"
@@ -45,7 +45,7 @@ module "media_dns" {
     httpbin = {
       name    = "httpbin"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "httpbin"
@@ -54,7 +54,7 @@ module "media_dns" {
     immich = {
       name    = "immich"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "self-hosted google photos"
@@ -63,7 +63,7 @@ module "media_dns" {
     jellyfin = {
       name    = "jellyfin"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "like plex but not"
@@ -72,7 +72,7 @@ module "media_dns" {
     joplin = {
       name    = "joplin"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "notes"
@@ -81,7 +81,7 @@ module "media_dns" {
     navidrome = {
       name    = "navidrome"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "music"
@@ -90,7 +90,7 @@ module "media_dns" {
     # overseerr = {
     #   name    = "overseerr"
     #   type    = "CNAME"
-    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   content = module.tunnel_servarr.cname
     #   proxied = true
     #   ttl     = 1
     #   comment = "overseerr"
@@ -99,7 +99,7 @@ module "media_dns" {
     # plex = {
     #   name    = "plex"
     #   type    = "CNAME"
-    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   content = module.tunnel_servarr.cname
     #   proxied = true
     #   ttl     = 1
     #   comment = "plex"
@@ -108,7 +108,7 @@ module "media_dns" {
     prowlarr = {
       name    = "prowlarr"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "indexer"
@@ -117,7 +117,7 @@ module "media_dns" {
     qbit = {
       name    = "qbit"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "qbit"
@@ -126,7 +126,7 @@ module "media_dns" {
     radarr = {
       name    = "radarr"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "radarr"
@@ -135,7 +135,7 @@ module "media_dns" {
     sabnzbd = {
       name    = "sabnzbd"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "usenet"
@@ -144,7 +144,7 @@ module "media_dns" {
     sonarr = {
       name    = "sonarr"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "sonarr"
@@ -153,7 +153,7 @@ module "media_dns" {
     # tautulli = {
     #   name    = "tautulli"
     #   type    = "CNAME"
-    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   content = module.tunnel_servarr.cname
     #   proxied = true
     #   ttl     = 1
     #   comment = "plex usage"
@@ -162,7 +162,7 @@ module "media_dns" {
     servarr = {
       name    = "servarr"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "unraid admin"
@@ -171,7 +171,7 @@ module "media_dns" {
     # beets = {
     #   name    = "beets"
     #   type    = "CNAME"
-    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   content = module.tunnel_servarr.cname
     #   proxied = true
     #   ttl     = 1
     #   comment = "tagging music"
@@ -198,7 +198,7 @@ module "media_dns" {
     cadvisor = {
       name    = "cadvisor"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "docker monitoring"
@@ -207,7 +207,7 @@ module "media_dns" {
     calibre = {
       name    = "calibre"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "books"
@@ -216,7 +216,7 @@ module "media_dns" {
     # homer = {
     #   name    = "homer"
     #   type    = "CNAME"
-    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   content = module.tunnel_servarr.cname
     #   proxied = true
     #   ttl     = 1
     #   comment = "dashboard"
@@ -225,7 +225,7 @@ module "media_dns" {
     # hydra = {
     #   name    = "hydra"
     #   type    = "CNAME"
-    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   content = module.tunnel_servarr.cname
     #   proxied = true
     #   ttl     = 1
     #   comment = "usenet indexer aggregator"
@@ -243,7 +243,7 @@ module "media_dns" {
     # jackett = {
     #   name    = "jackett"
     #   type    = "CNAME"
-    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   content = module.tunnel_servarr.cname
     #   proxied = true
     #   ttl     = 1
     #   comment = "indexer"
@@ -261,7 +261,7 @@ module "media_dns" {
     # port = {
     #   name    = "port"
     #   type    = "CNAME"
-    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   content = module.tunnel_servarr.cname
     #   proxied = true
     #   ttl     = 1
     #   comment = "portainer sg on unraid"
@@ -315,7 +315,7 @@ module "media_dns" {
     # file = {
     #   name    = "file"
     #   type    = "CNAME"
-    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   content = module.tunnel_servarr.cname
     #   proxied = true
     #   ttl     = 1
     #   comment = "file browser"
@@ -324,7 +324,7 @@ module "media_dns" {
     # dockge = {
     #   name    = "dockge"
     #   type    = "CNAME"
-    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   content = module.tunnel_servarr.cname
     #   proxied = true
     #   ttl     = 1
     #   comment = "docker UI"
@@ -333,7 +333,7 @@ module "media_dns" {
     dockge_sg = {
       name    = "dockge-sg"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "dockge-sg"
@@ -342,7 +342,7 @@ module "media_dns" {
     jellyseerr = {
       name    = "seerr"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "jellyseerr"
@@ -351,7 +351,7 @@ module "media_dns" {
     # quantum = {
     #   name    = "quantum"
     #   type    = "CNAME"
-    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   content = module.tunnel_servarr.cname
     #   proxied = true
     #   ttl     = 1
     #   comment = "quantum"
@@ -360,7 +360,7 @@ module "media_dns" {
     copyparty = {
       name    = "copyparty"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "file server"
@@ -373,14 +373,14 @@ module "media_dns" {
 # module "matrix_dns" {
 #   source = "./modules/dns_records"
 #
-#   zone_id     = var.thirdary_cloudflare_zone_id
-#   domain_name = var.thirdary_domain_name
+#   zone_id     = var.tertiary_cloudflare_zone_id
+#   domain_name = var.tertiary_domain_name
 #
 #   records = {
 #     matrix = {
 #       name    = "matrix"
 #       type    = "CNAME"
-#       content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+#       content = module.tunnel_erfipie.cname
 #       proxied = true
 #       ttl     = 1
 #       comment = "Matrix Synapse homeserver"
@@ -389,7 +389,7 @@ module "media_dns" {
 #     chat = {
 #       name    = "chat"
 #       type    = "CNAME"
-#       content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+#       content = module.tunnel_erfipie.cname
 #       proxied = true
 #       ttl     = 1
 #       comment = "Element Web client"
@@ -398,7 +398,7 @@ module "media_dns" {
 #     matrix_admin = {
 #       name    = "admin.matrix"
 #       type    = "CNAME"
-#       content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+#       content = module.tunnel_erfipie.cname
 #       proxied = true
 #       ttl     = 1
 #       comment = "Synapse Admin"

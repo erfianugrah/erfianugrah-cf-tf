@@ -34,8 +34,8 @@ module "primary_certificates" {
 module "media_certificates" {
   source = "./modules/certificate_packs"
 
-  zone_id     = var.thirdary_cloudflare_zone_id
-  domain_name = var.thirdary_domain_name
+  zone_id     = var.tertiary_cloudflare_zone_id
+  domain_name = var.tertiary_domain_name
 
   dns_records = module.media_dns.records_for_certificates
 
