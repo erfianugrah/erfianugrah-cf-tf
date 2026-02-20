@@ -10,8 +10,8 @@
 #   domain       = var.domain_name
 # }
 
-resource "cloudflare_pages_domain" "docs" {
-  account_id   = var.cloudflare_account_id
-  project_name = "erfi-dev-docs"
-  domain       = var.dev_domain_name
-}
+# resource "cloudflare_pages_domain" "docs" {
+#   account_id   = var.cloudflare_account_id
+#   project_name = "erfi-dev-docs"
+#   domain       = var.dev_domain_name
+# }
