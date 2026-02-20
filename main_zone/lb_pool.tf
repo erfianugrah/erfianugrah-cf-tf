@@ -125,9 +125,9 @@ resource "cloudflare_load_balancer_pool" "httpbun_ipsec_erfipie_nl" {
     enabled = true
     header {
       header = "Host"
-      values = ["httpbun-pie.${var.thirdary_domain_name}"]
+      values = ["httpbun-pie.${var.tertiary_domain_name}"]
     }
-    virtual_network_id = "be64e69c-e7b6-4e0e-9fd3-130757192c5b"
+    virtual_network_id = module.tunnel_vyos_nl.vnet_id
     name               = "httpbun_ipsec_erfipie_nl"
     weight             = 1
   }
@@ -165,7 +165,7 @@ resource "cloudflare_load_balancer_pool" "httpbun_ipsec_erfipie_nl" {
 #     enabled = true
 #     header {
 #       header = "Host"
-#       values = ["authentik.${var.thirdary_domain_name}"]
+#       values = ["authentik.${var.tertiary_domain_name}"]
 #     }
 #     virtual_network_id = "be64e69c-e7b6-4e0e-9fd3-130757192c5b"
 #     name               = "authentik_ipsec_k3s_nl"
@@ -185,9 +185,9 @@ resource "cloudflare_load_balancer_pool" "jitsi_ipsec_k3s_nl" {
     enabled = true
     header {
       header = "Host"
-      values = ["jitsi.${var.thirdary_domain_name}"]
+      values = ["jitsi.${var.tertiary_domain_name}"]
     }
-    virtual_network_id = "be64e69c-e7b6-4e0e-9fd3-130757192c5b"
+    virtual_network_id = module.tunnel_vyos_nl.vnet_id
     name               = "jitsi_ipsec_k3s_nl"
     weight             = 1
   }

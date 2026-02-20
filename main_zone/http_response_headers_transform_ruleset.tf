@@ -66,30 +66,6 @@ resource "cloudflare_ruleset" "http_response_headers_transform" {
     enabled     = false
     expression  = "(http.host eq \"${var.domain_name}\" and http.request.uri.path eq \"/content/images/size/w750/wordpress/2019/09/14-3.jpg\" and http.response.code eq 429)"
   }
-  rules {
-    action = "rewrite"
-    action_parameters {
-      headers {
-        name      = "Content-Security-Policy"
-        operation = "remove"
-      }
-    }
-    description = "Remove CSP from privatebin"
-    enabled     = false
-    expression  = "(http.host contains \"privatebin.${var.domain_name}\")"
-  }
-  # rules {
-  #   action = "rewrite"
-  #   action_parameters {
-  #     headers {
-  #       name      = "Content-Security-Policy"
-  #       operation = "set"
-  #       value     = "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com https://challenges.cloudflare.com https://authentik.${var.domain_name}; default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' wss://authentik.${var.domain_name} https://authentik.${var.domain_name};"
-  #     }
-  #   }
-  #   description = "Add CSP header for Authentik"
-  #   enabled     = true
-  #   expression  = "(http.host eq \"authentik.${var.domain_name}\")"
-  # }
+  # Removed: Remove CSP from privatebin — no active DNS
 }
 

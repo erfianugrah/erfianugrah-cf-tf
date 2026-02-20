@@ -1,15 +1,3 @@
-variable "cloudflare_email" {
-  description = "The email associated with the Cloudflare account"
-  type        = string
-  sensitive   = true
-}
-
-variable "cloudflare_user_id" {
-  description = "Cloudflare Account User ID"
-  type        = string
-  sensitive   = true
-}
-
 variable "cloudflare_api_key" {
   description = "The API key for accessing Cloudflare"
   type        = string
@@ -28,14 +16,14 @@ variable "secondary_cloudflare_zone_id" {
   sensitive   = true
 }
 
-variable "thirdary_cloudflare_zone_id" {
-  description = "The zone ID for the thirdary Cloudflare domain"
+variable "tertiary_cloudflare_zone_id" {
+  description = "The zone ID for the tertiary Cloudflare domain"
   type        = string
   sensitive   = true
 }
 
 variable "cloudflare_account_id" {
-  description = "The zone ID for the Cloudflare domain"
+  description = "The account ID for the Cloudflare account"
   type        = string
   sensitive   = true
 }
@@ -48,6 +36,12 @@ variable "sg_ip" {
 
 variable "nl_ip" {
   description = "nl static ip"
+  type        = string
+  sensitive   = true
+}
+
+variable "nl_ipv6" {
+  description = "nl static ipv6"
   type        = string
   sensitive   = true
 }
@@ -76,113 +70,20 @@ variable "secondary_domain_name" {
   sensitive   = true
 }
 
-variable "thirdary_domain_name" {
-  description = "The thirdary domain name to be used"
+variable "tertiary_domain_name" {
+  description = "The tertiary domain name to be used"
   type        = string
   sensitive   = true
 }
 
-variable "joplin_pem_path" {
-  description = "joplin_pem_path"
+variable "tunnel_secret" {
+  description = "Base64-encoded shared secret for Cloudflare tunnels"
   type        = string
-}
-
-variable "joplin_key_path" {
-  description = "joplin_key_path"
-  type        = string
-}
-
-variable "privatebin_pem_path" {
-  description = "privatebin_pem_path"
-  type        = string
-}
-
-variable "privatebin_key_path" {
-  description = "privatebin_key_path"
-  type        = string
-}
-
-variable "vaultwarden_pem_path" {
-  description = "vaultwarden_pem_path"
-  type        = string
-}
-
-variable "vaultwarden_key_path" {
-  description = "vaultwarden_key_path"
-  type        = string
-}
-
-variable "httpbun_ca_pem_path" {
-  description = "httpbun_ca_pem_path"
-  type        = string
-}
-
-variable "httpbun_ca_key_path" {
-  description = "httpbun_ca_key_path"
-  type        = string
-}
-
-variable "immich_pem_path" {
-  description = "immich_pem_path"
-  type        = string
-}
-
-variable "immich_key_path" {
-  description = "immich_key_path"
-  type        = string
-}
-
-variable "file_pem_path" {
-  description = "file_pem_path"
-  type        = string
-}
-
-variable "file_key_path" {
-  description = "file_key_path"
-  type        = string
-}
-
-variable "caddy_pem_path" {
-  description = "caddy_pem_path"
-  type        = string
-}
-
-variable "caddy_key_path" {
-  description = "caddy_key_path"
-  type        = string
-}
-
-variable "httpbun_nl_pem_path" {
-  description = "httpbun_nl_pem_path"
-  type        = string
-}
-
-variable "httpbun_nl_key_path" {
-  description = "httpbun_nl_key_path"
-  type        = string
-}
-variable "pages_domain" {
-  description = "pages domain"
-  type        = string
-}
-
-variable "deno_domain" {
-  description = "deno domain"
-  type        = string
+  sensitive   = true
 }
 
 variable "k3s_tunnel" {
   description = "k3s tunnel cname"
-  type        = string
-}
-
-variable "r2_access_key_id" {
-  description = "r2 access key id"
-  type        = string
-}
-
-variable "r2_access_key" {
-  description = "r2 access key"
   type        = string
 }
 

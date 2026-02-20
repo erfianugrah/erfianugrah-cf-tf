@@ -1,30 +1,30 @@
 output "tunnel_token_erfipie" {
-  value     = cloudflare_zero_trust_tunnel_cloudflared.erfipie.tunnel_token
+  value     = module.tunnel_erfipie.tunnel_token
   sensitive = true
 }
 
 output "tunnel_token_kvm_nl" {
-  value     = cloudflare_zero_trust_tunnel_cloudflared.kvm_nl.tunnel_token
+  value     = module.tunnel_kvm_nl.tunnel_token
   sensitive = true
 }
 
 output "tunnel_token_kvm_sg" {
-  value     = cloudflare_zero_trust_tunnel_cloudflared.kvm_sg.tunnel_token
+  value     = module.tunnel_kvm_sg.tunnel_token
   sensitive = true
 }
 
 output "tunnel_token_servarr" {
-  value     = cloudflare_zero_trust_tunnel_cloudflared.servarr.tunnel_token
+  value     = module.tunnel_servarr.tunnel_token
   sensitive = true
 }
 
 output "tunnel_token_vyos_nl" {
-  value     = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.tunnel_token
+  value     = module.tunnel_vyos_nl.tunnel_token
   sensitive = true
 }
 
 output "tunnel_token_vyos_sg" {
-  value     = cloudflare_zero_trust_tunnel_cloudflared.vyos_sg.tunnel_token
+  value     = module.tunnel_vyos_sg.tunnel_token
   sensitive = true
 }
 
@@ -38,42 +38,22 @@ output "turnstile_interstitial_secret_key" {
   sensitive = true
 }
 
-output "managed_waf_rulesets" {
-  description = "List of all managed WAF rulesets"
+output "waf_summary" {
+  description = "Managed WAF rulesets summary (name, id, version, rule count)"
   value = {
-    for ruleset in data.cloudflare_rulesets.managed_waf.rulesets : ruleset.name => {
-      id          = ruleset.id
-      description = ruleset.description
-      version     = ruleset.version
-      rules_count = length(ruleset.rules)
-      rules = [
-        for rule in ruleset.rules : {
-          id          = rule.id
-          description = rule.description
-          enabled     = rule.enabled
-          action      = rule.action
-        }
-      ]
+    for rs in data.cloudflare_rulesets.managed_waf.rulesets : rs.name => {
+      id          = rs.id
+      version     = rs.version
+      rules_count = length(rs.rules)
     }
   }
 }
 
-output "owasp_rulesets" {
-  description = "List of OWASP-specific rulesets"
+output "waf_rule_lookup" {
+  description = "Per-ruleset rule ID => description lookup (use: tofu output -json waf_rule_lookup | jq '.\"Cloudflare Managed Ruleset\"')"
   value = {
-    for ruleset in data.cloudflare_rulesets.owasp.rulesets : ruleset.name => {
-      id          = ruleset.id
-      description = ruleset.description
-      version     = ruleset.version
-      rules_count = length(ruleset.rules)
-      rules = [
-        for rule in ruleset.rules : {
-          id          = rule.id
-          description = rule.description
-          enabled     = rule.enabled
-          action      = rule.action
-        }
-      ]
+    for rs in data.cloudflare_rulesets.managed_waf.rulesets : rs.name => {
+      for rule in rs.rules : rule.id => rule.description
     }
   }
 }

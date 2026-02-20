@@ -7,14 +7,3 @@ data "cloudflare_rulesets" "managed_waf" {
   }
   include_rules = true
 }
-
-# Query OWASP specific ruleset
-data "cloudflare_rulesets" "owasp" {
-  zone_id = cloudflare_zone.erfianugrah.id
-
-  filter {
-    name = ".*OWASP.*"
-    kind = "managed"
-  }
-  include_rules = true
-}

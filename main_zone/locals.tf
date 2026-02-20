@@ -1,25 +1,5 @@
 locals {
-  # joplin_pem      = replace(file(var.joplin_pem_path), "\n", "\n")
-  # joplin_key      = replace(file(var.joplin_key_path), "\n", "\n")
-  # privatebin_pem  = replace(file(var.privatebin_pem_path), "\n", "\n")
-  # privatebin_key  = replace(file(var.privatebin_key_path), "\n", "\n")
-  # vaultwarden_pem = replace(file(var.vaultwarden_pem_path), "\n", "\n")
-  # vaultwarden_key = replace(file(var.vaultwarden_key_path), "\n", "\n")
-  # immich_pem      = replace(file(var.immich_pem_path), "\n", "\n")
-  # immich_key      = replace(file(var.immich_key_path), "\n", "\n")
-  # file_pem        = replace(file(var.file_pem_path), "\n", "\n")
-  # file_key        = replace(file(var.file_key_path), "\n", "\n")
-  # caddy_pem       = replace(file(var.caddy_pem_path), "\n", "\n")
-  # caddy_key       = replace(file(var.caddy_key_path), "\n", "\n")
-  # httpbun_ca_pem  = replace(file(var.httpbun_ca_pem_path), "\n", "\n")
-  # httpbun_ca_key  = replace(file(var.httpbun_ca_key_path), "\n", "\n")
-  # httpbun_nl_pem  = replace(file(var.httpbun_nl_pem_path), "\n", "\n")
-  # httpbun_nl_key  = replace(file(var.httpbun_nl_key_path), "\n", "\n")
-
-  # Debug: List all rulesets for inspection
-  all_rulesets = data.cloudflare_rulesets.managed_waf.rulesets
-
-  # Temporary mapping of all rulesets (we'll refine this after seeing the output)
+  # WAF ruleset name => ID lookup (used by http_request_firewall_managed_ruleset.tf)
   ruleset_ids = {
     for rs in data.cloudflare_rulesets.managed_waf.rulesets :
     rs.name => rs.id
@@ -31,10 +11,18 @@ locals {
 
   logpush_loki_dest = "https://logpush-k3s.erfi.io/loki/api/v1/raw?header_Content-Type=application%2Fjson&header_X-Logpush-Secret=${var.logpush_secret}"
 
+  # Canonical zone map — use local.zones.primary.domain etc. throughout
+  zones = {
+    primary   = { zone_id = var.cloudflare_zone_id, domain = var.domain_name }
+    secondary = { zone_id = var.secondary_cloudflare_zone_id, domain = var.secondary_domain_name }
+    tertiary  = { zone_id = var.tertiary_cloudflare_zone_id, domain = var.tertiary_domain_name }
+  }
+
+  # Legacy map kept for logpush iteration (uses zone_id values only)
   zone_ids = {
-    erfianugrah_com = var.cloudflare_zone_id
-    erfi_dev        = var.secondary_cloudflare_zone_id
-    erfi_io         = var.thirdary_cloudflare_zone_id
+    erfianugrah_com = local.zones.primary.zone_id
+    erfi_dev        = local.zones.secondary.zone_id
+    erfi_io         = local.zones.tertiary.zone_id
   }
 
   # http_requests: all fields from CF docs (deprecated fields excluded)
@@ -85,14 +73,3 @@ locals {
     "ScriptVersion", "WallTimeMs",
   ]
 }
-
-# Output all ruleset information for debugging
-# output "available_rulesets" {
-#   value = [
-#     for rs in local.all_rulesets : {
-#       name = rs.name
-#       id   = rs.id
-#       kind = rs.kind
-#     }
-#   ]
-# }

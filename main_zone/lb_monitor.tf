@@ -66,22 +66,23 @@ resource "cloudflare_load_balancer_monitor" "httpbun_erfipie" {
   type             = "http"
 }
 
-resource "cloudflare_load_balancer_monitor" "httpbun_arch0" {
-  account_id       = var.cloudflare_account_id
-  allow_insecure   = false
-  consecutive_down = 5
-  consecutive_up   = 0
-  description      = "httpbun_arch0"
-  expected_codes   = "200"
-  follow_redirects = false
-  interval         = 300
-  method           = "GET"
-  path             = "/"
-  port             = 80
-  retries          = 5
-  timeout          = 5
-  type             = "http"
-}
+# Orphaned: pool/LB are commented out
+# resource "cloudflare_load_balancer_monitor" "httpbun_arch0" {
+#   account_id       = var.cloudflare_account_id
+#   allow_insecure   = false
+#   consecutive_down = 5
+#   consecutive_up   = 0
+#   description      = "httpbun_arch0"
+#   expected_codes   = "200"
+#   follow_redirects = false
+#   interval         = 300
+#   method           = "GET"
+#   path             = "/"
+#   port             = 80
+#   retries          = 5
+#   timeout          = 5
+#   type             = "http"
+# }
 
 resource "cloudflare_load_balancer_monitor" "jitsi" {
   account_id       = var.cloudflare_account_id

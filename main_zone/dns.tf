@@ -26,7 +26,7 @@ module "kvm_dns" {
     kvm_nl = {
       name    = "kvm-nl"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.kvm_nl.cname
+      content = module.tunnel_kvm_nl.cname
       proxied = true
       ttl     = 1
       comment = "pikvm nl"
@@ -35,7 +35,7 @@ module "kvm_dns" {
     ssh_pikvm_sg = {
       name    = "ssh-pikvm-sg"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.kvm_sg.cname
+      content = module.tunnel_kvm_sg.cname
       proxied = true
       ttl     = 1
       comment = "SSH access to pikvm sg"
@@ -44,7 +44,7 @@ module "kvm_dns" {
     ssh_pikvm_nl = {
       name    = "ssh-pikvm-nl"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.kvm_nl.cname
+      content = module.tunnel_kvm_nl.cname
       proxied = true
       ttl     = 1
       comment = "SSH access to pikvm nl"
@@ -74,7 +74,7 @@ module "vyos_nl_dns" {
     vyos_ssh_nl = {
       name    = "nl.vyos"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
+      content = module.tunnel_vyos_nl.cname
       proxied = true
       ttl     = 1
       comment = "VyOS SSH NL"
@@ -92,7 +92,7 @@ module "vyos_nl_dns" {
     httpbun_nl = {
       name    = "httpbun-nl"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
+      content = module.tunnel_vyos_nl.cname
       proxied = true
       ttl     = 1
       comment = "httpbun on vyos-nl"
@@ -101,7 +101,7 @@ module "vyos_nl_dns" {
     pihole_vyos_nl = {
       name    = "pihole-vyos-nl"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
+      content = module.tunnel_vyos_nl.cname
       proxied = true
       ttl     = 1
       comment = "pihole-nl"
@@ -110,7 +110,7 @@ module "vyos_nl_dns" {
     tpi = {
       name    = "tpi"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
+      content = module.tunnel_vyos_nl.cname
       proxied = true
       ttl     = 1
       comment = "turing pi BMC"
@@ -128,7 +128,7 @@ module "vyos_nl_dns" {
     # prom_caddy_nl = {
     #   name    = "prom-caddy-nl"
     #   type    = "CNAME"
-    #   content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
+    #   content = module.tunnel_vyos_nl.cname
     #   proxied = true
     #   ttl     = 1
     #   comment = "caddy on vyos-nl"
@@ -137,7 +137,7 @@ module "vyos_nl_dns" {
     prom_tunnel_nl = {
       name    = "prom-tunnel-nl"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
+      content = module.tunnel_vyos_nl.cname
       proxied = true
       ttl     = 1
       comment = "cfd node exporter"
@@ -146,7 +146,7 @@ module "vyos_nl_dns" {
     prom_vyos_nl = {
       name    = "prom-vyos-nl"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
+      content = module.tunnel_vyos_nl.cname
       proxied = true
       ttl     = 1
       comment = "cfd node exporter"
@@ -169,7 +169,7 @@ module "vyos_sg_dns" {
     vyos_sg_ssh = {
       name    = "sg.vyos"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_sg.cname
+      content = module.tunnel_vyos_sg.cname
       proxied = true
       ttl     = 1
       comment = "VyOS SSH SG"
@@ -187,7 +187,7 @@ module "vyos_sg_dns" {
     pihole_vyos_sg = {
       name    = "pihole-vyos-sg"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_sg.cname
+      content = module.tunnel_vyos_sg.cname
       proxied = true
       ttl     = 1
       comment = "pihole-sg"
@@ -205,7 +205,7 @@ module "vyos_sg_dns" {
     # prom_caddy_sg = {
     #   name    = "prom-caddy-sg"
     #   type    = "CNAME"
-    #   content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+    #   content = module.tunnel_servarr.cname
     #   proxied = true
     #   ttl     = 1
     #   comment = "caddy on unraid"
@@ -237,7 +237,7 @@ module "auth_dns" {
     keycloak = {
       name    = "keycloak"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "auth server"
@@ -246,7 +246,7 @@ module "auth_dns" {
     vaultwarden = {
       name    = "vaultwarden"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.servarr.cname
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "password manager"
@@ -381,7 +381,7 @@ module "special_dns" {
     atuin = {
       name    = "atuin"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+      content = module.tunnel_erfipie.cname
       proxied = true
       ttl     = 1
       comment = "atuin"
@@ -398,7 +398,7 @@ module "special_dns" {
     erfipie = {
       name    = "pie"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+      content = module.tunnel_erfipie.cname
       proxied = true
       ttl     = 1
       comment = "erfipie short-lived-cert ssh"
@@ -413,26 +413,11 @@ module "special_dns" {
       comment = "k3s zero trust tunnel"
       tags    = ["k3s"]
     },
-    ollama = {
-      name    = "ollama"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.erfi1.cname
-      proxied = true
-      ttl     = 1
-      comment = "ollama AI service"
-    },
-    ollama_ui = {
-      name    = "ollama-ui"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.erfi1.cname
-      proxied = true
-      ttl     = 1
-      comment = "ollama UI"
-    },
+
     prom_exporter_pi = {
       name    = "prom-exporter-pi"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+      content = module.tunnel_erfipie.cname
       proxied = true
       ttl     = 1
       comment = "erfipie node exporter"
@@ -441,7 +426,7 @@ module "special_dns" {
     # tldraw = {
     #   name    = "draw"
     #   type    = "CNAME"
-    #   content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+    #   content = module.tunnel_erfipie.cname
     #   proxied = true
     #   ttl     = 1
     #   comment = "drawing"
@@ -599,7 +584,7 @@ module "secondary_dns" {
     draw = {
       name    = "draw"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+      content = module.tunnel_erfipie.cname
       proxied = true
       ttl     = 1
       comment = "excalidraw"
@@ -608,7 +593,7 @@ module "secondary_dns" {
     uptime = {
       name    = "uptime"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
+      content = module.tunnel_erfipie.cname
       proxied = true
       ttl     = 1
       comment = "uptime-kuma"
@@ -617,7 +602,7 @@ module "secondary_dns" {
     gloryhole = {
       name    = "gloryhole"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
+      content = module.tunnel_vyos_nl.cname
       proxied = true
       ttl     = 1
       comment = "pihole admin"

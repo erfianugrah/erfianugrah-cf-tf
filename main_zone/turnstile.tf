@@ -3,7 +3,7 @@ resource "cloudflare_turnstile_widget" "authentik" {
   name       = "Authentik"
   #   bot_fight_mode = true
   #   offlabel       = true
-  domains = [var.domain_name, var.thirdary_domain_name
+  domains = [var.domain_name, var.tertiary_domain_name
   ]
   mode   = "managed"
   region = "world"
