@@ -51,3 +51,9 @@ resource "cloudflare_r2_bucket" "videos" {
   name       = "videos"
   location   = "WEUR"
 }
+
+resource "cloudflare_r2_bucket" "vaultwarden" {
+  account_id = var.cloudflare_account_id
+  name       = "vault"
+  location   = "WEUR"
+}
