@@ -58,15 +58,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "erfipie" {
       hostname = "uptime.${var.secondary_domain_name}"
       service  = "http://172.25.1.2:3001"
     }
-    ingress_rule {
-      hostname = "vault.${var.secondary_domain_name}"
-      service  = "http://172.50.1.2:80"
-    }
-    ingress_rule {
-      hostname = "vault.${var.secondary_domain_name}"
-      path     = "notifications/hub"
-      service  = "http://172.50.1.2:3012"
-    }
+
     # Matrix moved to k3s cluster
     # ingress_rule {
     #   hostname = "matrix.${var.thirdary_domain_name}"
@@ -138,14 +130,6 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
     warp_routing {
       enabled = true
     }
-    ingress_rule {
-      hostname = "prom-caddy-sg.${var.thirdary_domain_name}"
-      service  = "http://localhost:2018"
-    }
-    ingress_rule {
-      hostname = "port.${var.thirdary_domain_name}"
-      service  = "http://172.17.0.2:9000"
-    }
     # ingress_rule {
     #   hostname = "plex.${var.thirdary_domain_name}"
     #   service  = "http://172.19.1.8:32400"
@@ -171,16 +155,8 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
       service  = "http://172.19.1.15:8096"
     }
     ingress_rule {
-      hostname = "tautulli.${var.thirdary_domain_name}"
-      service  = "http://172.19.1.14:8181"
-    }
-    ingress_rule {
       hostname = "prowlarr.${var.thirdary_domain_name}"
       service  = "http://172.19.1.10:9696"
-    }
-    ingress_rule {
-      hostname = "overseerr.${var.thirdary_domain_name}"
-      service  = "http://172.19.1.13:5055"
     }
     ingress_rule {
       hostname = "navidrome.${var.thirdary_domain_name}"
@@ -189,10 +165,6 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
     ingress_rule {
       hostname = "seerr.${var.thirdary_domain_name}"
       service  = "http://172.19.1.21:5055"
-    }
-    ingress_rule {
-      hostname = "quantum.${var.thirdary_domain_name}"
-      service  = "http://172.19.30.2:80"
     }
     ingress_rule {
       hostname = "copyparty.${var.thirdary_domain_name}"
@@ -235,6 +207,19 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "servarr" {
       hostname = "keycloak.${var.thirdary_domain_name}"
       service  = "http://172.19.12.2:8080"
     }
+    ingress_rule {
+      hostname = "vaultwarden.${var.domain_name}"
+      service  = "http://172.19.4.2:80"
+    }
+    ingress_rule {
+      hostname = "vaultwarden.${var.domain_name}"
+      path     = "notifications/hub"
+      service  = "http://172.19.4.2:3012"
+    }
+    ingress_rule {
+      hostname = "keycloak.${var.domain_name}"
+      service  = "http://172.19.12.2:8080"
+    }
     # ingress_rule {
     #   hostname = var.domain_name
     #   service  = "http://172.66.0.2:4321"
@@ -263,10 +248,6 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "vyos_nl" {
     ingress_rule {
       hostname = "prom-tunnel-nl.${var.domain_name}"
       service  = "http://localhost:11000"
-    }
-    ingress_rule {
-      hostname = "prom-caddy-nl.${var.domain_name}"
-      service  = "http://172.18.0.4:2018"
     }
     ingress_rule {
       hostname = "nl.vyos.${var.domain_name}"
@@ -328,119 +309,4 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "vyos_sg" {
   }
 }
 
-resource "cloudflare_zero_trust_tunnel_cloudflared_config" "proxmox" {
-  account_id = var.cloudflare_account_id
-  tunnel_id  = cloudflare_zero_trust_tunnel_cloudflared.proxmox.id
-
-  config {
-    warp_routing {
-      enabled = true
-    }
-    ingress_rule {
-      hostname = var.domain_name
-      service  = "http://10.68.73.3:8000"
-    }
-    ingress_rule {
-      hostname = "pve.proxmox.${var.domain_name}"
-      service  = "ssh://localhost:22"
-      # origin_request {
-      #   bastion_mode = true
-      # }
-    }
-    ingress_rule {
-      hostname = "arch0.proxmox.${var.domain_name}"
-      service  = "ssh://10.68.73.3:22"
-      # origin_request {
-      #   bastion_mode = true
-      # }
-    }
-    ingress_rule {
-      hostname = "arch1.proxmox.${var.domain_name}"
-      service  = "ssh://10.68.73.101:22"
-      # origin_request {
-      #   bastion_mode = true
-      # }
-    }
-    ingress_rule {
-      hostname = "arch2.proxmox.${var.domain_name}"
-      service  = "ssh://10.68.73.102:22"
-      # origin_request {
-      #   bastion_mode = true
-      # }
-    }
-    ingress_rule {
-      hostname = "arch3.proxmox.${var.domain_name}"
-      service  = "ssh://10.68.73.103:22"
-      # origin_request {
-      #   bastion_mode = true
-      # }
-    }
-    ingress_rule {
-      hostname = "arch4.proxmox.${var.domain_name}"
-      service  = "ssh://10.68.73.104:22"
-      # origin_request {
-      #   bastion_mode = true
-      # }
-    }
-    ingress_rule {
-      hostname = "proxmox.${var.domain_name}"
-      service  = "https://localhost:8006"
-      origin_request {
-        origin_server_name = "proxmox.${var.domain_name}"
-        http2_origin       = true
-      }
-    }
-    ingress_rule {
-      hostname = "plex-mox.${var.secondary_domain_name}"
-      service  = "http://10.68.73.3:32400"
-    }
-    ingress_rule {
-      hostname = "jellyfin-mox.${var.secondary_domain_name}"
-      service  = "http://10.68.73.3:8096"
-    }
-    ingress_rule {
-      hostname = "prowlarr-mox.${var.secondary_domain_name}"
-      service  = "http://10.68.73.3:9696"
-    }
-    ingress_rule {
-      hostname = "radarr-mox.${var.secondary_domain_name}"
-      service  = "http://10.68.73.3:7878"
-    }
-    ingress_rule {
-      hostname = "sonarr-mox.${var.secondary_domain_name}"
-      service  = "http://10.68.73.3:8989"
-    }
-    ingress_rule {
-      hostname = "bazarr-mox.${var.secondary_domain_name}"
-      service  = "http://10.68.73.3:6767"
-    }
-    ingress_rule {
-      hostname = "tautulli-mox.${var.secondary_domain_name}"
-      service  = "http://10.68.73.3:6767"
-    }
-    ingress_rule {
-      hostname = "navidrome-mox.${var.secondary_domain_name}"
-      service  = "http://10.68.73.3:4533"
-    }
-    ingress_rule {
-      hostname = "solvarr-mox.${var.secondary_domain_name}"
-      service  = "http://10.68.73.3:8191"
-    }
-    ingress_rule {
-      hostname = "sabnzbd-mox.${var.secondary_domain_name}"
-      service  = "http://10.68.73.3:8080"
-    }
-    # ingress_rule {
-    #   hostname = "vaultwarden.${var.domain_name}"
-    #   service  = "http://10.68.73.3:9999"
-    # }
-    # ingress_rule {
-    #   hostname = "vaultwarden.${var.domain_name}"
-    #   path     = "notifications/hub"
-    #   service  = "http://10.68.73.3:10000"
-    # }
-    ingress_rule {
-      service = "http_status:404"
-    }
-  }
-}
+# proxmox tunnel config removed during cleanup

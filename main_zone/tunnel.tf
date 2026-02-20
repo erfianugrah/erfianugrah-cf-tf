@@ -40,12 +40,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared" "vyos_sg" {
   config_src = "cloudflare"
 }
 
-resource "cloudflare_zero_trust_tunnel_cloudflared" "proxmox" {
-  account_id = var.cloudflare_account_id
-  name       = "proxmox"
-  secret     = base64encode(random_string.tunnel_secret.result)
-  config_src = "cloudflare"
-}
+# proxmox tunnel removed during cleanup
 
 resource "cloudflare_zero_trust_tunnel_cloudflared" "erfi1" {
   account_id = var.cloudflare_account_id

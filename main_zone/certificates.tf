@@ -1,51 +1,27 @@
-# Certificate management using the module approach
-# This file replaces certificate_pack.tf by using the certificate_packs module
+# Certificate management using the certificate_packs module
+#
+# Modes:
+#   "wildcard"  (default) — root + wildcard + auto multi-level wildcards
+#   "per_host"  — Total TLS style, individual cert per record
+#   "none"      — skip cert creation
 
-# Base wildcard certificate for the domain
-module "base_certificates" {
+# ── Primary zone (erfianugrah.com) ───────────────────────────────────
+# Single module: wildcard covers all single-level subdomains,
+# auto-detects multi-level parents (vyos, saas) for additional wildcards.
+module "primary_certificates" {
   source = "./modules/certificate_packs"
 
-  zone_id              = var.cloudflare_zone_id
-  domain_name          = var.domain_name
-  create_wildcard_cert = true
+  zone_id     = var.cloudflare_zone_id
+  domain_name = var.domain_name
 
-  # No specific DNS records needed for this - just the wildcard cert
-  dns_records = {}
-
-  certificate_authority = "lets_encrypt"
-  validation_method     = "txt"
-  validity_days         = 90
-}
-
-# Media service certificates
-module "media_certificates" {
-  source = "./modules/certificate_packs"
-
-  zone_id              = var.thirdary_cloudflare_zone_id
-  domain_name          = var.thirdary_domain_name
-  create_wildcard_cert = false
-
-  # Matrix DNS moved to k3s cluster
-  dns_records = module.media_dns.records_for_certificates
-
-  certificate_authority = "lets_encrypt"
-  validation_method     = "txt"
-  validity_days         = 90
-}
-
-# Infrastructure service certificates
-module "infrastructure_certificates" {
-  source = "./modules/certificate_packs"
-
-  zone_id              = var.cloudflare_zone_id
-  domain_name          = var.domain_name
-  create_wildcard_cert = false
-
-  # Combine infrastructure DNS records
+  # Feed all primary-zone DNS records so multi-level subdomains are detected
   dns_records = merge(
-    module.proxmox_dns.records_for_certificates,
+    module.kvm_dns.records_for_certificates,
     module.vyos_nl_dns.records_for_certificates,
-    module.vyos_sg_dns.records_for_certificates
+    module.vyos_sg_dns.records_for_certificates,
+    module.auth_dns.records_for_certificates,
+    module.storage_dns.records_for_certificates,
+    module.special_dns.records_for_certificates,
   )
 
   certificate_authority = "lets_encrypt"
@@ -53,69 +29,48 @@ module "infrastructure_certificates" {
   validity_days         = 90
 }
 
-# Authentication service certificates
-module "auth_certificates" {
+# ── Thirdary zone (erfi.io) ─────────────────────────────────────────
+# Media/servarr services — wildcard mode auto-detects admin.matrix → *.matrix
+module "media_certificates" {
   source = "./modules/certificate_packs"
 
-  zone_id              = var.cloudflare_zone_id
-  domain_name          = var.domain_name
-  create_wildcard_cert = false
+  zone_id     = var.thirdary_cloudflare_zone_id
+  domain_name = var.thirdary_domain_name
 
-  dns_records = module.auth_dns.records_for_certificates
+  dns_records = module.media_dns.records_for_certificates
 
   certificate_authority = "lets_encrypt"
   validation_method     = "txt"
   validity_days         = 90
 }
 
-# Storage service certificates
-module "storage_certificates" {
+# ── Secondary zone (erfi.dev) ────────────────────────────────────────
+module "secondary_certificates" {
   source = "./modules/certificate_packs"
 
-  zone_id              = var.cloudflare_zone_id
-  domain_name          = var.domain_name
-  create_wildcard_cert = false
+  zone_id     = var.secondary_cloudflare_zone_id
+  domain_name = var.secondary_domain_name
 
-  dns_records = module.storage_dns.records_for_certificates
+  dns_records = module.secondary_dns.records_for_certificates
 
   certificate_authority = "lets_encrypt"
   validation_method     = "txt"
   validity_days         = 90
 }
 
-# Special service certificates
-module "special_certificates" {
-  source = "./modules/certificate_packs"
-
-  zone_id              = var.cloudflare_zone_id
-  domain_name          = var.domain_name
-  create_wildcard_cert = false
-
-  dns_records = module.special_dns.records_for_certificates
-
-  certificate_authority = "lets_encrypt"
-  validation_method     = "txt"
-  validity_days         = 90
-}
-
-# Output summary of certificates
+# Output summary
 output "certificate_summary" {
   description = "Summary of all certificates created"
   value = {
-    base_certificates           = module.base_certificates.certificate_count
-    media_certificates          = module.media_certificates.certificate_count
-    infrastructure_certificates = module.infrastructure_certificates.certificate_count
-    auth_certificates           = module.auth_certificates.certificate_count
-    storage_certificates        = module.storage_certificates.certificate_count
-    special_certificates        = module.special_certificates.certificate_count
+    primary_certificates   = module.primary_certificates.certificate_count
+    media_certificates     = module.media_certificates.certificate_count
+    secondary_certificates = module.secondary_certificates.certificate_count
     total_certificates = (
-      module.base_certificates.certificate_count +
+      module.primary_certificates.certificate_count +
       module.media_certificates.certificate_count +
-      module.infrastructure_certificates.certificate_count +
-      module.auth_certificates.certificate_count +
-      module.storage_certificates.certificate_count +
-      module.special_certificates.certificate_count
+      module.secondary_certificates.certificate_count
     )
+    primary_multi_level_parents = module.primary_certificates.multi_level_parents
+    media_multi_level_parents   = module.media_certificates.multi_level_parents
   }
 }
-

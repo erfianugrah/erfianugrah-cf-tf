@@ -9,7 +9,7 @@ output "tunnel_token_kvm_nl" {
 }
 
 output "tunnel_token_kvm_sg" {
-  value     = cloudflare_zero_trust_tunnel_cloudflared.kvm_nl.tunnel_token
+  value     = cloudflare_zero_trust_tunnel_cloudflared.kvm_sg.tunnel_token
   sensitive = true
 }
 
@@ -24,7 +24,7 @@ output "tunnel_token_vyos_nl" {
 }
 
 output "tunnel_token_vyos_sg" {
-  value     = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.tunnel_token
+  value     = cloudflare_zero_trust_tunnel_cloudflared.vyos_sg.tunnel_token
   sensitive = true
 }
 

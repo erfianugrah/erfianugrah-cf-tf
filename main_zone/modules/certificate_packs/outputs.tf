@@ -15,7 +15,7 @@ output "certificate_hosts" {
   }
 }
 
-output "wildcard_certificate" {
-  description = "The wildcard certificate if created"
-  value       = var.create_wildcard_cert ? cloudflare_certificate_pack.certs["main_domain"] : null
+output "multi_level_parents" {
+  description = "Auto-detected multi-level subdomain parents that got wildcard certs"
+  value       = var.mode == "wildcard" ? local.multi_level_parents : []
 }

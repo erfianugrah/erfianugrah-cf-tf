@@ -3,33 +3,17 @@
 
 # Media Services Module (all servarr-tagged records)
 
-# ProxMox Infrastructure Module
-module "proxmox_dns" {
+# ProxMox Infrastructure Module - REMOVED
+# Proxmox tunnel and DNS records removed during cleanup
+
+# KVM Infrastructure Module
+module "kvm_dns" {
   source = "./modules/dns_records"
 
   zone_id     = var.cloudflare_zone_id
   domain_name = var.domain_name
 
   records = {
-    # Active records
-    proxmox_ui = {
-      name    = "proxmox"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
-      proxied = true
-      ttl     = 1
-      comment = "proxmox web ui"
-      tags    = ["proxmox"]
-    },
-    proxmox_ssh = {
-      name    = "*.proxmox"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
-      proxied = true
-      ttl     = 1
-      comment = "proxmox ssh"
-      tags    = ["proxmox"]
-    },
     kvm = {
       name    = "kvm"
       type    = "A"
@@ -66,8 +50,6 @@ module "proxmox_dns" {
       comment = "SSH access to pikvm nl"
       tags    = ["kvm-nl"]
     },
-    # Add all other proxmox records
-    # Commented out records can be added here
   }
 }
 
@@ -498,13 +480,7 @@ module "special_dns" {
     #   ttl     = 1
     #   comment = "dcv delegation test"
     # },
-    coffee_test = {
-      name    = "coffee.test"
-      type    = "CNAME"
-      content = "coffee-time.pages.dev"
-      proxied = true
-      ttl     = 1
-    },
+
     challenge = {
       name    = "challenge"
       type    = "AAAA"
@@ -537,14 +513,7 @@ module "special_dns" {
       ttl     = 1
       comment = "httpbun"
     },
-    docs = {
-      name    = "docs"
-      type    = "CNAME"
-      content = "erfi-docs.pages.dev"
-      proxied = true
-      ttl     = 1
-      comment = "documentation"
-    },
+
     # DNS delegation records
     best_delegation_1 = {
       name    = "best"
@@ -619,104 +588,41 @@ module "special_dns" {
   }
 }
 
-# Proxmox Secondary Zone Module
-module "proxmox_secondary_dns" {
+# Secondary Domain (erfi.dev) Services Module
+module "secondary_dns" {
   source = "./modules/dns_records"
 
   zone_id     = var.secondary_cloudflare_zone_id
   domain_name = var.secondary_domain_name
 
   records = {
-    plex_mox = {
-      name    = "plex-mox"
+    draw = {
+      name    = "draw"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
+      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
       proxied = true
       ttl     = 1
-      comment = "Plex on Proxmox"
-      tags    = ["proxmox"]
+      comment = "excalidraw"
+      tags    = ["erfipie"]
     },
-    jellyfin_mox = {
-      name    = "jellyfin-mox"
+    uptime = {
+      name    = "uptime"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
+      content = cloudflare_zero_trust_tunnel_cloudflared.erfipie.cname
       proxied = true
       ttl     = 1
-      comment = "Jellyfin on Proxmox"
-      tags    = ["proxmox"]
+      comment = "uptime-kuma"
+      tags    = ["erfipie"]
     },
-    prowlarr_mox = {
-      name    = "prowlarr-mox"
+    gloryhole = {
+      name    = "gloryhole"
       type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
+      content = cloudflare_zero_trust_tunnel_cloudflared.vyos_nl.cname
       proxied = true
       ttl     = 1
-      comment = "Prowlarr on Proxmox"
-      tags    = ["proxmox"]
+      comment = "pihole admin"
+      tags    = ["vyos-nl"]
     },
-    radarr_mox = {
-      name    = "radarr-mox"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
-      proxied = true
-      ttl     = 1
-      comment = "Radarr on Proxmox"
-      tags    = ["proxmox"]
-    },
-    sonarr_mox = {
-      name    = "sonarr-mox"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
-      proxied = true
-      ttl     = 1
-      comment = "Sonarr on Proxmox"
-      tags    = ["proxmox"]
-    },
-    bazarr_mox = {
-      name    = "bazarr-mox"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
-      proxied = true
-      ttl     = 1
-      comment = "Bazarr on Proxmox"
-      tags    = ["proxmox"]
-    },
-    tautulli_mox = {
-      name    = "tautulli-mox"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
-      proxied = true
-      ttl     = 1
-      comment = "Tautulli on Proxmox"
-      tags    = ["proxmox"]
-    },
-    navidrome_mox = {
-      name    = "navidrome-mox"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
-      proxied = true
-      ttl     = 1
-      comment = "Navidrome on Proxmox"
-      tags    = ["proxmox"]
-    },
-    solvarr_mox = {
-      name    = "solvarr-mox"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
-      proxied = true
-      ttl     = 1
-      comment = "Solvarr on Proxmox"
-      tags    = ["proxmox"]
-    },
-    sabnzbd_mox = {
-      name    = "sabnzbd-mox"
-      type    = "CNAME"
-      content = cloudflare_zero_trust_tunnel_cloudflared.proxmox.cname
-      proxied = true
-      ttl     = 1
-      comment = "SABnzbd on Proxmox"
-      tags    = ["proxmox"]
-    }
   }
 }
 

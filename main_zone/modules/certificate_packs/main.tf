@@ -1,47 +1,64 @@
 locals {
-  # Create base wildcard certificate config if enabled
-  base_cert = var.create_wildcard_cert ? {
-    main_domain = {
-      hosts   = [var.domain_name, "*.${var.domain_name}"]
-      zone_id = var.zone_id
-    }
-  } : {}
-
-  # DCV (Domain Control Validation) patterns to exclude from certification
+  # ── DCV patterns to exclude ────────────────────────────────────────
   dcv_patterns = [
     "dcv.cloudflare.com",
     ".dcv.",
     "_acme-challenge",
     ".acme.",
-    "validation"
+    "validation",
   ]
 
-  # Extract record name safely without accessing potentially sensitive content
-  safe_records = {
+  # ── Filter eligible records (A/AAAA/CNAME, no DCV) ────────────────
+  eligible_records = {
     for k, v in var.dns_records : k => {
       name = v.name
       type = v.type
-      # Avoid using content directly to prevent sensitivity issues
     }
-  }
-
-  # Filter DNS records to exclude DCV records
-  filtered_records = {
-    for k, v in local.safe_records : k => v
     if contains(var.cert_types, v.type) &&
-    !anytrue([for pattern in local.dcv_patterns : strcontains(v.name, pattern)])
+    !anytrue([for pattern in local.dcv_patterns : strcontains(v.name, pattern)]) &&
+    !contains(var.exclude_from_per_host, k)
   }
 
-  # Create certificate configs for each filtered record
-  record_certs = {
-    for k, v in local.filtered_records : k => {
+  # ── Detect multi-level subdomains ──────────────────────────────────
+  # A record name like "nl.vyos" has a dot → parent is "vyos"
+  # We collect unique parent subdomain segments for wildcard generation
+  multi_level_parents = distinct(concat(
+    [
+      for k, v in local.eligible_records : join(".", slice(split(".", v.name), 1, length(split(".", v.name))))
+      if length(regexall("\\.", v.name)) > 0
+    ],
+    var.additional_wildcards
+  ))
+
+  # ── Mode: wildcard ─────────────────────────────────────────────────
+  # Root + wildcard + per-parent wildcards for multi-level subdomains
+  wildcard_certs = var.mode == "wildcard" ? merge(
+    # Base: root + wildcard
+    {
+      root_wildcard = {
+        hosts   = [var.domain_name, "*.${var.domain_name}"]
+        zone_id = var.zone_id
+      }
+    },
+    # Multi-level: wildcard per parent subdomain
+    {
+      for parent in local.multi_level_parents : "wildcard_${replace(parent, ".", "_")}" => {
+        hosts   = ["*.${parent}.${var.domain_name}"]
+        zone_id = var.zone_id
+      }
+    }
+  ) : {}
+
+  # ── Mode: per_host (Total TLS style) ──────────────────────────────
+  per_host_certs = var.mode == "per_host" ? {
+    for k, v in local.eligible_records : k => {
       hosts   = ["${v.name}.${var.domain_name}"]
       zone_id = var.zone_id
     }
-  }
+  } : {}
 
-  # Combine base wildcard cert with individual record certs
-  all_certificate_hosts = merge(local.base_cert, local.record_certs)
+  # ── Final cert map ─────────────────────────────────────────────────
+  all_certificate_hosts = var.mode == "wildcard" ? local.wildcard_certs : local.per_host_certs
 }
 
 # Create certificate packs

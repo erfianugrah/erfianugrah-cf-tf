@@ -2,23 +2,18 @@
 resource "cloudflare_record" "simple" {
   for_each = var.records
 
-  # Required fields
   zone_id = var.zone_id
   name    = each.value.name
   type    = each.value.type
   content = each.value.content
 
-  # Optional fields with dynamic assignments to avoid null values
-  proxied         = each.value.proxied != null ? each.value.proxied : null
-  ttl             = each.value.ttl != null ? each.value.ttl : null
-  comment         = each.value.comment != null ? each.value.comment : null
-  priority        = each.value.priority != null ? each.value.priority : null
-  allow_overwrite = each.value.allow_overwrite != null ? each.value.allow_overwrite : null
+  proxied         = each.value.proxied
+  ttl             = each.value.ttl
+  comment         = each.value.comment
+  priority        = each.value.priority
+  allow_overwrite = each.value.allow_overwrite
+  tags            = coalesce(each.value.tags, [])
 
-  # Tags need special handling since it's a set
-  tags = each.value.tags != null ? each.value.tags : []
-
-  # Add timeouts block if needed
   timeouts {
     create = "2m"
     update = "2m"
@@ -29,26 +24,20 @@ resource "cloudflare_record" "simple" {
 resource "cloudflare_record" "complex" {
   for_each = var.complex_records
 
-  # Required fields
   zone_id = var.zone_id
   name    = each.value.name
   type    = each.value.type
 
-  # Optional fields with dynamic assignments to avoid null values
-  proxied         = each.value.proxied != null ? each.value.proxied : null
-  ttl             = each.value.ttl != null ? each.value.ttl : null
-  comment         = each.value.comment != null ? each.value.comment : null
-  priority        = each.value.priority != null ? each.value.priority : null
-  allow_overwrite = each.value.allow_overwrite != null ? each.value.allow_overwrite : null
+  proxied         = each.value.proxied
+  ttl             = each.value.ttl
+  comment         = each.value.comment
+  priority        = each.value.priority
+  allow_overwrite = each.value.allow_overwrite
+  tags            = coalesce(each.value.tags, [])
 
-  # Tags need special handling since it's a set
-  tags = each.value.tags != null ? each.value.tags : []
-
-  # Add the data block for complex record types
   dynamic "data" {
     for_each = each.value.data != null ? [each.value.data] : []
     content {
-      # Only use the fields that are provided in the data block
       # SRV record fields
       service  = lookup(data.value, "service", null)
       proto    = lookup(data.value, "proto", null)
@@ -107,7 +96,6 @@ resource "cloudflare_record" "complex" {
     }
   }
 
-  # Add timeouts block
   timeouts {
     create = "2m"
     update = "2m"
