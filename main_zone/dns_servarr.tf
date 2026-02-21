@@ -6,11 +6,21 @@ module "media_dns" {
 
   records = {
     # Active records
+    ech = {
+      name            = "ech"
+      type            = "A"
+      content         = var.sg_ip
+      proxied         = false
+      ttl             = 1
+      comment         = "ech"
+      tags            = ["servarr"]
+      allow_overwrite = true
+    },
     authelia = {
       name            = "authelia"
       type            = "A"
       content         = var.sg_ip
-      proxied         = true
+      proxied         = false
       ttl             = 1
       comment         = "auth"
       tags            = ["servarr"]
