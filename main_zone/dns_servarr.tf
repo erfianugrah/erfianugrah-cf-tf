@@ -7,6 +7,15 @@ module "media_dns" {
   records = {
     # Active records
     bazarr = {
+      name    = "authelia"
+      type    = "A"
+      content = var.sg_ip
+      proxied = true
+      ttl     = 1
+      comment = "auth"
+      tags    = ["servarr"]
+    },
+    bazarr = {
       name    = "bazarr"
       type    = "CNAME"
       content = module.tunnel_servarr.cname
