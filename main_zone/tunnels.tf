@@ -75,8 +75,7 @@ module "tunnel_servarr" {
     { hostname = "navidrome.${var.tertiary_domain_name}", service = "http://172.19.1.17:4533" },
     { hostname = "seerr.${var.tertiary_domain_name}", service = "http://172.19.1.21:5055" },
     { hostname = "copyparty.${var.tertiary_domain_name}", service = "http://172.19.66.2:3923" },
-    { hostname = "vaultwarden.${var.tertiary_domain_name}", service = "http://172.19.4.2:80" },
-    { hostname = "vaultwarden.${var.tertiary_domain_name}", path = "notifications/hub", service = "http://172.19.4.2:3012" },
+    { hostname = "vault.${var.tertiary_domain_name}", service = "http://172.19.4.2:80" },
     { hostname = "joplin.${var.tertiary_domain_name}", service = "http://172.19.13.2:22300" },
     { hostname = "file.${var.tertiary_domain_name}", service = "http://172.19.6.2:80" },
     { hostname = "servarr.${var.tertiary_domain_name}", service = "http://localhost:90" },
@@ -85,8 +84,6 @@ module "tunnel_servarr" {
     { hostname = "qbit.${var.tertiary_domain_name}", service = "http://172.19.1.22:8080" },
     { hostname = "keycloak.${var.tertiary_domain_name}", service = "http://172.19.12.2:8080" },
     # Primary domain services routed through servarr tunnel
-    { hostname = "vaultwarden.${var.domain_name}", service = "http://172.19.4.2:80" },
-    { hostname = "vaultwarden.${var.domain_name}", path = "notifications/hub", service = "http://172.19.4.2:3012" },
     { hostname = "keycloak.${var.domain_name}", service = "http://172.19.12.2:8080" },
     { service = "http_status:404" },
   ]

@@ -88,6 +88,32 @@
 #   }
 # }
 
+resource "cloudflare_load_balancer" "vault" {
+  default_pool_ids = [cloudflare_load_balancer_pool.vault_servarr.id]
+  enabled          = true
+  fallback_pool_id = cloudflare_load_balancer_pool.vault_k3s.id
+  name             = "vault.${var.tertiary_domain_name}"
+  proxied          = true
+  session_affinity = "cookie"
+  steering_policy  = "off"
+  zone_id          = var.tertiary_cloudflare_zone_id
+  adaptive_routing {
+    failover_across_pools = true
+  }
+  location_strategy {
+    mode       = "pop"
+    prefer_ecs = "proximity"
+  }
+  random_steering {
+    default_weight = 1
+  }
+  session_affinity_attributes {
+    samesite               = "Auto"
+    secure                 = "Auto"
+    zero_downtime_failover = "temporary"
+  }
+}
+
 resource "cloudflare_load_balancer" "httpbun_ipsec_erfipie" {
   default_pool_ids = [cloudflare_load_balancer_pool.httpbun_ipsec_erfipie_nl.id]
   enabled          = true

@@ -243,15 +243,6 @@ module "auth_dns" {
       comment = "auth server"
       tags    = ["auth"]
     },
-    vaultwarden = {
-      name    = "vaultwarden"
-      type    = "CNAME"
-      content = module.tunnel_servarr.cname
-      proxied = true
-      ttl     = 1
-      comment = "password manager"
-      tags    = ["auth"]
-    },
     # Add all other auth records
   }
 }
