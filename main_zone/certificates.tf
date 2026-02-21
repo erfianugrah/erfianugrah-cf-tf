@@ -22,7 +22,7 @@ module "primary_certificates" {
   validity_days         = 90
 }
 
-# ── Thirdary zone (erfi.io) ─────────────────────────────────────────
+# ── Tertiary zone (erfi.io) ─────────────────────────────────────────
 # Media/servarr services — wildcard mode auto-detects admin.matrix → *.matrix
 module "media_certificates" {
   source = "./modules/certificate_packs"
@@ -51,6 +51,20 @@ module "secondary_certificates" {
   validity_days         = 90
 }
 
+# ── tertiary zone (erfi.io) ────────────────────────────────────────
+module "tertiary_certificates" {
+  source = "./modules/certificate_packs"
+
+  zone_id     = var.tertiary_cloudflare_zone_id
+  domain_name = var.tertiary_domain_name
+
+  dns_records = module.tertiary_dns.records_for_certificates
+
+  certificate_authority = "lets_encrypt"
+  validation_method     = "txt"
+  validity_days         = 90
+}
+
 # Output summary
 output "certificate_summary" {
   description = "Summary of all certificates created"
@@ -58,10 +72,12 @@ output "certificate_summary" {
     primary_certificates   = module.primary_certificates.certificate_count
     media_certificates     = module.media_certificates.certificate_count
     secondary_certificates = module.secondary_certificates.certificate_count
+    tertiary_certificates  = module.secondary_certificates.certificate_count
     total_certificates = (
       module.primary_certificates.certificate_count +
       module.media_certificates.certificate_count +
-      module.secondary_certificates.certificate_count
+      module.secondary_certificates.certificate_count +
+      module.tertiary_certificates.certificate_count
     )
     primary_multi_level_parents = module.primary_certificates.multi_level_parents
     media_multi_level_parents   = module.media_certificates.multi_level_parents

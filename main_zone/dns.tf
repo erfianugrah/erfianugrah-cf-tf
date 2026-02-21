@@ -410,13 +410,33 @@ module "secondary_dns" {
       comment = "uptime-kuma"
       tags    = ["erfipie"]
     },
+  }
+}
+
+# ── Tertiary Domain (erfi.io) ───────────────────────────────────────
+module "tertiary_dns" {
+  source = "./modules/dns_records"
+
+  zone_id     = var.tertiary_cloudflare_zone_id
+  domain_name = var.tertiary_domain_name
+
+  records = {
     gloryhole = {
       name    = "gloryhole"
       type    = "CNAME"
       content = module.tunnel_vyos_nl.cname
       proxied = true
       ttl     = 1
-      comment = "pihole admin"
+      comment = "gloryhole admin"
+      tags    = ["vyos-nl"]
+    },
+    gloryhole-dot = {
+      name    = "gloryhole-dot"
+      type    = "A"
+      content = var.nl_ip
+      proxied = false
+      ttl     = 1
+      comment = "gloryhole DoT"
       tags    = ["vyos-nl"]
     },
   }

@@ -104,8 +104,8 @@ module "tunnel_vyos_nl" {
     { hostname = "pihole-vyos-nl.${var.domain_name}", service = "http://10.0.10.2" },
     { hostname = "prom-vyos-nl.${var.domain_name}", service = "http://localhost:9100" },
     { hostname = "httpbun-nl.${var.domain_name}", service = "http://10.0.10.8:80" },
-    { hostname = "gloryhole.${var.secondary_domain_name}", path = "/metrics", service = "http://10.0.10.10:9090" },
-    { hostname = "gloryhole.${var.secondary_domain_name}", service = "http://10.0.10.10:8080" },
+    { hostname = "gloryhole.${var.tertiary_domain_name}", path = "/metrics", service = "http://10.0.10.10:9090" },
+    { hostname = "gloryhole.${var.tertiary_domain_name}", service = "http://10.0.10.10:8080" },
     {
       hostname = "tpi.${var.domain_name}"
       service  = "https://10.0.71.8:443"
