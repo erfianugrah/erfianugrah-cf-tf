@@ -15,14 +15,7 @@ module "primary_certificates" {
   domain_name = var.domain_name
 
   # Feed all primary-zone DNS records so multi-level subdomains are detected
-  dns_records = merge(
-    module.kvm_dns.records_for_certificates,
-    module.vyos_nl_dns.records_for_certificates,
-    module.vyos_sg_dns.records_for_certificates,
-    module.auth_dns.records_for_certificates,
-    module.storage_dns.records_for_certificates,
-    module.special_dns.records_for_certificates,
-  )
+  dns_records = module.primary_dns.records_for_certificates
 
   certificate_authority = "lets_encrypt"
   validation_method     = "txt"

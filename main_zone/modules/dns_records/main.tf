@@ -101,3 +101,4 @@ resource "cloudflare_record" "complex" {
     update = "2m"
   }
 }
+

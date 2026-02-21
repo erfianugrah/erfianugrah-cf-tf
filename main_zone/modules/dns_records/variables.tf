@@ -51,13 +51,11 @@ variable "complex_records" {
 
       # MX record fields
       preference = optional(number)
-      value      = optional(string) # For the mail server
+      value      = optional(string)
 
       # NAPTR record fields
-      order = optional(number)
-      # preference is already defined above
-      flags = optional(string)
-      # service is already defined above
+      order       = optional(number)
+      flags       = optional(string)
       regex       = optional(string)
       replacement = optional(string)
 
@@ -76,9 +74,7 @@ variable "complex_records" {
       precision_vert = optional(number)
 
       # CAA record fields
-      # flags is already defined above
       tag = optional(string)
-      # value is already defined above
 
       # SSHFP record fields
       algorithm   = optional(number)
@@ -92,8 +88,7 @@ variable "complex_records" {
       certificate   = optional(string)
 
       # DS/DNSKEY record fields
-      key_tag = optional(number)
-      # algorithm is already defined above
+      key_tag     = optional(number)
       digest_type = optional(number)
       digest      = optional(string)
       public_key  = optional(string)

@@ -6,14 +6,15 @@ module "media_dns" {
 
   records = {
     # Active records
-    bazarr = {
-      name    = "authelia"
-      type    = "A"
-      content = var.sg_ip
-      proxied = true
-      ttl     = 1
-      comment = "auth"
-      tags    = ["servarr"]
+    authelia = {
+      name            = "authelia"
+      type            = "A"
+      content         = var.sg_ip
+      proxied         = true
+      ttl             = 1
+      comment         = "auth"
+      tags            = ["servarr"]
+      allow_overwrite = true
     },
     bazarr = {
       name    = "bazarr"
@@ -170,9 +171,9 @@ module "media_dns" {
     # },
     servarr = {
       name    = "servarr"
-      type    = "CNAME"
-      content = module.tunnel_servarr.cname
-      proxied = true
+      type    = "A"
+      content = var.sg_ip
+      proxied = false
       ttl     = 1
       comment = "unraid admin"
       tags    = ["servarr"]

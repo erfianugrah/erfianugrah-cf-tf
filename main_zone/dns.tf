@@ -1,19 +1,14 @@
-# DNS records using the module approach
-# This file replaces dns.tf by using the dns_records module
+# DNS records for the primary zone (erfianugrah.com)
+# Consolidated into a single module call for efficiency
 
-# Media Services Module (all servarr-tagged records)
-
-# ProxMox Infrastructure Module - REMOVED
-# Proxmox tunnel and DNS records removed during cleanup
-
-# KVM Infrastructure Module
-module "kvm_dns" {
+module "primary_dns" {
   source = "./modules/dns_records"
 
   zone_id     = var.cloudflare_zone_id
   domain_name = var.domain_name
 
   records = {
+    # ── KVM Infrastructure ──────────────────────────────────────────────
     kvm = {
       name    = "kvm"
       type    = "A"
@@ -50,18 +45,8 @@ module "kvm_dns" {
       comment = "SSH access to pikvm nl"
       tags    = ["kvm-nl"]
     },
-  }
-}
 
-# VyOS Infrastructure Module - Netherlands
-module "vyos_nl_dns" {
-  source = "./modules/dns_records"
-
-  zone_id     = var.cloudflare_zone_id
-  domain_name = var.domain_name
-
-  records = {
-    # Active records
+    # ── VyOS Netherlands ────────────────────────────────────────────────
     vyos_node_exporter = {
       name    = "vyos-node-exporter"
       type    = "A"
@@ -116,24 +101,6 @@ module "vyos_nl_dns" {
       comment = "turing pi BMC"
       tags    = ["k3s"]
     },
-    # vyos_fileservarr = {
-    #   name    = "vyos-fileservarr"
-    #   type    = "A"
-    #   content = var.nl_ip
-    #   proxied = true
-    #   ttl     = 1
-    #   comment = "vyos-fileservarr"
-    #   tags    = ["vyos-nl"]
-    # },
-    # prom_caddy_nl = {
-    #   name    = "prom-caddy-nl"
-    #   type    = "CNAME"
-    #   content = module.tunnel_vyos_nl.cname
-    #   proxied = true
-    #   ttl     = 1
-    #   comment = "caddy on vyos-nl"
-    #   tags    = ["vyos-nl"]
-    # },
     prom_tunnel_nl = {
       name    = "prom-tunnel-nl"
       type    = "CNAME"
@@ -152,20 +119,8 @@ module "vyos_nl_dns" {
       comment = "cfd node exporter"
       tags    = ["vyos-nl"]
     },
-    # Add all other vyos-nl records
-    # Commented out records can be added here
-  }
-}
 
-# VyOS Infrastructure Module - Singapore
-module "vyos_sg_dns" {
-  source = "./modules/dns_records"
-
-  zone_id     = var.cloudflare_zone_id
-  domain_name = var.domain_name
-
-  records = {
-    # Active records
+    # ── VyOS Singapore ──────────────────────────────────────────────────
     vyos_sg_ssh = {
       name    = "sg.vyos"
       type    = "CNAME"
@@ -202,38 +157,8 @@ module "vyos_sg_dns" {
       comment = "check IP"
       tags    = ["vyos-sg"]
     },
-    # prom_caddy_sg = {
-    #   name    = "prom-caddy-sg"
-    #   type    = "CNAME"
-    #   content = module.tunnel_servarr.cname
-    #   proxied = true
-    #   ttl     = 1
-    #   comment = "caddy on unraid"
-    #   tags    = ["servarr"]
-    # },
-    # prom_unraid = {
-    #   name    = "prom-unraid"
-    #   type    = "A"
-    #   content = var.sg_ip
-    #   proxied = true
-    #   ttl     = 1
-    #   comment = "prometheus"
-    #   tags    = ["servarr"]
-    # },
-    # Add all other vyos-sg records
-    # Commented out records can be added here
-  }
-}
 
-# Authentication and Security Module
-module "auth_dns" {
-  source = "./modules/dns_records"
-
-  zone_id     = var.cloudflare_zone_id
-  domain_name = var.domain_name
-
-  records = {
-    # Active records
+    # ── Authentication ──────────────────────────────────────────────────
     keycloak = {
       name    = "keycloak"
       type    = "CNAME"
@@ -243,49 +168,8 @@ module "auth_dns" {
       comment = "auth server"
       tags    = ["auth"]
     },
-    # Add all other auth records
-  }
-}
 
-# Email Module
-module "email_dns" {
-  source = "./modules/dns_records"
-
-  zone_id     = var.cloudflare_zone_id
-  domain_name = var.domain_name
-
-  records = {
-    # Mail records
-    # area_1_mx_1 = {
-    #   name     = var.domain_name
-    #   type     = "MX"
-    #   content  = "mailstream-central.mxrecord.mx"
-    #   priority = 50
-    #   ttl      = 300
-    #   comment  = "area 1"
-    #   tags     = ["area1"]
-    #   proxied  = false
-    # },
-    # area_1_mx_2 = {
-    #   name     = var.domain_name
-    #   type     = "MX"
-    #   content  = "mailstream-west.mxrecord.io"
-    #   priority = 10
-    #   ttl      = 300
-    #   comment  = "area 1"
-    #   tags     = ["area1"]
-    #   proxied  = false
-    # },
-    # area_1_mx_3 = {
-    #   name     = var.domain_name
-    #   type     = "MX"
-    #   content  = "mailstream-east.mxrecord.io"
-    #   priority = 10
-    #   ttl      = 300
-    #   comment  = "area 1"
-    #   tags     = ["area1"]
-    #   proxied  = false
-    # },
+    # ── Email ───────────────────────────────────────────────────────────
     google_workspace = {
       name     = var.domain_name
       type     = "MX"
@@ -319,18 +203,8 @@ module "email_dns" {
       comment = "google verification"
       proxied = false
     },
-  }
-}
 
-# Storage Module
-module "storage_dns" {
-  source = "./modules/dns_records"
-
-  zone_id     = var.cloudflare_zone_id
-  domain_name = var.domain_name
-
-  records = {
-    # Storage records
+    # ── Storage ─────────────────────────────────────────────────────────
     r2 = {
       name    = "r2"
       type    = "AAAA"
@@ -357,18 +231,8 @@ module "storage_dns" {
       ttl     = 1
       comment = "gcp storage bucket"
     },
-  }
-}
 
-# Special Purpose/Miscellaneous Module
-module "special_dns" {
-  source = "./modules/dns_records"
-
-  zone_id     = var.cloudflare_zone_id
-  domain_name = var.domain_name
-
-  records = {
-    # Special records
+    # ── Special Purpose ─────────────────────────────────────────────────
     atuin = {
       name    = "atuin"
       type    = "CNAME"
@@ -404,7 +268,6 @@ module "special_dns" {
       comment = "k3s zero trust tunnel"
       tags    = ["k3s"]
     },
-
     prom_exporter_pi = {
       name    = "prom-exporter-pi"
       type    = "CNAME"
@@ -414,15 +277,6 @@ module "special_dns" {
       comment = "erfipie node exporter"
       tags    = ["erfipie"]
     },
-    # tldraw = {
-    #   name    = "draw"
-    #   type    = "CNAME"
-    #   content = module.tunnel_erfipie.cname
-    #   proxied = true
-    #   ttl     = 1
-    #   comment = "drawing"
-    #   tags    = ["tldraw"]
-    # },
     tunnel = {
       name    = "tunnel"
       type    = "AAAA"
@@ -439,24 +293,6 @@ module "special_dns" {
       ttl     = 1
       comment = "whatami test site"
     },
-    # www_revista = {
-    #   name    = "www"
-    #   type    = "CNAME"
-    #   content = var.pages_domain
-    #   proxied = true
-    #   ttl     = 1
-    #   comment = "www"
-    #   tags    = ["revista"]
-    # },
-    # acme_challenge_custom_hostname_2 = {
-    #   name    = "_acme-challenge.custom-hostname-2"
-    #   type    = "CNAME"
-    #   content = "custom-hostname-2.${var.domain_name}.b63bf2e93a182db4.dcv.cloudflare.com"
-    #   proxied = true
-    #   ttl     = 1
-    #   comment = "dcv delegation test"
-    # },
-
     challenge = {
       name    = "challenge"
       type    = "AAAA"
@@ -465,22 +301,6 @@ module "special_dns" {
       ttl     = 1
       comment = "challenge record"
     },
-    # custom_hostname = {
-    #   name    = "custom-hostname"
-    #   type    = "CNAME"
-    #   content = "httpbun.${var.domain_name}"
-    #   proxied = true
-    #   ttl     = 1
-    #   comment = "custom hostname"
-    # },
-    # custom_hostname_2 = {
-    #   name    = "custom-hostname-2"
-    #   type    = "CNAME"
-    #   content = "fallback.epikbahis175.com"
-    #   proxied = false
-    #   ttl     = 1
-    #   comment = "custom hostname 2"
-    # },
     httpbun = {
       name    = "httpbun"
       type    = "A"
@@ -490,7 +310,7 @@ module "special_dns" {
       comment = "httpbun"
     },
 
-    # DNS delegation records
+    # ── DNS Delegations ─────────────────────────────────────────────────
     best_delegation_1 = {
       name    = "best"
       type    = "NS"
@@ -560,11 +380,11 @@ module "special_dns" {
       content = "jeremy.ns.cloudflare.com"
       proxied = false
       ttl     = 1
-    }
+    },
   }
 }
 
-# Secondary Domain (erfi.dev) Services Module
+# ── Secondary Domain (erfi.dev) ───────────────────────────────────────
 module "secondary_dns" {
   source = "./modules/dns_records"
 
@@ -601,6 +421,3 @@ module "secondary_dns" {
     },
   }
 }
-
-# Add other groups of DNS records as needed
-
