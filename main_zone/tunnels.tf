@@ -84,7 +84,6 @@ module "tunnel_servarr" {
     { hostname = "qbit.${var.tertiary_domain_name}", service = "http://172.19.1.22:8080" },
     { hostname = "keycloak.${var.tertiary_domain_name}", service = "http://172.19.12.2:8080" },
     # Primary domain services routed through servarr tunnel
-    { hostname = "keycloak.${var.domain_name}", service = "http://172.19.12.2:8080" },
     { service = "http_status:404" },
   ]
 
