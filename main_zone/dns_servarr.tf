@@ -6,25 +6,32 @@ module "media_dns" {
 
   records = {
     # Active records
+    waf = {
+      name    = "waf"
+      type    = "A"
+      content = var.sg_ip
+      proxied = true
+      ttl     = 1
+      comment = "waf"
+      tags    = ["servarr"]
+    },
     ech = {
-      name            = "ech"
-      type            = "A"
-      content         = var.sg_ip
-      proxied         = true
-      ttl             = 1
-      comment         = "ech"
-      tags            = ["servarr"]
-      allow_overwrite = true
+      name    = "ech"
+      type    = "A"
+      content = var.sg_ip
+      proxied = true
+      ttl     = 1
+      comment = "ech"
+      tags    = ["servarr"]
     },
     authelia = {
-      name            = "authelia"
-      type            = "A"
-      content         = var.sg_ip
-      proxied         = true
-      ttl             = 1
-      comment         = "auth"
-      tags            = ["servarr"]
-      allow_overwrite = true
+      name    = "authelia"
+      type    = "A"
+      content = var.sg_ip
+      proxied = true
+      ttl     = 1
+      comment = "auth"
+      tags    = ["servarr"]
     },
     bazarr = {
       name    = "bazarr"
