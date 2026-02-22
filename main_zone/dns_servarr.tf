@@ -401,6 +401,15 @@ module "media_dns" {
       ttl     = 1
       comment = "file server"
       tags    = ["servarr"]
+    },
+    tracearr = {
+      name    = "tracearr"
+      type    = "A"
+      content = var.sg_ip
+      proxied = false
+      ttl     = 1
+      comment = "tracearr"
+      tags    = ["servarr"]
     }
   }
 }
