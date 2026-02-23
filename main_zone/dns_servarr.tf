@@ -10,7 +10,7 @@ module "media_dns" {
       name    = "waf"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "waf"
       tags    = ["servarr"]
@@ -19,7 +19,7 @@ module "media_dns" {
       name    = "ech"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "ech"
       tags    = ["servarr"]
@@ -28,7 +28,7 @@ module "media_dns" {
       name    = "authelia"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "auth"
       tags    = ["servarr"]
@@ -37,7 +37,7 @@ module "media_dns" {
       name    = "bazarr"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "subs"
       tags    = ["servarr"]
@@ -46,7 +46,7 @@ module "media_dns" {
       name    = "change"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "site crawler for changes"
       tags    = ["servarr"]
@@ -55,7 +55,7 @@ module "media_dns" {
     #   name    = "element"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "web app for matrix"
     #   tags    = ["servarr"]
@@ -64,7 +64,7 @@ module "media_dns" {
       name    = "file"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "file browser"
       tags    = ["servarr"]
@@ -73,7 +73,7 @@ module "media_dns" {
       name    = "httpbin"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "httpbin"
       tags    = ["servarr"]
@@ -82,7 +82,7 @@ module "media_dns" {
       name    = "immich"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "self-hosted google photos"
       tags    = ["servarr"]
@@ -91,7 +91,7 @@ module "media_dns" {
       name    = "jellyfin"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "like plex but not"
       tags    = ["servarr"]
@@ -100,7 +100,7 @@ module "media_dns" {
       name    = "joplin"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "notes"
       tags    = ["servarr"]
@@ -109,7 +109,7 @@ module "media_dns" {
       name    = "navidrome"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "music"
       tags    = ["servarr"]
@@ -118,7 +118,7 @@ module "media_dns" {
     #   name    = "overseerr"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "overseerr"
     #   tags    = ["servarr"]
@@ -127,7 +127,7 @@ module "media_dns" {
     #   name    = "plex"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "plex"
     #   tags    = ["servarr"]
@@ -136,7 +136,7 @@ module "media_dns" {
       name    = "prowlarr"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "indexer"
       tags    = ["servarr"]
@@ -145,7 +145,7 @@ module "media_dns" {
       name    = "qbit"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "qbit"
       tags    = ["servarr"]
@@ -154,7 +154,7 @@ module "media_dns" {
       name    = "radarr"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "radarr"
       tags    = ["servarr"]
@@ -163,7 +163,7 @@ module "media_dns" {
       name    = "sabnzbd"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "usenet"
       tags    = ["servarr"]
@@ -172,7 +172,7 @@ module "media_dns" {
       name    = "sonarr"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "sonarr"
       tags    = ["servarr"]
@@ -181,7 +181,7 @@ module "media_dns" {
     #   name    = "tautulli"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "plex usage"
     #   tags    = ["servarr"]
@@ -190,7 +190,7 @@ module "media_dns" {
       name    = "servarr"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "unraid admin"
       tags    = ["servarr"]
@@ -199,7 +199,7 @@ module "media_dns" {
     #   name    = "beets"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "tagging music"
     #   tags    = ["servarr"]
@@ -208,7 +208,7 @@ module "media_dns" {
     #   name    = "caddy"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "caddy-api"
     #   tags    = ["servarr"]
@@ -217,7 +217,7 @@ module "media_dns" {
     #   name    = "caddy-prometheus"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "caddy-monitoring"
     #   tags    = ["servarr"]
@@ -226,7 +226,7 @@ module "media_dns" {
       name    = "cadvisor"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "docker monitoring"
       tags    = ["servarr"]
@@ -235,7 +235,7 @@ module "media_dns" {
       name    = "calibre"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "books"
       tags    = ["servarr"]
@@ -244,7 +244,7 @@ module "media_dns" {
     #   name    = "homer"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "dashboard"
     #   tags    = ["servarr"]
@@ -253,7 +253,7 @@ module "media_dns" {
     #   name    = "hydra"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "usenet indexer aggregator"
     #   tags    = ["servarr"]
@@ -262,7 +262,7 @@ module "media_dns" {
     #   name    = "ihatemoney"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "collaborative expense app"
     #   tags    = ["servarr"]
@@ -271,7 +271,7 @@ module "media_dns" {
     #   name    = "jackett"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "indexer"
     #   tags    = ["servarr"]
@@ -280,7 +280,7 @@ module "media_dns" {
     #   name    = "nodered"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "nodered"
     #   tags    = ["servarr"]
@@ -289,7 +289,7 @@ module "media_dns" {
     #   name    = "port"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "portainer sg on unraid"
     #   tags    = ["servarr"]
@@ -298,7 +298,7 @@ module "media_dns" {
     #   name    = "privatebin"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "privatebin"
     #   tags    = ["servarr"]
@@ -307,7 +307,7 @@ module "media_dns" {
     #   name    = "qdirstat"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "directory file analyser"
     #   tags    = ["servarr"]
@@ -316,7 +316,7 @@ module "media_dns" {
     #   name    = "rclone"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "rclone"
     #   tags    = ["servarr"]
@@ -325,7 +325,7 @@ module "media_dns" {
     #   name    = "synapse"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "synapse"
     #   tags    = ["servarr"]
@@ -334,7 +334,7 @@ module "media_dns" {
     #   name    = "synapse-admin"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "synapse-admin"
     #   tags    = ["servarr"]
@@ -343,7 +343,7 @@ module "media_dns" {
     #   name    = "file"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "file browser"
     #   tags    = ["servarr"]
@@ -352,7 +352,7 @@ module "media_dns" {
     #   name    = "dockge"
     #   type    = "A"
     #   content = var.sg_ip
-    #   proxied = false
+    #   proxied = true
     #   ttl     = 1
     #   comment = "docker UI"
     #   tags    = ["servarr"]
@@ -361,7 +361,7 @@ module "media_dns" {
       name    = "dockge"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "dockge"
       tags    = ["servarr"]
@@ -370,7 +370,7 @@ module "media_dns" {
       name    = "seerr"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "jellyseerr"
       tags    = ["servarr"]
@@ -379,7 +379,7 @@ module "media_dns" {
       name    = "httpbun"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "httpbun"
       tags    = ["servarr"]
@@ -388,7 +388,7 @@ module "media_dns" {
       name    = "httpbin"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "httpbin"
       tags    = ["servarr"]
@@ -397,7 +397,7 @@ module "media_dns" {
       name    = "copyparty"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "file server"
       tags    = ["servarr"]
@@ -406,7 +406,7 @@ module "media_dns" {
       name    = "tracearr"
       type    = "A"
       content = var.sg_ip
-      proxied = false
+      proxied = true
       ttl     = 1
       comment = "tracearr"
       tags    = ["servarr"]
@@ -426,7 +426,7 @@ module "media_dns" {
 #       name    = "matrix"
 #       type    = "A"
 #       content = module.tunnel_erfipie.cname
-#       proxied = false
+#       proxied = true
 #       ttl     = 1
 #       comment = "Matrix Synapse homeserver"
 #       tags    = ["matrix"]
@@ -435,7 +435,7 @@ module "media_dns" {
 #       name    = "chat"
 #       type    = "A"
 #       content = module.tunnel_erfipie.cname
-#       proxied = false
+#       proxied = true
 #       ttl     = 1
 #       comment = "Element Web client"
 #       tags    = ["matrix"]
@@ -444,7 +444,7 @@ module "media_dns" {
 #       name    = "admin.matrix"
 #       type    = "A"
 #       content = module.tunnel_erfipie.cname
-#       proxied = false
+#       proxied = true
 #       ttl     = 1
 #       comment = "Synapse Admin"
 #       tags    = ["matrix"]
