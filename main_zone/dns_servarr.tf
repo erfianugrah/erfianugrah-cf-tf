@@ -6,6 +6,15 @@ module "media_dns" {
 
   records = {
     # Active records
+    minio = {
+      name    = "cdn"
+      type    = "A"
+      content = var.sg_ip
+      proxied = true
+      ttl     = 1
+      comment = "minio"
+      tags    = ["servarr"]
+    },
     waf = {
       name    = "waf"
       type    = "A"
