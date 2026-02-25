@@ -439,5 +439,40 @@ module "tertiary_dns" {
       comment = "gloryhole DoT"
       tags    = ["vyos-nl"]
     },
+
+    # ── Resend / SES Email ───────────────────────────────────────────────
+    resend_dkim = {
+      name    = "resend._domainkey"
+      type    = "TXT"
+      content = "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1DAktzuNMaJZg20ouFgrqbANZ6m7Vuyy1M4WxpamycUcF2oux6s4sgJdpr8XciIfj961OOhRfba9L/KK/1oydDm1hrPSRwG0/pLsUzK5H6XCuvDjX8ncB71ahb7NRM4Qb6L0LMIeMWagLmV7ty+Fe3/9baiRchp2sU2o8+PMOVQIDAQAB"
+      ttl     = 1
+      comment = "resend DKIM"
+      proxied = false
+    },
+    resend_mx = {
+      name     = "send"
+      type     = "MX"
+      content  = "feedback-smtp.eu-west-1.amazonses.com"
+      ttl      = 1
+      comment  = "resend MX"
+      proxied  = false
+      priority = 10
+    },
+    resend_spf = {
+      name    = "send"
+      type    = "TXT"
+      content = "v=spf1 include:amazonses.com ~all"
+      ttl     = 1
+      comment = "resend SPF"
+      proxied = false
+    },
+    resend_dmarc = {
+      name    = "_dmarc"
+      type    = "TXT"
+      content = "v=DMARC1; p=none;"
+      ttl     = 1
+      comment = "resend DMARC"
+      proxied = false
+    },
   }
 }
