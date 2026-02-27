@@ -42,6 +42,12 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "this" {
       }
     }
   }
+
+  # The Cloudflare API does not return warp_routing for tunnels without
+  # private network routes, causing perpetual drift. Ignore it after creation.
+  lifecycle {
+    ignore_changes = [config[0].warp_routing]
+  }
 }
 
 resource "cloudflare_zero_trust_tunnel_virtual_network" "this" {

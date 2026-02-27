@@ -49,13 +49,11 @@ variable "nl_ipv6" {
 variable "spectrum_static_v6_1" {
   description = "spectrum static IP lease"
   type        = string
-  sensitive   = true
 }
 
 variable "spectrum_static_v6_2" {
   description = "spectrum static IP lease"
   type        = string
-  sensitive   = true
 }
 
 variable "domain_name" {

@@ -388,7 +388,7 @@ module "media_dns" {
       name    = "httpbun"
       type    = "A"
       content = var.sg_ip
-      proxied = true
+      proxied = false
       ttl     = 1
       comment = "httpbun"
       tags    = ["servarr"]

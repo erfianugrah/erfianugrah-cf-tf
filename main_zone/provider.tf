@@ -14,6 +14,6 @@ terraform {
 provider "cloudflare" {
   max_backoff = "10"
   min_backoff = "2"
-  retries     = "3"
-  rps         = "9000"
+  retries     = "5"
+  rps         = "4"
 }

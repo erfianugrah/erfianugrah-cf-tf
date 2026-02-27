@@ -15,8 +15,8 @@ resource "cloudflare_record" "simple" {
   tags            = coalesce(each.value.tags, [])
 
   timeouts {
-    create = "2m"
-    update = "2m"
+    create = "5m"
+    update = "5m"
   }
 }
 
@@ -97,8 +97,8 @@ resource "cloudflare_record" "complex" {
   }
 
   timeouts {
-    create = "2m"
-    update = "2m"
+    create = "5m"
+    update = "5m"
   }
 }
 
