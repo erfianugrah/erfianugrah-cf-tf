@@ -6,6 +6,15 @@ module "media_dns" {
 
   records = {
     # Active records
+    atuin = {
+      name    = "atuin"
+      type    = "A"
+      content = var.sg_ip
+      proxied = true
+      ttl     = 1
+      comment = "atuin"
+      tags    = ["servarr"]
+    },
     minio = {
       name    = "cdn"
       type    = "A"
