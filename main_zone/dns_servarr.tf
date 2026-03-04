@@ -87,15 +87,6 @@ module "media_dns" {
       comment = "file browser"
       tags    = ["servarr"]
     },
-    httpbin = {
-      name    = "httpbin"
-      type    = "A"
-      content = var.sg_ip
-      proxied = true
-      ttl     = 1
-      comment = "httpbin"
-      tags    = ["servarr"]
-    },
     immich = {
       name    = "immich"
       type    = "A"
@@ -404,8 +395,8 @@ module "media_dns" {
     },
     httpbin = {
       name    = "httpbin"
-      type    = "A"
-      content = var.sg_ip
+      type    = "CNAME"
+      content = module.tunnel_servarr.cname
       proxied = true
       ttl     = 1
       comment = "httpbin"
