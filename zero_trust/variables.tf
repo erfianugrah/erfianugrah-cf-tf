@@ -52,7 +52,7 @@ variable "secondary_domain_name" {
   sensitive   = true
 }
 
-variable "thirdary_domain_name" {
+variable "tertiary_domain_name" {
   description = "The domain name to be used"
   type        = string
   sensitive   = true

@@ -377,7 +377,7 @@ resource "cloudflare_zero_trust_access_application" "kubectl_saas" {
   ]
   app_launcher_visible      = true
   auto_redirect_to_identity = false
-  domain                    = "kubectl.${var.thirdary_domain_name}"
+  domain                    = "kubectl.${var.tertiary_domain_name}"
   name                      = "kubectl"
   session_duration          = "24h"
   type                      = "saas"
@@ -654,7 +654,7 @@ resource "cloudflare_zero_trust_access_application" "servarr" {
   cors_headers {
     allow_all_headers = true
     allow_all_methods = true
-    allowed_origins   = [var.thirdary_domain_name, "servarr.${var.thirdary_domain_name}"]
+    allowed_origins   = [var.tertiary_domain_name, "servarr.${var.tertiary_domain_name}"]
     max_age           = 3600
   }
 }
@@ -850,5 +850,46 @@ resource "cloudflare_zero_trust_access_application" "gloryhole" {
   destinations {
     type = "public"
     uri  = "gloryhole.${var.secondary_domain_name}"
+  }
+}
+
+resource "cloudflare_zero_trust_access_application" "gatekeeper" {
+  account_id = var.cloudflare_account_id
+  policies = [
+    cloudflare_zero_trust_access_policy.allow_erfi.id,
+  ]
+  allowed_idps = [
+    cloudflare_zero_trust_access_identity_provider.entra_id.id,
+    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+    cloudflare_zero_trust_access_identity_provider.gmail.id,
+    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+    cloudflare_zero_trust_access_identity_provider.pin.id
+  ]
+  app_launcher_visible       = true
+  auto_redirect_to_identity  = false
+  domain                     = "gate.${var.tertiary_domain_name}/admin"
+  enable_binding_cookie      = true
+  http_only_cookie_attribute = false
+  same_site_cookie_attribute = "lax"
+  name                       = "Gatekeeper"
+  service_auth_401_redirect  = true
+  session_duration           = "24h"
+  type                       = "self_hosted"
+  logo_url                   = "https://cdn.erfianugrah.com/ea_favicon.png"
+  cors_headers {
+    allow_all_headers = true
+    allow_all_methods = true
+    allow_credentials = true
+    allowed_origins   = [var.tertiary_domain_name]
+    max_age           = 3600
+  }
+  destinations {
+    type = "public"
+    uri  = "gate.${var.tertiary_domain_name}/admin"
+  }
+  destinations {
+    type = "public"
+    uri  = "gate.${var.tertiary_domain_name}/dashboard"
   }
 }
