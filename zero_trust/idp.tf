@@ -42,14 +42,14 @@ resource "cloudflare_zero_trust_access_identity_provider" "authentik_oidc" {
   name       = "Authentik OIDC"
   type       = "oidc"
   config {
-    auth_url         = "https://authentik.${var.domain_name}/application/o/authorize/"
-    certs_url        = "https://authentik.${var.domain_name}/application/o/cloudflare-access/jwks/"
+    auth_url         = "https://authentik.${var.tertiary_domain_name}/application/o/authorize/"
+    certs_url        = "https://authentik.${var.tertiary_domain_name}/application/o/cloudflare-access/jwks/"
     claims           = ["given_name", "preferred_username", "nickname", "groups", "role"]
     client_id        = var.authentik_oidc_client_id
     client_secret    = var.authentik_oidc_secret
     email_claim_name = "email"
-    scopes           = ["openid", "email", "profile", "offline_access"]
-    token_url        = "https://authentik.${var.domain_name}/application/o/token/"
+    scopes           = ["openid", "email", "profile", "offline_access", "groups"]
+    token_url        = "https://authentik.${var.tertiary_domain_name}/application/o/token/"
     pkce_enabled     = true
   }
   scim_config {
