@@ -31,6 +31,11 @@ output "cloudflare_api_token_gloryhole_dns" {
   sensitive = true
 }
 
+output "cloudflare_api_token_gatekeeper_dns" {
+  value     = cloudflare_api_token.gatekeeper_dns.value
+  sensitive = true
+}
+
 output "cloudflare_api_token_insomnia" {
   value     = cloudflare_api_token.insomnia.value
   sensitive = true

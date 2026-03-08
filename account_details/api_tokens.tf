@@ -30,8 +30,8 @@ resource "cloudflare_api_token" "traefik_dns" {
   }
 }
 
-resource "cloudflare_api_token" "proxmox_dns" {
-  name = "proxmox_dns_account"
+resource "cloudflare_api_token" "gatekeeper_dns" {
+  name = "gatekeeper_dns_account"
   policy {
     effect = "allow"
     permission_groups = [
