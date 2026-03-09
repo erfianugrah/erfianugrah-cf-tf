@@ -59,11 +59,6 @@ output "cloudflare_api_token_admin_r2_s3_credentials" {
   sensitive = true
 }
 
-output "cloudflare_api_token_wrangler" {
-  value     = cloudflare_api_token.wrangler.value
-  sensitive = true
-}
-
 output "cloudflare_api_token_cache_purge" {
   value     = cloudflare_api_token.cache_purge.value
   sensitive = true
@@ -76,6 +71,11 @@ output "cloudflare_api_token_kv_admin" {
 
 output "radar_read_token" {
   value     = cloudflare_api_token.radar.value
+  sensitive = true
+}
+
+output "cloudflare_api_token_dev_platform" {
+  value     = cloudflare_api_token.dev_platform.value
   sensitive = true
 }
 
