@@ -21,8 +21,16 @@ variable "mode" {
 
 variable "dns_records" {
   description = "Map of DNS records from the dns_records module output (records_for_certificates). Used in per_host mode and for multi-level subdomain detection in wildcard mode."
-  type        = map(any)
-  default     = {}
+  type = map(object({
+    name    = string
+    type    = string
+    content = optional(string)
+    proxied = optional(bool)
+    ttl     = optional(number)
+    comment = optional(string)
+    tags    = optional(list(string))
+  }))
+  default = {}
 }
 
 variable "additional_wildcards" {

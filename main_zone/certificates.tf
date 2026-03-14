@@ -72,7 +72,7 @@ output "certificate_summary" {
     primary_certificates   = module.primary_certificates.certificate_count
     media_certificates     = module.media_certificates.certificate_count
     secondary_certificates = module.secondary_certificates.certificate_count
-    tertiary_certificates  = module.secondary_certificates.certificate_count
+    tertiary_certificates  = module.tertiary_certificates.certificate_count
     total_certificates = (
       module.primary_certificates.certificate_count +
       module.media_certificates.certificate_count +

@@ -5,7 +5,7 @@ module "tunnel_erfipie" {
   source     = "./modules/tunnel"
   account_id = var.cloudflare_account_id
   name       = "erfipie"
-  secret     = var.tunnel_secret
+  secret     = var.tunnel_secret_erfipie
 
   ingress_rules = [
     { hostname = "pie.${var.domain_name}", service = "ssh://localhost:22" },
@@ -30,7 +30,7 @@ module "tunnel_kvm_nl" {
   source     = "./modules/tunnel"
   account_id = var.cloudflare_account_id
   name       = "kvm_nl"
-  secret     = var.tunnel_secret
+  secret     = var.tunnel_secret_kvm_nl
 
   ingress_rules = [
     { hostname = "ssh-pikvm-nl.${var.domain_name}", service = "ssh://localhost:22" },
@@ -50,7 +50,7 @@ module "tunnel_kvm_sg" {
   source     = "./modules/tunnel"
   account_id = var.cloudflare_account_id
   name       = "kvm_sg"
-  secret     = var.tunnel_secret
+  secret     = var.tunnel_secret_kvm_sg
 
   ingress_rules = [
     { hostname = "ssh-pikvm-sg.${var.domain_name}", service = "ssh://localhost:22" },
@@ -62,7 +62,7 @@ module "tunnel_servarr" {
   source     = "./modules/tunnel"
   account_id = var.cloudflare_account_id
   name       = "servarr"
-  secret     = var.tunnel_secret
+  secret     = var.tunnel_secret_servarr
 
   ingress_rules = [
     # erfi.io services
@@ -97,7 +97,7 @@ module "tunnel_vyos_nl" {
   source     = "./modules/tunnel"
   account_id = var.cloudflare_account_id
   name       = "vyos_nl"
-  secret     = var.tunnel_secret
+  secret     = var.tunnel_secret_vyos_nl
 
   ingress_rules = [
     { hostname = "prom-tunnel-nl.${var.domain_name}", service = "http://localhost:11000" },
@@ -125,7 +125,7 @@ module "tunnel_vyos_sg" {
   source     = "./modules/tunnel"
   account_id = var.cloudflare_account_id
   name       = "vyos_sg"
-  secret     = var.tunnel_secret
+  secret     = var.tunnel_secret_vyos_sg
 
   ingress_rules = [
     { hostname = "sg.vyos.${var.domain_name}", service = "ssh://localhost:22" },

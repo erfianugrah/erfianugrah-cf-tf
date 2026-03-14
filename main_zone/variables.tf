@@ -74,8 +74,38 @@ variable "tertiary_domain_name" {
   sensitive   = true
 }
 
-variable "tunnel_secret" {
-  description = "Base64-encoded shared secret for Cloudflare tunnels"
+variable "tunnel_secret_erfipie" {
+  description = "Base64-encoded secret for the erfipie tunnel"
+  type        = string
+  sensitive   = true
+}
+
+variable "tunnel_secret_kvm_nl" {
+  description = "Base64-encoded secret for the kvm_nl tunnel"
+  type        = string
+  sensitive   = true
+}
+
+variable "tunnel_secret_kvm_sg" {
+  description = "Base64-encoded secret for the kvm_sg tunnel"
+  type        = string
+  sensitive   = true
+}
+
+variable "tunnel_secret_servarr" {
+  description = "Base64-encoded secret for the servarr tunnel"
+  type        = string
+  sensitive   = true
+}
+
+variable "tunnel_secret_vyos_nl" {
+  description = "Base64-encoded secret for the vyos_nl tunnel"
+  type        = string
+  sensitive   = true
+}
+
+variable "tunnel_secret_vyos_sg" {
+  description = "Base64-encoded secret for the vyos_sg tunnel"
   type        = string
   sensitive   = true
 }
