@@ -35,43 +35,43 @@ resource "cloudflare_zero_trust_access_application" "kvm" {
   }
 }
 
-resource "cloudflare_zero_trust_access_application" "privatebin" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-    cloudflare_zero_trust_access_policy.allow_cf.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "privatebin.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = true
-  name                       = "privatebin"
-  same_site_cookie_attribute = "lax"
-  service_auth_401_redirect  = true
-  session_duration           = "30m"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "privatebin.${var.domain_name}"
-  }
-  cors_headers {
-    allow_all_headers = true
-    allow_all_methods = true
-    allow_credentials = true
-    allowed_origins   = ["privatebin.${var.domain_name}"]
-    max_age           = 3600
-  }
-}
+# resource "cloudflare_zero_trust_access_application" "privatebin" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#     cloudflare_zero_trust_access_policy.allow_cf.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+#
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "privatebin.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = true
+#   name                       = "privatebin"
+#   same_site_cookie_attribute = "lax"
+#   service_auth_401_redirect  = true
+#   session_duration           = "30m"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "privatebin.${var.domain_name}"
+#   }
+#   cors_headers {
+#     allow_all_headers = true
+#     allow_all_methods = true
+#     allow_credentials = true
+#     allowed_origins   = ["privatebin.${var.domain_name}"]
+#     max_age           = 3600
+#   }
+# }
 
 resource "cloudflare_zero_trust_access_application" "traefik_dash" {
   account_id = var.cloudflare_account_id
@@ -307,7 +307,6 @@ resource "cloudflare_zero_trust_access_application" "authentik_saas" {
   account_id = var.cloudflare_account_id
   policies = [
     cloudflare_zero_trust_access_policy.allow_erfi.id,
-    cloudflare_zero_trust_access_policy.allow_cf.id
   ]
   allowed_idps = [
     cloudflare_zero_trust_access_identity_provider.entra_id.id,
@@ -366,7 +365,6 @@ resource "cloudflare_zero_trust_access_application" "kubectl_saas" {
   account_id = var.cloudflare_account_id
   policies = [
     cloudflare_zero_trust_access_policy.allow_erfi.id,
-    cloudflare_zero_trust_access_policy.allow_cf.id
   ]
   allowed_idps = [
     cloudflare_zero_trust_access_identity_provider.entra_id.id,
@@ -464,41 +462,41 @@ resource "cloudflare_zero_trust_access_application" "copyparty" {
   }
 }
 
-resource "cloudflare_zero_trust_access_application" "dillinger" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "dillinger.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = true
-  name                       = "Dillinger"
-  same_site_cookie_attribute = "lax"
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "dillinger.${var.domain_name}"
-  }
-  cors_headers {
-    allow_all_headers = true
-    allow_all_methods = true
-    allow_credentials = true
-    allowed_origins   = ["dillinger.${var.domain_name}"]
-    max_age           = 3600
-  }
-}
+# resource "cloudflare_zero_trust_access_application" "dillinger" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+#
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "dillinger.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = true
+#   name                       = "Dillinger"
+#   same_site_cookie_attribute = "lax"
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "dillinger.${var.domain_name}"
+#   }
+#   cors_headers {
+#     allow_all_headers = true
+#     allow_all_methods = true
+#     allow_credentials = true
+#     allowed_origins   = ["dillinger.${var.domain_name}"]
+#     max_age           = 3600
+#   }
+# }
 
 resource "cloudflare_zero_trust_access_application" "tunnel_secret_worker" {
   account_id = var.cloudflare_account_id
@@ -779,42 +777,42 @@ resource "cloudflare_zero_trust_access_application" "draw" {
 #   type                       = "self_hosted"
 # }
 
-resource "cloudflare_zero_trust_access_application" "interview" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "interview-0.pages.dev"
-  enable_binding_cookie      = true
-  http_only_cookie_attribute = false
-  same_site_cookie_attribute = "lax"
-  name                       = "Interview"
-  service_auth_401_redirect  = true
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  logo_url                   = "https://cdn.erfianugrah.com/ea_favicon.png"
-  cors_headers {
-    allow_all_headers = true
-    allow_all_methods = true
-    allow_credentials = true
-    allowed_origins   = [var.domain_name, "interview-0.pages.dev"]
-    max_age           = 3600
-  }
-  destinations {
-    type = "public"
-    uri  = "interview-0.pages.dev"
-  }
-  destinations {
-    type = "public"
-    uri  = "*.interview-0.pages.dev"
-  }
-}
+# resource "cloudflare_zero_trust_access_application" "interview" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "interview-0.pages.dev"
+#   enable_binding_cookie      = true
+#   http_only_cookie_attribute = false
+#   same_site_cookie_attribute = "lax"
+#   name                       = "Interview"
+#   service_auth_401_redirect  = true
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   logo_url                   = "https://cdn.erfianugrah.com/ea_favicon.png"
+#   cors_headers {
+#     allow_all_headers = true
+#     allow_all_methods = true
+#     allow_credentials = true
+#     allowed_origins   = [var.domain_name, "interview-0.pages.dev"]
+#     max_age           = 3600
+#   }
+#   destinations {
+#     type = "public"
+#     uri  = "interview-0.pages.dev"
+#   }
+#   destinations {
+#     type = "public"
+#     uri  = "*.interview-0.pages.dev"
+#   }
+# }
 
 resource "cloudflare_zero_trust_access_application" "gloryhole" {
   account_id = var.cloudflare_account_id
@@ -853,7 +851,44 @@ resource "cloudflare_zero_trust_access_application" "gloryhole" {
   }
 }
 
-resource "cloudflare_zero_trust_access_application" "gatekeeper" {
+# resource "cloudflare_zero_trust_access_application" "gatekeeper" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "gate.${var.tertiary_domain_name}/dashboard"
+#   enable_binding_cookie      = true
+#   http_only_cookie_attribute = false
+#   same_site_cookie_attribute = "lax"
+#   name                       = "Gatekeeper"
+#   service_auth_401_redirect  = true
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   logo_url                   = "https://cdn.erfianugrah.com/ea_favicon.png"
+#   cors_headers {
+#     allow_all_headers = true
+#     allow_all_methods = true
+#     allow_credentials = true
+#     allowed_origins   = [var.tertiary_domain_name]
+#     max_age           = 3600
+#   }
+#   destinations {
+#     type = "public"
+#     uri  = "gate.${var.tertiary_domain_name}/dashboard"
+#   }
+# }
+
+resource "cloudflare_zero_trust_access_application" "gk_saas" {
   account_id = var.cloudflare_account_id
   policies = [
     cloudflare_zero_trust_access_policy.allow_erfi.id,
@@ -863,29 +898,25 @@ resource "cloudflare_zero_trust_access_application" "gatekeeper" {
     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
     cloudflare_zero_trust_access_identity_provider.gmail.id,
     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
     cloudflare_zero_trust_access_identity_provider.pin.id
   ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "gate.${var.tertiary_domain_name}/dashboard"
-  enable_binding_cookie      = true
-  http_only_cookie_attribute = false
-  same_site_cookie_attribute = "lax"
-  name                       = "Gatekeeper"
-  service_auth_401_redirect  = true
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  logo_url                   = "https://cdn.erfianugrah.com/ea_favicon.png"
-  cors_headers {
-    allow_all_headers = true
-    allow_all_methods = true
-    allow_credentials = true
-    allowed_origins   = [var.tertiary_domain_name]
-    max_age           = 3600
-  }
-  destinations {
-    type = "public"
-    uri  = "gate.${var.tertiary_domain_name}/dashboard"
+  app_launcher_visible      = true
+  auto_redirect_to_identity = false
+  name                      = "Gatekeeper"
+  session_duration          = "24h"
+  type                      = "saas"
+  saas_app {
+    auth_type = "oidc"
+    redirect_uris = [
+      "https://gate.${var.tertiary_domain_name}/auth/oauth/callback",
+      "http://localhost:8787/auth/oauth/callback",
+    ]
+    grant_types                      = ["authorization_code_with_pkce"]
+    scopes                           = ["openid", "email", "profile", "groups"]
+    allow_pkce_without_client_secret = false
+    access_token_lifetime            = "5m"
+    refresh_token_options {
+      lifetime = "24h"
+    }
   }
 }

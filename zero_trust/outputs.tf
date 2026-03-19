@@ -61,6 +61,25 @@ output "kubectl_saas" {
   sensitive = true
 }
 
+output "gk_saas" {
+  value = {
+    client_id                        = cloudflare_zero_trust_access_application.gk_saas.saas_app[0].client_id
+    client_secret                    = cloudflare_zero_trust_access_application.gk_saas.saas_app[0].client_secret
+    public_key                       = cloudflare_zero_trust_access_application.gk_saas.saas_app[0].public_key
+    auth_type                        = cloudflare_zero_trust_access_application.gk_saas.saas_app[0].auth_type
+    redirect_uris                    = cloudflare_zero_trust_access_application.gk_saas.saas_app[0].redirect_uris
+    grant_types                      = cloudflare_zero_trust_access_application.gk_saas.saas_app[0].grant_types
+    scopes                           = cloudflare_zero_trust_access_application.gk_saas.saas_app[0].scopes
+    allow_pkce_without_client_secret = cloudflare_zero_trust_access_application.gk_saas.saas_app[0].allow_pkce_without_client_secret
+    access_token_lifetime            = cloudflare_zero_trust_access_application.gk_saas.saas_app[0].access_token_lifetime
+    refresh_token_options            = cloudflare_zero_trust_access_application.gk_saas.saas_app[0].refresh_token_options
+    hybrid_and_implicit_options      = cloudflare_zero_trust_access_application.gk_saas.saas_app[0].hybrid_and_implicit_options
+    name                             = cloudflare_zero_trust_access_application.gk_saas.name
+    domain                           = cloudflare_zero_trust_access_application.gk_saas.domain
+    type                             = cloudflare_zero_trust_access_application.gk_saas.type
+  }
+  sensitive = true
+}
 output "prometheus_token" {
   value = {
     id            = cloudflare_zero_trust_access_service_token.prometheus_token.id
