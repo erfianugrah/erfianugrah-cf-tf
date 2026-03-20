@@ -214,8 +214,8 @@ module "media_dns" {
     },
     httpbin = {
       name    = "httpbin"
-      type    = "CNAME"
-      content = module.tunnel_servarr.cname
+      type    = "A"
+      content = var.sg_ip
       proxied = true
       ttl     = 1
       comment = "httpbin"
