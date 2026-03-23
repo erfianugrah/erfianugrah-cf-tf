@@ -74,6 +74,11 @@ output "radar_read_token" {
   sensitive = true
 }
 
+output "cloudflare_api_token_ip_lists" {
+  value     = cloudflare_api_token.ip_lists.value
+  sensitive = true
+}
+
 output "cloudflare_api_token_dev_platform" {
   value     = cloudflare_api_token.dev_platform.value
   sensitive = true

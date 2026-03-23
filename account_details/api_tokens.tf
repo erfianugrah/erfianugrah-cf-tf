@@ -172,6 +172,20 @@ resource "cloudflare_api_token" "radar" {
   }
 }
 
+resource "cloudflare_api_token" "ip_lists" {
+  name = "ip_lists"
+  policy {
+    effect = "allow"
+    permission_groups = [
+      data.cloudflare_api_token_permission_groups.all.account["Account Rule Lists Read"],
+      data.cloudflare_api_token_permission_groups.all.account["Account Rule Lists Write"]
+    ]
+    resources = {
+      "com.cloudflare.api.account.*" = "*"
+    }
+  }
+}
+
 resource "cloudflare_api_token" "dev_platform" {
   name = "dev_platform"
 
