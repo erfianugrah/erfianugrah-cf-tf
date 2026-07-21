@@ -64,28 +64,13 @@ module "tunnel_servarr" {
   name       = "servarr"
   secret     = var.tunnel_secret_servarr
 
+  # NOTE: all tertiary (erfi.io) ingress rules removed 2026-07-21. erfi.io is a
+  # partial zone with authoritative DNS on Knot; Knot serves these hosts direct
+  # (A -> sg_ip, plus AAAA -> CF for the v6 path which CF routes via the
+  # media_dns proxied A records, not the tunnel). The rules never saw traffic.
+  # Pre-existing: file.erfi.io 523s - Knot CNAMEs it to cdn.cloudflare.net but
+  # CF DNS has an A record, and CF cannot reach the home origin.
   ingress_rules = [
-    # erfi.io services
-    { hostname = "radarr.${var.tertiary_domain_name}", service = "http://172.19.1.2:7878" },
-    { hostname = "sonarr.${var.tertiary_domain_name}", service = "http://172.19.1.3:8989" },
-    { hostname = "sabnzbd.${var.tertiary_domain_name}", service = "http://172.19.1.19:6666" },
-    { hostname = "bazarr.${var.tertiary_domain_name}", service = "http://172.19.1.4:6767" },
-    { hostname = "jellyfin.${var.tertiary_domain_name}", service = "http://172.19.1.15:8096" },
-    { hostname = "prowlarr.${var.tertiary_domain_name}", service = "http://172.19.1.10:9696" },
-    { hostname = "navidrome.${var.tertiary_domain_name}", service = "http://172.19.1.17:4533" },
-    { hostname = "seerr.${var.tertiary_domain_name}", service = "http://172.19.1.21:5055" },
-    { hostname = "copyparty.${var.tertiary_domain_name}", service = "http://172.19.66.2:3923" },
-    { hostname = "vault.${var.tertiary_domain_name}", service = "http://172.19.4.2:80" },
-    { hostname = "joplin.${var.tertiary_domain_name}", service = "http://172.19.13.2:22300" },
-    { hostname = "file.${var.tertiary_domain_name}", service = "http://172.19.6.2:80" },
-    { hostname = "servarr.${var.tertiary_domain_name}", service = "http://localhost:90" },
-    { hostname = "dockge-sg.${var.tertiary_domain_name}", service = "http://172.17.0.2:5001" },
-    { hostname = "immich.${var.tertiary_domain_name}", service = "http://172.19.22.2:2283" },
-    { hostname = "qbit.${var.tertiary_domain_name}", service = "http://172.19.1.22:8080" },
-    { hostname = "keycloak.${var.tertiary_domain_name}", service = "http://172.19.12.2:8080" },
-    { hostname = "change.${var.tertiary_domain_name}", service = "http://172.19.3.2:5000" },
-    { hostname = "httpbin.${var.tertiary_domain_name}", service = "http://172.19.15.3:80" },
-    # Primary domain services routed through servarr tunnel
     { service = "http_status:404" },
   ]
 
@@ -99,14 +84,14 @@ module "tunnel_vyos_nl" {
   name       = "vyos_nl"
   secret     = var.tunnel_secret_vyos_nl
 
+  # NOTE: gloryhole.erfi.io ingress removed 2026-07-21 - the name does not
+  # exist in Knot (authoritative), so it never resolved publicly.
   ingress_rules = [
     { hostname = "prom-tunnel-nl.${var.domain_name}", service = "http://localhost:11000" },
     { hostname = "nl.vyos.${var.domain_name}", service = "ssh://localhost:22" },
     { hostname = "pihole-vyos-nl.${var.domain_name}", service = "http://10.0.10.2" },
     { hostname = "prom-vyos-nl.${var.domain_name}", service = "http://localhost:9100" },
     { hostname = "httpbun-nl.${var.domain_name}", service = "http://10.0.10.8:80" },
-    { hostname = "gloryhole.${var.tertiary_domain_name}", path = "/metrics", service = "http://10.0.10.10:9090" },
-    { hostname = "gloryhole.${var.tertiary_domain_name}", service = "http://10.0.10.10:8080" },
     {
       hostname = "tpi.${var.domain_name}"
       service  = "https://10.0.71.8:443"

@@ -421,15 +421,9 @@ module "tertiary_dns" {
   domain_name = var.tertiary_domain_name
 
   records = {
-    gloryhole = {
-      name    = "gloryhole"
-      type    = "CNAME"
-      content = module.tunnel_vyos_nl.cname
-      proxied = true
-      ttl     = 1
-      comment = "gloryhole admin"
-      tags    = ["vyos-nl"]
-    },
+    # gloryhole (admin CNAME -> vyos_nl tunnel) removed 2026-07-21: the name
+    # does not exist in Knot (authoritative for erfi.io), so the CF-side
+    # record was unreachable. Re-add to both Knot and here if ever needed.
     gloryhole-dot = {
       name    = "gloryhole-dot"
       type    = "A"
