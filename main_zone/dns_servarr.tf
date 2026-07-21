@@ -68,15 +68,7 @@ module "media_dns" {
       comment = "site crawler for changes"
       tags    = ["servarr"]
     },
-    file = {
-      name    = "file"
-      type    = "A"
-      content = var.sg_ip
-      proxied = true
-      ttl     = 1
-      comment = "file browser"
-      tags    = ["servarr"]
-    },
+    # file.erfi.io removed 2026-07-21 - service retired (was 523ing anyway).
     immich = {
       name    = "immich"
       type    = "A"
