@@ -6,11 +6,16 @@
 #   "none"      - skip cert creation
 #
 # NOTE: erfi.io (tertiary/media) is intentionally absent. It is a partial
-# (CNAME) zone with authoritative DNS on Knot (knotea), so CF edge certs are
-# unnecessary: non-proxied hosts never hit the CF edge (Caddy/Knot ACME serves
-# them) and proxied hosts get Universal SSL auto-provisioned per hostname
-# (HTTP DCV). The old advanced wildcard packs could only renew via TXT/delegated
-# DCV and were the source of the recurring CF renewal-warning emails.
+# (CNAME) zone with authoritative DNS on Knot (knotea). Universal SSL is
+# disabled on the zone; edge coverage comes from per-hostname advanced packs
+# + Total TLS. Because the A records point at the home IP (only AAAA reaches
+# CF), CF cannot complete HTTP or TXT DCV by itself - renewal depends on
+# Delegated DCV: one `_acme-challenge.<host>` CNAME per certified host,
+# pointing at `<host>.erfi.io.40a540432608c112.dcv.cloudflare.com`.
+# Those CNAMEs live in ~/knotea/authority/zones/erfi.io.yml (applied with
+# `knotctl apply`; the file is gitignored as live zone state). If CF renewal
+# emails resume, check that a delegation CNAME exists for the named host and
+# that the zone DCV UUID (GET /zones/:id/dcv_delegation/uuid) is unchanged.
 
 # ── Primary zone (erfianugrah.com) ───────────────────────────────────
 # Single module: wildcard covers all single-level subdomains,
