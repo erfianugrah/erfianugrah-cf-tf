@@ -424,15 +424,20 @@ module "tertiary_dns" {
     # gloryhole (admin CNAME -> vyos_nl tunnel) removed 2026-07-21: the name
     # does not exist in Knot (authoritative for erfi.io), so the CF-side
     # record was unreachable. Re-add to both Knot and here if ever needed.
-    gloryhole-dot = {
-      name    = "gloryhole-dot"
-      type    = "A"
-      content = var.nl_ip
-      proxied = false
-      ttl     = 1
-      comment = "gloryhole DoT"
-      tags    = ["vyos-nl"]
-    },
+    # gloryhole-dot commented out 2026-07-21 - stale and unreachable. Knot
+    # (authoritative for erfi.io) points gloryhole-dot at the glory-hole Fly
+    # app (137.66.1.170 / 2a09:8280:1::f0:fcd:0), not nl_ip, and this partial
+    # (CNAME setup) zone never answers for it. Same class as the gloryhole
+    # admin CNAME removed in bbcb3c1.
+    # gloryhole-dot = {
+    #   name    = "gloryhole-dot"
+    #   type    = "A"
+    #   content = var.nl_ip
+    #   proxied = false
+    #   ttl     = 1
+    #   comment = "gloryhole DoT"
+    #   tags    = ["vyos-nl"]
+    # },
 
     # ── Resend / SES Email ───────────────────────────────────────────────
     resend_dkim = {

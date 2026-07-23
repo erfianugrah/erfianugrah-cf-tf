@@ -14,15 +14,19 @@ module "media_dns" {
       comment = "atuin"
       tags    = ["servarr"]
     },
-    minio = {
-      name    = "cdn"
-      type    = "A"
-      content = var.sg_ip
-      proxied = false
-      ttl     = 1
-      comment = "minio"
-      tags    = ["servarr"]
-    },
+    # cdn.erfi.io (minio) commented out 2026-07-21 - Knot (authoritative) has
+    # cdn as A-only -> home IP, no AAAA to CF, so traffic never reaches CF.
+    # CF-side record was dead weight and no CF cert pack is needed (no
+    # delegated-DCV CNAME exists for it either). TLS is origin-side (Caddy).
+    # minio = {
+    #   name    = "cdn"
+    #   type    = "A"
+    #   content = var.sg_ip
+    #   proxied = false
+    #   ttl     = 1
+    #   comment = "minio"
+    #   tags    = ["servarr"]
+    # },
     waf = {
       name    = "waf"
       type    = "A"
@@ -195,15 +199,17 @@ module "media_dns" {
       comment = "jellyseerr"
       tags    = ["servarr"]
     },
-    httpbun = {
-      name    = "httpbun"
-      type    = "A"
-      content = var.sg_ip
-      proxied = false
-      ttl     = 1
-      comment = "httpbun"
-      tags    = ["servarr"]
-    },
+    # httpbun.erfi.io commented out 2026-07-21 - same reason as cdn above:
+    # Knot A-only -> home IP, never proxied through CF, no CF cert needed.
+    # httpbun = {
+    #   name    = "httpbun"
+    #   type    = "A"
+    #   content = var.sg_ip
+    #   proxied = false
+    #   ttl     = 1
+    #   comment = "httpbun"
+    #   tags    = ["servarr"]
+    # },
     httpbin = {
       name    = "httpbin"
       type    = "A"
