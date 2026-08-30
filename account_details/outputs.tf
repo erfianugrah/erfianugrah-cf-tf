@@ -79,10 +79,6 @@ output "cloudflare_api_token_ip_lists" {
   sensitive = true
 }
 
-output "cloudflare_api_token_dev_platform" {
-  value     = cloudflare_api_token.dev_platform.value
-  sensitive = true
-}
 
 output "success" {
   value = local.success
