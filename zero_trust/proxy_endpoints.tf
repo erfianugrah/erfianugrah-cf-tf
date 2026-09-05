@@ -1,12 +1,13 @@
-resource "cloudflare_zero_trust_gateway_proxy_endpoint" "nl_proxy_endpoint" {
-  account_id = var.cloudflare_account_id
-  name       = "nl"
-  ips        = ["${var.nl_ip}/32"]
-}
+# RETIRED 2026-09-05: commented out (argo tunnels retired) - see main_zone/tunnels.tf header.
+# resource "cloudflare_zero_trust_gateway_proxy_endpoint" "nl_proxy_endpoint" {
+#   account_id = var.cloudflare_account_id
+#   name       = "nl"
+#   ips        = ["${var.nl_ip}/32"]
+# }
 
-resource "cloudflare_zero_trust_gateway_proxy_endpoint" "sg_proxy_endpoint" {
-  account_id = var.cloudflare_account_id
-  name       = "sg"
-  ips        = ["${var.sg_ip}/32"]
-}
+# resource "cloudflare_zero_trust_gateway_proxy_endpoint" "sg_proxy_endpoint" {
+#   account_id = var.cloudflare_account_id
+#   name       = "sg"
+#   ips        = ["${var.sg_ip}/32"]
+# }
 

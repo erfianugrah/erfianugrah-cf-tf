@@ -1,71 +1,72 @@
-resource "cloudflare_zero_trust_access_identity_provider" "keycloak_oidc" {
-  account_id = var.cloudflare_account_id
-  name       = "Keycloak OIDC"
-  type       = "oidc"
-  config {
-    auth_url      = "https://keycloak.${var.domain_name}/auth/realms/unkers/protocol/openid-connect/auth"
-    certs_url     = "https://keycloak.${var.domain_name}/auth/realms/unkers/protocol/openid-connect/certs"
-    claims        = ["email", "full name", "given name", "family name", "upn", "realm roles", "profile", "groups"]
-    client_id     = var.keycloak_oidc_client_id
-    client_secret = var.keycloak_oidc_secret
-    scopes        = ["openid", "email", "profile"]
-    token_url     = "https://keycloak.${var.domain_name}/auth/realms/unkers/protocol/openid-connect/token"
-  }
-}
+# RETIRED 2026-09-05: commented out (argo tunnels retired) - see main_zone/tunnels.tf header.
+# resource "cloudflare_zero_trust_access_identity_provider" "keycloak_oidc" {
+#   account_id = var.cloudflare_account_id
+#   name       = "Keycloak OIDC"
+#   type       = "oidc"
+#   config {
+#     auth_url      = "https://keycloak.${var.domain_name}/auth/realms/unkers/protocol/openid-connect/auth"
+#     certs_url     = "https://keycloak.${var.domain_name}/auth/realms/unkers/protocol/openid-connect/certs"
+#     claims        = ["email", "full name", "given name", "family name", "upn", "realm roles", "profile", "groups"]
+#     client_id     = var.keycloak_oidc_client_id
+#     client_secret = var.keycloak_oidc_secret
+#     scopes        = ["openid", "email", "profile"]
+#     token_url     = "https://keycloak.${var.domain_name}/auth/realms/unkers/protocol/openid-connect/token"
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_identity_provider" "gmail" {
-  account_id = var.cloudflare_account_id
-  name       = "Gmail"
-  type       = "google"
-  config {
-    client_id        = var.google_client_id
-    client_secret    = var.google_secret
-    email_claim_name = "email"
-  }
-}
+# resource "cloudflare_zero_trust_access_identity_provider" "gmail" {
+#   account_id = var.cloudflare_account_id
+#   name       = "Gmail"
+#   type       = "google"
+#   config {
+#     client_id        = var.google_client_id
+#     client_secret    = var.google_secret
+#     email_claim_name = "email"
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_identity_provider" "google_workspace" {
-  account_id = var.cloudflare_account_id
-  name       = "Google Workspace"
-  type       = "google-apps"
-  config {
-    apps_domain      = var.domain_name
-    client_id        = var.google_workspace_client_id
-    client_secret    = var.google_workspace_secret
-    claims           = ["family_name", "given_name", "name"]
-    email_claim_name = "email"
-  }
-}
+# resource "cloudflare_zero_trust_access_identity_provider" "google_workspace" {
+#   account_id = var.cloudflare_account_id
+#   name       = "Google Workspace"
+#   type       = "google-apps"
+#   config {
+#     apps_domain      = var.domain_name
+#     client_id        = var.google_workspace_client_id
+#     client_secret    = var.google_workspace_secret
+#     claims           = ["family_name", "given_name", "name"]
+#     email_claim_name = "email"
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_identity_provider" "authentik_oidc" {
-  account_id = var.cloudflare_account_id
-  name       = "Authentik OIDC"
-  type       = "oidc"
-  config {
-    auth_url         = "https://authentik.${var.tertiary_domain_name}/application/o/authorize/"
-    certs_url        = "https://authentik.${var.tertiary_domain_name}/application/o/cloudflare-access/jwks/"
-    claims           = ["given_name", "preferred_username", "nickname", "groups", "role"]
-    client_id        = var.authentik_oidc_client_id
-    client_secret    = var.authentik_oidc_secret
-    email_claim_name = "email"
-    scopes           = ["openid", "email", "profile", "offline_access", "groups"]
-    token_url        = "https://authentik.${var.tertiary_domain_name}/application/o/token/"
-    pkce_enabled     = true
-  }
-  scim_config {
-    secret                   = var.authentik_scim_secret
-    enabled                  = true
-    user_deprovision         = true
-    seat_deprovision         = true
-    identity_update_behavior = "automatic"
-  }
-}
+# resource "cloudflare_zero_trust_access_identity_provider" "authentik_oidc" {
+#   account_id = var.cloudflare_account_id
+#   name       = "Authentik OIDC"
+#   type       = "oidc"
+#   config {
+#     auth_url         = "https://authentik.${var.tertiary_domain_name}/application/o/authorize/"
+#     certs_url        = "https://authentik.${var.tertiary_domain_name}/application/o/cloudflare-access/jwks/"
+#     claims           = ["given_name", "preferred_username", "nickname", "groups", "role"]
+#     client_id        = var.authentik_oidc_client_id
+#     client_secret    = var.authentik_oidc_secret
+#     email_claim_name = "email"
+#     scopes           = ["openid", "email", "profile", "offline_access", "groups"]
+#     token_url        = "https://authentik.${var.tertiary_domain_name}/application/o/token/"
+#     pkce_enabled     = true
+#   }
+#   scim_config {
+#     secret                   = var.authentik_scim_secret
+#     enabled                  = true
+#     user_deprovision         = true
+#     seat_deprovision         = true
+#     identity_update_behavior = "automatic"
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_identity_provider" "pin" {
-  account_id = var.cloudflare_account_id
-  name       = "PIN login"
-  type       = "onetimepin"
-}
+# resource "cloudflare_zero_trust_access_identity_provider" "pin" {
+#   account_id = var.cloudflare_account_id
+#   name       = "PIN login"
+#   type       = "onetimepin"
+# }
 
 # resource "cloudflare_zero_trust_access_identity_provider" "authentik_saml" {
 #   account_id = var.cloudflare_account_id
@@ -81,22 +82,22 @@ resource "cloudflare_zero_trust_access_identity_provider" "pin" {
 #   }
 # }
 
-resource "cloudflare_zero_trust_access_identity_provider" "entra_id" {
-  account_id = var.cloudflare_account_id
-  name       = "Entra ID"
-  type       = "azureAD"
-  config {
-    client_id      = var.entra_id_client_id
-    client_secret  = var.entra_id_secret
-    directory_id   = var.entra_id_directory_id
-    support_groups = true
-  }
-  scim_config {
-    enabled                  = true
-    group_member_deprovision = true
-    seat_deprovision         = true
-    secret                   = var.entra_scim_secret
-    user_deprovision         = true
-  }
-}
+# resource "cloudflare_zero_trust_access_identity_provider" "entra_id" {
+#   account_id = var.cloudflare_account_id
+#   name       = "Entra ID"
+#   type       = "azureAD"
+#   config {
+#     client_id      = var.entra_id_client_id
+#     client_secret  = var.entra_id_secret
+#     directory_id   = var.entra_id_directory_id
+#     support_groups = true
+#   }
+#   scim_config {
+#     enabled                  = true
+#     group_member_deprovision = true
+#     seat_deprovision         = true
+#     secret                   = var.entra_scim_secret
+#     user_deprovision         = true
+#   }
+# }
 

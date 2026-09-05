@@ -1,11 +1,12 @@
-resource "cloudflare_zero_trust_access_organization" "miau" {
-  account_id                         = var.cloudflare_account_id
-  name                               = "Miau"
-  auth_domain                        = "erfianugrah.cloudflareaccess.com"
-  is_ui_read_only                    = false
-  user_seat_expiration_inactive_time = "730h"
-  auto_redirect_to_identity          = false
-  session_duration                   = "24h"
-  warp_auth_session_duration         = "24h"
-}
+# RETIRED 2026-09-05: commented out (argo tunnels retired) - see main_zone/tunnels.tf header.
+# resource "cloudflare_zero_trust_access_organization" "miau" {
+#   account_id                         = var.cloudflare_account_id
+#   name                               = "Miau"
+#   auth_domain                        = "erfianugrah.cloudflareaccess.com"
+#   is_ui_read_only                    = false
+#   user_seat_expiration_inactive_time = "730h"
+#   auto_redirect_to_identity          = false
+#   session_duration                   = "24h"
+#   warp_auth_session_duration         = "24h"
+# }
 

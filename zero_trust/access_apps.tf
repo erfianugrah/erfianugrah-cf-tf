@@ -1,39 +1,40 @@
-resource "cloudflare_zero_trust_access_application" "kvm" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+# RETIRED 2026-09-05: commented out (argo tunnels retired) - see main_zone/tunnels.tf header.
+# resource "cloudflare_zero_trust_access_application" "kvm" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
 
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "kvm.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = true
-  name                       = "KVM"
-  same_site_cookie_attribute = "lax"
-  service_auth_401_redirect  = true
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "kvm.${var.domain_name}"
-  }
-  cors_headers {
-    allow_all_headers = true
-    allow_all_methods = true
-    allow_credentials = true
-    allowed_origins   = [var.domain_name, "kvm.${var.domain_name}"]
-    max_age           = 3600
-  }
-}
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "kvm.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = true
+#   name                       = "KVM"
+#   same_site_cookie_attribute = "lax"
+#   service_auth_401_redirect  = true
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "kvm.${var.domain_name}"
+#   }
+#   cors_headers {
+#     allow_all_headers = true
+#     allow_all_methods = true
+#     allow_credentials = true
+#     allowed_origins   = [var.domain_name, "kvm.${var.domain_name}"]
+#     max_age           = 3600
+#   }
+# }
 
 # resource "cloudflare_zero_trust_access_application" "privatebin" {
 #   account_id = var.cloudflare_account_id
@@ -73,394 +74,394 @@ resource "cloudflare_zero_trust_access_application" "kvm" {
 #   }
 # }
 
-resource "cloudflare_zero_trust_access_application" "traefik_dash" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+# resource "cloudflare_zero_trust_access_application" "traefik_dash" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
 
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "traefik-dashboard.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = false
-  name                       = "Traefik Dashboard"
-  same_site_cookie_attribute = "none"
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "traefik-dashboard.${var.domain_name}"
-  }
-  cors_headers {
-    allow_all_headers = true
-    allow_all_methods = true
-    allow_credentials = true
-    allowed_origins   = ["traefik-dashboard.${var.domain_name}"]
-    max_age           = 3600
-  }
-}
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "traefik-dashboard.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = false
+#   name                       = "Traefik Dashboard"
+#   same_site_cookie_attribute = "none"
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "traefik-dashboard.${var.domain_name}"
+#   }
+#   cors_headers {
+#     allow_all_headers = true
+#     allow_all_methods = true
+#     allow_credentials = true
+#     allowed_origins   = ["traefik-dashboard.${var.domain_name}"]
+#     max_age           = 3600
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_application" "erfipie_ssh" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+# resource "cloudflare_zero_trust_access_application" "erfipie_ssh" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
 
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "pie.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = false
-  name                       = "Pi"
-  session_duration           = "24h"
-  type                       = "ssh"
-  destinations {
-    type = "public"
-    uri  = "pie.${var.domain_name}"
-  }
-}
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "pie.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = false
+#   name                       = "Pi"
+#   session_duration           = "24h"
+#   type                       = "ssh"
+#   destinations {
+#     type = "public"
+#     uri  = "pie.${var.domain_name}"
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_application" "proxmox_ssh" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+# resource "cloudflare_zero_trust_access_application" "proxmox_ssh" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
 
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "*.proxmox.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = false
-  name                       = "Proxmox SSH"
-  session_duration           = "24h"
-  type                       = "ssh"
-  destinations {
-    type = "public"
-    uri  = "*.proxmox.${var.domain_name}"
-  }
-}
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "*.proxmox.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = false
+#   name                       = "Proxmox SSH"
+#   session_duration           = "24h"
+#   type                       = "ssh"
+#   destinations {
+#     type = "public"
+#     uri  = "*.proxmox.${var.domain_name}"
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_application" "vyos_ssh" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+# resource "cloudflare_zero_trust_access_application" "vyos_ssh" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
 
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "*.vyos.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = false
-  name                       = "VyOS SSH"
-  session_duration           = "24h"
-  type                       = "ssh"
-  destinations {
-    type = "public"
-    uri  = "*.vyos.${var.domain_name}"
-  }
-}
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "*.vyos.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = false
+#   name                       = "VyOS SSH"
+#   session_duration           = "24h"
+#   type                       = "ssh"
+#   destinations {
+#     type = "public"
+#     uri  = "*.vyos.${var.domain_name}"
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_application" "warp_login" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-    cloudflare_zero_trust_access_policy.warp_auth_token.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+# resource "cloudflare_zero_trust_access_application" "warp_login" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#     cloudflare_zero_trust_access_policy.warp_auth_token.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
 
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  auto_redirect_to_identity = false
-  domain                    = "erfianugrah.cloudflareaccess.com/warp"
-  name                      = "Warp Login App"
-  session_duration          = "24h"
-  type                      = "warp"
-}
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   auto_redirect_to_identity = false
+#   domain                    = "erfianugrah.cloudflareaccess.com/warp"
+#   name                      = "Warp Login App"
+#   session_duration          = "24h"
+#   type                      = "warp"
+# }
 
-resource "cloudflare_zero_trust_access_application" "prometheus" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-    cloudflare_zero_trust_access_policy.prometheus_auth_token.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+# resource "cloudflare_zero_trust_access_application" "prometheus" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#     cloudflare_zero_trust_access_policy.prometheus_auth_token.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
 
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "prom-unraid.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = false
-  name                       = "Prometheus"
-  service_auth_401_redirect  = true
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "prom-unraid.${var.domain_name}"
-  }
-  destinations {
-    type = "public"
-    uri  = "prom-k3s.${var.domain_name}"
-  }
-}
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "prom-unraid.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = false
+#   name                       = "Prometheus"
+#   service_auth_401_redirect  = true
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "prom-unraid.${var.domain_name}"
+#   }
+#   destinations {
+#     type = "public"
+#     uri  = "prom-k3s.${var.domain_name}"
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_application" "turing_pi_bmc" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+# resource "cloudflare_zero_trust_access_application" "turing_pi_bmc" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
 
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "tpi.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = false
-  name                       = "Turing PI BMC UI"
-  same_site_cookie_attribute = "none"
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "tpi.${var.domain_name}"
-  }
-  cors_headers {
-    allow_all_headers = true
-    allow_all_methods = true
-    allowed_origins   = ["tpi.${var.domain_name}"]
-    max_age           = 3600
-  }
-}
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "tpi.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = false
+#   name                       = "Turing PI BMC UI"
+#   same_site_cookie_attribute = "none"
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "tpi.${var.domain_name}"
+#   }
+#   cors_headers {
+#     allow_all_headers = true
+#     allow_all_methods = true
+#     allowed_origins   = ["tpi.${var.domain_name}"]
+#     max_age           = 3600
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_application" "google_saas" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id
-  ]
-  allowed_idps              = [cloudflare_zero_trust_access_identity_provider.gmail.id]
-  app_launcher_visible      = true
-  auto_redirect_to_identity = false
-  domain                    = var.google_domain
-  name                      = "Google"
-  session_duration          = "24h"
-  type                      = "saas"
-  saas_app {
-    consumer_service_url = var.google_service_url
-    name_id_format       = "email"
-    sp_entity_id         = var.google_sp_id
-  }
-}
+# resource "cloudflare_zero_trust_access_application" "google_saas" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id
+#   ]
+#   allowed_idps              = [cloudflare_zero_trust_access_identity_provider.gmail.id]
+#   app_launcher_visible      = true
+#   auto_redirect_to_identity = false
+#   domain                    = var.google_domain
+#   name                      = "Google"
+#   session_duration          = "24h"
+#   type                      = "saas"
+#   saas_app {
+#     consumer_service_url = var.google_service_url
+#     name_id_format       = "email"
+#     sp_entity_id         = var.google_sp_id
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_application" "authentik_saas" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible      = true
-  auto_redirect_to_identity = false
-  domain                    = var.authentik_saas_domain
-  name                      = "Authentik"
-  session_duration          = "24h"
-  type                      = "saas"
-  saas_app {
-    auth_type = "oidc"
+# resource "cloudflare_zero_trust_access_application" "authentik_saas" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible      = true
+#   auto_redirect_to_identity = false
+#   domain                    = var.authentik_saas_domain
+#   name                      = "Authentik"
+#   session_duration          = "24h"
+#   type                      = "saas"
+#   saas_app {
+#     auth_type = "oidc"
     # public_key = var.authentik_saas_public_key
     # client_id     = var.authentik_saas_client_id
-    redirect_uris = var.authentik_saas_redirect_uris
-    grant_types   = ["authorization_code_with_pkce"]
-    scopes        = ["openid", "email", "profile", "groups"]
-  }
-}
+#     redirect_uris = var.authentik_saas_redirect_uris
+#     grant_types   = ["authorization_code_with_pkce"]
+#     scopes        = ["openid", "email", "profile", "groups"]
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_application" "immich_saas" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+# resource "cloudflare_zero_trust_access_application" "immich_saas" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
 
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible      = true
-  auto_redirect_to_identity = false
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible      = true
+#   auto_redirect_to_identity = false
   # domain                    = var.immich_saas_domain
-  name             = "Immich"
-  session_duration = "24h"
-  type             = "saas"
-  saas_app {
-    auth_type = "oidc"
+#   name             = "Immich"
+#   session_duration = "24h"
+#   type             = "saas"
+#   saas_app {
+#     auth_type = "oidc"
     # public_key = var.authentik_saas_public_key
     # client_id     = var.authentik_saas_client_id
-    redirect_uris = var.immich_saas_redirect_uris
-    grant_types   = ["authorization_code_with_pkce"]
-    scopes        = ["openid", "email", "profile", "groups"]
-  }
-}
+#     redirect_uris = var.immich_saas_redirect_uris
+#     grant_types   = ["authorization_code_with_pkce"]
+#     scopes        = ["openid", "email", "profile", "groups"]
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_application" "kubectl_saas" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible      = true
-  auto_redirect_to_identity = false
-  domain                    = "kubectl.${var.tertiary_domain_name}"
-  name                      = "kubectl"
-  session_duration          = "24h"
-  type                      = "saas"
-  saas_app {
-    auth_type = "oidc"
+# resource "cloudflare_zero_trust_access_application" "kubectl_saas" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible      = true
+#   auto_redirect_to_identity = false
+#   domain                    = "kubectl.${var.tertiary_domain_name}"
+#   name                      = "kubectl"
+#   session_duration          = "24h"
+#   type                      = "saas"
+#   saas_app {
+#     auth_type = "oidc"
     # public_key = var.authentik_saas_public_key
     # client_id     = var.authentik_saas_client_id
-    redirect_uris                    = ["http://localhost:8000", "http://127.0.0.1:8000", "http://localhost:18000", "http://127.0.0.1:18000", /* "urn:ietf:wg:oauth:2.0:oob" */]
-    grant_types                      = ["authorization_code_with_pkce", "refresh_tokens"]
-    scopes                           = ["openid", "email", "profile", "groups"]
-    allow_pkce_without_client_secret = true
-    access_token_lifetime            = "5m"
-    refresh_token_options {
-      lifetime = "24h"
-    }
+#     redirect_uris                    = ["http://localhost:8000", "http://127.0.0.1:8000", "http://localhost:18000", "http://127.0.0.1:18000", /* "urn:ietf:wg:oauth:2.0:oob" */]
+#     grant_types                      = ["authorization_code_with_pkce", "refresh_tokens"]
+#     scopes                           = ["openid", "email", "profile", "groups"]
+#     allow_pkce_without_client_secret = true
+#     access_token_lifetime            = "5m"
+#     refresh_token_options {
+#       lifetime = "24h"
+#     }
     # hybrid_and_implicit_options {
     #   return_id_token_from_authorization_endpoint     = true
     #   return_access_token_from_authorization_endpoint = true
     # }
-  }
-}
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_application" "changedetection" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+# resource "cloudflare_zero_trust_access_application" "changedetection" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
 
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "change.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = false
-  name                       = "ChangeDetection"
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "change.${var.domain_name}"
-  }
-}
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "change.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = false
+#   name                       = "ChangeDetection"
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "change.${var.domain_name}"
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_application" "copyparty" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+# resource "cloudflare_zero_trust_access_application" "copyparty" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
 
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "copyparty.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = true
-  name                       = "Copyparty"
-  same_site_cookie_attribute = "lax"
-  session_duration           = "15m"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "copyparty.${var.domain_name}"
-  }
-  cors_headers {
-    allow_all_headers = true
-    allow_all_methods = true
-    allow_credentials = true
-    allowed_origins   = [var.domain_name, "copyparty.${var.domain_name}"]
-    max_age           = 3600
-  }
-}
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "copyparty.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = true
+#   name                       = "Copyparty"
+#   same_site_cookie_attribute = "lax"
+#   session_duration           = "15m"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "copyparty.${var.domain_name}"
+#   }
+#   cors_headers {
+#     allow_all_headers = true
+#     allow_all_methods = true
+#     allow_credentials = true
+#     allowed_origins   = [var.domain_name, "copyparty.${var.domain_name}"]
+#     max_age           = 3600
+#   }
+# }
 
 # resource "cloudflare_zero_trust_access_application" "dillinger" {
 #   account_id = var.cloudflare_account_id
@@ -498,34 +499,34 @@ resource "cloudflare_zero_trust_access_application" "copyparty" {
 #   }
 # }
 
-resource "cloudflare_zero_trust_access_application" "tunnel_secret_worker" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-    cloudflare_zero_trust_access_policy.tunnel_secret_worker.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+# resource "cloudflare_zero_trust_access_application" "tunnel_secret_worker" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#     cloudflare_zero_trust_access_policy.tunnel_secret_worker.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
 
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "tunnel.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = true
-  name                       = "Tunnel Secret"
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "tunnel.${var.domain_name}"
-  }
-}
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "tunnel.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = true
+#   name                       = "Tunnel Secret"
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "tunnel.${var.domain_name}"
+#   }
+# }
 
 # resource "cloudflare_zero_trust_access_application" "overseerr" {
 #   account_id = var.cloudflare_account_id
@@ -566,26 +567,26 @@ resource "cloudflare_zero_trust_access_application" "tunnel_secret_worker" {
 #   }
 # }
 
-resource "cloudflare_zero_trust_access_application" "app_launcher" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+# resource "cloudflare_zero_trust_access_application" "app_launcher" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
 
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  auto_redirect_to_identity = false
-  domain                    = "erfianugrah.cloudflareaccess.com"
-  name                      = "App Launcher"
-  session_duration          = "24h"
-  type                      = "app_launcher"
-}
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   auto_redirect_to_identity = false
+#   domain                    = "erfianugrah.cloudflareaccess.com"
+#   name                      = "App Launcher"
+#   session_duration          = "24h"
+#   type                      = "app_launcher"
+# }
 
 # resource "cloudflare_zero_trust_access_application" "synapse_admin" {
 #   account_id = var.cloudflare_account_id
@@ -622,135 +623,135 @@ resource "cloudflare_zero_trust_access_application" "app_launcher" {
 #   }
 # }
 
-resource "cloudflare_zero_trust_access_application" "servarr" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-    cloudflare_zero_trust_access_policy.servarr_token.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "servarr.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = true
-  name                       = "Servarr"
-  same_site_cookie_attribute = "lax"
-  session_duration           = "15m"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "servarr.${var.domain_name}"
-  }
-  cors_headers {
-    allow_all_headers = true
-    allow_all_methods = true
-    allowed_origins   = [var.tertiary_domain_name, "servarr.${var.tertiary_domain_name}"]
-    max_age           = 3600
-  }
-}
+# resource "cloudflare_zero_trust_access_application" "servarr" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#     cloudflare_zero_trust_access_policy.servarr_token.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "servarr.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = true
+#   name                       = "Servarr"
+#   same_site_cookie_attribute = "lax"
+#   session_duration           = "15m"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "servarr.${var.domain_name}"
+#   }
+#   cors_headers {
+#     allow_all_headers = true
+#     allow_all_methods = true
+#     allowed_origins   = [var.tertiary_domain_name, "servarr.${var.tertiary_domain_name}"]
+#     max_age           = 3600
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_application" "caddy_api" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-    cloudflare_zero_trust_access_policy.caddy_api_token.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "caddy.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = false
-  name                       = "Caddy API"
-  service_auth_401_redirect  = true
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "caddy.${var.domain_name}"
-  }
-}
+# resource "cloudflare_zero_trust_access_application" "caddy_api" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#     cloudflare_zero_trust_access_policy.caddy_api_token.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "caddy.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = false
+#   name                       = "Caddy API"
+#   service_auth_401_redirect  = true
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "caddy.${var.domain_name}"
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_application" "ollama" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.ollama_token.id,
-    cloudflare_zero_trust_access_policy.allow_erfi.id
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+# resource "cloudflare_zero_trust_access_application" "ollama" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.ollama_token.id,
+#     cloudflare_zero_trust_access_policy.allow_erfi.id
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
 
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "ollama.${var.domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = false
-  name                       = "Ollama API"
-  service_auth_401_redirect  = true
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "ollama.${var.domain_name}"
-  }
-}
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "ollama.${var.domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = false
+#   name                       = "Ollama API"
+#   service_auth_401_redirect  = true
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "ollama.${var.domain_name}"
+#   }
+# }
 
-resource "cloudflare_zero_trust_access_application" "draw" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "draw.${var.secondary_domain_name}"
-  enable_binding_cookie      = false
-  http_only_cookie_attribute = true
-  same_site_cookie_attribute = "lax"
-  name                       = "Excalidraw"
-  service_auth_401_redirect  = true
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  destinations {
-    type = "public"
-    uri  = "draw.${var.secondary_domain_name}"
-  }
-  cors_headers {
-    allow_all_headers = true
-    allow_all_methods = true
-    allow_credentials = true
-    allowed_origins   = ["draw.${var.secondary_domain_name}"]
-    max_age           = 3600
-  }
-}
+# resource "cloudflare_zero_trust_access_application" "draw" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "draw.${var.secondary_domain_name}"
+#   enable_binding_cookie      = false
+#   http_only_cookie_attribute = true
+#   same_site_cookie_attribute = "lax"
+#   name                       = "Excalidraw"
+#   service_auth_401_redirect  = true
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   destinations {
+#     type = "public"
+#     uri  = "draw.${var.secondary_domain_name}"
+#   }
+#   cors_headers {
+#     allow_all_headers = true
+#     allow_all_methods = true
+#     allow_credentials = true
+#     allowed_origins   = ["draw.${var.secondary_domain_name}"]
+#     max_age           = 3600
+#   }
+# }
 # resource "cloudflare_zero_trust_access_application" "kubectl" {
 #   account_id = var.cloudflare_account_id
 #   policies = [
@@ -814,42 +815,42 @@ resource "cloudflare_zero_trust_access_application" "draw" {
 #   }
 # }
 
-resource "cloudflare_zero_trust_access_application" "gloryhole" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible       = true
-  auto_redirect_to_identity  = false
-  domain                     = "gloryhole.${var.secondary_domain_name}"
-  enable_binding_cookie      = true
-  http_only_cookie_attribute = false
-  same_site_cookie_attribute = "lax"
-  name                       = "Gloryhole"
-  service_auth_401_redirect  = true
-  session_duration           = "24h"
-  type                       = "self_hosted"
-  logo_url                   = "https://cdn.erfianugrah.com/ea_favicon.png"
-  cors_headers {
-    allow_all_headers = true
-    allow_all_methods = true
-    allow_credentials = true
-    allowed_origins   = [var.secondary_domain_name]
-    max_age           = 3600
-  }
-  destinations {
-    type = "public"
-    uri  = "gloryhole.${var.secondary_domain_name}"
-  }
-}
+# resource "cloudflare_zero_trust_access_application" "gloryhole" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.authentik_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible       = true
+#   auto_redirect_to_identity  = false
+#   domain                     = "gloryhole.${var.secondary_domain_name}"
+#   enable_binding_cookie      = true
+#   http_only_cookie_attribute = false
+#   same_site_cookie_attribute = "lax"
+#   name                       = "Gloryhole"
+#   service_auth_401_redirect  = true
+#   session_duration           = "24h"
+#   type                       = "self_hosted"
+#   logo_url                   = "https://cdn.erfianugrah.com/ea_favicon.png"
+#   cors_headers {
+#     allow_all_headers = true
+#     allow_all_methods = true
+#     allow_credentials = true
+#     allowed_origins   = [var.secondary_domain_name]
+#     max_age           = 3600
+#   }
+#   destinations {
+#     type = "public"
+#     uri  = "gloryhole.${var.secondary_domain_name}"
+#   }
+# }
 
 # resource "cloudflare_zero_trust_access_application" "gatekeeper" {
 #   account_id = var.cloudflare_account_id
@@ -888,35 +889,35 @@ resource "cloudflare_zero_trust_access_application" "gloryhole" {
 #   }
 # }
 
-resource "cloudflare_zero_trust_access_application" "gk_saas" {
-  account_id = var.cloudflare_account_id
-  policies = [
-    cloudflare_zero_trust_access_policy.allow_erfi.id,
-  ]
-  allowed_idps = [
-    cloudflare_zero_trust_access_identity_provider.entra_id.id,
-    cloudflare_zero_trust_access_identity_provider.google_workspace.id,
-    cloudflare_zero_trust_access_identity_provider.gmail.id,
-    cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
-    cloudflare_zero_trust_access_identity_provider.pin.id
-  ]
-  app_launcher_visible      = true
-  auto_redirect_to_identity = false
-  name                      = "Gatekeeper"
-  session_duration          = "24h"
-  type                      = "saas"
-  saas_app {
-    auth_type = "oidc"
-    redirect_uris = [
-      "https://gate.${var.tertiary_domain_name}/auth/oauth/callback",
-      "http://localhost:8787/auth/oauth/callback",
-    ]
-    grant_types                      = ["authorization_code_with_pkce"]
-    scopes                           = ["openid", "email", "profile", "groups"]
-    allow_pkce_without_client_secret = false
-    access_token_lifetime            = "5m"
-    refresh_token_options {
-      lifetime = "24h"
-    }
-  }
-}
+# resource "cloudflare_zero_trust_access_application" "gk_saas" {
+#   account_id = var.cloudflare_account_id
+#   policies = [
+#     cloudflare_zero_trust_access_policy.allow_erfi.id,
+#   ]
+#   allowed_idps = [
+#     cloudflare_zero_trust_access_identity_provider.entra_id.id,
+#     cloudflare_zero_trust_access_identity_provider.google_workspace.id,
+#     cloudflare_zero_trust_access_identity_provider.gmail.id,
+#     cloudflare_zero_trust_access_identity_provider.keycloak_oidc.id,
+#     cloudflare_zero_trust_access_identity_provider.pin.id
+#   ]
+#   app_launcher_visible      = true
+#   auto_redirect_to_identity = false
+#   name                      = "Gatekeeper"
+#   session_duration          = "24h"
+#   type                      = "saas"
+#   saas_app {
+#     auth_type = "oidc"
+#     redirect_uris = [
+#       "https://gate.${var.tertiary_domain_name}/auth/oauth/callback",
+#       "http://localhost:8787/auth/oauth/callback",
+#     ]
+#     grant_types                      = ["authorization_code_with_pkce"]
+#     scopes                           = ["openid", "email", "profile", "groups"]
+#     allow_pkce_without_client_secret = false
+#     access_token_lifetime            = "5m"
+#     refresh_token_options {
+#       lifetime = "24h"
+#     }
+#   }
+# }
