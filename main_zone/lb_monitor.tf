@@ -1,19 +1,20 @@
-resource "cloudflare_load_balancer_monitor" "httpbun_erfipie" {
-  account_id       = var.cloudflare_account_id
-  allow_insecure   = false
-  consecutive_down = 5
-  consecutive_up   = 0
-  description      = "httpbun_erfipie"
-  expected_codes   = "200"
-  follow_redirects = false
-  interval         = 300
-  method           = "GET"
-  path             = "/"
-  port             = 9000
-  retries          = 5
-  timeout          = 5
-  type             = "http"
-}
+# RETIRED 2026-09-05: commented out (argo tunnels retired) - see main_zone/tunnels.tf header.
+# resource "cloudflare_load_balancer_monitor" "httpbun_erfipie" {
+#   account_id       = var.cloudflare_account_id
+#   allow_insecure   = false
+#   consecutive_down = 5
+#   consecutive_up   = 0
+#   description      = "httpbun_erfipie"
+#   expected_codes   = "200"
+#   follow_redirects = false
+#   interval         = 300
+#   method           = "GET"
+#   path             = "/"
+#   port             = 9000
+#   retries          = 5
+#   timeout          = 5
+#   type             = "http"
+# }
 
 # resource "cloudflare_load_balancer_monitor" "vaultwarden" {
 #   account_id       = var.cloudflare_account_id
@@ -36,13 +37,13 @@ resource "cloudflare_load_balancer_monitor" "httpbun_erfipie" {
 #   }
 # }
 
-resource "cloudflare_load_balancer_monitor" "jitsi" {
-  account_id       = var.cloudflare_account_id
-  consecutive_down = 5
-  consecutive_up   = 0
-  description      = "jitsi_jvb_udp"
-  interval         = 60
-  retries          = 2
-  timeout          = 3
-  type             = "icmp_ping"
-}
+# resource "cloudflare_load_balancer_monitor" "jitsi" {
+#   account_id       = var.cloudflare_account_id
+#   consecutive_down = 5
+#   consecutive_up   = 0
+#   description      = "jitsi_jvb_udp"
+#   interval         = 60
+#   retries          = 2
+#   timeout          = 3
+#   type             = "icmp_ping"
+# }

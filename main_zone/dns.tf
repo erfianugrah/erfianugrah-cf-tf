@@ -1,3 +1,4 @@
+# RETIRED 2026-09-05: commented out (argo tunnels retired) - see main_zone/tunnels.tf header.
 # DNS records for the primary zone (erfianugrah.com)
 # Consolidated into a single module call for efficiency
 
@@ -18,33 +19,33 @@ module "primary_dns" {
       comment = "pikvm"
       tags    = ["kvm-sg"]
     },
-    kvm_nl = {
-      name    = "kvm-nl"
-      type    = "CNAME"
-      content = module.tunnel_kvm_nl.cname
-      proxied = true
-      ttl     = 1
-      comment = "pikvm nl"
-      tags    = ["kvm-nl"]
-    },
-    ssh_pikvm_sg = {
-      name    = "ssh-pikvm-sg"
-      type    = "CNAME"
-      content = module.tunnel_kvm_sg.cname
-      proxied = true
-      ttl     = 1
-      comment = "SSH access to pikvm sg"
-      tags    = ["kvm-sg"]
-    },
-    ssh_pikvm_nl = {
-      name    = "ssh-pikvm-nl"
-      type    = "CNAME"
-      content = module.tunnel_kvm_nl.cname
-      proxied = true
-      ttl     = 1
-      comment = "SSH access to pikvm nl"
-      tags    = ["kvm-nl"]
-    },
+#     kvm_nl = {
+#       name    = "kvm-nl"
+#       type    = "CNAME"
+#       content = module.tunnel_kvm_nl.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "pikvm nl"
+#       tags    = ["kvm-nl"]
+#     },
+#     ssh_pikvm_sg = {
+#       name    = "ssh-pikvm-sg"
+#       type    = "CNAME"
+#       content = module.tunnel_kvm_sg.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "SSH access to pikvm sg"
+#       tags    = ["kvm-sg"]
+#     },
+#     ssh_pikvm_nl = {
+#       name    = "ssh-pikvm-nl"
+#       type    = "CNAME"
+#       content = module.tunnel_kvm_nl.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "SSH access to pikvm nl"
+#       tags    = ["kvm-nl"]
+#     },
 
     # ── VyOS Netherlands ────────────────────────────────────────────────
     vyos_node_exporter = {
@@ -56,15 +57,15 @@ module "primary_dns" {
       comment = "vyos-node-exporter"
       tags    = ["vyos-nl"]
     },
-    vyos_ssh_nl = {
-      name    = "nl.vyos"
-      type    = "CNAME"
-      content = module.tunnel_vyos_nl.cname
-      proxied = true
-      ttl     = 1
-      comment = "VyOS SSH NL"
-      tags    = ["vyos-nl"]
-    },
+#     vyos_ssh_nl = {
+#       name    = "nl.vyos"
+#       type    = "CNAME"
+#       content = module.tunnel_vyos_nl.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "VyOS SSH NL"
+#       tags    = ["vyos-nl"]
+#     },
     coredns_prom_exporter_nl = {
       name    = "coredns-prom-exporter-nl"
       type    = "A"
@@ -74,62 +75,62 @@ module "primary_dns" {
       comment = "monitoring for coredns"
       tags    = ["vyos-nl"]
     },
-    httpbun_nl = {
-      name    = "httpbun-nl"
-      type    = "CNAME"
-      content = module.tunnel_vyos_nl.cname
-      proxied = true
-      ttl     = 1
-      comment = "httpbun on vyos-nl"
-      tags    = ["vyos-nl"]
-    },
-    pihole_vyos_nl = {
-      name    = "pihole-vyos-nl"
-      type    = "CNAME"
-      content = module.tunnel_vyos_nl.cname
-      proxied = true
-      ttl     = 1
-      comment = "pihole-nl"
-      tags    = ["vyos-nl"]
-    },
-    tpi = {
-      name    = "tpi"
-      type    = "CNAME"
-      content = module.tunnel_vyos_nl.cname
-      proxied = true
-      ttl     = 1
-      comment = "turing pi BMC"
-      tags    = ["k3s"]
-    },
-    prom_tunnel_nl = {
-      name    = "prom-tunnel-nl"
-      type    = "CNAME"
-      content = module.tunnel_vyos_nl.cname
-      proxied = true
-      ttl     = 1
-      comment = "cfd node exporter"
-      tags    = ["vyos-nl"]
-    },
-    prom_vyos_nl = {
-      name    = "prom-vyos-nl"
-      type    = "CNAME"
-      content = module.tunnel_vyos_nl.cname
-      proxied = true
-      ttl     = 1
-      comment = "cfd node exporter"
-      tags    = ["vyos-nl"]
-    },
+#     httpbun_nl = {
+#       name    = "httpbun-nl"
+#       type    = "CNAME"
+#       content = module.tunnel_vyos_nl.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "httpbun on vyos-nl"
+#       tags    = ["vyos-nl"]
+#     },
+#     pihole_vyos_nl = {
+#       name    = "pihole-vyos-nl"
+#       type    = "CNAME"
+#       content = module.tunnel_vyos_nl.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "pihole-nl"
+#       tags    = ["vyos-nl"]
+#     },
+#     tpi = {
+#       name    = "tpi"
+#       type    = "CNAME"
+#       content = module.tunnel_vyos_nl.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "turing pi BMC"
+#       tags    = ["k3s"]
+#     },
+#     prom_tunnel_nl = {
+#       name    = "prom-tunnel-nl"
+#       type    = "CNAME"
+#       content = module.tunnel_vyos_nl.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "cfd node exporter"
+#       tags    = ["vyos-nl"]
+#     },
+#     prom_vyos_nl = {
+#       name    = "prom-vyos-nl"
+#       type    = "CNAME"
+#       content = module.tunnel_vyos_nl.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "cfd node exporter"
+#       tags    = ["vyos-nl"]
+#     },
 
     # ── VyOS Singapore ──────────────────────────────────────────────────
-    vyos_sg_ssh = {
-      name    = "sg.vyos"
-      type    = "CNAME"
-      content = module.tunnel_vyos_sg.cname
-      proxied = true
-      ttl     = 1
-      comment = "VyOS SSH SG"
-      tags    = ["vyos-sg"]
-    },
+#     vyos_sg_ssh = {
+#       name    = "sg.vyos"
+#       type    = "CNAME"
+#       content = module.tunnel_vyos_sg.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "VyOS SSH SG"
+#       tags    = ["vyos-sg"]
+#     },
     coredns_prom_exporter_sg = {
       name    = "coredns-prom-exporter-sg"
       type    = "A"
@@ -139,15 +140,15 @@ module "primary_dns" {
       comment = "monitoring for coredns"
       tags    = ["vyos-sg"]
     },
-    pihole_vyos_sg = {
-      name    = "pihole-vyos-sg"
-      type    = "CNAME"
-      content = module.tunnel_vyos_sg.cname
-      proxied = true
-      ttl     = 1
-      comment = "pihole-sg"
-      tags    = ["vyos-sg"]
-    },
+#     pihole_vyos_sg = {
+#       name    = "pihole-vyos-sg"
+#       type    = "CNAME"
+#       content = module.tunnel_vyos_sg.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "pihole-sg"
+#       tags    = ["vyos-sg"]
+#     },
     ping = {
       name    = "ping"
       type    = "A"
@@ -159,15 +160,15 @@ module "primary_dns" {
     },
 
     # ── Authentication ──────────────────────────────────────────────────
-    keycloak = {
-      name    = "keycloak"
-      type    = "CNAME"
-      content = module.tunnel_servarr.cname
-      proxied = true
-      ttl     = 1
-      comment = "auth server"
-      tags    = ["auth"]
-    },
+#     keycloak = {
+#       name    = "keycloak"
+#       type    = "CNAME"
+#       content = module.tunnel_servarr.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "auth server"
+#       tags    = ["auth"]
+#     },
 
     # ── Email ───────────────────────────────────────────────────────────
     google_workspace = {
@@ -233,15 +234,15 @@ module "primary_dns" {
     },
 
     # ── Special Purpose ─────────────────────────────────────────────────
-    atuin = {
-      name    = "atuin"
-      type    = "CNAME"
-      content = module.tunnel_erfipie.cname
-      proxied = true
-      ttl     = 1
-      comment = "atuin"
-      tags    = ["erfipie"]
-    },
+#     atuin = {
+#       name    = "atuin"
+#       type    = "CNAME"
+#       content = module.tunnel_erfipie.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "atuin"
+#       tags    = ["erfipie"]
+#     },
     discord = {
       name    = "_discord.www"
       type    = "TXT"
@@ -250,15 +251,15 @@ module "primary_dns" {
       comment = "discord"
       tags    = ["discord"]
     },
-    erfipie = {
-      name    = "pie"
-      type    = "CNAME"
-      content = module.tunnel_erfipie.cname
-      proxied = true
-      ttl     = 1
-      comment = "erfipie short-lived-cert ssh"
-      tags    = ["erfipie"]
-    },
+#     erfipie = {
+#       name    = "pie"
+#       type    = "CNAME"
+#       content = module.tunnel_erfipie.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "erfipie short-lived-cert ssh"
+#       tags    = ["erfipie"]
+#     },
     k3s_tunnel = {
       name    = "k3stun"
       type    = "CNAME"
@@ -268,15 +269,15 @@ module "primary_dns" {
       comment = "k3s zero trust tunnel"
       tags    = ["k3s"]
     },
-    prom_exporter_pi = {
-      name    = "prom-exporter-pi"
-      type    = "CNAME"
-      content = module.tunnel_erfipie.cname
-      proxied = true
-      ttl     = 1
-      comment = "erfipie node exporter"
-      tags    = ["erfipie"]
-    },
+#     prom_exporter_pi = {
+#       name    = "prom-exporter-pi"
+#       type    = "CNAME"
+#       content = module.tunnel_erfipie.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "erfipie node exporter"
+#       tags    = ["erfipie"]
+#     },
     tunnel = {
       name    = "tunnel"
       type    = "AAAA"
@@ -392,24 +393,24 @@ module "secondary_dns" {
   domain_name = var.secondary_domain_name
 
   records = {
-    draw = {
-      name    = "draw"
-      type    = "CNAME"
-      content = module.tunnel_erfipie.cname
-      proxied = true
-      ttl     = 1
-      comment = "excalidraw"
-      tags    = ["erfipie"]
-    },
-    uptime = {
-      name    = "uptime"
-      type    = "CNAME"
-      content = module.tunnel_erfipie.cname
-      proxied = true
-      ttl     = 1
-      comment = "uptime-kuma"
-      tags    = ["erfipie"]
-    },
+#     draw = {
+#       name    = "draw"
+#       type    = "CNAME"
+#       content = module.tunnel_erfipie.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "excalidraw"
+#       tags    = ["erfipie"]
+#     },
+#     uptime = {
+#       name    = "uptime"
+#       type    = "CNAME"
+#       content = module.tunnel_erfipie.cname
+#       proxied = true
+#       ttl     = 1
+#       comment = "uptime-kuma"
+#       tags    = ["erfipie"]
+#     },
   }
 }
 

@@ -1,32 +1,33 @@
-output "tunnel_token_erfipie" {
-  value     = module.tunnel_erfipie.tunnel_token
-  sensitive = true
-}
+# RETIRED 2026-09-05: commented out (argo tunnels retired) - see main_zone/tunnels.tf header.
+# output "tunnel_token_erfipie" {
+#   value     = module.tunnel_erfipie.tunnel_token
+#   sensitive = true
+# }
 
-output "tunnel_token_kvm_nl" {
-  value     = module.tunnel_kvm_nl.tunnel_token
-  sensitive = true
-}
+# output "tunnel_token_kvm_nl" {
+#   value     = module.tunnel_kvm_nl.tunnel_token
+#   sensitive = true
+# }
 
-output "tunnel_token_kvm_sg" {
-  value     = module.tunnel_kvm_sg.tunnel_token
-  sensitive = true
-}
+# output "tunnel_token_kvm_sg" {
+#   value     = module.tunnel_kvm_sg.tunnel_token
+#   sensitive = true
+# }
 
-output "tunnel_token_servarr" {
-  value     = module.tunnel_servarr.tunnel_token
-  sensitive = true
-}
+# output "tunnel_token_servarr" {
+#   value     = module.tunnel_servarr.tunnel_token
+#   sensitive = true
+# }
 
-output "tunnel_token_vyos_nl" {
-  value     = module.tunnel_vyos_nl.tunnel_token
-  sensitive = true
-}
+# output "tunnel_token_vyos_nl" {
+#   value     = module.tunnel_vyos_nl.tunnel_token
+#   sensitive = true
+# }
 
-output "tunnel_token_vyos_sg" {
-  value     = module.tunnel_vyos_sg.tunnel_token
-  sensitive = true
-}
+# output "tunnel_token_vyos_sg" {
+#   value     = module.tunnel_vyos_sg.tunnel_token
+#   sensitive = true
+# }
 
 output "turnstile_authentik_secret_key" {
   value     = cloudflare_turnstile_widget.authentik.secret
