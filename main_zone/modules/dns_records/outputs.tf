@@ -1,5 +1,8 @@
 locals {
-  all_records = merge(cloudflare_record.simple, cloudflare_record.complex)
+  all_records = merge(
+    { for k, v in cloudflare_record.simple : k => merge(v, { value = null }) },
+    cloudflare_record.complex
+  )
 }
 
 output "all_records" {
@@ -9,7 +12,9 @@ output "all_records" {
 
 output "simple_records" {
   description = "Map of simple DNS records (using content field)"
-  value       = cloudflare_record.simple
+  value = {
+    for k, v in cloudflare_record.simple : k => merge(v, { value = null })
+  }
 }
 
 output "complex_records" {
